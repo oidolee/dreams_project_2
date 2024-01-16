@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 페이지 작업자 : 공용 --> 
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>편의시설</title>
+    <!-- reset.css -->
+    <link rel="stylesheet" href="../css/common/reset.css">
+    <!-- Bootstrap css-->
+    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <!-- swiper css-->
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/common/header.css">
+    <link rel="stylesheet" href="../css/common/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <!-- swiper js-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <!-- header.js -->
+    <script src="../js/common/header.js"></script>
+
+    <script>
+        // 페이지 로드 후 실행될 함수
+        $(document).ready(function () {
+            // top 버튼 클릭 시 스크롤
+            $('#goTop a[href="#header"]').on('click', function (e) {
+                window.scroll({
+                    top: 0,
+                });
+                checkButton();
+            });
+        });
+
+        //크롬 스크롤 오류로 시간 지정 후 동장
+        $(window).on("scroll", function () {
+            $("#goTop a").attr("href", "#none")
+            $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.1)" });
+            setTimeout(() => {
+                $("#goTop a").attr("href", "#header")
+                $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
+            }, 2000);
+        })
+
+    </script>
+    <style>
+        .slider-con img{
+            width: 100%;
+        }
+
+        .container-box {
+            padding: 0;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+
+        .center {
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .section-1-con {
+            min-height: 440px;
+        }
+
+        .section-1 {
+            height: 100%;
+            padding: 80px 0;
+        }
+
+        .section-1-top h2 {
+            text-align: center;
+        }
+
+        .section-1-top h2 a {
+            color: #000 !important;
+        }
+
+        .section-1-bottom ul {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 40px;
+            padding-left: 0;
+        }
+
+        /* 반응형 */
+        @media screen and (max-width:960px) {
+            .footer-1{padding: 30px;}
+            .section-1-bottom ul{
+                flex-direction: column;
+            }
+
+            .footer-list-box{
+                flex-direction: column;
+            }
+
+            .footer-list-box .item-box ul{justify-content: center;}
+            .txt-add{text-align: center;}
+        }
+
+        @media screen and (max-width:560px) {
+            .footer-1{font-size: 14px;}
+            .footer-list-box{flex-direction: row;}
+            .link-list{flex-direction: column;}
+            .footer-list-box{flex-direction: column;}
+            .link-list{align-items: center;}
+        }   
+
+        #amenity-container {
+            margin: auto;
+        }
+
+        .stadium-contents {
+            text-align: center;
+        }
+
+        .stadium-tab li {
+           
+           list-style: none;
+           display: inline-block;
+           width: 150px;
+           font-weight: bold;
+        }
+
+        .stadium-tab .menuLink:hover {
+            color: #1c5c50 !important;
+            
+        }
+
+        .menuLink {
+            color: black !important;
+            font-weight: bold !important;
+        }
+
+        .card-title {
+            font-weight: bold;
+        }
+        
+        .amenity-fluid {
+            width: 1280px;
+            margin: 0 auto;
+        }
+
+
+    </style>
+</head>
+<div class="wrap">
+    <!-- 상단 이동 헤더 -->
+    <div id="header"></div>
+    <body>
+        <div class="container-fluid container-box">
+            <header>
+                <div class="header-top">
+                    <div class="top-box">
+                        <div class="right">
+                            <ul>
+                                <li><a href="../page_6/myPage.html">마이페이지</a></li>
+                                <li><a href="../page_1/login.html">로그인</a></li>
+                                <li><a href="../page_1/join.html">회원가입</a></li>
+                                <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
+                                            alt="youtube">
+                                    </a></li>
+                                <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns2.png"
+                                            alt="instagram">
+                                    </a></li>
+                                <li><a href="https://www.facebook.com/watch/sbsdrama.official/2552511298297818/" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns3.png"
+                                            alt="facebokk">
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <nav>
+                        <h2>
+                            <a href="../../index.html">
+                                <img src="../image/logoSmall.png" style="width: 100%;" alt="logoSmall">
+                            </a>
+                        </h2>
+                        <!-- pc -->
+                        <ul id="menu_box" class="menu-box">
+                            <li>
+                                <a href="../page_6/Introduce.html">DREAMS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_6/Introduce.html">드림즈 소개</a></li>
+                                    <li><a href="../page_6/stadium.html">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_4/players.html">PLAYERS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_4/players.html">선수</a></li>
+                                    <li><a href="../page_4/coaching.html">코칭스태프</a></li>
+                                    <li><a href="../page_4/steff.html">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GAMES</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">STATS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_5/productList.html">GOODS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_5/productList.html">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_4/news.html">BOARDS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_4/news.html">구단소식</a></li>
+                                    <li><a href="../page_4/dreamsBoard.html">드림게시판</a></li>
+                                    <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_2/ticketFee.html">TICKET</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- mobile -->
+                        <ul id="mo-menu-box" class="mo-menu-box">
+                            <li style="position: relative;">
+                                <div class="home-box">
+                                    <a href="#">HOME</a>
+                                    <a href="../page_1/login.html">로그인</a>
+                                    <a href="../page_1/join.html">회원가입</a>
+
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">DREAMS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_6/Introduce.html">드림즈 소개</a></li>
+                                    <li><a href="../page_6/stadium.html">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">PLAYERS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_4/players.html">선수</a></li>
+                                    <li><a href="../page_4/coaching.html">코칭스태프</a></li>
+                                    <li><a href="../page_4/steff.html">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GAMES</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">STATS</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GOODS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_5/productList.html">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">BOARDS</a>
+                                <ul class="menu-son ">
+                                    <li><a href="../page_4/news.html">구단소식</a></li>
+                                    <li><a href="../page_4/dreamsBoard.html">드림게시판</a></li>
+                                    <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">TICKET</a>
+                                <ul class="menu-son ">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                            <div class="ul-bg"></div>
+                        </ul>
+                    </nav>
+                    <div id="menu_bg" class="menu-bg display-none"></div>
+                    <div id="left-bg" class="left-bg"></div>
+                    <div id="son-menu-bg" class="son-menu-bg"></div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" id="icon"
+                        class="bi bi-list icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </div>
+            </header>
+        </div>
+ 
+        <div id="slider_con" class="slider-con">
+            <img src="../image/banner/category_DREAMS.jpg">
+        </div>
+        <br>
+
+
+        <div class="stadium-contents">
+            <h2 style="font-weight: bold; color: #000 !important;"><br>편의시설</h2><br>
+            <ul class="stadium-tab">
+                <li><a class="menuLink" href="./stadium.html">고척 스카이돔</a></li>
+                <li style="
+                width: 151px;
+                background: #1c5c50;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 20px;"><a class="menuLink" href="./amenity.html" style="color: #FFF !important">편의시설</a></li>
+                <li><a class="menuLink" href="./location.html">찾아오시는 길</a></li>
+                <li><a class="menuLink" href="./parking.html">주차안내</a></li>
+            </ul><br><br>
+
+            <div>
+                <img src="https://www.heroesbaseball.co.kr/files/facilities.1/2023/03/08/08feb124-8971-4621-ac75-f4415d552250.jpg" alt="편의시설" >
+                
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="amenity-fluid">
+            <!-- 1행 -->
+            <div class="row">
+                <!-- 1열 -->
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">1. 피자</h5>
+                        <p class="card-text"><br>불고기, 페페로니 피자<br><hr></p>
+                        <p class="card-text">2번 통로 맞은편</p>
+                      </div>
+                    </div>
+                  </div>
+              
+                <!-- 2열 -->
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">2. 편의점</h5>
+                        <p class="card-text">캔맥주, 음료, <br>각종 스낵, 마른 안주<hr></p>
+                        <p class="card-text">2번 통로 맞은편</p>
+                      </div>
+                    </div>
+                  </div>
+              
+                <!-- 3열 -->
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">3. 닭꼬치, 새우튀김</h5>
+                        <p class="card-text">닭꼬치, 크림 <br>새우, 생맥주<hr></p>
+                        <p class="card-text">4번 통로 맞은편</p>
+                      </div>
+                    </div>
+                  </div>
+             
+                <!-- 4열 -->
+                  <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">4. 편밀밀</h5>
+                        <p class="card-text">만두라자냐, 만두고로케, <br>체다치즈멘보샤<hr></p>
+                        <p class="card-text">4번 통로 맞은편</p>
+                      </div>
+                    </div>
+                  </div>
+            </div> <!-- row --> 
+            <!-- ************************************************************************* -->
+            <!-- 2행 -->
+                <br>
+            <div class="row">
+                <!-- 1열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">7. 드림즈 용품점</h5>
+                        <p class="card-text">선수 레플리카, 모자, 응원도구<hr></p>
+                        <p class="card-text">7번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 2열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">8. 원정용품점</h5>
+                        <p class="card-text">선수 레플리카, 모자, 응원도구<hr></p>
+                        <p class="card-text">7번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 3열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">9. 피자</h5>
+                        <p class="card-text">불고기, 페페로니 피자<hr></p>
+                        <p class="card-text">8번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 4열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">10. 올떡볶이</h5>
+                        <p class="card-text">떡볶이, 어묵, 순대<hr></p>
+                        <p class="card-text">9번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div> <!-- row  -->
+            </div>    
+            <!-- ************************************************************************* -->
+            <!-- 3행 -->
+            <br>
+            <div class="row">
+                <!-- 1열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">11. 편의점</h5>
+                        <p class="card-text">캔맥주, 음료, <br>각종 스낵, 마른 안주<hr></p>
+                        <p class="card-text">11번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 2열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">12. 스테프핫도그</h5>
+                        <p class="card-text"><br>스테프핫도그, 메디스터 소시지<hr></p>
+                        <p class="card-text">11번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 3열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">13. 맘스터치</h5>
+                        <p class="card-text">싸이버거, 불싸이버거, <br>불고기버거<hr></p>
+                        <p class="card-text">3-4번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 4열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">13. BBQ</h5>
+                        <p class="card-text"><br>핫윙, 파더스 치킨, 황금 치즈볼<hr></p>
+                        <p class="card-text">3~4번 통로 사이</p>
+                      </div>
+                    </div>
+                </div> 
+            </div>    <!-- row  -->
+            <!-- ************************************************************************* -->
+            <!-- 4행 -->
+            <br>
+            <div class="row">
+                <!-- 1열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">14. 올떡볶이</h5>
+                        <p class="card-text"><br>떡볶이, 어묵, 순대<hr></p>
+                        <p class="card-text">3~4번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 2열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">15. 탐앤탐스</h5>
+                        <p class="card-text"><br>아메리카노, 스무디<hr></p>
+                        <p class="card-text">3-4번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 3열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">16. 스테프 핫도그</h5>
+                        <p class="card-text"><br>스테프 핫도그, 메디스터 소시지<hr></p>
+                        <p class="card-text">3-4번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 4열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">17. BHC(가판)</h5>
+                        <p class="card-text">순살 뿌링클, 바삭클 치즈볼, <br>뿌링 핫도그<hr></p>
+                        <p class="card-text">5번, 9번 통로 맞은편</p>
+                      </div>
+                    </div>
+                </div> <!-- row  -->
+            </div>
+        
+            <!-- ************************************************************************* -->
+            <!-- 5행 -->
+            <br>
+            <div class="row">
+                <!-- 1열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">18. 마왕족발</h5>
+                        <p class="card-text"><br>족발 도시락, 족발 만두<hr></p>
+                        <p class="card-text">9~10번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 2열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">19. 맘스터치</h5>
+                        <p class="card-text">싸이버거, 불싸이버거, <br>불고기버거<hr></p>
+                        <p class="card-text">9~10번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 3열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">19. BBQ</h5>
+                        <p class="card-text"><br>핫윙, 파더스 치킨, 황금 치즈볼<hr></p>
+                        <p class="card-text">9~10번 통로 사이</p>
+                      </div>
+                    </div>
+                </div>
+              
+                <!-- 4열 -->
+                <div class="col-sm-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">20. 투다리</h5>
+                        <p class="card-text">닭꼬치, 야끼 교자 만두, 회오리 감자<hr></p>
+                        <p class="card-text">9-10번 통로 사이</p>
+                      </div>
+                    </div>
+                </div> <!-- row  -->
+            
+
+            </div>
+        </div>
+        <br><br><br><br><br><br>
+        <!-- 상단 이동버튼 -->
+        <div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div>
+        <footer>
+            <div class="footer-1 center">
+                <div class="footer-list-box">
+
+                    <div class="item-box">
+                        <ul class="link-list">
+                            <li><a href="/site/privacyStatement.do">개인정보처리방침</a></li>
+                            <li><a href="/site/termsOfUse.do">이용약관</a></li>
+                            <li><a href="/site/refuseEmail.do">이메일무단수집거부</a></li>
+                            <li><a href="/fans/qna/list.do">안내 및 Q&amp;A</a></li>
+                            <li><a href="/site/sitemap.do">사이트맵</a></li>
+                            <!-- <li><a href="/fans/link/list.do">관련사이트</a></li> -->
+                        </ul>
+                        <div class="txt-add">
+                            서울특별시 구로구 경인로 430(고척동, 고척스카이돔구장내) T.02-3660-1000 F.02-3660-1099<br>
+                            Copyright (C) Heroes, All Rights Reserved.
+                        </div>
+                    </div>
+                    <div class="item-box">
+                        <img src="../image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</div>
+
+</html>

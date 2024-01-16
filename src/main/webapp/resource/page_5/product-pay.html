@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>결제하기</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			// 최초 로드 시 최종 금액 계산 및 업데이트
+			updateTotalPrice();
+
+			// Function to dynamically calculate the total price
+			function calculateTotalPrice() {
+				var total = 0;
+
+				// Loop through each item in the cart table
+				$(".cart-table tr:gt(0)").each(function () {
+					var quantity = parseInt($(this).find("td:eq(2)").text()); // 수량
+					var price = parseInt($(this).find("td:eq(3)").text().replace("원", "").replace(",", "")); // 가격 (숫자로 변환)
+
+					total += quantity * price; // 수량과 가격을 곱해서 합산
+				});
+
+				return total;
+			}
+
+			// Function to update the final price element
+			function updateTotalPrice() {
+				var totalPrice = calculateTotalPrice();
+				$("#final-price").text("최종 금액: " + totalPrice + "원");
+			}
+
+			// Form이 제출될 때의 이벤트 핸들러
+			$("#sign_In").submit(function () {
+				// 아이디, 생년월일, 연락처, 성별, 이메일 등의 validation 체크 부분은 동일하게 유지
+
+				// 최종 금액 계산 및 업데이트
+				updateTotalPrice();
+
+				return false; // Prevent the form from submitting
+			});
+		});
+
+	</script>
+	<style>
+		.wrap-page {
+			display: flex;
+			max-width: 80%;
+			padding-left: 20px;
+		}
+
+		.purchase {
+			width: 800px;
+			display: flex;
+			background: white;
+			padding-left: 10px;
+		}
+
+		.purchase elements {
+			display: block;
+			border: 1px;
+			height: 498px;
+		}
+
+		table {
+			border-collapse: collapse;
+
+		}
+
+		.cart-table {
+			width: 800px;
+			text-align: center;
+			padding-right: 10px;
+
+		}
+
+		.final-price {
+			padding-right: 30px;
+		}
+
+		#purchase-button {
+			padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #af4c4c;
+            color: white;
+            border: 1px solid #af4c4c;
+            text-decoration: none; 
+            display: inline-block;
+		}
+
+		#cancle-button {
+			padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            color: #000;
+            border: 1px solid #000;
+            text-decoration: none; 
+            display: inline-block;
+			
+		}
+
+		.action-buttons {
+			text-align: center;
+		}
+
+	</style>
+</head>
+<div class="wrap-page">
+
+	<body style="background: #1c5c50;">
+		<div class="purchase">
+			<div class="elements">
+				<h1 style="text-align: center;">주문 정보</h1>
+
+
+				<table class="cart-table">
+
+					<tr>
+						<th>사진</th>
+						<th>상품명</th>
+						<th>수량</th>
+						<th>가격</th>
+					</tr>
+
+
+					<tr id="item1">
+						<td><img src="../image/goods/굿즈-모자.PNG" width="100px" height="150px"></td>
+						<td>Dream Stove 모자</td>
+						<td>1개</td>
+						<td>5000원</td>
+					</tr>
+
+					<tr id="item2">
+						<td><img src="../image/goods/굿즈-야구공.png" width="100px" height="150px"></td>
+						<td>Dream Stove 야구공</td>
+						<td>1개</td>
+						<td>5000원</td>
+					</tr>
+
+					<tr id="item3">
+						<td><img src="../image/goods/굿즈-후드.png" width="100px" height="150px"></td>
+						<td>Dream Stove 후드</td>
+						<td>1개</td>
+						<td>5000원</td>
+					</tr>
+
+				</table>
+				<hr>
+
+				<div class="final-price">
+
+					<h3 id="final-price" style="text-align: right;"> 최종 금액 </h3>
+
+				</div>
+
+
+				<hr>
+				<h6>결제방식</h6>
+				<form name="radioForm" action="#" method="post"> <!-- radio 는 단 하나만 선택가능 -->
+					<fieldset>
+						<table>
+							<tr>
+								<td><input type="radio" name="apply" id="ra_mu" value="무통장 입금" checked></td>
+								<td><label for="ra_sales"></label>무통장 입금</td>
+							</tr>
+
+							<tr>
+								<td><input type="radio" name="apply" id="ra_card" value="카드"></td>
+								<td><label for="ra_card"></label>카드</td>
+								<td>
+									<select name="cardtype" style="width:100px">
+										<option value="shinhan">신한카드</option>
+										<option value="kako">카카오</option>
+										<option value="nh">농협</option>
+										<option value="woori">우리카드</option>
+										<option value="kb">국민카드</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+				
+					</fieldset>
+					<br><br>
+				</form>
+				<div class="action-buttons">
+					<button id="purchase-button"> 구매 </button>
+					<button id="cancle-button"> 취소 </button>
+				</div>
+				
+				<hr>
+
+			</div>
+
+		</div>
+</div>
+</body>
+</div>
+
+</html>

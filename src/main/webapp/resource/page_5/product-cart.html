@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 페이지 작업자 : 이민진 -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>스토브리그</title>
+    <!-- reset.css -->
+    <link rel="stylesheet" href="../css/common/reset.css">
+    <!-- Bootstrap css-->
+    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <!-- swiper css-->
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/common/header.css">
+    <link rel="stylesheet" href="../css/common/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <!-- swiper js-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <!-- header.js -->
+    <script src="../js/common/header.js"></script>
+
+    <script>
+        // 페이지 로드 후 실행될 함수
+        $(document).ready(function () {
+            // top 버튼 클릭 시 스크롤
+            $('#goTop a[href="#header"]').on('click', function (e) {
+                window.scroll({
+                    top: 0,
+                });
+                checkButton();
+            });
+        });
+
+        //크롬 스크롤 오류로 시간 지정 후 동장
+        $(window).on("scroll", function () {
+            $("#goTop a").attr("href", "#none")
+            $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.1)" });
+            setTimeout(() => {
+                $("#goTop a").attr("href", "#header")
+                $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
+            }, 2000);
+        })
+
+
+        $(document).ready(function () {
+            // 페이지 로드 후 실행될 함수
+            // ... (이전 코드)
+
+            // 체크박스 변경 시 최종 결제 금액 업데이트
+            $('input[name="goods"]').change(function () {
+                updateFinalPrice();
+            });
+        });
+
+        function updateFinalPrice() {
+            var totalPrice = 0;
+
+            // 각 상품에 대해 체크된 것이 있다면 가격을 합산
+            $('input[name="goods"]:checked').each(function () {
+                var row = $(this).closest('tr');
+                var price = parseFloat(row.find('td:eq(4)').text().replace('원', '').replace(',', ''));
+                totalPrice += price;
+            });
+
+            // 최종 결제 금액 업데이트
+            $('#finalCheck h3').text(totalPrice.toLocaleString() + '원');
+        }
+
+    </script>
+
+
+
+    <style>
+        .cart-table {
+            width: 100%;
+            border: solid 1px;
+            text-align: center;
+
+            margin: auto;
+        }
+
+        .wrap-page {
+            max-width: 80%;
+            padding: auto;
+            margin: auto;
+        }
+
+        .cart-table tr {
+            border: solid 1px;
+            margin: auto;
+        }
+
+
+
+        .purchase-button {
+            margin: auto;
+            width: 100px;
+            height: 50px;
+            background-color: grey;
+            font-size: 20px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: stretch;
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            padding: 15px 30px;
+            margin: 0 10px;
+            font-size: 18px;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .buy-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #af4c4c;
+            color: white;
+            border: 1px solid #af4c4c;
+            text-decoration: none;
+            display: inline-block;
+            display: flex;
+        }
+
+        .final-check {
+            text-align: right;
+        }
+    </style>
+</head>
+<div class="wrap">
+    <!-- 상단 이동 헤더 -->
+    <div id="header"></div>
+
+    <body>
+        <div class="container-fluid container-box">
+            <header>
+                <div class="header-top">
+                    <div class="top-box">
+                        <div class="right">
+                            <ul>
+                                <li><a href="../page_1/login.html">로그인</a></li>
+                                <li><a href="../page_1/join.html">회원가입</a></li>
+                                <li><a href="#">안내 및 Q&A</a></li>
+                                <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8"
+                                        target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
+                                            alt="youtube">
+                                    </a></li>
+                                <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"
+                                        target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns2.png"
+                                            alt="instagram">
+                                    </a></li>
+                                <li><a href="https://www.facebook.com/watch/sbsdrama.official/2552511298297818/"
+                                        target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns3.png"
+                                            alt="facebokk">
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <nav>
+                        <h2>
+                            <a href="index.html">
+                                <img src="../image/logoSmall.png" style="width: 100%;" alt="logoSmall">
+                            </a>
+                        </h2>
+                        <!-- pc -->
+                        <ul id="menu_box" class="menu-box">
+                            <li>
+                                <a href="#">DREAMS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_1/test.html">드림즈 소개</a></li>
+                                    <li><a href="#">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">PLAYERS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">선수</a></li>
+                                    <li><a href="#">코칭스태프</a></li>
+                                    <li><a href="#">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GAMES</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">STATS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GOODS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">BOARDS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="#">구단소식</a></li>
+                                    <li><a href="#">영웅게시판</a></li>
+                                    <li><a href="#">다운로드</a></li>
+                                    <li><a href="#">응원단</a></li>
+                                    <li><a href="#">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">TICKET</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- mobile -->
+                        <ul id="mo-menu-box" class="mo-menu-box">
+                            <li style="position: relative;">
+                                <div class="home-box">
+                                    <a href="#">HOME</a>
+                                    <a href="../page_1/login.html">로그인</a>
+                                    <a href="../page_1/join.html">회원가입</a>
+
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">DREAMS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_1/test.html">드림즈 소개</a></li>
+                                    <li><a href="#">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">PLAYERS</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">선수</a></li>
+                                    <li><a href="#">코칭스태프</a></li>
+                                    <li><a href="#">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GAMES</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">STATS</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">GOODS</a>
+                                <ul class="menu-son">
+                                    <li><a href="#">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">BOARDS</a>
+                                <ul class="menu-son ">
+                                    <li><a href="#">구단소식</a></li>
+                                    <li><a href="#">영웅게시판</a></li>
+                                    <li><a href="#">다운로드</a></li>
+                                    <li><a href="#">응원단</a></li>
+                                    <li><a href="#">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">TICKET</a>
+                                <ul class="menu-son ">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                            <div class="ul-bg"></div>
+                        </ul>
+                    </nav>
+                    <div id="menu_bg" class="menu-bg display-none"></div>
+                    <div id="left-bg" class="left-bg"></div>
+                    <div id="son-menu-bg" class="son-menu-bg"></div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" id="icon"
+                        class="bi bi-list icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </div>
+            </header>
+        </div>
+
+        <div id="slider_con" class="slider-con">
+            <div class="slider-box">
+                <!-- <swiper-container class="mySwiper" pagination="true" loop="true"> -->
+                <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                    space-between="30" centered-slides="true" autoplay-delay="2000"
+                    autoplay-disable-on-interaction="false">
+                    <swiper-slide><img style="width: 100%;" src="../image/main/dreams_main_01.jpg"
+                            alt="main"></swiper-slide>
+
+
+            </div>
+        </div>
+
+        <!-- main -->
+        <form class="wrap-page">
+
+            <br><br>
+            <h3> 장바구니 상품 </h3>
+            <br><br>
+            <table class="cart-table">
+
+                <tr>
+                    <th>선택</th>
+                    <th>사진</th>
+                    <th>상품명</th>
+                    <th>수량</th>
+                    <th>가격</th>
+                </tr>
+
+
+                <tr id="item1">
+                    <td><input type="checkbox" name="goods"></td>
+                    <td><img src="../image/goods/굿즈-모자.PNG" width="150px" height="150px"></td>
+                    <td>Dream Stove 모자</td>
+                    <td>1개</td>
+                    <td>5000원</td>
+                </tr>
+
+                <tr id="item2">
+                    <td><input type="checkbox" name="goods"></td>
+                    <td><img src="../image/goods/굿즈-야구공.png" width="150px" height="150px"></td>
+                    <td>Dream Stove 야구공</td>
+                    <td>1개</td>
+                    <td>5000원</td>
+                </tr>
+
+                <tr id="item3">
+                    <td><input type="checkbox" name="goods"></td>
+                    <td><img src="../image/goods/굿즈-후드.png" width="150px" height="150px"></td>
+                    <td>Dream Stove 후드</td>
+                    <td>1개</td>
+                    <td>5000원</td>
+                </tr>
+
+            </table>
+
+
+            <div class="final-check" id="finalCheck">
+                <h5> 최종 결제 금액</h5>
+                <h3> 0원</h3>
+            </div>
+
+            <div class="action-buttons">
+                <a href="#" class="buy-button">구매하기</a>
+            </div>
+        </form>
+        <br><br>
+
+        <!-- 함수 추가 -->
+
+
+
+
+
+        <!-- 상단 이동버튼 -->
+        <div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div>
+        <footer>
+            <div class="footer-1 center">
+                <div class="footer-list-box">
+
+                    <div class="item-box">
+                        <ul class="link-list">
+                            <li><a href="/site/privacyStatement.do">개인정보처리방침</a></li>
+                            <li><a href="/site/termsOfUse.do">이용약관</a></li>
+                            <li><a href="/site/refuseEmail.do">이메일무단수집거부</a></li>
+                            <li><a href="/fans/qna/list.do">안내 및 Q&amp;A</a></li>
+                            <li><a href="/site/sitemap.do">사이트맵</a></li>
+                            <!-- <li><a href="/fans/link/list.do">관련사이트</a></li> -->
+                        </ul>
+                        <div class="txt-add">
+                            서울특별시 구로구 경인로 430(고척동, 고척스카이돔구장내) T.02-3660-1000 F.02-3660-1099<br>
+                            Copyright (C) Heroes, All Rights Reserved.
+                        </div>
+                    </div>
+                    <div class="item-box">
+                        <img src="../image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</div>
+
+</html>

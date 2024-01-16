@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    
+    
+</head>
+
+<script>
+    function addProduct() {
+        // 추가할 상품 정보를 가져오기
+        var productImage = document.getElementById('productImage').value;
+        var productName = document.getElementById('productName').value;
+        var productPrice = document.getElementById('productPrice').value;
+
+        // 테이블에 새로운 행 추가
+        var table = document.querySelector('table');
+        var newRow = table.insertRow(-1); // 맨 뒤에 행 추가
+
+        var cell1 = newRow.insertCell(0);
+        cell1.innerHTML = '<img src="' + productImage + '" width="50px" height="50px">';
+
+        var cell2 = newRow.insertCell(1);
+        cell2.innerHTML = productName;
+
+        var cell3 = newRow.insertCell(2);
+        cell3.innerHTML = productPrice;
+
+        var cell4 = newRow.insertCell(3);
+        cell4.innerHTML = '<button onclick="deleteRow(this)">삭제</button>';
+
+        // 추가 후 입력 필드 초기화
+        document.getElementById('productImage').value = '';
+        document.getElementById('productName').value = '';
+        document.getElementById('productPrice').value = '';
+    }
+
+    function deleteRow(btn) {
+        var row = btn.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+    }
+</script>
+<body>
+    <table border="1">
+        <tr>
+            <th> 상품 이미지 </th>
+            <th> 상품이름 </th>
+            <th> 가격 </th>
+            <th>  </th>
+        </tr>
+    </table>
+    <!-- 상품 추가 폼 또는 내용 추가 -->
+    <h2>상품 추가</h2>
+    <form id="addItemForm">
+        <label for="productImage">상품 이미지:</label>
+        <input type="file" id="productImage" name="productImage" accept="image/*">
+        <br>
+
+        <label for="productName">상품 이름:</label>
+        <input type="text" id="productName" name="productName">
+        <br>
+
+        <label for="productPrice">가격:</label>
+        <input type="text" id="productPrice" name="productPrice">
+        <br>
+
+        <button type="button" onclick="addProduct()">상품 추가</button>
+    </form>
+    <!-- 상품 추가 폼 등을 여기에 추가 -->
+
+    <!-- 필요한 스크립트 파일 및 라이브러리 등 추가 -->
+</body>
+</html>
