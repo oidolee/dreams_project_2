@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>스토브리그</title>
+<title>아이디 찾기</title>
 
 <link rel="stylesheet" href="../css/common/reset.css">
 <!-- Bootstrap css-->
@@ -170,7 +170,36 @@
         width: 70px;
     }
 
+    #lnb {
+        display: block;
+    }
+
+    .lnb {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .lnb .m5 {
+        left: -76px;
+        height: 57px;
+        background-position: 0 -567px;
+    }
+
+    .lnb li {
+        position: absolute;
+        top: 0;
+        width: 254px;
+    }
+    
+
+/*     .lnb_lnb_wrap {
+        border: 1px solid #000;
+    }
+ */
+
+
 </style>
+
 
 
 </head>
@@ -350,49 +379,33 @@
 		<!-- 컨텐츠 시작 -->
 		<div id="container">
 			<div id="contents">
-                <!-- <div class="select_box">
-                    <tr>
-                        <a href="">
-                            <td>아이디 찾기</td>
-                        </a>
-                        <a href="">
-                            <td>비밀번호 찾기</td>
-                        </a>
-                    </tr>
-                </div> -->
                 <div class="select_id1">
                     <div class="select_id2">
-                        <div class="line-container">
-                            <span class="line line1"></span>
-                            <span class="line line2"></span>
-                            <tr>
-                                <h4 style="font-weight: bold; color: #333 !important; letter-spacing: -1px;">아이디 찾기</h4>
-                            </tr>
-                        </div>
+                        <h4 style="font-weight: bold; color: #333 !important; letter-spacing: -1px;">아이디 찾기</h4>
                     </div>
                     <div style="font-size: 14px; color: #000 !important; margin-top: 10px; letter-spacing: -1px;">
-                        <tr>
-                            <td>아이디 찾는 방법을 선택해 주세요.</td>
-                        </tr>
+                        <td>아이디 찾는 방법을 선택해 주세요.</td>
                     </div>
                 </div>
                 <div class="select_9">
                     <div class="box6" style="margin-bottom: 80px;">
+                        <!-- 휴대전화로 인증 -->
                         <div id="div_phone" class="box_selected">
-                            <input type="radio" id="r_pn1" class="input_rd">
-                            <label for="r_pn1" class="label_rd" style="color: #333 !important " > 회원정보에 등록한 휴대전화로 인증 </label>
-                            <div class="box_sub">
-                                <p class="dsc" style="letter-spacing: -1px; color: #666 !important">회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</p>
+                            <input type="radio" id="r_pn1" class="input_rd" name="authenticationMethod" checked>
+                            <label for="r_pn1" class="label_rd" style="color: #333 !important"> 회원정보에 등록한 휴대전화로 인증 </label>
+                            <div class="box_sub" id="phoneAuthentication">
+                                <!-- 휴대전화로 인증 내용 -->
+                                <p class="dsc" style="letter-spacing: -1px; color: #666 !important" >회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</p>
                                 <div>
                                     <ul>
-                                        <li style="margin-bottom: -9px !important;">
+                                        <li style="margin-bottom: -9px">
                                             <label for="phoneNm" class="label_txt" style="color: #333 !important; padding-right: 50px; font-weight: 700 !important">이름</label>
                                             <input type="text" id="phoneNm" name="phoneNm" maxlength="40" class="input_txt" style="margin-left: -2px; width: 202px;">
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="phoneInfo">
-                                    <ul>
+                                <div class="phoneInfo" >
+                                    <ul style="margin-bottom: 7px">
                                         <li>
                                             <label for="t_ph1" class="label_txt" style= "color: #333 !important; padding-right: 24px; font-weight: 700 !important">휴대전화</label>
                                         </li>
@@ -412,22 +425,86 @@
                                             <input type="button" id="certify" name="certify" value="인증번호 받기" style="letter-spacing: -1px; font-weight: bold; font-size: 13.5px; width: 98px; color: #000 !important;">
                                         </li>
                                     </ul>
+                                    <ul>
+                                        <li>
+                                            <input type="text" id="phoneNq" name="phoneNq" maxlength="40" class="input_txt" placeholder="인증번호 6자리 숫자 입력" style="letter-spacing: -1px; margin-left: 78px; width: 202px; font-size: 13px; background: #f7f7f7; border: 1px solid; height: 22px;">
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </div> 
-                        <div id="div_email" class="box_selected2" style="margin-top: 100px; margin-bottom: 25px;">
-                            <ul>
-                                <li>
-                                    <input type="radio" id="r_pn2" class="input_rd" value="email">
-                                    <label for="r_pn2" class="label_rd" style="color: #333 !important"> 본인확인 이메일로 인증 </label>
-                                </li>
-                            </ul>
-                        </div>   
+                        </div>
+                        <!-- 이메일로 인증 --> 
+                        <div id="div_email" class="box_selected2" style="margin-top: 30px; margin-bottom: 25px;">
+                            <input type="radio" id="r_pn2" class="input_rd" name="authenticationMethod">
+                            <label for="r_pn2" class="label_rd" style="color: #333 !important">본인확인 이메일로 인증</label>
+                            <!-- 이메일로 인증 내용 -->
+                            <div class="box_sub" id="emailAuthentication" style="display: none;">
+                                <p class="dsc" style="letter-spacing: -1px; color: #666 !important">본인 확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</p>
+                                <div>
+                                    <ul>
+                                        <li style="margin-bottom: -9px">
+                                            <label for="phoneNm" class="label_txt" style="color: #333 !important; padding-right: 50px; font-weight: 700 !important">이름</label>
+                                            <input type="text" id="phoneNm" name="phoneNm" maxlength="40" class="input_txt" style="margin-left: -2px; width: 202px;">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="phoneInfo" >
+                                    <ul style="margin-bottom: 7px">
+                                        <li>
+                                            <label for="t_ph1" class="label_txt" style= "color: #333 !important; padding-right: 2px; font-weight: 700 !important">이메일 주소</label>
+                                        </li>
+                                        <li>
+                                            <div class="int_mod" style="margin: 0 5px 0 5px;">
+                                                <input type="text" id="phoneNo" name="phoneNo" class="input_txt" style=" color:#000 !important; font-size: 13px; width: 202px;">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <input type="button" id="certify" name="certify" value="인증번호 받기" style="letter-spacing: -1px; font-weight: bold; font-size: 13.5px; width: 98px; color: #000 !important;">
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <input type="text" id="phoneNq" name="phoneNq" maxlength="40" class="input_txt" placeholder="인증번호 6자리 숫자 입력" style="letter-spacing: -1px; margin-left: 78px; width: 202px; font-size: 13px; background: #f7f7f7; border: 1px solid; height: 22px;">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> 
+                        </div>
                     </div>
                 </div>
 			</div>
 		</div>
-		
+
+
+        <!-- 클릭하면 열리고 닫히는 기능 -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var phoneRadio = document.getElementById("r_pn1");
+                var emailRadio = document.getElementById("r_pn2");
+                var phoneAuthentication = document.getElementById("phoneAuthentication");
+                var emailAuthentication = document.getElementById("emailAuthentication");
+        
+                phoneRadio.addEventListener("change", function () {
+                    if (phoneRadio.checked) {
+                        emailRadio.checked = false;
+                        phoneAuthentication.style.display = "block";
+                        emailAuthentication.style.display = "none";
+                    }
+                });
+        
+                emailRadio.addEventListener("change", function () {
+                    if (emailRadio.checked) {
+                        phoneRadio.checked = false;
+                        phoneAuthentication.style.display = "none";
+                        emailAuthentication.style.display = "block";
+                    }
+                });
+            });
+        </script>
+
+
+
+
 		<!-- 컨텐츠 끝 -->
         <section class="section-1-con">
             <div class="section-1 center">
