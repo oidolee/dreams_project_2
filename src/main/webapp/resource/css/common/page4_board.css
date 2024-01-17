@@ -246,5 +246,17 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
 
 /* 게시판 세부페이지 종료*/
 
-
-
+.btn-check:checked + .btn,
+ :not(.btn-check) + .btn:active, 
+ .btn:first-child:active, 
+ .btn.active, .btn.show {
+ 	background-color: #1c5c50 !important;
+ }
+ 
+.btn-outline-primary {
+   --bs-btn-border-color: #1c5c50 !important;
+ }
+ 
+.accordion-button:not(.collapsed) {
+	background-color: #cff1eb;
+}
