@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!-- 페이지 작업자 : 이민진 -->
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>스토브리그</title>
+    <!-- reset.css -->
+    <link rel="stylesheet" href="../css/common/reset.css">
+    <!-- Bootstrap css-->
+    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <!-- swiper css-->
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/common/header.css">
+    <link rel="stylesheet" href="../css/common/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <!-- swiper js-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <!-- header.js -->
+    <script src="../js/common/header.js"></script>
+
+    <script>
+        // 페이지 로드 후 실행될 함수
+        $(document).ready(function () {
+            // top 버튼 클릭 시 스크롤
+            $('#goTop a[href="#header"]').on('click', function (e) {
+                window.scroll({
+                    top: 0,
+                });
+                checkButton();
+            });
+        });
+
+        //크롬 스크롤 오류로 시간 지정 후 동장
+        $(window).on("scroll", function () {
+            $("#goTop a").attr("href", "#none")
+            $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.1)" });
+            setTimeout(() => {
+                $("#goTop a").attr("href", "#header")
+                $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
+            }, 2000);
+        })
+
+        // 수량에 따라 최종 금액을 업데이트하는 함수
+        function updateTotalPrice() {
+            // 입력 요소에서 선택한 수량을 가져옵니다
+            var quantity = parseInt($('#quantity').val());
+
+            // 단위 가격을 정의합니다 (실제 단위 가격으로 대체할 수 있습니다)
+            var unitPrice = 20000;
+
+            // 수량에 기반하여 최종 금액을 계산합니다
+            var totalPrice = quantity * unitPrice;
+
+            // 최종 금액 표시를 업데이트합니다
+            $('#totalPrice h3').text('최종 금액: ' + totalPrice + '원');
+        }
+
+        // 페이지 로드 시 함수를 호출합니다
+        $(document).ready(function () {
+            updateTotalPrice();
+
+            // 수량 입력 필드의 변경 이벤트에 대한 이벤트 리스너를 추가하여 수량이 변경될 때 최종 금액을 업데이트합니다
+            $('#quantity').on('input', function () {
+                updateTotalPrice();
+            });
+        });
+
+    </script>
+
+    <style>
+        .wrap-page {
+            border: 2px solid #ccc;
+            padding: 50px;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .wrap-table {
+            width: 100%;
+            
+        }
+
+        .price-info {
+            width: auto;
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .product-inform {
+            text-align: left;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: stretch;
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            padding: 15px 30px;
+            margin: 0 10px;
+            font-size: 18px;
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .buy-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #af4c4c;
+            color: white;
+            border: 1px solid #af4c4c;
+            text-decoration: none; 
+            display: inline-block; 
+        }
+
+        .cart-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: white;
+            color: #000;
+            border: 1px solid #000;
+            text-decoration: none; 
+            display: inline-block; 
+        }
+
+        .custom-select {
+            width: 550px;
+            height : 50px;
+            font-size: 18px; 
+            
+        }
+        
+        .price {
+            text-align: left;
+            font-size: 20px;
+        }
+
+    
+
+        .product-description {
+            text-align: center; 
+        }
+
+        .product-explain {
+            width: 100%;
+            margin-top: 20px;
+            text-align: left;
+            border-spacing: 0px; 
+        }
+
+        .product-explain td {
+            padding: 10px;
+        }
+
+        .product-explain hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            margin: 10px 0;
+        }
+        
+        .quantity{
+            float: right;
+        }
+    
+        .quantity input {
+            width: 60px; /* 입력 상자 너비 조절 */
+            padding: 10px;
+            font-size: 16px;
+        }
+
+    </style>
+
+    </head>
+    <div class="wrap">
+        <!-- 상단 이동 헤더 -->
+        <div id="header"></div>
+        <body>
+            <div class="container-fluid container-box">
+                <header>
+                    <div class="header-top">
+                        <div class="top-box">
+                            <div class="right">
+                                <ul>
+                                    <li><a href="../page_1/login.html">로그인</a></li>
+                                    <li><a href="../page_1/join.html">회원가입</a></li>
+                                    <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                    <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
+                                            <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
+                                                alt="youtube">
+                                        </a></li>
+                                    <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/" target="_blank">
+                                            <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns2.png"
+                                                alt="instagram">
+                                        </a></li>
+                                    <li><a href="https://www.facebook.com/watch/sbsdrama.official/2552511298297818/" target="_blank">
+                                            <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns3.png"
+                                                alt="facebokk">
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <nav>
+                            <h2>
+                                <a href="index.html">
+                                    <img src="../image/logoSmall.png" style="width: 100%;" alt="logoSmall">
+                                </a>
+                            </h2>
+                            <!-- pc -->
+                            <ul id="menu_box" class="menu-box">
+                                <li>
+                                    <a href="#">DREAMS</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="../page_1/test.html">드림즈 소개</a></li>
+                                        <li><a href="../page_6/stadium.html">구장안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">PLAYERS</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="../page_4/players.html">선수</a></li>
+                                        <li><a href="../page_4/coaching.html">코칭스태프</a></li>
+                                        <li><a href="../page_4/steff.html">구단관계자</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">GAMES</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="#">경기일정 및 결과</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">STATS</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="#">팀순위</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="./productList.html">GOODS</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="./productList.html">야구용품</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">BOARDS</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="../page_4/news.html">구단소식</a></li>
+                                        <li><a href="../page_4/dreamsBoard.html">영웅게시판</a></li>
+                                        <li><a href="#">다운로드</a></li>
+                                        <li><a href="#">응원단</a></li>
+                                        <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">TICKET</a>
+                                    <ul class="menu-son display-none">
+                                        <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                        <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                        <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                        <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <!-- mobile -->
+                            <ul id="mo-menu-box" class="mo-menu-box">
+                                <li style="position: relative;">
+                                    <div class="home-box">
+                                        <a href="#">HOME</a>
+                                        <a href="../page_1/login.html">로그인</a>
+                                        <a href="../page_1/join.html">회원가입</a>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#">DREAMS</a>
+                                    <ul class="menu-son">
+                                        <li><a href="../page_1/test.html">드림즈 소개</a></li>
+                                        <li><a href="#">구장안내</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">PLAYERS</a>
+                                    <ul class="menu-son">
+                                        <li><a href="../page_4/players.html">선수</a></li>
+                                        <li><a href="../page_4/coaching.html">코칭스태프</a></li>
+                                        <li><a href="../page_4/steff.html">구단관계자</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">GAMES</a>
+                                    <ul class="menu-son">
+                                        <li><a href="#">경기일정 및 결과</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">STATS</a>
+                                    <ul class="menu-son">
+                                        <li><a href="#">팀순위</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">GOODS</a>
+                                    <ul class="menu-son">
+                                        <li><a href="./productList.html">야구용품</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">BOARDS</a>
+                                    <ul class="menu-son ">
+                                        <li><a href="../page_4/news.html">구단소식</a></li>
+                                        <li><a href="../page_4/dreamsBoard.html">영웅게시판</a></li>
+                                        <li><a href="#">다운로드</a></li>
+                                        <li><a href="#">응원단</a></li>
+                                        <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">TICKET</a>
+                                    <ul class="menu-son ">
+                                        <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                        <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                        <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                        <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                    </ul>
+                                </li>
+                                <div class="ul-bg"></div>
+                            </ul>
+                        </nav>
+                        <div id="menu_bg" class="menu-bg display-none"></div>
+                        <div id="left-bg" class="left-bg"></div>
+                        <div id="son-menu-bg" class="son-menu-bg"></div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" id="icon"
+                            class="bi bi-list icon" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                    </div>
+                </header>
+            </div>
+
+            <div id="slider_con" class="slider-con">
+                <div class="slider-box">
+                    <!-- <swiper-container class="mySwiper" pagination="true" loop="true"> -->
+                    <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                        space-between="30" centered-slides="true" autoplay-delay="2000"
+                        autoplay-disable-on-interaction="false">
+                        <swiper-slide><img style="width: 100%;" src="../image/banner/category_GOODS.jpg"
+                                alt="main"></swiper-slide>
+                        
+
+                </div>
+            </div>
+
+
+
+            <div class="wrap-page">
+                <div class="product-detail-1">
+                    <hr>
+                    <table class="wrap-table">
+                        <tr class="product-inform">
+                            <td colspan="3"><img src="../image/goods/굿즈-휴대폰케이스2.png" width="300px" height="350px"></td>
+                            <td colspan="2">
+                                <h1>Dream Stove 휴대폰 케이스</h1>
+                                
+                                <br>
+                                <div class="price">
+                                    <h2> 20000원 </h2>
+                                </div> 
+                                
+                                <div class="price-info">
+                                    <h5> 택배 무료 </h5>
+                                    <h5> 굿즈종류 휴대폰 케이스 </h5>
+                                </div>
+                                <br><br>
+                                <div class="quantity">
+                                    <label>수량</label>
+                                    <input type="number" id="quantity" min="1" value="1" >
+                                </div>
+                                <br><br>
+            
+                                <h5>옵션 선택</h5>
+                                <select class="custom-select">
+                                    <option value="0">종류를 선택해 주세요</option>
+                                    <option value="iphone14">iphone14</option>
+                                    <option value="iphon14 pro">iphon14 pro</option>
+                                    <option value="iphon14 pro max">iphon14 pro max</option>
+                                    <option value="galaxy 23">galaxy 23</option>
+                                    <option value="galaxy 23 ultra">galaxy 23 ultra</option>
+                                    
+                                </select>
+                                <br><br>
+
+                                <div id="totalPrice" class="price">
+                                    <h3 style="text-align: right;">최종 금액: 20000원</h3>
+                                </div>
+
+                                <div class="action-buttons">
+                                    <a href="#" class="buy-button">구매하기</a>
+                                    <a href="#" class="cart-button">장바구니 담기</a>
+                                </div>
+                            </td>                
+                        </tr>
+                    </table>
+            
+                    <hr>
+            
+                    <div class="product-image">
+                        <!-- <img src="../image/goods/사이즈 정보.jpg">
+                        <img src="../image/goods/유니폼 사이즈 정보1.jpg" width="800px">
+                        <img src="../image/goods/유니폼 사이즈 정보2.PNG" width="800px"> -->
+                        <img src="../image/goods/배송교환환불.PNG">
+                    </div>
+                    
+                    <div class="product-description">
+            
+                        <p><h1> Detail Information </h1></p>
+                        <hr>
+                        <table class="product-explain">
+                            
+                            <hr>
+                            <tr>
+                                <td>상품상태</td>
+                                <td>새상품</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>상품코드/모델</td>
+                                <td>휴대폰케이스</td>
+                            </tr>
+                            <tr>
+                                <td>브랜드</td>
+                                <td>DRAEM STOVE</td>
+                            </tr>
+                            <tr>
+                                <td>A/S</td>
+                                <td>1661-2385</td>
+                            </tr>
+                            <tr>
+                                <td>품명 및 모델명</td>
+                                <td>[DRAEM STOVE] 휴대폰 케이스</td>
+                            </tr>
+                            <tr>
+                                <td>KC 인증정보</td>
+                                <td>판매자 문의</td>
+                            </tr>
+                            <tr>
+                                <td>크기, 중량</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            <tr>
+                                <td>색상</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>제품구성</td>
+                                <td>유니폼</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>제조자, 수입품의 경우 수입자를 함께 표기</td>
+                                <td>주식회사 인터파크</td>
+                            </tr>
+                            <tr>
+                                <td>제조국</td>
+                                <td>대한민국</td>
+                            </tr>
+                            <tr>
+                                <td>상품별 세부사양</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            <tr>
+                                <td>품질보증기준</td>
+                                <td>공정거래위원회고시(소비자분쟁해결기준)에 의거</td>
+                            </tr>
+                            <tr>
+                                <td>A/S 책임자와 전화번호</td>
+                                <td>1661-2385</td>
+                            </tr>
+                            
+                        </table>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+        <!-- 상단 이동버튼 -->
+            <div id="goTop" class="goTop">
+                <a href="#header"></a>
+            </div>
+            <footer>
+                <div class="footer-1 center">
+                    <div class="footer-list-box">
+
+                        <div class="item-box">
+                            <ul class="link-list">
+                                <li><a href="/site/privacyStatement.do">개인정보처리방침</a></li>
+                                <li><a href="/site/termsOfUse.do">이용약관</a></li>
+                                <li><a href="/site/refuseEmail.do">이메일무단수집거부</a></li>
+                                <li><a href="/fans/qna/list.do">안내 및 Q&amp;A</a></li>
+                                <li><a href="/site/sitemap.do">사이트맵</a></li>
+                                <!-- <li><a href="/fans/link/list.do">관련사이트</a></li> -->
+                            </ul>
+                            <div class="txt-add">
+                                서울특별시 구로구 경인로 430(고척동, 고척스카이돔구장내) T.02-3660-1000 F.02-3660-1099<br>
+                                Copyright (C) Heroes, All Rights Reserved.
+                            </div>
+                        </div>
+                        <div class="item-box">
+                            <img src="../image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </body>
+    </div>
+
+</html>

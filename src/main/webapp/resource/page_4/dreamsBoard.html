@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>드림즈게시판</title>
+
+    <link rel="stylesheet" href="../css/common/reset.css">
+    <!-- Bootstrap css-->
+    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+
+    <!-- swiper css-->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/common/header.css">
+    <link rel="stylesheet" href="../css/common/footer.css">
+    <link rel="stylesheet" href="../css/common/page4_board.css">
+
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <!-- swiper js-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e3ee9fb7e7.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="../js/common/header.js"></script>
+    <style>
+        .container-box {
+            padding: 0;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+
+
+        .slider-con img{
+            width: 100%;
+        }
+
+        .center{max-width: 1240px; margin: 0 auto;}
+        .section-1-con{height: 440px;}
+        .section-1{height: 100%; padding: 80px 0;}
+        .section-1-top h2{text-align: center; }
+        .section-1-top h2 a{color: #000 !important;}
+        .section-1-bottom ul{display: flex; justify-content: space-between;  align-items: center; padding-top: 40px; padding-left: 0;}
+    </style>
+
+
+</head>
+<div class="wrap">
+    <body>
+        <div class="container-fluid container-box">
+            <header>
+                <div class="header-top">
+                    <div class="top-box">
+                        <div class="right">
+                            <ul>
+                                <li><a href="../page_6/myPage.html">마이페이지</a></li>
+                                <li><a href="../page_1/login.html">로그인</a></li>
+                                <li><a href="../page_1/join.html">회원가입</a></li>
+                                <li><a href="../page_4/qna.html">안내 및 Q&A</a></li>
+                                <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
+                                            alt="youtube">
+                                    </a></li>
+                                <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns2.png"
+                                            alt="instagram">
+                                    </a></li>
+                                <li><a href="https://www.facebook.com/watch/sbsdrama.official/2552511298297818/" target="_blank">
+                                        <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns3.png"
+                                            alt="facebokk">
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom">
+                    <nav>
+                        <h2>
+                            <a href="../../index.html">
+                                <img src="../image/logoSmall.png" style="width: 100%;" alt="logoSmall">
+                            </a>
+                        </h2>
+                        <!-- pc -->
+                        <ul id="menu_box" class="menu-box">
+                            <li>
+                                <a href="../page_6/Introduce.html">DREAMS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_6/Introduce.html">드림즈 소개</a></li>
+                                    <li><a href="../page_6/stadium.html">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="players.html">PLAYERS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="players.html">선수</a></li>
+                                    <li><a href="coaching.html">코칭스태프</a></li>
+                                    <li><a href="steff.html">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_3/games.html">GAMES</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_3/games.html">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="stats.html">STATS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="stats.html">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_5/productList.html">GOODS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_5/productList.html">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="news.html">BOARDS</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="news.html">구단소식</a></li>
+                                    <li><a href="dreamsBoard.html">드림즈게시판</a></li>
+                                    <li><a href="qna.html">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_2/ticketFee.html">TICKET</a>
+                                <ul class="menu-son display-none">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <!-- mobile -->
+                        <ul id="mo-menu-box" class="mo-menu-box">
+                            <li style="position: relative;">
+                                <div class="home-box">
+                                    <a href="../../index.html">HOME</a>
+                                    <a href="../page_6/myPage.html">마이페이지</a>
+                                    <a href="../page_1/login.html">로그인</a>
+                                    <a href="../page_1/join.html">회원가입</a>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="../page_6/Introduce.html">DREAMS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_6/Introduce.html">드림즈 소개</a></li>
+                                    <li><a href="../page_6/stadium.html">구장안내</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="players.html">PLAYERS</a>
+                                <ul class="menu-son">
+                                    <li><a href="players.html">선수</a></li>
+                                    <li><a href="coaching.html">코칭스태프</a></li>
+                                    <li><a href="steff.html">구단관계자</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_3/games.html">GAMES</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_3/games.html">경기일정 및 결과</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="stats.html">STATS</a>
+                                <ul class="menu-son">
+                                    <li><a href="stats.html">팀순위</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_5/productList.html">GOODS</a>
+                                <ul class="menu-son">
+                                    <li><a href="../page_5/productList.html">야구용품</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="news.html">BOARDS</a>
+                                <ul class="menu-son ">
+                                    <li><a href="news.html">구단소식</a></li>
+                                    <li><a href="dreamsBoard.html">드림즈게시판</a></li>
+                                    <li><a href="qna.html">안내 및 Q&A</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="../page_2/ticketFee.html">TICKET</a>
+                                <ul class="menu-son ">
+                                    <li><a href="../page_2/ticketFee.html">일일티켓</a></li>
+                                    <li><a href="../page_2/DreamsMembership.html">멤버쉽</a></li>
+                                    <li><a href="../page_2/groupViewing.html">단체관람</a></li>
+                                    <li><a href="../page_2/skybox.html">스카이박스</a></li>
+                                </ul>
+                            </li>
+                            <div class="ul-bg"></div>
+                        </ul>
+                    </nav>
+                    <div id="menu_bg" class="menu-bg display-none"></div>
+                    <div id="left-bg" class="left-bg"></div>
+                    <div id="son-menu-bg" class="son-menu-bg"></div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" id="icon"
+                        class="bi bi-list icon" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </div>
+            </header>
+        </div>
+
+        <div class="slider-con">
+            <div class="slider-box">
+                <img src="../image/banner/category_BOARDS.jpg" alt="">
+            </div>
+        </div>
+        <!-- 상단 중앙1 시작 -->
+				<div style="display: flex; justify-content: center;"class="board">
+					
+                    <!-- 좌측메뉴 시작 -->
+					<div id="left">
+                        <div class="left_inside">
+                            <!-- 좌측메뉴바 시작 -->
+							<ul class="left_menubar">
+                                <li><h3 style="color: white !important;">Board</h3></li>
+								<li>
+                                    <ul class="product_menu">
+										<p></p>
+										<li><a href="news.html">구단 소식</a></li>
+										<li><a href="dreamsBoard.html">드림즈게시판</a></li>
+										<li><a href="qna.html">안내 및 Q&A</a></li>
+									</ul>
+								</li>	
+							</ul>	
+							<!-- 좌측메뉴바 종료 -->
+						</div>
+					</div>
+					<!-- 좌측메뉴 종료 -->	
+				<!-- 우측메뉴 시작 -->
+                <div style="width: 800px;">
+					<h2 align="center" class="title"> 드림즈 게시판 </h2><br>
+                    
+                <table>
+                    <colgroup>
+                        <col width="100px">
+                        <col width="600px">
+                        <col width="300px">
+                        <col width="100px">
+                    </colgroup>
+                    <tbody>
+                    	<tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">드림즈 화이팅!!</a>
+                    		</td>
+                    		<td class="name">
+                    			"남궁민 (namgung**)"
+                    		</td>
+                    		<td class="date">2024.01.03</td>
+                    	</tr>
+                    	<tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="dreamsBoarDetail.html">우승을 위하여</a>
+                    		</td>
+                    		<td class="name">
+                    			"박은빈 (parkeun**)"
+                    		</td>
+                    		<td class="date">2024.01.02</td>
+                    	</tr>
+                    	<tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">임동규를 방출하라</a>
+                    		</td>
+                    		<td class="name">
+                    			"김철수 (kimch**)"
+                    		</td>
+                    		<td class="date">2024.01.02</td>
+                    	</tr>
+                    	<tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">야구장이 멀어요</a>
+                    		</td>
+                    		<td class="name">
+                    			"이서울 (seoul**)"
+                    		</td>
+                    		<td class="date">2024.01.01</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">근데 야구장 가본사람 있어요?</a>
+                    		</td>
+                    		<td class="name">
+                    			"박찬혁 (park**)"
+                    		</td>
+                    		<td class="date">2023.12.31</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">우승은 언제쯤 할까요?</a>
+                    		</td>
+                    		<td class="name">
+                    			"주시은 (jusi**)"
+                    		</td>
+                    		<td class="date">2023.12.31</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">내 욕한 사람들 다 기억한다</a>
+                    		</td>
+                    		<td class="name">
+                    			"임동규 (limdo**)"
+                    		</td>
+                    		<td class="date">2023.12.31</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">연말 잘보내세요</a>
+                    		</td>
+                    		<td class="name">
+                    			"차태현 (cha**)"
+                    		</td>
+                    		<td class="date">2023.12.30</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">야구장에 소주 갖고오는 사람 뭐냐</a>
+                    		</td>
+                    		<td class="name">
+                    			"조인성 (cho**)"
+                    		</td>
+                    		<td class="date">2023.12.28</td>
+                    	</tr>
+                        <tr class="boardtable">
+                    		<td> 
+                    		</td>
+                    		<td class="boardtitle">
+                    			<a href="">메리크리스마스</a>
+                    		</td>
+                    		<td class="name">
+                    			"한효주 (han**)"
+                    		</td>
+                    		<td class="date">2023.12.25</td>
+                    	</tr>
+                    </tbody>
+                </table>
+                
+                <hr id="blackline">
+                <div style="display: flex; justify-content: right;">
+                    <input type="text" style="height: 30px;">
+                    <button type="button" id="search">Search</button>
+                    <a href="dreamsBoardWrite.html"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+                </div>
+
+                <div class="pageNav">
+                    <span class="prev1">
+                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
+                            <span style="color: white !important;">< 이전</span>
+                        </a>
+                    </span>
+                    <span class="page">
+                        <a href="" class="on">1</a>
+                        <a href="" >2</a>
+                        <a href="" >3</a>
+                        <a href="" >4</a>
+                    </span>
+                   <span class="next1">
+                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
+                            <span style="color: white !important;">다음 ></span>
+                        </a>
+                    </span>
+                </div>
+                
+					<!-- 우측메뉴 종료 -->
+                </div>
+            </div>
+            <footer>
+                <div class="footer-1 center">
+                    <div class="footer-list-box">
+        
+                        <div class="item-box">
+                            <ul class="link-list">
+                                <li><a href="/site/privacyStatement.do">개인정보처리방침</a></li>
+                                <li><a href="/site/termsOfUse.do">이용약관</a></li>
+                                <li><a href="/site/refuseEmail.do">이메일무단수집거부</a></li>
+                                <li><a href="/fans/qna/list.do">안내 및 Q&amp;A</a></li>
+                                <li><a href="/site/sitemap.do">사이트맵</a></li>
+                                <!-- <li><a href="/fans/link/list.do">관련사이트</a></li> -->
+                            </ul>
+                            <div class="txt-add">
+                                서울특별시 구로구 경인로 430(고척동, 고척스카이돔구장내) T.02-3660-1000 F.02-3660-1099<br>
+                                Copyright (C) Heroes, All Rights Reserved.
+                            </div>
+                        </div>
+                        <div class="item-box">
+                            <a href="../../index.html">
+                                <img src="../image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
+                            </a>
+                        </div>
+                        
+                    </div>
+    
+                </div>
+            </footer>
+    </body>
+</div>
+
+</html>
