@@ -83,7 +83,7 @@
 								<li>
                                     <ul class="product_menu">
 										<p></p>
-										<li><a href="stats.html">팀순위</a></li>
+										<li><a href="stats.jsp">팀순위</a></li>
 									</ul>
 								</li>	
 							</ul>	

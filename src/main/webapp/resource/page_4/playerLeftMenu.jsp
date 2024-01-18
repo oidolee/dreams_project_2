@@ -33,9 +33,9 @@
 				<li>
                     <ul class="product_menu">
 						<p></p>
-						<li><a href="players.html">선수</a></li>
-						<li><a href="coaching.html">코칭스태프</a></li>
-						<li><a href="steff.html">구단관계자</a></li>
+						<li><a href="players.jsp">선수</a></li>
+						<li><a href="coaching.jsp">코칭스태프</a></li>
+						<li><a href="steff.jsp">구단관계자</a></li>
 					</ul>
 				</li>	
 			</ul>	

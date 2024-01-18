@@ -117,7 +117,7 @@
                     <div style="display: flex; justify-content: center; margin-bottom: 50px;">
                         <div id="writebutton">
                             <button style="margin-right: 300px; width: 60px;"> < 이전 </button>                        
-                            <a href="dreamsBoard.html"><button style="width: 50px;"> 목록 </button></a>
+                            <a href="dreamsBoard.jsp"><button style="width: 50px;"> 목록 </button></a>
                             <button style="margin-left: 300px; width: 60px;"> 다음 > </button>   
                         </div>
                     </div>

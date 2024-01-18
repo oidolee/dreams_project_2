@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>장바구니</title>
+    
+    <title> 장바구니 페이지 </title>
+    
     <!-- reset.css -->
     <link rel="stylesheet" href="./resource/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -95,7 +97,7 @@
     
     
 </head>
-<div class="wrap">
+
     <body>
     	<jsp:include page="../../layout/header.jsp"></jsp:include> 
       	
@@ -291,5 +293,5 @@
             ScrollReveal().reveal('.headline');
         </script>
     </body>
-</div>
+
 </html>
