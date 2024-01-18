@@ -32,6 +32,8 @@
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
     <script src="./resource/js/common/header.js"></script>
+    <!-- dreamsBoard.js -->
+    <script src="dreamsBoard.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -86,7 +88,7 @@
                                 제목
                             </th>
                             <td>
-                                <input type="text" style="width: 100%; color: #000 !important;">
+                                <input type="text" style="width: 100%; color: #000 !important;" placeholder="제목 글자수 20자 이하" oninput="titleLength(this, 20)">
                             </td>
                         </tr>
 
@@ -95,7 +97,14 @@
                                 내용
                             </th>
                             <td>
-                                <textarea name="writeArea" id="" cols="30" rows="10" placeholder="욕설 및 비방은 제한될 수 있습니다."></textarea>
+                                <textarea name="writeArea" id="writeTextarea" cols="30" rows="10" onclick="clearTextarea()" oninput="writeLength(this, 150)">
+                                
+                                
+                                
+                                
+                                욕설 및 비방은 제한될 수 있습니다.
+                                        본문 글자수 150자 제한
+                                </textarea>
                             </td>
                         </tr>
                         
@@ -105,7 +114,7 @@
                     <div style="display: flex; justify-content: right; margin-bottom: 50px;">
                         <div id="writebutton">
                             <button style="margin-right: 10px;"> 등록 </button>                        
-                            <a href="dreamsBoard.html"><button> 취소 </button></a>
+                            <a href="dreamsBoard.jsp"><button> 취소 </button></a>
                         </div>
                     </div>
 

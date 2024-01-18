@@ -246,6 +246,7 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
 
 /* 게시판 세부페이지 종료*/
 
+/* qna 아코디언 시작 */
 .btn-check:checked + .btn,
  :not(.btn-check) + .btn:active, 
  .btn:first-child:active, 
@@ -258,5 +259,6 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
  }
  
 .accordion-button:not(.collapsed) {
-	background-color: #cff1eb;
+	background-color: #cff1eb !important;
 }
+/* qna 아코디언 종료 */

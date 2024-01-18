@@ -33,9 +33,9 @@
 				<li>
                     <ul class="product_menu">
 						<p></p>
-						<li><a href="news.html">구단 소식</a></li>
-						<li><a href="dreamsBoard.html">드림즈게시판</a></li>
-						<li><a href="qna.html">안내 및 Q&A</a></li>
+						<li><a href="news.jsp">구단 소식</a></li>
+						<li><a href="dreamsBoard.jsp">드림즈게시판</a></li>
+						<li><a href="qna.jsp">안내 및 Q&A</a></li>
 					</ul>
 				</li>	
 			</ul>	

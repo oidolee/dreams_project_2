@@ -104,7 +104,7 @@
                     		<td> 
                     		</td>
                     		<td class="boardtitle">
-                    			<a href="dreamsBoarDetail.html">우승을 위하여</a>
+                    			<a href="dreamsBoarDetail.jsp">우승을 위하여</a>
                     		</td>
                     		<td class="name">
                     			"박은빈 (parkeun**)"
@@ -206,7 +206,7 @@
                 <div style="display: flex; justify-content: right;">
                     <input type="text" style="height: 30px;">
                     <button type="button" id="search">Search</button>
-                    <a href="dreamsBoardWrite.html"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+                    <a href="dreamsBoardWrite.jsp"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
                 </div>
 
                 <div class="pageNav">
