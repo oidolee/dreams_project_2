@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="./resource/css/common/header.css">
     <link rel="stylesheet" href="./resource/css/common/footer.css">
     <link rel="stylesheet" href="./resource/css/index.css">
+    
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
