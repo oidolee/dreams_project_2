@@ -2,13 +2,13 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 이민진 -->
+<!-- 페이지 작업자 : 강승재 -->
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>드림즈!!</title>
+    <title>드림즈게시판 글쓰기</title>
     <!-- reset.css -->
     <link rel="stylesheet" href="./resource/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./resource/css/common/header.css">
     <link rel="stylesheet" href="./resource/css/common/footer.css">
     <link rel="stylesheet" href="./resource/css/index.css">
-    
+    <link rel="stylesheet" href="../css/common/page4_board.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -66,9 +66,54 @@
     <body>
     	<jsp:include page="../../layout/header.jsp"></jsp:include> 
       
-        <div style="height:500px; border:10px solid red;">
-        	내용
+        <div class="slider-con">
+            <div class="slider-box">
+                <img src="../image/banner/category_BOARDS.jpg" alt="">
+            </div>
         </div>
+        <!-- 상단 중앙1 시작 -->
+				<div style="display: flex; justify-content: center;"class="board">
+					
+                    <!-- 좌측메뉴 시작 -->
+					<jsp:include page="boardLeftMenu.jsp"></jsp:include> 
+					<!-- 좌측메뉴 종료 -->	
+				<!-- 우측메뉴 시작 -->
+                <div style="width: 800px; " >
+					<h2 align="center" class="title"> 게시판 글쓰기 </h2><br>
+                    <table id="boardwrite">
+                        <tr>
+                            <th>
+                                제목
+                            </th>
+                            <td>
+                                <input type="text" style="width: 100%; color: #000 !important;">
+                            </td>
+                        </tr>
+
+                        <tr style="height: 200px;">
+                            <th>
+                                내용
+                            </th>
+                            <td>
+                                <textarea name="writeArea" id="" cols="30" rows="10" placeholder="욕설 및 비방은 제한될 수 있습니다."></textarea>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                
+                <hr id="blackline">
+                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
+                        <div id="writebutton">
+                            <button style="margin-right: 10px;"> 등록 </button>                        
+                            <a href="dreamsBoard.html"><button> 취소 </button></a>
+                        </div>
+                    </div>
+
+
+
+					<!-- 우측메뉴 종료 -->
+                </div>
+            </div>
      
       
      	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
