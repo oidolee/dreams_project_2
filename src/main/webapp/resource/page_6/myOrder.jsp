@@ -79,7 +79,7 @@
             text-align: center;
         }
 
-        tabel {
+        table {
             text-align: center;
         }
 
