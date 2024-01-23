@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 공용 --> 
@@ -10,25 +11,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title> 회원 탈퇴</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="../css/common/reset.css">
+    <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
     <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="../css/common/common.css">
-    <link rel="stylesheet" href="../css/common/header.css">
-    <link rel="stylesheet" href="../css/common/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="${path}/css/common/common.css">
+    <link rel="stylesheet" href="${path}/css/common/header.css">
+    <link rel="stylesheet" href="${path}/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/css/index.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/js/bootstrap/bootstrap.bundle.js" defer></script>
     <!-- swiper js-->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- header.js -->
-    <script src="../js/common/header.js"></script>
+    <script src="${path}/js/common/header.js" defer></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -94,14 +95,14 @@
                     <div class="col-sm-2"></div>
                   <label for="user_id" class="col-sm-2 col-form-label">아이디</label>
                   <div class="col-sm-5">
-                    <input type="text" class="form-control" id="user_id" placeholder="dreamsfan0111" disabled>
+				 	<span style="color:#FF82AA"><b>${sessionID}</b></span>
                   </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-2"></div>
                   <label for="user_pwd" class="col-sm-2 col-form-label">비밀번호 확인</label>
                   <div class="col-sm-5">
-                    <input type="password" class="form-control" id="user_pwd">
+                    <input type="password" class="form-control" name="cust_Password">
                   </div>
                 </div>
                 <br>
