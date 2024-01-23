@@ -23,3 +23,15 @@ function clearTextarea() {
 		 clear = true;
 	}
 }
+
+function searchBoard() {
+	if(!document.boardform.search.value){
+		alert("키워드를 입력하세요!");
+		document.boardform.search.focus();
+		return false;
+	}
+	
+	let url="/dreams_project_2/dreamsBoardSearch.do?search=" + document.boardform.search.value;
+	
+	
+}

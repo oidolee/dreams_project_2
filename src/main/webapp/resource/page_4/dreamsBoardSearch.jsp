@@ -79,7 +79,7 @@
 					<!-- 좌측메뉴 종료 -->	
 					<!-- 우측메뉴 시작 -->
 	                <div style="width: 800px;">
-						<h2 align="center" class="title"> 드림즈 게시판 </h2><br>
+						<h2 align="center" class="title"> 드림즈 게시판 검색결과 </h2><br>
 	                    
 	                <table>
 	                    <colgroup>
@@ -89,6 +89,7 @@
 	                        <col width="100px">
 	                    </colgroup>
 	                    <tbody>
+	                    <c:if test="dto != null">
 	                    	<tr class="boardtable">
 	                    		<td> 
 	                    		</td>
@@ -100,105 +101,7 @@
 	                    		</td>
 	                    		<td class="date">2024.01.03</td>
 	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="dreamsBoarDetail.jsp">우승을 위하여</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"박은빈 (parkeun**)"
-	                    		</td>
-	                    		<td class="date">2024.01.02</td>
-	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">임동규를 방출하라</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"김철수 (kimch**)"
-	                    		</td>
-	                    		<td class="date">2024.01.02</td>
-	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">야구장이 멀어요</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"이서울 (seoul**)"
-	                    		</td>
-	                    		<td class="date">2024.01.01</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">근데 야구장 가본사람 있어요?</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"박찬혁 (park**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">우승은 언제쯤 할까요?</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"주시은 (jusi**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">내 욕한 사람들 다 기억한다</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"임동규 (limdo**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">연말 잘보내세요</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"차태현 (cha**)"
-	                    		</td>
-	                    		<td class="date">2023.12.30</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">야구장에 소주 갖고오는 사람 뭐냐</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"조인성 (cho**)"
-	                    		</td>
-	                    		<td class="date">2023.12.28</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">메리크리스마스</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"한효주 (han**)"
-	                    		</td>
-	                    		<td class="date">2023.12.25</td>
-	                    	</tr>
+	                    </c:if>	
 	                    </tbody>
 	                </table>
 	                
@@ -217,9 +120,6 @@
 	                    </span>
 	                    <span class="page">
 	                        <a href="" class="on">1</a>
-	                        <a href="" >2</a>
-	                        <a href="" >3</a>
-	                        <a href="" >4</a>
 	                    </span>
 	                   <span class="next1">
 	                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">

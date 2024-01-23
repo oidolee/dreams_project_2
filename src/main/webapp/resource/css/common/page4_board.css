@@ -262,3 +262,9 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
 	background-color: #cff1eb !important;
 }
 /* qna 아코디언 종료 */
+
+/* 상단사진 시작 */
+.slider-box img{
+	width: 100%;
+}
+/* 상단사진 종료 */
