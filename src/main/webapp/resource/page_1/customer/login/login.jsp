@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="./resource/css/common/header.css">
     <link rel="stylesheet" href="./resource/css/common/footer.css">
     <link rel="stylesheet" href="./resource/css/index.css">
-    <link rel="stylesheet" href="../css/customer/login.css">
+    <link rel="stylesheet" href="../../../css/customer/login.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -140,11 +140,11 @@ input:focus {
 </head>
 <div class="wrap">
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<jsp:include page="../../../../layout/header.jsp"></jsp:include> 
       
         <div class="slider-con">
 			<div class="slider-box">
-				<img src="../image/banner/드림즈_포토샵.jpg">
+				<img src="../../../image/banner/드림즈_포토샵.jpg">
 			</div>
 		</div>
 
@@ -156,13 +156,12 @@ input:focus {
 						<li>Home /&nbsp; </li>		<!-- &nbsp; 띄어쓰기 -->
 						<li class="here">LOGIN</li>
 					</div>
-					<form name="loginform" action="loginAction.jsp" method="post"
-						onsubmit="return checkForm()">
+					<form name="loginform" action="loginAction.jsp" method="post" onsubmit="return checkForm()">
 						<!-- post : 노출x / get : 노출o -->
 						<div id="login" class="wideWrap" style="margin-top: 4px;">		<!-- 아랫선 -->
 							<div style="display: flex; justify-content: space-between; border-bottom: 2px solid; color: #000 !important; margin-bottom: 47px; position: relative; padding-bottom: 20px">
 								<div style="margin-top: -10px; z-index: -1;">
-									<img src="../../resource/image/logoSmall.png" width="230" height="120">
+									<img src="../../../image/logoSmall.png" width="230" height="120">
 								</div>
 
 								<div style= "font-size: larger; color: #000 !important; margin-top: 20px; text-align: left; margin-right: 50px; position: absolute; left: 200px; z-index: -1;">
@@ -211,7 +210,7 @@ input:focus {
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="../page_2/ticketFee.jsp"><img src="../image/main/dreams_char.png"
+                        <li><a href="../page_2/ticketFee.jsp"><img src="../../../image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
@@ -223,7 +222,7 @@ input:focus {
         </section>
      
       
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+     	<jsp:include page="../../../../layout/footer.jsp"></jsp:include> 
         
         <script>
             //메인 스크롤 이벤트 

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public BoardController() {
+    public BoardController() {   
         super();
     }
 
@@ -49,7 +49,7 @@ public class BoardController extends HttpServlet {
 		if(url.equals("/*.do") || url.equals("/index.do")){
 			System.out.println("<<< url ==> /index.do >>>");
 			
-			viewPage = "page_5/index.jsp";
+			viewPage = "index.jsp";
 		}
 		
 		// 드림즈게시판

@@ -212,7 +212,7 @@
 <div class="wrap">
   
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<jsp:include page="../../../../layout/header.jsp"></jsp:include> 
       
         <div class="slider-con">
 			<div class="slider-box">
@@ -389,7 +389,7 @@
         </section>
      
       
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+     	<jsp:include page="../../../../layout/footer.jsp"></jsp:include> 
         
         <script>
             //메인 스크롤 이벤트 
