@@ -49,7 +49,7 @@ public class BoardController extends HttpServlet {
 		if(url.equals("/*.do") || url.equals("/index.do")){
 			System.out.println("<<< url ==> /index.do >>>");
 			
-			viewPage = "page_5/index.jsp";
+			viewPage = "index.jsp";
 		}
 		
 		// 드림즈게시판
