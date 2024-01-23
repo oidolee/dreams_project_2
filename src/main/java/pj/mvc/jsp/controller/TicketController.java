@@ -1,6 +1,8 @@
 package pj.mvc.jsp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +55,10 @@ public class TicketController extends HttpServlet {
 		if(url.equals("/*do") || url.equals("main.do")) {
 			System.out.println("<<< url ==> /main.do >>>");
 			
-			viewPage = "index.jsp";
+			viewPage = "/index.jsp";
 		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
 	}
 }
