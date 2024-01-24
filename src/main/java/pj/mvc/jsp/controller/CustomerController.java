@@ -21,6 +21,7 @@ public class CustomerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
+		action(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -35,7 +36,6 @@ public class CustomerController extends HttpServlet {
 		
 		// 한글 안깨지게 처리
 		request.setCharacterEncoding("UTF-8");
-		
 		String viewPage = "";
 		CustomerService service = new CustomerServiceImpl();
 				
