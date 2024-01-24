@@ -55,15 +55,20 @@
 
             var cell9 = newRow.insertCell(8);
             cell9.innerHTML = '<button onclick="deleteRow(this)">삭제</button>';
+
+            // 입력 필드 초기화
+            document.getElementById('productName').value = '';
+            document.getElementById('productPrice').value = '';
+            productSpecInput.value = '';
+            productDesc1Input.value = '';
+            productDesc2Input.value = '';
+            refundPolicyInput.value = '';
+            document.getElementById('totalQty').value = '';
         }
 
         function deleteRow(btn) {
             var row = btn.parentNode.parentNode;
             row.parentNode.removeChild(row);
-        }
-
-        function closeWindow() {
-            window.close();
         }
     </script>
 </head>
@@ -84,9 +89,44 @@
     </table>
 
     <form id="addItemForm">
-        <!-- 입력 폼들 -->
-        <button type="button" onclick="applyChanges()">추가</button>
-        <button type="button" onclick="closeWindow()">닫기</button>
+        <label for="productImage">상품 이미지:</label>
+        <div id="displayProductImage"></div>
+        <input type="file" id="productImage" name="productImage" onchange="displayImageAsync(this, document.getElementById('displayProductImage'))">
+        <br>
+
+        <label for="productName">상품 이름:</label>
+        <input type="text" id="productName" name="productName">
+        <br>
+
+        <label for="productPrice">가격:</label>
+        <input type="text" id="productPrice" name="productPrice">
+        <br>
+
+        <label for="productSpec">상품 규격:</label>
+        <div id="displayProductSpec"></div>
+        <input type="file" id="productSpec" name="productSpec" onchange="displayImageAsync(this, document.getElementById('displayProductSpec'))">
+        <br>
+
+        <label for="productDesc1">상품 상세 설명1:</label>
+        <div id="displayProductDesc1"></div>
+        <input type="file" id="productDesc1" name="productDesc1" onchange="displayImageAsync(this, document.getElementById('displayProductDesc1'))">
+        <br>
+
+        <label for="productDesc2">상품 상세 설명2:</label>
+        <div id="displayProductDesc2"></div>
+        <input type="file" id="productDesc2" name="productDesc2" onchange="displayImageAsync(this, document.getElementById('displayProductDesc2'))">
+        <br>
+
+        <label for="refundPolicy">반품 및 환불 규정:</label>
+        <div id="displayRefundPolicy"></div>
+        <input type="file" id="refundPolicy" name="refundPolicy" onchange="displayImageAsync(this, document.getElementById('displayRefundPolicy'))">
+        <br>
+
+        <label for="totalQty">등록 수량:</label>
+        <input type="text" id="totalQty" name="totalQty">
+        <br>
+
+        <button type="button" id="applyButton" onclick="applyChanges()">추가</button>
     </form>
 
 </body>
