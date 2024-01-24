@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 윤석무 -->
@@ -12,20 +13,20 @@
     <title> 장바구니 페이지 </title>
     
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="./resource/css/common/common.css">
-    <link rel="stylesheet" href="./resource/css/common/header.css">
-    <link rel="stylesheet" href="./resource/css/common/footer.css">
-    <link rel="stylesheet" href="./resource/css/index.css">
-    <link rel="stylesheet" href="../css/admin/basket.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/resource/css/index.css">
+    <link rel="stylesheet" href="${path}/resource/css/admin/basket.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -33,7 +34,7 @@
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
-    <script src="./resource/js/common/header.js"></script>
+    <script src="${path}/resource/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -99,11 +100,11 @@
 </head>
 
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<%@include file="/layout/header.jsp"%>
       	
       	<div class="slider-con">
 			<div class="slider-box">
-				<img src="../image/banner/드림즈_포토샵.jpg" width="100%">
+				<img src="${path}/resource/image/banner/드림즈_포토샵.jpg" width="100%">
 			</div>
 		</div>
       	
@@ -196,10 +197,10 @@
 			                        </div>
 			                    </div>
 			                    <div class="order2" style="align-items: center; padding-top: 30px;" >
-			                        <a href="../page_2/purchaseTicket.jsp">
+			                        <a href="${path}/resource/page_2/purchaseTicket.jsp">
 			                            <input id="btn1" type="button" value="선택상품주문">
 			                        </a>
-			                        <a href="../page_2/purchaseTicket.jsp">
+			                        <a href="${path}/resource/page_2/purchaseTicket.jsp">
 			                            <input id="btn1" type="button" value="전체상품주문">
 			                        </a>
 			                    </div>
@@ -219,11 +220,11 @@
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="../page_2/ticketFee.jsp"><img src="../image/main/dreams_char.png"
+                        <li><a href="${path}/resource/page_2/ticketFee.jsp"><img src="../image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
-                        <li><a href="../page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
+                        <li><a href="${path}/resource/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
                                     alt=""></a></li>
                     </ul>
                 </div>
@@ -231,7 +232,7 @@
         </section>
      
       
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+     	<%@include file="/layout/footer.jsp" %>
         
         
         <script type="text/javascript">
