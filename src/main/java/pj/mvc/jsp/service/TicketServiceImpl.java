@@ -1,5 +1,32 @@
 package pj.mvc.jsp.service;
 
-public class TicketServiceImpl {
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TicketServiceImpl implements TicketService {
+
+	// 티켓 목록 조회
+	@Override
+	public void ticketListAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		
+	}
+
+	// 티켓 가격 수정
+	@Override
+	public void ticketUpdateAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		
+	}
+
+	// 티켓 삭제 처리
+	@Override
+	public void ticketDeleteAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		
+	}
 
 }
