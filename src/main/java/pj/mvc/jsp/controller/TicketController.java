@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import pj.mvc.jsp.service.TicketServiceImpl;
 
 
-@WebServlet("/*tc")
+@WebServlet("*.tc")
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,14 +52,36 @@ public class TicketController extends HttpServlet {
 		String url = uri.substring(contextPath.length());
 		
 		// 첫페이지 main.do라고 가정
-		if(url.equals("/*tc") || url.equals("main.tc")) {
-			System.out.println("<<< url ==> /main.do >>>");
+		if(url.equals("/*.tc") || url.equals("/ticket.tc")) {
+			System.out.println("<<< url ==> /ticket.tc >>>");
 			
-			viewPage = "page_2/templet.jsp";
+			viewPage = "resource/page_2/ticketFee.jsp";
 		}
-		else if(url.equals("")) {
+		
+		// 관리자 페이지
+		else if(url.equals("/admin.tc")) {
+			System.out.println("<<< url ==> /admin.tc >>>");
 			
+			viewPage = "resource/admin/index.jsp";
 		}
+		
+		// 티켓 조회
+		else if(url.equals("/purchaseTicket.tc")) {
+			System.out.println("<<< url ==> /purchaseTicket.tc >>>");
+			
+			tservice.ticketListAction(request, response);
+			
+			viewPage = "resource/page_2/purchaseTicket.jsp";
+		}
+		
+		// 티켓 가격 수정
+		
+		
+		// 티켓 삭제 처리
+		
+		// 티켓 예약 취소 처리
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
