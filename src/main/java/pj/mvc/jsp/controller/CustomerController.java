@@ -48,7 +48,7 @@ public class CustomerController extends HttpServlet {
 		System.out.println(uri);
 		String contextPath = request.getContextPath();	
 		String url = uri.substring(contextPath.length());	
-		
+		  
 		
 		// 첫페이지
 		if(url.equals("/*.cc") || url.equals("/index.cc")) {	// 요청
