@@ -1,6 +1,8 @@
 package pj.mvc.jsp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +38,6 @@ public class CustomerController extends HttpServlet {
 		
 		// 한글 안깨지게 처리
 		request.setCharacterEncoding("UTF-8");
-		
 		String viewPage = "";
 		
 		CustomerServiceImpl service = new CustomerServiceImpl();
