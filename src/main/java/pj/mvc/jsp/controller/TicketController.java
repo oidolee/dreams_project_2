@@ -55,7 +55,7 @@ public class TicketController extends HttpServlet {
 		if(url.equals("/*do") || url.equals("main.do")) {
 			System.out.println("<<< url ==> /main.do >>>");
 			
-			viewPage = "/index.jsp";
+			viewPage = "page_2/templet.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
