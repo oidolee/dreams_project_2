@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 공용 --> 
+<!-- 페이지 작업자 : 신재욱 --> 
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,25 +11,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>찾아오시는 길</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="../css/common/reset.css">
+    <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="../css/common/common.css">
-    <link rel="stylesheet" href="../css/common/header.css">
-    <link rel="stylesheet" href="../css/common/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="${path}/css/common/common.css">
+    <link rel="stylesheet" href="${path}/css/common/header.css">
+    <link rel="stylesheet" href="${path}/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/css/index.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- header.js -->
-    <script src="../js/common/header.js"></script>
+    <script src="${path}/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -56,45 +57,6 @@
     <style>
         .slider-con img{
             width: 100%;
-        }
-
-        .container-box {
-            padding: 0;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-
-        .center {
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .section-1-con {
-            min-height: 440px;
-        }
-
-        .section-1 {
-            height: 100%;
-            padding: 80px 0;
-        }
-
-        .section-1-top h2 {
-            text-align: center;
-        }
-
-        .section-1-top h2 a {
-            color: #000 !important;
-        }
-
-        .section-1-bottom ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 40px;
-            padding-left: 0;
         }
 
         /* 반응형 */
@@ -152,9 +114,12 @@
         .table {
             text-align: center;
             vertical-align: auto;
-            border: 1px solid;
-            width: 1280px;
-            margin: 0 auto;
+            border: 1px solid #000 !important;
+            border-top: 2px solid #000 !important;
+            border-bottom: 2px solid #000 !important;
+            width: 1280px !important;
+            margin: 0 auto ;
+            
         }
 
         .menuLink {
@@ -170,6 +135,8 @@
 
         thead th {
             color: #000 !important;
+            border: #000 1px solid;
+            border-bottom: #000 2px solid !important;
         }
 
 
@@ -180,10 +147,12 @@
 
         tbody  tr td {
             color: #000 !important;
+            border: #000 1px solid !important;
         }
 
         tbody tr th {
             color: #000 !important;
+            border: #000 1px solid !important;
         }
     </style>
 </head>
@@ -193,7 +162,7 @@
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
-            <img src="../image/banner/category_DREAMS.jpg">
+            <img src="${path}/resource/image/banner/category_DREAMS.jpg">
         </div>
         <br>
 
@@ -218,13 +187,11 @@
         <br>
         <br>
 
-            <div >
-                <p>
-                
+            <div>
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col" style="font-weight: bold;">번호</th>
+                        <th scope="col" style="font-weight: bold;">방법</th>
                         <th scope="col" style="font-weight: bold;">지하철역</th>
                         <th scope="col" style="font-weight: bold;">호선</th>
                         <th scope="col" style="font-weight: bold;">오시는 길</th>
@@ -255,11 +222,8 @@
                         <td><img src="https://www.heroesbaseball.co.kr/html/front/web/images/heroes/icoLine01.png"></td>
                         <td>2번 출구에서 약 100m 직진 후 고척스카이돔 정면 출입문 게이트 통해 입장 (도보 약 3분)<br>버스 이용 필요 없음</td>
                       </tr>
-                      
-                      
                     </tbody>
                 </table>
-                </p>
             </div>
 
         <!-- 상단 이동버튼 -->

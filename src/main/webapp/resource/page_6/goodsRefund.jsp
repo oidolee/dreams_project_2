@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 공용 --> 
@@ -10,25 +11,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>상품 교환/환불</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="../css/common/reset.css">
+    <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="../css/common/common.css">
-    <link rel="stylesheet" href="../css/common/header.css">
-    <link rel="stylesheet" href="../css/common/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="${path}/css/common/common.css">
+    <link rel="stylesheet" href="${path}/css/common/header.css">
+    <link rel="stylesheet" href="${path}/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/css/index.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- header.js -->
-    <script src="../js/common/header.js"></script>
+    <script src="${path}/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -68,17 +69,9 @@
             width: 100%;
         }
 
-        .center{max-width: 1240px; margin: 0 auto;}
-        .section-1-con{height: 440px;}
-        .section-1{height: 100%; padding: 80px 0;}
-        .section-1-top h2{text-align: center; }
-        .section-1-top h2 a{color: #000 !important;}
-        .section-1-bottom ul{display: flex; justify-content: space-between;  align-items: center; padding-top: 40px; padding-left: 0;}
-
-
         .goods {
             text-align: center;
-            
+            width: 1280px;
             margin: 0 auto;
         }
 
@@ -106,11 +99,6 @@
             border-spacing: 10px;
             border-collapse: separate;
         }
-
-        .goods {
-            width: 1280px;
-        }
-
         </style>
 </head>
 
@@ -119,7 +107,7 @@
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
-            <img src="../image/banner/category_DREAMS.jpg">
+            <img src="${path}/resource/image/banner/category_DREAMS.jpg">
         </div>
         <br>
  
