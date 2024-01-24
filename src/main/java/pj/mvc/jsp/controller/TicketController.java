@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import pj.mvc.jsp.service.TicketServiceImpl;
 
 
-@WebServlet("/*do")
+@WebServlet("/*tc")
 public class TicketController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,12 +52,14 @@ public class TicketController extends HttpServlet {
 		String url = uri.substring(contextPath.length());
 		
 		// 첫페이지 main.do라고 가정
-		if(url.equals("/*do") || url.equals("main.do")) {
+		if(url.equals("/*tc") || url.equals("main.tc")) {
 			System.out.println("<<< url ==> /main.do >>>");
 			
-			viewPage = "/index.jsp";
+			viewPage = "page_2/templet.jsp";
 		}
-		
+		else if(url.equals("")) {
+			
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
