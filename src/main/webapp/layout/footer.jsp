@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<!-- ÆäÀÌÁö ÀÛ¾÷ÀÚ : ÀÌ¹ÎÁø -->
+<!-- íŽ˜ì´ì§€ ìž‘ì—…ìž : ì´ë¯¼ì§„ -->
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>µå¸²Áî</title>
+    <title>ë“œë¦¼ì¦ˆ</title>
     <!-- reset.css -->
     <link rel="stylesheet" href="/dreams_project_2/resource/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -25,9 +25,9 @@
     
 
     <script>
-        // ÆäÀÌÁö ·Îµå ÈÄ ½ÇÇàµÉ ÇÔ¼ö
+        // íŽ˜ì´ì§€ ë¡œë“œ í›„ ì‹¤í–‰ë  í•¨ìˆ˜
         $(document).ready(function () {
-            // top ¹öÆ° Å¬¸¯ ½Ã ½ºÅ©·Ñ
+            // top ë²„íŠ¼ í´ë¦­ ì‹œ ìŠ¤í¬ë¡¤
             $('#goTop a[href="#header"]').on('click', function (e) {
                 window.scroll({
                     top: 0,
@@ -40,7 +40,7 @@
             })
         });
 
-        //Å©·Ò ½ºÅ©·Ñ ¿À·ù·Î ½Ã°£ ÁöÁ¤ ÈÄ µ¿Àå
+        //í¬ë¡¬ ìŠ¤í¬ë¡¤ ì˜¤ë¥˜ë¡œ ì‹œê°„ ì§€ì • í›„ ë™ìž¥
         $(window).on("scroll", function () {
             $("#goTop a").attr("href", "#none")
             $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.1)" });
@@ -61,20 +61,20 @@
 
                     <div class="item-box">
                         <ul class="link-list">
-                            <li><a href="#">°³ÀÎÁ¤º¸Ã³¸®¹æÄ§</a></li>
-                            <li><a href="#">ÀÌ¿ë¾à°ü</a></li>
-                            <li><a href="#">ÀÌ¸ÞÀÏ¹«´Ü¼öÁý°ÅºÎ</a></li>
-                            <li><a href="#">¾È³» ¹× Q&amp;A</a></li>
-                            <li><a href="#">»çÀÌÆ®¸Ê</a></li>
+                            <li><a href="#">ê°œì¸ì •ë³´ì²˜ë¦¬ë°©ì¹¨</a></li>
+                            <li><a href="#">ì´ìš©ì•½ê´€</a></li>
+                            <li><a href="#">ì´ë©”ì¼ë¬´ë‹¨ìˆ˜ì§‘ê±°ë¶€</a></li>
+                            <li><a href="#">ì•ˆë‚´ ë° Q&amp;A</a></li>
+                            <li><a href="#">ì‚¬ì´íŠ¸ë§µ</a></li>
                         </ul>
                         <div class="txt-add">
-                            ¼­¿ïÆ¯º°½Ã ±¸·Î±¸ °æÀÎ·Î 430(°íÃ´µ¿, °íÃ´½ºÄ«ÀÌµ¼±¸Àå³») T.02-3660-1000 F.02-3660-1099<br>
+                            ì„œìš¸íŠ¹ë³„ì‹œ êµ¬ë¡œêµ¬ ê²½ì¸ë¡œ 430(ê³ ì²™ë™, ê³ ì²™ìŠ¤ì¹´ì´ë”êµ¬ìž¥ë‚´) T.02-3660-1000 F.02-3660-1099<br>
                             Copyright (C) Heroes, All Rights Reserved.
                         </div>
                     </div>
                     <div class="item-box">
                         <a href="/dreams_project_2/index.html">
-                            <img src="/dreams_project_2/resource/image/logoSmall.png" alt="µå¸²Áî ÇÁ·Î¾ß±¸´Ü" style="width: 200px;">
+                            <img src="/dreams_project_2/resource/image/logoSmall.png" alt="ë“œë¦¼ì¦ˆ í”„ë¡œì•¼êµ¬ë‹¨" style="width: 200px;">
                         </a>
                     </div>
                 </div>
