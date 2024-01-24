@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import pj.mvc.jsp.service.CustomerServiceImpl;
 
-@WebServlet("*.cc")	// 업무별로 확장자 분리
+@WebServlet("*.cc")	// 업무별로 확장자 분리!
 public class CustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
