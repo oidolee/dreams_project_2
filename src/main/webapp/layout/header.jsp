@@ -71,11 +71,11 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/players.html">PLAYERS</a>
+                                <a href="/dreams_project_2/resource/page_4/players.jsp">PLAYERS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_4/players.html">선수</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/coaching.html">코칭스태프</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/steff.html">구단관계자</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/players.jsp">선수</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/coaching.jsp">코칭스태프</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/steff.jsp">구단관계자</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -85,9 +85,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">STATS</a>
+                                <a href="/dreams_project_2/resource/page_4/stats.jsp">STATS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="#">팀순위</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/stats.jsp">팀순위</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -97,13 +97,11 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/news.html">BOARDS</a>
+                                <a href="/dreams_project_2/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_4/news.html">구단소식</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.html">영웅게시판</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">다운로드</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">응원단</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">안내 및 Q&A</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/news.jsp">구단소식</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -135,11 +133,11 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">PLAYERS</a>
+                                <a href="/dreams_project_2/resource/page_4/players.jsp">PLAYERS</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_4/players.html">선수</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/coaching.html">코칭스태프</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/steff.html">구단관계자</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/players.jsp">선수</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/coaching.jsp">코칭스태프</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/steff.jsp">구단관계자</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -149,9 +147,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">STATS</a>
+                                <a href="/dreams_project_2/resource/page_4/stats.jsp">STATS</a>
                                 <ul class="menu-son">
-                                    <li><a href="#">팀순위</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/stats.jsp">팀순위</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -161,13 +159,11 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">BOARDS</a>
+                                <a href="/dreams_project_2/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son ">
-                                    <li><a href="/dreams_project_2/resource/page_4/news.html">구단소식</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.html">영웅게시판</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">다운로드</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">응원단</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.html">안내 및 Q&A</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/news.jsp">구단소식</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>
                             <li>

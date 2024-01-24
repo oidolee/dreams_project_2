@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("*.do")
+@WebServlet("*.bc")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -45,25 +45,26 @@ public class BoardController extends HttpServlet {
 		
 		String url = uri.substring(contextPath.length());
 		
-		// 메인페이지
-		if(url.equals("/*.do") || url.equals("/index.do")){
-			System.out.println("<<< url ==> /index.do >>>");
-			
-			viewPage = "index.jsp";
-		}
-		
 		// 드림즈게시판
-		else if(url.equals("/dreamsBoard.do")) {
-			System.out.println("<<< url ==> /index.do >>>");
+		if(url.equals("/*.bc") || url.equals("/dreamsBoard.bc")) {
+			System.out.println("<<< url ==> /dreamsBoard.bc >>>");
 			
-			viewPage = "page_4/dreamsBoard.jsp";
+			viewPage = "resource/page_4/dreamsBoard.jsp";
 		}
 		
 		// 드림즈게시판 검색페이지
-		else if(url.equals("/dreamsBoardSearch.do")) {
-			System.out.println("<<< url ==> /dreamsBoardSearch.do >>>");
-			viewPage = "page_4/dreamsBoardSearch.jsp";
+		else if(url.equals("/dreamsBoardSearch.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
+			viewPage = "resource/page_4/dreamsBoardSearch.jsp";
 		}
+		
+		// 드림즈게시판 글쓰기페이지
+		else if(url.equals("/dreamsBoardWrite.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardWrite.bc >>>");
+			viewPage = "resource/page_4/dreamsBoardWrite.jsp";
+		}
+		
+		
 		
 		
 		// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.

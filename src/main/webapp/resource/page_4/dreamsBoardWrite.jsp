@@ -84,7 +84,7 @@
 					<h2 align="center" class="title"> 게시판 글쓰기 </h2><br>
                     <table id="boardwrite">
                         <tr>
-                            <th>
+                            <th style="font-weight: bold">
                                 제목
                             </th>
                             <td>
@@ -93,7 +93,7 @@
                         </tr>
 
                         <tr style="height: 200px;">
-                            <th>
+                            <th style="font-weight: bold">
                                 내용
                             </th>
                             <td>
