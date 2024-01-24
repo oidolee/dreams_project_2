@@ -1,16 +1,17 @@
 package pj.mvc.jsp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pj.mvc.jsp.service.CustomerService;
 import pj.mvc.jsp.service.CustomerServiceImpl;
 
-@WebServlet("/*cc")
+@WebServlet("*.cc")	// 업무별로 확장자 분리
 public class CustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -64,7 +65,7 @@ public class CustomerController extends HttpServlet {
 			  
 			viewPage = "page_1/customer/join/join.jsp"; 
 		}
-		      
+		  
 		// 아이디 중복확인 
 		else if(url.equals("/idConfirmAction.cc")) {
 			System.out.println("<<< url ==> /idConfirmAction.cc >>>");
