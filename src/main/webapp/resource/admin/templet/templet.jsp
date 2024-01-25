@@ -125,7 +125,7 @@
         </div>
         <div id="layoutSidenav_content">
             <main>
-               내용을 넣어주세요
+             
             </main>
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
@@ -138,7 +138,7 @@
     </div>
  	
 	
-	내용 넣어주세요
+	
 
  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

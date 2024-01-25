@@ -1,121 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-    <style>
-        #addItemForm {
-            text-align: left;
-            width: 250px;
-            font-size: 10px;
-        }
-
-        #addItemForm label,
-        #addItemForm input,
-        #addItemForm button {
-            display: block;
-        }
-
-        #addItemForm {
-            text-align: left;
-        }
-
-        #productTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        #productTable th,
-        #productTable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        #productTable th {
-            background-color: #f2f2f2;
-        }
-
-        /* 추가된 스타일 */
-        #applyButton {
-            background-color: red;
-            color: white;
-            width: 150px;
-            height: 30px;
-            text-align: center;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <table border="1" id="productTable">
-        <tr>
-            <th> 상품 이미지 </th>
-            <th> 상품이름 </th>
-            <th> 가격 </th>
-            <th> 상품 규격 </th>
-            <th> 상품 상세 설명1 </th>
-            <th> 상품 상세 설명2 </th>
-            <th> 반품 및 환불 규정 </th>
-            <th> 등록 수량 </th>
-            <th> </th>
-        </tr>
-    </table>
-
-    <h4>상품 추가</h4>
-    <form id="addItemForm">
-        <label for="productImage">상품 이미지:</label>
-        <div id="displayProductImage"></div>
-        <input type="file" id="productImage" name="productImage"
-            onchange="displayImageAsync(this, document.getElementById('displayProductImage'))">
-        
-        <br>
-
-        <label for="productName">상품 이름:</label>
-        <input type="text" id="productName" name="productName">
-        <br>
-
-        <label for="productPrice">가격:</label>
-        <input type="text" id="productPrice" name="productPrice">
-        <br>
-
-        <label for="productSpec">상품 규격:</label>
-        <div id="displayProductSpec"></div>
-        <input type="file" id="productSpec" name="productSpec"
-            onchange="displayImageAsync(this, document.getElementById('displayProductSpec'))">
-        <br>
-
-        <label for="productDesc1">상품 상세 설명1:</label>
-        <div id="displayProductDesc1"></div>
-        <input type="file" id="productDesc1" name="productDesc1"
-            onchange="displayImageAsync(this, document.getElementById('displayProductDesc1'))">
-        <br>
-
-        <label for="productDesc2">상품 상세 설명2:</label>
-        <div id="displayProductDesc2"></div>
-        <input type="file" id="productDesc2" name="productDesc2"
-            onchange="displayImageAsync(this, document.getElementById('displayProductDesc2'))">
-        <br>
-
-        <label for="refundPolicy">반품 및 환불 규정:</label>
-        <div id="displayRefundPolicy"></div>
-        <input type="file" id="refundPolicy" name="refundPolicy"
-            onchange="displayImageAsync(this, document.getElementById('displayRefundPolicy'))">
-        <br>
-
-        <label for="totalQty">등록 수량:</label>
-        <input type="text" id="totalQty" name="totalQty">
-        <br>
-
-        <!-- 수정된 부분 -->
-        <button type="button" id="applyButton" onclick="applyChanges()">적용하기</button>
-    </form>
-
+    <meta charset="UTF-8">
+    <title>상품 등록</title>
     <script>
-        function addProduct() {
-            var productImageInput = document.getElementById('productImage');
+        function displayImageAsync(input, displayElement) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    displayElement.innerHTML = '<img src="' + e.target.result + '" width="50" height="50" />';
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function applyChanges() {
             var productName = document.getElementById('productName').value;
             var productPrice = document.getElementById('productPrice').value;
             var productSpecInput = document.getElementById('productSpec');
@@ -128,7 +30,7 @@
             var newRow = table.insertRow(-1);
 
             var cell1 = newRow.insertCell(0);
-            displayImageAsync(productImageInput, cell1);
+            displayImageAsync(productSpecInput, cell1);
 
             var cell2 = newRow.insertCell(1);
             cell2.innerHTML = productName;
@@ -153,49 +55,39 @@
 
             var cell9 = newRow.insertCell(8);
             cell9.innerHTML = '<button onclick="deleteRow(this)">삭제</button>';
-
-            // 모든 입력 필드 초기화
-            productImageInput.value = '';
-            document.getElementById('productName').value = '';
-            document.getElementById('productPrice').value = '';
-            productSpecInput.value = '';
-            productDesc1Input.value = '';
-            productDesc2Input.value = '';
-            refundPolicyInput.value = '';
-            document.getElementById('totalQty').value = '';
         }
-
-        async function displayImageAsync(input, cell) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    var imgElement = document.createElement('img');
-                    imgElement.onload = function () {
-                        cell.appendChild(imgElement);
-                    };
-                    imgElement.src = e.target.result;
-                    imgElement.width = 50;
-                    imgElement.height = 50;
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        
 
         function deleteRow(btn) {
             var row = btn.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }
 
-        // 추가된 함수
-        function applyChanges() {
-            alert('적용되었습니다.');
+        function closeWindow() {
             window.close();
         }
     </script>
-</body>
+</head>
+<body>
 
+    <table border="1" id="productTable">
+        <tr>
+            <th>상품 이미지</th>
+            <th>상품이름</th>
+            <th>가격</th>
+            <th>상품 규격</th>
+            <th>상품 상세 설명1</th>
+            <th>상품 상세 설명2</th>
+            <th>반품 및 환불 규정</th>
+            <th>등록 수량</th>
+            <th>관리</th>
+        </tr>
+    </table>
+
+    <form id="addItemForm">
+        <!-- 입력 폼들 -->
+        <button type="button" onclick="applyChanges()">추가</button>
+        <button type="button" onclick="closeWindow()">닫기</button>
+    </form>
+
+</body>
 </html>

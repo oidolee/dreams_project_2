@@ -76,7 +76,7 @@
             var quantity = parseInt($('#quantity').val());
 
             // 단위 가격을 정의합니다 (실제 단위 가격으로 대체할 수 있습니다)
-            var unitPrice = 10000;
+            var unitPrice = 20000;
 
             // 수량에 기반하여 최종 금액을 계산합니다
             var totalPrice = quantity * unitPrice;
@@ -109,7 +109,137 @@
 		</div>
 	</div>
 
-	<div style="height: 500px; border: 10px solid red;">내용</div>
+	  <div class="wrap-page">
+                <div class="product-detail-1">
+                    <hr>
+                    <table class="wrap-table">
+                        <tr class="product-inform">
+                            <td colspan="3"><img src="../image/goods/굿즈-휴대폰케이스.png" width="300px" height="350px"></td>
+                            <td colspan="2">
+                                <h1>Dream Stove 휴대폰 케이스</h1>
+                                
+                                <br>
+                                <div class="price">
+                                    <h2> 20000원 </h2>
+                                </div> 
+                                
+                                <div class="price-info">
+                                    <h5> 택배 무료 </h5>
+                                    <h5> 굿즈종류 휴대폰 케이스 </h5>
+                                </div>
+                                <br><br>
+                                <div class="quantity">
+                                    <label>수량</label>
+                                    <input type="number" id="quantity" min="1" value="1" >
+                                </div>
+                                <br><br>
+            
+                                <h5>옵션 선택</h5>
+                                <select class="custom-select">
+                                    <option value="0">종류를 선택해 주세요</option>
+                                    <option value="iphone14">iphone14</option>
+                                    <option value="iphon14 pro">iphon14 pro</option>
+                                    <option value="iphon14 pro max">iphon14 pro max</option>
+                                    <option value="galaxy 23">galaxy 23</option>
+                                    <option value="galaxy 23 ultra">galaxy 23 ultra</option>
+                                    
+                                </select>
+                                <br><br>
+
+                                <div id="totalPrice" class="price">
+                                    <h3 style="text-align: right;">최종 금액: 20000원</h3>
+                                </div>
+
+                                <div class="action-buttons">
+                                    <a href="#" class="buy-button">구매하기</a>
+                                    <a href="#" class="cart-button">장바구니 담기</a>
+                                </div>
+                            </td>                
+                        </tr>
+                    </table>
+            
+                    <hr>
+            
+                    <div class="product-image">
+                        <img src="../image/goods/배송교환환불.PNG">
+                        <!-- <img src="../image/goods/사이즈 정보.jpg">
+                        <img src="../image/goods/유니폼 사이즈 정보1.jpg" width="800px">
+                        <img src="../image/goods/유니폼 사이즈 정보2.PNG" width="800px"> -->
+                    </div>
+                    
+                    <div class="product-description">
+            
+                        <p><h1> Detail Information </h1></p>
+                        <hr>
+                        <table class="product-explain">
+                            
+                            <hr>
+                            <tr>
+                                <td>상품상태</td>
+                                <td>새상품</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>상품코드/모델</td>
+                                <td>휴대폰케이스</td>
+                            </tr>
+                            <tr>
+                                <td>브랜드</td>
+                                <td>DRAEM STOVE</td>
+                            </tr>
+                            <tr>
+                                <td>A/S</td>
+                                <td>1661-2385</td>
+                            </tr>
+                            <tr>
+                                <td>품명 및 모델명</td>
+                                <td>[DRAEM STOVE] 휴대폰 케이스</td>
+                            </tr>
+                            <tr>
+                                <td>KC 인증정보</td>
+                                <td>판매자 문의</td>
+                            </tr>
+                            <tr>
+                                <td>크기, 중량</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            <tr>
+                                <td>색상</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>제품구성</td>
+                                <td>유니폼</td>
+                            </tr>
+                            
+                            <tr>
+                                <td>제조자, 수입품의 경우 수입자를 함께 표기</td>
+                                <td>주식회사 인터파크</td>
+                            </tr>
+                            <tr>
+                                <td>제조국</td>
+                                <td>대한민국</td>
+                            </tr>
+                            <tr>
+                                <td>상품별 세부사양</td>
+                                <td>상세설명참조</td>
+                            </tr>
+                            <tr>
+                                <td>품질보증기준</td>
+                                <td>공정거래위원회고시(소비자분쟁해결기준)에 의거</td>
+                            </tr>
+                            <tr>
+                                <td>A/S 책임자와 전화번호</td>
+                                <td>1661-2385</td>
+                            </tr>
+                            
+                        </table>
+                        
+                        
+                    </div>
+                </div>
+            </div>
 
 
 	<jsp:include page="../../layout/footer.jsp"></jsp:include>
@@ -127,6 +257,6 @@
             ScrollReveal().reveal('.headline');
         </script>
 </body>
-</div>
+
 
 </html>

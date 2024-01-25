@@ -199,6 +199,15 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
    width: 80px;
 
  }
+
+ #writebutton a{
+   background-color: #1c5c50 !important;
+   color: #fff !important;
+   border-radius: 4px;
+   width: 80px;
+   padding: 5px 10px 5px 15px;
+
+ }
 /* 게시판 글쓰기 종료 */
 
 /* 게시판 세부페이지 시작*/

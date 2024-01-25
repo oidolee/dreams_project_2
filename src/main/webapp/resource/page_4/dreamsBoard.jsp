@@ -70,7 +70,7 @@
             </div>
         </div>
         <!-- 상단 중앙1 시작 -->
-			<form name="boardform" method="post">
+			<form name="boardForm" method="post">
 				<div style="display: flex; justify-content: center;"class="board">
                     <!-- 좌측메뉴 시작 -->
 					<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
@@ -102,7 +102,7 @@
 	                    		<td> 
 	                    		</td>
 	                    		<td class="boardtitle">
-	                    			<a href="dreamsBoarDetail.jsp">우승을 위하여</a>
+	                    			<a href="dreamsBoarDetail.bc">우승을 위하여</a>
 	                    		</td>
 	                    		<td class="name">
 	                    			"박은빈 (parkeun**)"
@@ -204,7 +204,7 @@
 	                <div style="display: flex; justify-content: right;">
 	                    <input type="text" class="search" name="search" style="height: 30px;">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
-	                    <a href="${path}/resource/page_4/dreamsBoardWrite.jsp"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
 	                </div>
 	
 	                <div class="pageNav">

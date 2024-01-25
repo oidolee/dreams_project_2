@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 윤석무 -->
@@ -10,21 +11,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title> 회원가입 수정 페이지 </title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="./resource/css/common/common.css">
-    <link rel="stylesheet" href="./resource/css/common/header.css">
-    <link rel="stylesheet" href="./resource/css/common/footer.css">
-    <link rel="stylesheet" href="./resource/css/index.css">
-    <link rel="stylesheet" href="../css/customer/join.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/resource/css/index.css">
+    <link rel="stylesheet" href="${path}/resource/css/customer/join.css">
     
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -32,7 +33,7 @@
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
-    <script src="./resource/js/common/header.js"></script>
+    <script src="${path}/resource/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -210,13 +211,12 @@
 	</script>
 </head>
 <div class="wrap">
-  
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<%@include file="/layout/header.jsp" %> 
       
         <div class="slider-con">
 			<div class="slider-box">
-				<img src="../image/banner/드림즈_포토샵.jpg">
+				<img src="${path}/resource/image/banner/드림즈_포토샵.jpg">
 			</div>
 		</div>
 
@@ -354,7 +354,7 @@
                                             <div align="right">
                                                 <input class="inputButton" type="submit" value="수정완료" style="color: #000  !important;">
                                                 <input class="inputButton" type="reset" value="초기화" style="color: #000  !important;">
-                                                <input class="inputButton" type="button" value="수정취소" onclick="window.location='../../index.jsp'" style="color: #000  !important;">
+                                                <input class="inputButton" type="button" value="수정취소" onclick="window.location='${path}/index.jsp'" style="color: #000  !important;">
                                             </div>
                                         </td>
                                     </tr>
@@ -377,19 +377,18 @@
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="../page_2/ticketFee.jsp"><img src="../image/main/dreams_char.png"
+                        <li><a href="${path}/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
-                        <li><a href="../page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
+                        <li><a href="${path}/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
                                     alt=""></a></li>
                     </ul>
                 </div>
             </div>
         </section>
      
-      
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+      	<%@include file="/layout/footer.jsp" %>
         
         <script>
             //메인 스크롤 이벤트 
