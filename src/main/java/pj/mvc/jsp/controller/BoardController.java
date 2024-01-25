@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import pj.mvc.jsp.service.BoardService;
+import pj.mvc.jsp.service.BoardServiceImpl;
 
+/* 작업자 : 강승재 */
 @WebServlet("*.bc")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +41,7 @@ public class BoardController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String viewPage = "";
 		//서비스 객체생성 자리
+		BoardService service = new BoardServiceImpl();
 		
 		String uri = request.getRequestURI();
 		
@@ -49,8 +53,18 @@ public class BoardController extends HttpServlet {
 		if(url.equals("/*.bc") || url.equals("/dreamsBoard.bc")) {
 			System.out.println("<<< url ==> /dreamsBoard.bc >>>");
 			
+			service.boardListAction(request, response);
 			viewPage = "resource/page_4/dreamsBoard.jsp";
 		}
+		
+		// 상세페이지
+		if(url.equals("/dreamsBoarDetail.bc")) {
+			System.out.println("<<< url ==> /dreamsBoarDetail.bc >>>");
+			
+			
+			viewPage = "resource/page_4/dreamsBoarDetail.jsp";
+		}
+		
 		
 		// 드림즈게시판 검색페이지
 		else if(url.equals("/dreamsBoardSearch.bc")) {
