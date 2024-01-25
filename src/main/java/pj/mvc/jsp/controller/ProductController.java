@@ -2,11 +2,15 @@ package pj.mvc.jsp.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import pj.mvc.jsp.service.ProductService;
+import pj.mvc.jsp.service.ProductServiceImpl;
 
 @WebServlet("*.pc")
 public class ProductController extends HttpServlet {
@@ -19,7 +23,7 @@ public class ProductController extends HttpServlet {
  // 1단계. 웹브라우저가 전송한 HTTP요청을 받음
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		action(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -36,6 +40,25 @@ public class ProductController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String viewPage= "";
+		
+		String uri = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String url = uri.substring(contextPath.length());
+		
+		ProductService service = new ProductServiceImpl();
+		
+		// 첫페이지 관리자 상품목록
+			if(url.equals("/*.pc") || url.equals("/product_list.pc")) { // 요청
+				System.out.println("<<< url ==> /*.pc >>>");
+				
+				service.productListAction(request, response);
+				
+				viewPage = "resource/admin/product/product.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
+			}
+		
 		
 		
 		
