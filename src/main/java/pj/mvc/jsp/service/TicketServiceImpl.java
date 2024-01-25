@@ -1,6 +1,7 @@
 package pj.mvc.jsp.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +20,13 @@ public class TicketServiceImpl implements TicketService {
 		System.out.println("서비스 - ticketListAction");
 		TicketDTO tdto = new TicketDTO();
 		
+		
 		// 3단계. 화면에서 입력받은 값을 가져온다.
 		String strTicket_seat = req.getParameter("parkseat");
 		
+		
+		tdto.setTicket_seat(req.getParameter("parkseat"));
+		System.out.println(req.getParameter("parkseat"));
 		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
 		TicketDAO tdao = TicketDAOImpl.getInstance();
 		

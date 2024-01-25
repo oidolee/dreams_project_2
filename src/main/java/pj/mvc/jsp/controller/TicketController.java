@@ -41,8 +41,7 @@ public class TicketController extends HttpServlet {
 		
 		TicketServiceImpl tservice = new TicketServiceImpl();
 		
-		// http://localhost/jsp_pj_ict02/*.do => 확장자로 구분 *.do
-		// http://localhost/플젝명(컨텍스트 패스)/*(모든것).do
+		
 		
 		String uri = request.getRequestURI();
 		
@@ -65,16 +64,29 @@ public class TicketController extends HttpServlet {
 			viewPage = "resource/admin/index.jsp";
 		}
 		
-		// 티켓 조회
+		// 티켓 가격 조회 - 관리자 페이지
+		else if(url.equals("/ticket.tc")) {
+			System.out.println("<<< url ==> /admin.tc >>>");
+			
+			viewPage = "resource/admin/index.jsp";
+		}
+		// 티켓 조회(예매)
 		else if(url.equals("/purchaseTicket.tc")) {
 			System.out.println("<<< url ==> /purchaseTicket.tc >>>");
+			
+			viewPage = "resource/page_2/purchaseTicket.jsp";
+		}
+		
+		// 티켓 상세조회(좌석별 가격)
+		else if(url.equals("/purchaseTicketPrice.tc")) {
+			System.out.println("<<< url ==> /purchaseTicketPrice.tc >>>");
 			
 			tservice.ticketListAction(request, response);
 			
 			viewPage = "resource/page_2/purchaseTicket.jsp";
 		}
 		
-		// 티켓 가격 수정
+		
 		
 		
 		// 티켓 삭제 처리
