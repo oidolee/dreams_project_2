@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
             let bgCCnt = parseInt(document.getElementById("bgcCnt").value);
             let discount = 0; // 할인율
             
-            // 좌석에 따른 가격
+            /* // 좌석에 따른 가격
             switch(parkseat){
                 case "R.d club": bgNormalPrice = 55000;
                                 bgMPrice = 55000;
@@ -87,7 +88,7 @@
                                 bgCPrice = 40000;
                 break;
                 
-            }
+            } */
             
             
 
@@ -160,6 +161,13 @@
             }
         }
         
+        $(function(){
+        	$("#parkseat").change(function(){
+        		document.editForm.action="${path}/resource/page_2/purchaseTicket.bc?parkseat=" + $("#parkseat").val();
+				document.editForm.submit();
+    		});
+        	
+        });
     </script>
     <style>
         .purchase{
@@ -185,7 +193,7 @@
 
             <p style=" background: rgb(214, 214, 214); border-top: 3px solid black; border-bottom: 1px solid black; margin-bottom: 0;">
                 <strong>좌석</strong>
-                <select id="parkseat" onchange="priceSelect()">
+                <select id="parkseat" name="parkseat" onchange="priceSelect()">
                     <option value="#">좌석을 선택해 주세요.</option>
                     <option value="R.d club">R.d club</option>
                     <option value="1층 테이블석">1층 테이블석</option>
@@ -215,18 +223,18 @@
                 <tr id="normal-price">
                     <td style="background: whitesmoke;">기본가</td>
                     <td>일반</td>
-                    <td id="bgNormalPrice">0</td>
-                    <td ><input id="bgnCnt" type="number" style="width: 25px;" value="0" min="0" max="5" oninput="calculator()">매</td>
+                    <td id="bgNormalPrice">${tdto.ticket_grade_normal }</td>
+                    <td><input id="bgnCnt" type="number" style="width: 25px;" value="0" min="0" max="5" oninput="calculator()">매</td>
                 </tr>
                 <tr>
                     <td rowspan="2" style="background: whitesmoke;">기본할인</td>
                     <td>멤버쉽</td>
-                    <td id="bgMPrice">0</td>
+                    <td id="bgMPrice">${tdto.ticket_grade_membership }</td>
                     <td><input id="bgmCnt" type="number" style="width: 25px;" value="0"  min="0" max="5" oninput="calculator()">매</td>
                 </tr>
                 <tr>
                     <td>듬린이</td>
-                    <td id="bgCPrice">0</td>
+                    <td id="bgCPrice">${tdto.ticket_grade_child }</td>
                     <td><input id="bgcCnt" type="number" style="width: 25px;" value="0"  min="0" max="5" oninput="calculator()">매</td>
                 </tr>
             </table>

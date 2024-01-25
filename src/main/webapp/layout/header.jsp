@@ -107,10 +107,10 @@
                             <li>
                                 <a href="/dreams_project_2/resource/page_2/ticketFee.html">TICKET</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_2/ticketFee.html">일일티켓</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.html">멤버쉽</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.html">단체관람</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/skybox.html">스카이박스</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/ticketFee.jsp">일일티켓</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.jsp">단체관람</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/skybox.jsp">스카이박스</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -169,10 +169,10 @@
                             <li>
                                 <a href="#">TICKET</a>
                                 <ul class="menu-son ">
-                                    <li><a href="/dreams_project_2/resource/page_2/ticketFee.html">일일티켓</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.html">멤버쉽</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.html">단체관람</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/skybox.html">스카이박스</a></li>
+                                    <li><a href="${path}/resource/page_2/ticketFee.jsp">일일티켓</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.jsp">단체관람</a></li>
+                                    <li><a href="/dreams_project_2/resource/page_2/skybox.jsp">스카이박스</a></li>
                                 </ul>
                             </li>
                             <div class="ul-bg"></div>
