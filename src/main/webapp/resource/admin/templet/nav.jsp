@@ -21,7 +21,7 @@
                     <a class="nav-link" href="../account/acocunt.html">결제</a>
                     <a class="nav-link" href="../board/board.html">게시판</a>
                     <a class="nav-link" href="../ticket/ticket.html">티켓</a>
-                    <a class="nav-link" href="../product/product.html">상품</a>
+                    <a class="nav-link" href="../product/product.jsp">상품</a>
                 </nav>
             </div>
 
