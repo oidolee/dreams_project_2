@@ -36,6 +36,8 @@
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
     <script src="${path}/resource/js/common/header.js"></script>
+    <!-- join.js -->
+    <script src="${path}/resource/page_1/join.js" defer></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -64,104 +66,7 @@
         })
 
     </script>
-    
-    <script type="text/javascript">
-	function inputChk() {
 
-		// 아이디 입력확인
-		if (!document.joinform.userid.value) {
-			alert("아이디를 입력해주세요");
-			document.joinform.userid.focus();
-			return false;	// 동작 중지
-		}
-
-		// 비밀번호 입력확인
-		if (!document.joinform.userpwd.value) {
-			alert("비밀번호를 입력해주세요");
-			document.joinform.userpwd.focus();
-			return false;	// 동작 중지
-		}
-
-		// 비밀번호 재입력확인
-		if (!document.joinform.userrepwd.value) {
-			alert("비밀번호를 재입력해주세요");
-			document.joinform.userrepwd.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 비밀번호와 비밀번호 재입력 불일치
-		if (document.joinform.userpwd.value != document.joinform.userrepwd.value) {
-			alert("비밀번호가 일치하지 않습니다");
-			document.joinform.userpwd.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 이름 입력확인
-		if (!document.joinform.username.value) {
-			alert("이름을 입력해주세요");
-			document.joinform.username.focus();
-			return false;	// 동작 중지
-		}
-
-		// 생년월일 입력확인
-		if (!document.joinform.birthday.value) {
-			alert("생년월일을 입력해주세요");
-			document.joinform.birthday.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 주소 입력확인
-		if (!document.joinform.post1.value) {
-			alert("우편번호를 입력해주세요");
-			document.joinform.post1.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.post2.value) {
-			alert("우편번호를 입력해주세요");
-			document.joinform.post2.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.adress1.value) {
-			alert("기본주소를 입력해주세요");
-			document.joinform.adress1.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.adress2.value) {
-			alert("나머지주소를 입력해주세요");
-			document.joinform.adress2.focus();
-			return false;	// 동작 중지
-		}
-
-		// 연락처 입력확인
-		if (!document.joinform.hp1.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp1.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.hp2.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp2.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.hp3.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp3.focus();
-		return false;	// 동작 중지
-		}
-
-		// 이메일 입력확인
-		if (!document.joinform.email1.value) {
-		alert("이메일을 입력해주세요");
-		document.joinform.email1.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.email2.value) {
-		alert("이메일을 입력해주세요");
-		document.joinform.email2.focus();
-		return false;	// 동작 중지
-		}
-	}
-	</script>
 	
 	<style>
 		.slider-con img {
@@ -258,7 +163,7 @@
 										</th>
                                         <td>
                                             <input type="text" class="input" id="userId" name="userid" size="20" placeholder="공백없이 20자이내로 작성" style="width: 225px;" autofocus>    <!-- placeholder : 힌트 -->
-											<input type="button" size="20" value="중복확인" style="font-size: 15px;  width: 70px; height: 40px; color: #000 !important; padding-top: 0.5px ">
+											<input type="button" size="20" value="중복확인" style="font-size: 15px;  width: 70px; height: 40px; color: #000 !important; padding-top: 0.5px" onclick="confirmId()">
 										</td>
                                     </tr>
 
