@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../../layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 공용 --> 
+<!-- 페이지 작업자 : 신재욱 --> 
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,25 +11,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>고척 스카이돔</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="../css/common/reset.css">
+    <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="../css/common/common.css">
-    <link rel="stylesheet" href="../css/common/header.css">
-    <link rel="stylesheet" href="../css/common/footer.css">
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="${path}/css/common/common.css">
+    <link rel="stylesheet" href="${path}/css/common/header.css">
+    <link rel="stylesheet" href="${path}/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/css/index.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="../js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- header.js -->
-    <script src="../js/common/header.js"></script>
+    <script src="${path}/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -57,46 +58,6 @@
         .slider-con img{
             width: 100%;
         }
-
-        .container-box {
-            padding: 0;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-
-        .center {
-            max-width: 1240px;
-            margin: 0 auto;
-        }
-
-        .section-1-con {
-            min-height: 440px;
-        }
-
-        .section-1 {
-            height: 100%;
-            padding: 80px 0;
-        }
-
-        .section-1-top h2 {
-            text-align: center;
-        }
-
-        .section-1-top h2 a {
-            color: #000 ;
-        }
-
-        .section-1-bottom ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 40px;
-            padding-left: 0;
-        }
-
         /* 반응형 */
         @media screen and (max-width:960px) {
             .footer-1{padding: 30px;}
@@ -120,8 +81,6 @@
             .link-list{align-items: center;}
         }   
 
-        
-
         .stadium-content {
             text-align: center;
             
@@ -141,12 +100,9 @@
             margin: auto;
             height: 30px; 
             width: 850px;
-            
-           
         }
 
         .stadium-tab li {
-           
             list-style: none;
             display: inline-block;
             width: 150px;
@@ -157,7 +113,6 @@
 
         .stadium-tab .menuLink:hover {
             color: #1c5c50 !important;
-            
         }
 
         .stadium-detail-table {
@@ -165,10 +120,7 @@
             padding: 10px;
             border-spacing: 10px;
             border-collapse: separate;
-            
         }
-
-        
 
         .menuLink {
             color: black !important;
@@ -182,7 +134,7 @@
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
-            <img src="../image/banner/category_DREAMS.jpg">
+            <img src="${path}/resource/image/banner/category_DREAMS.jpg">
         </div>
         <br>
 

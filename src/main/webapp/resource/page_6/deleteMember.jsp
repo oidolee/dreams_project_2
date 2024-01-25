@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="setting.jsp" %>    
+<%@ include file="../../layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 공용 --> 
+<!-- 페이지 작업자 : 신재욱 --> 
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title> 회원 탈퇴</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="${path}/css/common/reset.css">
+    <link rel="stylesheet" href="/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
     <link rel="stylesheet" href="${path}/css/common/common.css">
     <link rel="stylesheet" href="${path}/css/common/header.css">
@@ -57,15 +57,12 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/b0cbfa47b4.js" crossorigin="anonymous"></script>
     <style>
-        .container-box {
-            padding: 0;
-        }
 
         .slider-con img {
              width: 100%;
         }
         
-        .remove-member {
+        .delete-member {
             text-align: center;
             width: 1280px;
             margin: auto;
@@ -79,7 +76,7 @@
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
-            <img src="../image/banner/category_DREAMS.jpg">
+            <img src="${path}/resource/image/banner/category_DREAMS.jpg">
         </div>
         <br>
 
@@ -87,20 +84,20 @@
         <h2 style="text-align: center; color: black !important; font-weight: bold;" > 회원 탈퇴 </h2>
         <br><br><br>
         
-        <fieldset class="remove-member" style="padding-left: 0; padding-right: 0;">
+        <fieldset class="delete-member" style="padding-left: 0; padding-right: 0;">
             <legend style="color: black !important;"> 굿바이 드림즈 </legend><br><br>
                 정말 드림즈 회원을 탈퇴하시겠습니까?<br>
                 개인정보는 즉시 파기되어 저장되지 않습니다.<br><br><br>
                 <div class="row mb-3">
                     <div class="col-sm-2"></div>
-                  <label for="user_id" class="col-sm-2 col-form-label">아이디</label>
+                  <label for="user_id" class="col-sm-2 col-form-label" style="color:black !important">아이디</label>
                   <div class="col-sm-5">
 				 	<span style="color:#FF82AA"><b>${sessionID}</b></span>
                   </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-sm-2"></div>
-                  <label for="user_pwd" class="col-sm-2 col-form-label">비밀번호 확인</label>
+                  <label for="user_pwd" class="col-sm-2 col-form-label" style="color:black !important">비밀번호 확인</label>
                   <div class="col-sm-5">
                     <input type="password" class="form-control" name="cust_Password">
                   </div>
