@@ -192,22 +192,15 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
    color: #000 !important;
  }
 
- #writebutton button{
+ #writebutton input{
    background-color: #1c5c50 !important;
    color: #fff !important;
    border-radius: 4px;
    width: 80px;
+   margin-right: 10px;
 
  }
 
- #writebutton a{
-   background-color: #1c5c50 !important;
-   color: #fff !important;
-   border-radius: 4px;
-   width: 80px;
-   padding: 5px 10px 5px 15px;
-
- }
 /* 게시판 글쓰기 종료 */
 
 /* 게시판 세부페이지 시작*/
@@ -253,6 +246,22 @@ div.pageNav span.prev1 a:first-child, div.pageNav span.next1 a:first-child {
    border: 0.8px solid #000;
  }
 
+#detailbutton a{
+   background-color: #1c5c50 !important;
+   color: #fff !important;
+   border-radius: 4px;
+   width: 80px;
+   padding: 5px 10px 5px 15px;
+
+ }
+ 
+ #detailbutton button{
+   background-color: #1c5c50 !important;
+   color: #fff !important;
+   border-radius: 4px;
+   width: 80px;
+
+ }
 /* 게시판 세부페이지 종료*/
 
 /* qna 아코디언 시작 */

@@ -55,6 +55,7 @@ public class BoardController extends HttpServlet {
 			
 			service.boardListAction(request, response);
 			viewPage = "resource/page_4/dreamsBoard.jsp";
+			
 		}
 		
 		// 상세페이지
@@ -78,6 +79,13 @@ public class BoardController extends HttpServlet {
 			viewPage = "resource/page_4/dreamsBoardWrite.jsp";
 		}
 		
+		// 드림즈게시판 글쓰기 처리
+		else if(url.equals("/dreamsBoardAction.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardAction.bc >>>");
+			
+			service.boardWrite(request, response);
+			viewPage = "resource/page_4/dreamsBoard.jsp";
+		}
 		
 		
 		

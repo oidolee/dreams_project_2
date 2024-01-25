@@ -115,7 +115,7 @@
                 
                     <hr id="blackline">
                     <div style="display: flex; justify-content: center; margin-bottom: 50px;">
-                        <div id="writebutton">
+                        <div id="detailbutton">
                             <button style="margin-right: 300px; width: 60px;"> < 이전 </button>                        
                             <a href="dreamsBoard.bc"> 목록 </a>
                             <button style="margin-left: 300px; width: 60px;"> 다음 > </button>   

@@ -64,7 +64,7 @@
 <div class="wrap">
   
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<%@ include file="/layout/header.jsp" %>
       
         <div class="slider-con">
             <div class="slider-box">
@@ -75,7 +75,7 @@
 				<div style="display: flex; justify-content: center;"class="board">
 					
                     <!-- 좌측메뉴 시작 -->
-					<jsp:include page="boardLeftMenu.jsp"></jsp:include> 
+					<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
 					<!-- 좌측메뉴 종료 -->	
 
                     <!-- 우측메뉴 시작 -->
@@ -124,7 +124,7 @@
                 </div>   
      
       
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+     	<%@ include file="/layout/footer.jsp" %>
         
         <script>
             //메인 스크롤 이벤트 

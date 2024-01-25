@@ -18,4 +18,8 @@ public interface BoardService {
 	public void boardDetailAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 
+	// 게시글 추가
+	public void boardWrite(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+
 }
