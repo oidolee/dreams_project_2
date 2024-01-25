@@ -1,5 +1,7 @@
 package pj.mvc.jsp.dao;
 
+import java.util.List;
+
 import pj.mvc.jsp.dto.TicketDTO;
 
 public interface TicketDAO {

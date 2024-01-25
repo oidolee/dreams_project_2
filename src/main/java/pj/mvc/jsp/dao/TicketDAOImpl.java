@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -31,7 +33,7 @@ public class TicketDAOImpl implements TicketDAO {
 		
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/jsp_pj_ict02"); // 다운캐스팅 적용
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2"); // 다운캐스팅 적용
 			
 		}catch(NamingException e) {
 			
@@ -45,27 +47,34 @@ public class TicketDAOImpl implements TicketDAO {
 	public TicketDTO ticketList(String strTicket_seat) {
 		System.out.println("TicketDAOImpl - ticketList");
 		
-		TicketDTO tdto = new TicketDTO();
+		
 		
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		TicketDTO tdto = new TicketDTO();
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_ticket "
-					+ "WHERE ticket_seat = ?";
+			
+			
+			String sql = "SELECT * FROM DR_ticket WHERE ticket_seat = ?";
+			
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, strTicket_seat);
 			
 			rs = pstmt.executeQuery();
 			
-			tdto.setTicket_seat(rs.getString("ticket_seat"));
-			tdto.setTicket_grade_normal(rs.getInt("ticket_grade_normal"));
-			tdto.setTicket_grade_membership(rs.getInt("ticket_grade_membership"));
-			tdto.setTicket_grade_child(rs.getInt("ticket_grade_childW"));
+			if(rs.next()) {
+				
+				tdto.setTicket_seat(rs.getString("ticket_seat"));
+				tdto.setTicket_grade_normal(rs.getInt("ticket_grade_normal"));
+				tdto.setTicket_grade_membership(rs.getInt("ticket_grade_membership"));
+				tdto.setTicket_grade_child(rs.getInt("ticket_grade_child"));
+			}
+			
+			System.out.println(tdto.toString());
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
