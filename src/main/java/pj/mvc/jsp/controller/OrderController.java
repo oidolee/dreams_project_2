@@ -1,6 +1,8 @@
 package pj.mvc.jsp.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,7 @@ import pj.mvc.jsp.service.OrderService;
 import pj.mvc.jsp.service.OrderServiceImpl;
 
 
-@WebServlet("/*oc")
+@WebServlet("*.oc")
 public class OrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,35 +22,67 @@ public class OrderController extends HttpServlet {
     }
     
     // 1단계. 웹브라우저가 전송한 HTTP 요청을 받음
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		
-		action(request, response);
+		action(req, res);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		
-		doGet(request, response);
+		doGet(req, res);
 	}
 	
-	public void action(HttpServletRequest request, HttpServletResponse response) 
+	public void action(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		// 2. 클라이언트 요청 분석
 		// 한글 안깨지게 처리
-		request.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");
 		String viewPage = "";
 		OrderService service = new OrderServiceImpl();
 		
-		String uri = request.getRequestURI();			
-		String contextPath = request.getContextPath();		
+		String uri = req.getRequestURI();			
+		String contextPath = req.getContextPath();		
 		String url = uri.substring(contextPath.length()); 
 		
-		// 첫페이지
-		if(url.equals("/*.oc") || url.equals("/.oc")) {
+		// 마이페이지
+		if(url.equals("/*.oc") || url.equals("/myPage.oc")) {
 			
+			viewPage = "resource/page_6/myPage.jsp";
 			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
+		
+		// 회원 정보 수정 페이지
+		else if(url.equals("/modifyMember.oc")) {
+			
+			viewPage = "resource/page_6/modifyMember.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
+		
+		// 회원 탈퇴 페이지
+		else if(url.equals("/deleteMember.oc")) {
+			
+			viewPage = "resource/page_6/deleteMember.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
+		
+		// 내 주문 내역 페이지
+		else if(url.equals("/myOrder.oc")) {
+			
+			viewPage = "resource/page_6/myOrder.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
+		
+		// 
 	}
 
 }

@@ -3,7 +3,7 @@
 <%@ include file="../../layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 공용 --> 
+<!-- 페이지 작업자 : 신재욱 --> 
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,16 +55,6 @@
 
     </script>
     <style>
-        .container-box {
-            padding: 0;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-
-
         .slider-con img{
             width: 100%;
         }
@@ -166,28 +156,29 @@
             
             <div>
                 
-                
+                <br>
+                <h2 style="color:#000 !important; font-weight: bold;">교환/환불 신청서</h2>
+                <br><br>
                 <table class="form">
-                    <h2 style="color: #000 !important; font-weight: bold;"><br>교환/환불 신청서<br><br></h2>
                     <tr>
                         <th align="center"><label for="orderNo">주문번호</label></th>
-                        <td align="left"><input type="text" id="orderNo" name="orderNo" size="20" autofocus required></td>
+                        <td align="left"><input type="text" id="orderNo" name="orderNo" size="65" required></td>
                     </tr>
                     <tr>
                         <th align="center"><label for="orderName">성명</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="20" autofocus required></td>
+                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
                     </tr>
                     <tr>
                         <th align="center"><label for="orderName">연락처</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="20" autofocus required></td>
+                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
                     </tr>
                     <tr>
                         <th align="center"><label for="orderAddress">주소</label></th>
-                        <td align="left"><input type="text" id="orderAddress" name="orderAddress" size="100" autofocus required></td>
+                        <td align="left"><input type="text" id="orderAddress" name="orderAddress" size="65" required></td>
                     </tr>
                     <tr>
                         <th align="center"><label for="goods_name">상품명</label></th>
-                        <td align="left"><input type="text" id="goods_name" name="goods_name" size="50" required></td>
+                        <td align="left"><input type="text" id="goods_name" name="goods_name" size="65" required></td>
                     </tr>
                     <tr>
                         <th align="center"><label for="goods_cnt">개수</label></th>
@@ -195,22 +186,22 @@
                     </tr>
                     <tr>
                         <th align="center"><label for="userMessage"> 교환/환불 사유 </label></th>
-                        <td align="left"><textarea name="user_message" id="userMessage" cols="40" rows="5"></textarea></td>
+                        <td align="left"><textarea name="user_message" id="userMessage" cols="66" rows="5"></textarea></td>
                     </tr>
                     <tr>
                         <td align="center"><label for="attachFile"> 파일 첨부 </label></td>
                         <td align="left"><input type="file"></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="refundaccount"> 환불시 계좌 번호</label></th>
+                        <th align="center"><label for="refundAccount"> 환불시 계좌 번호</label></th>
                         <td align="left">
-                            <select name="bank" style="width:100px" ">
+                            <select name="bank" style="width:100px" >
                                 <option value="keb">국민은행</option>
                                 <option value="hana">하나은행</option>
                                 <option value="woori">우리은행</option>
                                 <option value="kakao">카카오뱅크</option>
                             </select>
-                            <input type="text" id="pwd" name="userpwd" size="100" placeholder="" required></td>
+                            <input type="text" id="refundAccount" name="refundAccount" size="50" required>
                         </td>		
                     </tr>
                     <tr>
@@ -218,7 +209,7 @@
                             <div align = "center">
                                 <button class="btn btn-primary" type="button" style="color: #fff !important;">상품환불</button>
                                 <button class="btn btn-primary" type="button" style="color: #fff !important;">상품교환</button>
-                                <a href="./myPage.html"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+                                <a href="${path}/mypage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
                             </div>
                         </td>	
                     </tr>
