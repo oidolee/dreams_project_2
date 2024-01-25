@@ -100,7 +100,7 @@
                 <div class="card-body">
                 <h5 class="card-title">회원 정보 수정</h5>
                 <p class="card-text"></p>
-                <a href="./modifyMember.html" class="btn btn-primary">바로가기</a>
+                <a href="${path}/modifyMember.oc" class="btn btn-primary">바로가기</a>
                 </div>
                 
             </div>
@@ -110,7 +110,7 @@
                 <div class="card-body">
                 <h5 class="card-title">내 주문 내역</h5>
                 <p class="card-text"></p>
-                <a href="./myOrder.html" class="btn btn-primary">바로가기</a>
+                <a href="${path}/myOrder.oc" class="btn btn-primary">바로가기</a>
                 </div>
                 
             </div>
@@ -120,7 +120,7 @@
                 <div class="card-body">
                 <h5 class="card-title">회원 탈퇴</h5>
                 <p class="card-text"></p>
-                <a href="./deleteMember.html" class="btn btn-primary">바로가기</a>
+                <a href="${path}/deleteMember.oc" class="btn btn-primary">바로가기</a>
                 </div>
                 
             </div>

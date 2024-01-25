@@ -104,7 +104,7 @@
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary" style="color: white !important;"> 회원 탈퇴 </button>
-            <a href="./myPage.html"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+            	<button class="btn btn-primary" type="button" style="color: #fff !important;" onclick="window.location='myPage.oc'">취소</button>
 
         </fieldset>
 

@@ -132,15 +132,15 @@
         <div class="stadium-contents">
             <h2 style="font-weight: bold; color: #000 !important;"><br>편의시설</h2><br>
             <ul class="stadium-tab">
-                <li><a class="menuLink" href="./stadium.html">고척 스카이돔</a></li>
+                <li><a class="menuLink" href="${path}/resource/page_6/stadium.jsp">고척 스카이돔</a></li>
                 <li style="
                 width: 151px;
                 background: #1c5c50;
                 height: 50px;
                 line-height: 50px;
-                border-radius: 20px;"><a class="menuLink" href="./amenity.html" style="color: #FFF !important">편의시설</a></li>
-                <li><a class="menuLink" href="./location.html">찾아오시는 길</a></li>
-                <li><a class="menuLink" href="./parking.html">주차안내</a></li>
+                border-radius: 20px;"><a class="menuLink" href="${path}/resource/page_6/amenity.jsp" style="color: #FFF !important">편의시설</a></li>
+                <li><a class="menuLink" href="${path}/resource/page_6/location.jsp">찾아오시는 길</a></li>
+                <li><a class="menuLink" href="${path}/resource/page_6/parking.jsp">주차안내</a></li>
             </ul><br><br>
 
             <div>
