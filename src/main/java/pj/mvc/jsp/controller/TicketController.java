@@ -61,32 +61,42 @@ public class TicketController extends HttpServlet {
 		else if(url.equals("/admin.tc")) {
 			System.out.println("<<< url ==> /admin.tc >>>");
 			
-			viewPage = "resource/admin/index.jsp";
+			viewPage = "resource/admin/ticket/ticket.jsp";
 		}
 		
 		// 티켓 가격 조회 - 관리자 페이지
-		else if(url.equals("/ticket.tc")) {
-			System.out.println("<<< url ==> /admin.tc >>>");
-			
-			viewPage = "resource/admin/index.jsp";
+		else if(url.equals("/ticket_detail.tc")) {
+			System.out.println("<<< url ==> /ticket_detail.tc >>>");
+			tservice.ticketListAction(request, response);
+			viewPage = "resource/admin/ticket/ticket_detail.jsp";
 		}
+		
 		// 티켓 조회(예매)
 		else if(url.equals("/purchaseTicket.tc")) {
 			System.out.println("<<< url ==> /purchaseTicket.tc >>>");
-			
-			viewPage = "resource/page_2/purchaseTicket.jsp";
-		}
-		
-		// 티켓 상세조회(좌석별 가격)
-		else if(url.equals("/purchaseTicketPrice.tc")) {
-			System.out.println("<<< url ==> /purchaseTicketPrice.tc >>>");
-			
 			tservice.ticketListAction(request, response);
-			
 			viewPage = "resource/page_2/purchaseTicket.jsp";
 		}
 		
 		
+		  // 티켓 상세조회(좌석별 가격) 
+		else if(url.equals("/purchaseTicketPrice.tc")) {
+		  System.out.println("<<< url ==> /purchaseTicketPrice.tc >>>");
+		 
+		  tservice.ticketListAction(request, response);
+		  
+		  viewPage = "resource/page_2/purchaseTicket.jsp"; 
+		}
+		 
+		// 티켓 수정 처리
+		else if(url.equals("/updateTicket.tc")) {
+		  System.out.println("<<< url ==> /updateTicket.tc >>>");
+		 
+		  	tservice.ticketUpdateAction(request, response);
+			viewPage = request.getContextPath() + "/admin.tc";
+			
+			response.sendRedirect(viewPage); 
+		}
 		
 		
 		// 티켓 삭제 처리

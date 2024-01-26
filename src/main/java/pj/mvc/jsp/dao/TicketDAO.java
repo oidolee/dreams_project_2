@@ -8,10 +8,10 @@ public interface TicketDAO {
 
 	
 	// 티켓 조회
-	public TicketDTO ticketList(String strTicket_seat);
+	public List<TicketDTO> ticketList(String strTicket_seat);
 	
 	// 티켓 가격 수정
-	public int ticketUpdate(TicketDTO tdto);
+	public int ticketUpdate(String strTicket_seat);
 	
 	// 티켓 삭제
 	public int ticketDelete(TicketDTO tdto);

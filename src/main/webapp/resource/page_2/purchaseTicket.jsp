@@ -1,3 +1,5 @@
+<%@page import="pj.mvc.jsp.dto.TicketDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
@@ -9,6 +11,21 @@
     <title>티켓 결제</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="text/javascript">
+    let member = {};
+    
+    <%
+
+    			List<TicketDTO> list = (List<TicketDTO>)request.getAttribute("list");	
+    			for(TicketDTO tdto : list){
+    %>
+    				member['<%= tdto.getTicket_seat() %>'] = {
+    					'bgNormalPrice' : '<%= tdto.getTicket_grade_normal() %>',	
+    					'bgMPrice' : '<%= tdto.getTicket_grade_membership() %>',	
+    					'bgCPrice' : '<%= tdto.getTicket_grade_child() %>',	
+    				}
+    <%				
+    			}
+    %> 
          function selectEmailChk() {
             // select 박스에서 이메일 주소를 선택시 해당값이 들어가도록 한다.
             if(document.signIn.userEmail3.value == 0) {  // 직접입력인 경우
@@ -24,20 +41,25 @@
         
         function calculator(){
             let parkseat =  document.getElementById("parkseat").value; // 좌석 등급
-            let bgNormalPrice = document.getElementById("bgNormalPrice").value; // 일반등급 좌석
-            let bgMPrice = document.getElementById("bgMPrice").value;	// 멤버쉽 등급 가격
-            let bgCPrice = document.getElementById("bgCPrice").value; 	// 어린이 등급 가격
+//            let bgNormalPrice = document.getElementById("bgNormalPrice").value; // 일반등급 좌석
+            let bgNormalPrice = member[parkseat]['bgNormalPrice']; // 일반등급 좌석
+            let bgMPrice = member[parkseat]['bgMPrice'];	// 멤버쉽 등급 가격
+            let bgCPrice = member[parkseat]['bgCPrice']; 	// 어린이 등급 가격
             
             let bgNCnt = parseInt(document.getElementById("bgnCnt").value);
             let bgMCnt = parseInt(document.getElementById("bgmCnt").value);
             let bgCCnt = parseInt(document.getElementById("bgcCnt").value);
             let discount = 0; // 할인율
             
-            // 좌석에 따른 가격
-            switch(parkseat){
-                case "R.d club": bgNormalPrice ;
-                                bgMPrice ;
-                                bgCPrice ;
+            console.log(member[parkseat]);
+           //$("#bgNormalPrice").html(member[parkseat][bgCPrice])
+			
+             // 좌석에 따른 가격
+            /* switch(parkseat){
+                case "R.d club": 
+                	bgNormalPrice ;
+                    bgMPrice ;
+                    bgCPrice ;
                 break;
                 case "1층 테이블석": bgNormalPrice  ;
                                 bgMPrice ;
@@ -92,8 +114,8 @@
                                 bgCPrice = 40000;
                 break;
                 
-            } 
-            
+            }
+             */
             
 			
             let totalCnt = (bgNCnt + bgMCnt + bgCCnt);
@@ -105,7 +127,7 @@
             document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원';
             document.getElementById('totalCnt').textContent = totalCnt.toLocaleString();
             document.getElementById('totalprice').textContent = totalprice.toLocaleString() + '원';
-            document.getElementById('finalTotalprice').textContent = finalTotalprice.toLocaleString() + '원';
+            document.getElementById('finalTotalprice').textContent = finalTotalprice.toLocaleString() + '원'; 
             
         }
         
@@ -174,17 +196,17 @@
         }); */
         
         
-    	$(function(){ // 티켓 페이지 로딩
+    	/* $(function(){ // 티켓 페이지 로딩
     		
     		$("#srch_button").click(function(){
     			
     			$("#parkseat").val();
     			
-    			document.ticketForm.action="${path}/purchaseTicketPrice.tc"; 
+    			document.ticketForm.action="${path}/purchaseTicket.tc"; 
     			document.ticketForm.submit(); 
     			
     		});
-    	});
+    	}); */
 
     
     </script>
@@ -214,11 +236,23 @@
             <form name = "ticketForm" method="post">
 			<table border="1" style="width: 416.55px;">
 				<tr>
-					<td>
+					<td colspan="4">
 						<strong>좌석</strong>
 						<select id="parkseat" name="parkseat" onchange="priceSelect()">
+						
 		                    <option value="#">좌석을 선택해 주세요.</option>
-		                    <option value="R.d club">R.d club</option>
+						<% 
+							/* List<TicketDTO> list = (List<TicketDTO>)request.getAttribute("list"); */	
+							for(TicketDTO tdto : list){
+						%>
+							<!-- html -->
+							 <option value="<%= tdto.getTicket_seat() %>"><%= tdto.getTicket_seat() %></option> 
+						<%		
+								
+							}
+						
+						%>
+		                    <!-- <option value="R.d club">R.d club</option>
 		                    <option value="1층 테이블석">1층 테이블석</option>
 		                    <option value="2층 테이블석">2층 테이블석</option>
 		                    <option value="내야커플석">내야커플석</option>
@@ -231,11 +265,11 @@
 		                    <option value="외야 지정석">외야 지정석</option>
 		                    <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
 		                    <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
-		                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option>
+		                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option> -->
 	                	</select>
 	                	
 					</td>
-					<td colspan="3"><input type="button" value="조회" id="srch_button"></td>
+					
 	              </tr>
 	            
             
@@ -397,7 +431,7 @@
         </div>
     </div>
 
-    <!-- <script>
+    <script>
         function priceSelect(){
             calculator()
             // let getIdx = $("#parkseat").val();
@@ -411,6 +445,6 @@
             // $("#bgNormalPrice").html(priceArr[1][1])
             // // priceArr[1][1]
         } 
-    </script> -->
+    </script>
 </body>
 </html>

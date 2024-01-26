@@ -44,37 +44,34 @@ public class TicketDAOImpl implements TicketDAO {
 	} // 외부에서 new를 못하게 디폴트 생성자를 private로 막는다
 	// 티켓 조회
 	@Override
-	public TicketDTO ticketList(String strTicket_seat) {
+	public List<TicketDTO> ticketList(String strTicket_seat) {
 		System.out.println("TicketDAOImpl - ticketList");
-		
-		
-		
-		
+		List<TicketDTO> list = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		TicketDTO tdto = new TicketDTO();
+		
 		try {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "SELECT * FROM DR_ticket WHERE ticket_seat = ?";
+			String sql = "SELECT * FROM DR_ticket ";
 			
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, strTicket_seat);
+			/* pstmt.setString(1, strTicket_seat); */
 			
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
+			list = new ArrayList<>();
+			while(rs.next()) {
+				TicketDTO tdto = new TicketDTO();
 				tdto.setTicket_seat(rs.getString("ticket_seat"));
 				tdto.setTicket_grade_normal(rs.getInt("ticket_grade_normal"));
 				tdto.setTicket_grade_membership(rs.getInt("ticket_grade_membership"));
 				tdto.setTicket_grade_child(rs.getInt("ticket_grade_child"));
+				
+				list.add(tdto);
 			}
-			
-			System.out.println(tdto.toString());
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -90,14 +87,53 @@ public class TicketDAOImpl implements TicketDAO {
 		}
 		
 		
-		return tdto;
+		return list;
 		
 	}
 
 	// 티켓 가격 수정
 	@Override
-	public int ticketUpdate(TicketDTO tdto) {
-		return 0;
+	public int ticketUpdate(String strTicket_seat) {
+		System.out.println("TicketDAOImpl - ticketUpdate");
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int updateCnt = 0;
+		TicketDTO tdto = new TicketDTO();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "UPDATE DR_ticket"
+					+ "   SET ticket_grade_normal = ?, "
+					+ "       ticket_grade_membership = ?,"
+					+ "       ticket_grade_child = ? "
+					+ " WHERE ticket_seat = ?";
+					
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, strTicket_seat);
+			pstmt.setInt(2, tdto.getTicket_grade_normal());
+			pstmt.setInt(3, tdto.getTicket_grade_membership());
+			pstmt.setInt(4, tdto.getTicket_grade_child());
+			
+			
+			updateCnt = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return updateCnt;
 	}
 
 	// 티켓 삭제
