@@ -21,25 +21,29 @@
                 return false;
             }
         }
+        
         function calculator(){
             let parkseat =  document.getElementById("parkseat").value; // 좌석 등급
-            let bgNormalPrice = 0, bgMPrice = 0, bgCPrice = 0; // 초기값 설정
+            let bgNormalPrice = document.getElementById("bgNormalPrice").value; // 일반등급 좌석
+            let bgMPrice = document.getElementById("bgMPrice").value;	// 멤버쉽 등급 가격
+            let bgCPrice = document.getElementById("bgCPrice").value; 	// 어린이 등급 가격
+            
             let bgNCnt = parseInt(document.getElementById("bgnCnt").value);
             let bgMCnt = parseInt(document.getElementById("bgmCnt").value);
             let bgCCnt = parseInt(document.getElementById("bgcCnt").value);
             let discount = 0; // 할인율
             
-            /* // 좌석에 따른 가격
+            // 좌석에 따른 가격
             switch(parkseat){
-                case "R.d club": bgNormalPrice = 55000;
-                                bgMPrice = 55000;
-                                bgCPrice = 55000;
+                case "R.d club": bgNormalPrice ;
+                                bgMPrice ;
+                                bgCPrice ;
                 break;
-                case "1층 테이블석": bgNormalPrice = 50000;
-                                bgMPrice = 50000;
-                                bgCPrice = 50000;
+                case "1층 테이블석": bgNormalPrice  ;
+                                bgMPrice ;
+                                bgCPrice ;
                 break;
-                case "2층 테이블석": bgNormalPrice = 50000;
+                case "2층 테이블석": bgNormalPrice ;
                                 bgMPrice = 50000;
                                 bgCPrice = 50000;
                 break;
@@ -88,10 +92,10 @@
                                 bgCPrice = 40000;
                 break;
                 
-            } */
+            } 
             
             
-
+			
             let totalCnt = (bgNCnt + bgMCnt + bgCCnt);
             let totalprice = ((bgNormalPrice*bgNCnt) + (bgMPrice*bgMCnt) + (bgCPrice*bgCCnt));
             let finalTotalprice = (totalprice - discount);
@@ -156,19 +160,35 @@
             else{
                 // // 새 창 열기
                 alert("결제가 완료되었습니다.");
-                window.open('ticketFee.html', '_blank');
+                window.open('ticketFee.jsp', '_blank');
                 return false;                        
             }
         }
         
-        $(function(){
+         /* $(function(){
         	$("#parkseat").change(function(){
-        		document.editForm.action="${path}/resource/page_2/purchaseTicket.bc?parkseat=" + $("#parkseat").val();
-				document.editForm.submit();
+        		document.parkseat.action="${path}/purchaseTicketPrice.tc?parkseat=" + $("#parkseat").val();
+				document.parkseat.submit();
     		});
         	
-        });
+        }); */
+        
+        
+    	$(function(){ // 티켓 페이지 로딩
+    		
+    		$("#srch_button").click(function(){
+    			
+    			$("#parkseat").val();
+    			
+    			document.ticketForm.action="${path}/purchaseTicketPrice.tc"; 
+    			document.ticketForm.submit(); 
+    			
+    		});
+    	});
+
+    
     </script>
+    
     <style>
         .purchase{
             display: flex;
@@ -187,49 +207,48 @@
     </style>
 </head>
 <body style="background: #1c5c50;">
+	 
     <div class="purchase">
         <div class="elements">
             <h3>가격</h3>
-
-            <p style=" background: rgb(214, 214, 214); border-top: 3px solid black; border-bottom: 1px solid black; margin-bottom: 0;">
-                <strong>좌석</strong>
-                <select id="parkseat" name="parkseat" onchange="priceSelect()">
-                    <option value="#">좌석을 선택해 주세요.</option>
-                    <option value="R.d club">R.d club</option>
-                    <option value="1층 테이블석">1층 테이블석</option>
-                    <option value="2층 테이블석">2층 테이블석</option>
-                    <option value="내야커플석">내야커플석</option>
-                    <option value="외야커플석">외야커플석</option>
-                    <option value="다크버건디석">다크버건디석</option>
-                    <option value="버건디석">버건디석</option>
-                    <option value="3층 지정석">3층 지정석</option>
-                    <option value="4층 지정석">4층 지정석</option>
-                    <option value="휠체어석">휠체어석</option>
-                    <option value="외야 지정석">외야 지정석</option>
-                    <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
-                    <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
-                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option>
-                </select>
-            </p>
-            <table border="1" style="width: 416.55px;">
-                <colgroup>
-                    <col>
-                    <col>
-                    <col>
-                    <col >
-                </colgroup>
-                
-                
+            <form name = "ticketForm" method="post">
+			<table border="1" style="width: 416.55px;">
+				<tr>
+					<td>
+						<strong>좌석</strong>
+						<select id="parkseat" name="parkseat" onchange="priceSelect()">
+		                    <option value="#">좌석을 선택해 주세요.</option>
+		                    <option value="R.d club">R.d club</option>
+		                    <option value="1층 테이블석">1층 테이블석</option>
+		                    <option value="2층 테이블석">2층 테이블석</option>
+		                    <option value="내야커플석">내야커플석</option>
+		                    <option value="외야커플석">외야커플석</option>
+		                    <option value="다크버건디석">다크버건디석</option>
+		                    <option value="버건디석">버건디석</option>
+		                    <option value="3층 지정석">3층 지정석</option>
+		                    <option value="4층 지정석">4층 지정석</option>
+		                    <option value="휠체어석">휠체어석</option>
+		                    <option value="외야 지정석">외야 지정석</option>
+		                    <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
+		                    <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
+		                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option>
+	                	</select>
+	                	
+					</td>
+					<td colspan="3"><input type="button" value="조회" id="srch_button"></td>
+	              </tr>
+	            
+            
                 <tr id="normal-price">
                     <td style="background: whitesmoke;">기본가</td>
                     <td>일반</td>
-                    <td id="bgNormalPrice">${tdto.ticket_grade_normal }</td>
+                    <td id="bgNormalPrice">${tdto.ticket_grade_normal}</td>
                     <td><input id="bgnCnt" type="number" style="width: 25px;" value="0" min="0" max="5" oninput="calculator()">매</td>
                 </tr>
                 <tr>
                     <td rowspan="2" style="background: whitesmoke;">기본할인</td>
                     <td>멤버쉽</td>
-                    <td id="bgMPrice">${tdto.ticket_grade_membership }</td>
+                    <td id="bgMPrice">${tdto.ticket_grade_membership}</td>
                     <td><input id="bgmCnt" type="number" style="width: 25px;" value="0"  min="0" max="5" oninput="calculator()">매</td>
                 </tr>
                 <tr>
@@ -238,6 +257,7 @@
                     <td><input id="bgcCnt" type="number" style="width: 25px;" value="0"  min="0" max="5" oninput="calculator()">매</td>
                 </tr>
             </table>
+            </form>
             <hr>
             
             <h3>예매자 확인</h3>
@@ -377,7 +397,7 @@
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function priceSelect(){
             calculator()
             // let getIdx = $("#parkseat").val();
@@ -391,6 +411,6 @@
             // $("#bgNormalPrice").html(priceArr[1][1])
             // // priceArr[1][1]
         } 
-    </script>
+    </script> -->
 </body>
 </html>
