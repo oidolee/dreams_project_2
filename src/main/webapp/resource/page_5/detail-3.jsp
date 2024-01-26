@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-모자.PNG" width="300px" height="400px"></td>
+                            <td colspan="3"><img src="../image/goods/hat.PNG" width="300px" height="400px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 모자</h1>
                                 
@@ -161,9 +161,9 @@
                     <hr>
             
                     <div class="product-image">
-                        <img src="../image/goods/사이즈 정보.jpg">
-                        <img src="../image/goods/모자 사이즈.jpg" width="600px">
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/sizeInform.jpg">
+                        <img src="../image/goods/hatSize.jpg" width="600px">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">

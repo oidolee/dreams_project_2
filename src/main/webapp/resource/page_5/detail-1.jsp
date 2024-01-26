@@ -116,7 +116,7 @@
 				<table class="wrap-table">
 					<tr class="product-inform">
 						<td colspan="3" id="image"><img
-							src="../image/goods/굿즈-마우스패드.png" width="300px" height="400px"></td>
+							src="../image/goods/mousepad1.png" width="300px" height="400px"></td>
 						<td colspan="2">
 							<h1>Dream Stove 마우스패드 (흰색)</h1> <br>
 							<div class="price">
@@ -159,9 +159,9 @@
 				<hr>
 
 				<div class="product-image">
-					<img src="../image/goods/사이즈 정보.jpg"> <img
-						src="../image/goods/마우스패드사이즈.jpg" width="600px"> <img
-						src="../image/goods/배송교환환불.PNG">
+					<img src="../image/goods/sizeInform.jpg"> <img
+						src="../image/goods/mousepadSize.jpg" width="600px"> <img
+						src="../image/goods/refund.PNG">
 				</div>
 
 				<div class="product-description">

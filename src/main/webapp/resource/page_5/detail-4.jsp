@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-스마트거치대.PNG" width="300px" height="400px"></td>
+                            <td colspan="3"><img src="../image/goods/smartholder.PNG" width="300px" height="400px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 스마트거치대</h1>
                                 
@@ -161,9 +161,10 @@
                     <hr>
             
                     <div class="product-image">
-                        <img src="../image/goods/사이즈 정보.jpg">
-                        <img src="../image/goods/스마트폰 거치대 상세.png" width="600px">
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/sizeInform.jpg">
+                        <img src="../image/goods/smartholderDetail.png" width="600px">
+                        <img src="../image/goods/smartholderImg.png" width="600px">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">

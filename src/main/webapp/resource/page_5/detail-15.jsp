@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-열접착패치2.PNG" width="300px" height="350px"></td>
+                            <td colspan="3"><img src="../image/goods/patch2.PNG" width="300px" height="350px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 패치</h1>
                                 
@@ -164,7 +164,7 @@
                         <!-- <img src="../image/goods/사이즈 정보.jpg">
                         <img src="../image/goods/유니폼 사이즈 정보1.jpg" width="800px">
                         <img src="../image/goods/유니폼 사이즈 정보2.PNG" width="800px"> -->
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">

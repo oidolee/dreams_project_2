@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-야구공.png" width="300px" height="350px"></td>
+                            <td colspan="3"><img src="../image/goods/ball.png" width="300px" height="350px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 야구공</h1>
                                 
@@ -160,9 +160,9 @@
                     <hr>
             
                     <div class="product-image">
-                        <img src="../image/goods/사이즈 정보.jpg">
-                        <img src="../image/goods/야구공 사이즈.PNG" width="600px">
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/sizeInform.jpg">
+                        <img src="../image/goods/ballSize.PNG" width="600px">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">
