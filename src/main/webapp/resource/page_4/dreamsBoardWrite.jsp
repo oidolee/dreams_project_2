@@ -61,10 +61,35 @@
         })
 
     </script>
+<script>
+$(function() {
+	$("#btnInsert").click(function() {
+		const title = $("#writeTitle").val();
+		const content = $("#writeTextarea").val();
+		
+		if(title == ""){
+			alert("제목을 입력하세요!!");
+			$("#title").focus();
+			return false;
+		}
+		
+		if(content == ""){
+			alert("글내용을 입력하세요!!");
+			$("#content").focus();
+			return false;
+		}
+		
+		document.boardForm.action="${path}/dreamsBoardAction.bc";
+		document.boardForm.submit();
+		
+	});
+});
+</script>
+    
 </head>
-<div class="wrap">
+<body>
+	<div class="wrap">
   
-    <body>
     	<%@ include file="/layout/header.jsp" %>
       
         <div class="slider-con">
@@ -73,7 +98,7 @@
             </div>
         </div>
         <!-- 상단 중앙1 시작 -->
-        <form name="boardForm" method="post" action="dreamsBoardAction.bc">
+        <form name="boardForm" method="post">
 			<div style="display: flex; justify-content: center;"class="board">
 	            <!-- 좌측메뉴 시작 -->
 				<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
@@ -112,7 +137,9 @@
 	                	<hr id="blackline">
 	                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
 	                        <div id="writebutton">
-	                        	<input type="submit" value="등록" >
+	                        	<input type="hidden" name="hidden_Id" value="로그인된 아이디">
+	                        	<input type="hidden" name="hidden_Date" value="24/01/31">
+	                        	<input type="submit" id="btnInsert" value="등록" >
 	                        	<input type="button" value="취소" onclick="location.href='dreamsBoard.bc'">
 	                        </div>
 	                    </div>
@@ -135,7 +162,7 @@
             });
             ScrollReveal().reveal('.headline');
         </script>
-    </body>
-</div>
+	</div>
+</body>
 
 </html>

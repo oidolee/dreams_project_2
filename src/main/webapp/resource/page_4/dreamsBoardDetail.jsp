@@ -60,9 +60,9 @@
 
     </script>
 </head>
-<div class="wrap">
+<body>
   
-    <body>
+	<div class="wrap">
     	<%@ include file="/layout/header.jsp" %>
       
         <div class="slider-con">
@@ -74,40 +74,39 @@
         	<form name="boardDetailForm" method="post">
 				<div style="display: flex; justify-content: center;"class="board">
 					
-                    <!-- 좌측메뉴 시작 -->
-					<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
-					<!-- 좌측메뉴 종료 -->	
+                <!-- 좌측메뉴 시작 -->
+				<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
+				<!-- 좌측메뉴 종료 -->	
 				<!-- 우측메뉴 시작 -->
                 <div style="width: 800px; " >
 					<h2 align="center" class="title"> 드림즈 게시판 </h2><br>
                     <table id="boardDetail">
                         <tr>
-                            <th style="font-size: 25px;">
-                                우승을 위하여
+                            <th colspan="3" style="font-size: 25px;">
+                                ${dto.board_Title}
                             </th>
-                                                        
                         </tr>
+                        
                         <tr>
-                            <td style="font-size: 13px;">
-                            박은빈 (parkeun**)
+                            <td style="font-size: 13px; width: 500px;">
+                            ${dto.cust_Id}
                             </td>
-
-                            <td style="font-size: 13px;">
-                            2024.01.03
+                       
+                            <td style="font-size: 13px; width: 250px;">
+                            ${dto.board_Date}
                             </td>
-
+                        
                             <td style="font-size: 13px;">
                             <button type="button" style="background-color: white; border-color: white;">신고</button>
                             </td>
                         </tr>
 
                         <tr style="height: 200px;">
-                            <th>
-                                올해는 우승 할 수 있을까요?<br>
-                                부디 꼭 우승을 했으면 좋겠습니다.<br>
-                                그나저나 새로운 영입 소식은 없나요?<br>
-                                
-                            </th>
+                            <td colspan="3">
+                            <pre>
+								${dto.board_Content}
+                            </pre>
+                            </td>
                            
                         </tr>
                         
@@ -116,11 +115,20 @@
                     <hr id="blackline">
                     <div style="display: flex; justify-content: center; margin-bottom: 50px;">
                         <div id="detailbutton">
-                            <button style="margin-right: 300px; width: 60px;"> < 이전 </button>                        
+                        	<input type="hidden" name="hidden_num" value="${dto.board_No}">
+                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No - 1}" style="margin-right: 250px;"> < 이전 </a>
                             <a href="dreamsBoard.bc"> 목록 </a>
-                            <button style="margin-left: 300px; width: 60px;"> 다음 > </button>   
+                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
                         </div>
                     </div>
+	                <c:if test="${sessionScope.sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
+	                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
+	                        <div id="writebutton">
+	                        	<input type="button" value="수정" onclick="location.href='dreamsBoard.bc'">
+	                        	<input type="button" value="삭제" onclick="location.href='dreamsBoard.bc'">
+	                        </div>
+	                    </div>
+	                </c:if>
                     <div>
                         <div style="display: flex; justify-content: left;">
                             <table id="reveiw" style="margin-bottom: 50px; width: 100%;">
@@ -131,7 +139,7 @@
                                 </tr>
                                 <tr style="display: inline;">
                                     <td style="width: 50px;">
-                                        남궁민                                      
+                                        남궁민                                  
                                     </td>
                                     <td>
                                         2024.01.03                                      
@@ -147,12 +155,14 @@
                                 </tr>
                                 <tr>
                                     <div style="display: inline;">
-                                        <td style="width: 100%; padding: 20px 0">
-                                            <textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
-                                        </td>
-                                        <td>
-                                            <button> 댓글달기 </button>
-                                        </td>
+                                    	<tr>
+	                                        <td style="width: 100%; padding: 20px 0">
+	                                            <textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+	                                        </td>
+	                                        <td>
+	                                            <button> 댓글달기 </button>
+	                                        </td>
+                                    	</tr>
                                     </div>
                                 </tr>
                             </table>
@@ -179,7 +189,7 @@
             });
             ScrollReveal().reveal('.headline');
         </script>
-    </body>
-</div>
+	</div>
+</body>
 
 </html>

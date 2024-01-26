@@ -87,116 +87,17 @@
 	                        <col width="100px">
 	                    </colgroup>
 	                    <tbody>
+	                    <c:forEach var="dto" items="${list}">
 	                    	<tr class="boardtable">
 	                    		<td> 
 	                    		</td>
 	                    		<td class="boardtitle">
-	                    			<a href="">드림즈 화이팅!!</a>
+	                    			<a href="dreamsBoardDetail.bc?board_No=${dto.board_No}">${dto.board_Title}</a>
 	                    		</td>
-	                    		<td class="name">
-	                    			"남궁민 (namgung**)"
-	                    		</td>
-	                    		<td class="date">2024.01.03</td>
+	                    		<td class="name">${dto.cust_Id}</td>
+	                    		<td class="date">${dto.board_Date}</td>
 	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="dreamsBoarDetail.bc">우승을 위하여</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"박은빈 (parkeun**)"
-	                    		</td>
-	                    		<td class="date">2024.01.02</td>
-	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">임동규를 방출하라</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"김철수 (kimch**)"
-	                    		</td>
-	                    		<td class="date">2024.01.02</td>
-	                    	</tr>
-	                    	<tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">야구장이 멀어요</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"이서울 (seoul**)"
-	                    		</td>
-	                    		<td class="date">2024.01.01</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">근데 야구장 가본사람 있어요?</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"박찬혁 (park**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">우승은 언제쯤 할까요?</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"주시은 (jusi**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">내 욕한 사람들 다 기억한다</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"임동규 (limdo**)"
-	                    		</td>
-	                    		<td class="date">2023.12.31</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">연말 잘보내세요</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"차태현 (cha**)"
-	                    		</td>
-	                    		<td class="date">2023.12.30</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">야구장에 소주 갖고오는 사람 뭐냐</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"조인성 (cho**)"
-	                    		</td>
-	                    		<td class="date">2023.12.28</td>
-	                    	</tr>
-	                        <tr class="boardtable">
-	                    		<td> 
-	                    		</td>
-	                    		<td class="boardtitle">
-	                    			<a href="">메리크리스마스</a>
-	                    		</td>
-	                    		<td class="name">
-	                    			"한효주 (han**)"
-	                    		</td>
-	                    		<td class="date">2023.12.25</td>
-	                    	</tr>
+	                    </c:forEach>
 	                    </tbody>
 	                </table>
 	                
@@ -208,22 +109,37 @@
 	                </div>
 	
 	                <div class="pageNav">
+	                	<!-- 이전 버튼 활성화 -->
+	                	<c:if test="${paging.startPage > 10}">
 	                    <span class="prev1">
-	                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
+	                        <a href="${path}/dreamsBoard.bc?pageNum=${paging.prev}" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
 	                            <span style="color: white !important;">< 이전</span>
 	                        </a>
 	                    </span>
-	                    <span class="page">
-	                        <a href="" class="on">1</a>
-	                        <a href="" >2</a>
-	                        <a href="" >3</a>
-	                        <a href="" >4</a>
-	                    </span>
-	                   <span class="next1">
-	                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
+	                    </c:if>
+	                    
+	                    <!-- 이전 버튼 활성화 -->
+	                    <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+	                    	<c:if test="${paging.currentPage == num}">
+			                    <span class="page">
+			                        <a href="${path}/dreamsBoard.bc?pageNum=${num}" class="on" >${num}</a>
+			                    </span>
+			                </c:if>
+	                    	<c:if test="${paging.currentPage != num}">
+			                    <span class="page1">
+			                        <a href="${path}/dreamsBoard.bc?pageNum=${num}" class="on">${num}</a>
+			                    </span>
+			                </c:if>
+	                    </c:forEach>
+	                    
+	                    <!-- 다음 버튼 활성화 -->
+	                    <c:if test="${paging.endPage < paging.pageCount}">
+	                    <span class="next1">
+	                        <a href="${path}/dreamsBoard.bc?pageNum=${paging.next}" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
 	                            <span style="color: white !important;">다음 ></span>
 	                        </a>
 	                    </span>
+	                    </c:if>
 	                </div>
                 </div>
             </div>

@@ -80,12 +80,34 @@ public class BoardServiceImpl implements BoardService{
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_Title(req.getParameter("writeTitle"));
 		dto.setBoard_Content(req.getParameter("writeTextarea"));
+		dto.setCust_Id(req.getParameter("hidden_Id"));
+		dto.setBoard_Date(req.getParameter("hidden_Date"));
+		
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		BoardDAO dao = BoardDAOImpl.getInstance();
 		
 		// 5단계. 상세페이지
-		 dao.insertBoard(dto);
+		dao.boardWrite(dto);
+		
+	}
+
+	@Override
+	public void boardEdit(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - boardEdit");
+		
+		// 3단계. get방식으로 전달받은 값을 dto에 담는다.
+		BoardDTO dto = new BoardDTO();
+		dto.setBoard_Title(req.getParameter("writeTitle"));
+		dto.setBoard_Content(req.getParameter("writeTextarea"));
+		dto.setBoard_No(Integer.parseInt(req.getParameter("hidden_num")));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 상세페이지
+		dao.boardEdit(dto);
 		
 	}
 
