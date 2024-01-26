@@ -113,7 +113,7 @@
         <div class="mypage">
             <h2 style="color: #000 !important; font-weight: bold;"> <br>내 주문 내역<br><br> </h2>
             
-            <a href="${path}/resource/page_6/myPage.jsp"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지</button></a><br><br>
+            <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지</button></a><br><br>
             
             <h4 style="color: #000 !important; font-weight: bold;"> <br>최근 구매한 티켓 <br><br></h4>
                 <table class="table">
@@ -190,7 +190,7 @@
                     </tbody>
                 </table><br>
 
-            <a class="btn btn-primary" href="${path}/resource/page_6/seatRefund.jsp" role="button" style="color: aliceblue !important; ">티켓 환불</a><br><br>
+            <a class="btn btn-primary" href="${path}/seatRefund.oc" role="button" style="color: aliceblue !important; ">티켓 환불</a><br><br>
 
             <h4 style="color: #000 !important; font-weight: bold;"> <br> 최근 구매한 상품 <br><br></h4>
                 <table class="table">
@@ -242,7 +242,7 @@
 
                 <div class="mypage-button">
                     <button class="btn btn-primary" type="button" style="color: #fff !important;">구매확정</button>
-                    <a href="${path}/resource/page_6/goodsRefund.jsp"><button class="btn btn-primary" type="button" style="color: #fff !important;">교환/환불</button></a>
+                    <a href="${path}/goodsRefund.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">교환/환불</button></a>
                 </div>    
 
         </div>
