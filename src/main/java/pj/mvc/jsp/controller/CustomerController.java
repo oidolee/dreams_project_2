@@ -1,14 +1,11 @@
 package pj.mvc.jsp.controller;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import pj.mvc.jsp.service.CustomerServiceImpl;
 
 @WebServlet("*.cc")	// 업무별로 확장자 분리
@@ -40,7 +37,7 @@ public class CustomerController extends HttpServlet {
 		String viewPage = "";
 		
 		CustomerServiceImpl service = new CustomerServiceImpl();
-		
+		    
 		// http://localhost/jdbc/*.cc
 		
 		String uri = request.getRequestURI();
@@ -56,52 +53,90 @@ public class CustomerController extends HttpServlet {
 			viewPage = "index.jsp";		// 응답
 		}
 		
-		
 		// -- [ 회원가입 ] -- 
 		else if(url.equals("/join.cc")) {
 			System.out.println("<<< url ==> /join.cc >>>");
 			  
-			viewPage = "page_1/join.jsp"; 
+			viewPage = "resource/page_1/join.jsp"; 
 		}
 		 
 		// 아이디 중복확인 
 		else if(url.equals("/idConfirmAction.cc")) {
 			System.out.println("<<< url ==> /idConfirmAction.cc >>>");
 			  
-			// service.idConfirmAction(request, response); 
-			viewPage = "page_1/idConfirmAction.jsp";
+			service.idConfirmAction(request, response);
+			viewPage = "resource/page_1/idConfirmAction.jsp";
 		}
 		 
 		// 회원가입 처리
-		else if(url.equals("/joinAction.do")) {
+		else if(url.equals("/joinAction.cc")) {
 			System.out.println("<<< url ==> /joinAction.cc >>>");
 			
-			// service.signInAction(request, response);
-			viewPage = "page_1/joinAction.jsp";
+			service.signInAction(request, response);
+			viewPage = "resource/page_1/joinAction.jsp";
 		}
 		
 		// -- [ 로그인 ] --
-		
 		// 로그인 화면
-//		else if() {
-//			
-//		}
+		else if(url.equals("/login.cc")) {
+			System.out.println("<<< url ==> /login.cc >>>");
+			viewPage = "resource/page_1/login.jsp";
+		}
 		
 		// 로그인 처리
+		else if(url.equals("/loginAction.cc")) {
+			System.out.println("<<< url ==> /loginAction.cc >>>");
+			
+			service.loginAction(request, response);
+			viewPage = "resource/page_1/loginAction.jsp";
+		}
 		
 		// 로그아웃
-		
+		else if(url.equals("/logout.cc")) {
+			System.out.println("<<< url ==> /logout.cc >>>");
+			
 			// 세션 삭제
+			request.getSession().invalidate();
+			viewPage = "index.jsp";
+		}
 		
 		// -- [ 회원탈퇴 ] --
 		// 회원탈퇴 - 인증화면
+		else if(url.equals("/deleteCustomer.cc")) {
+			System.out.println("<<< url ==> /deleteCustomer.cc >>>");
+
+			viewPage = "resource/page_1/deleteCustomer.jsp";
+		}
+		
+		else if(url.equals("/deleteCustomerAction.cc")) {
+			System.out.println("<<< url ==> /deleteCustomerAction.cc >>>");
+
+			viewPage = "resource/page_1/deleteCustomerAction.jsp";
+		}
 		
 		// -- [ 회원수정 ] --
 		// 회원수정 - 인증화면
+		else if(url.equals("/modifyCustomer.cc")) {
+			System.out.println("<<< url ==> /modifyCustomer.cc >>>");
+
+			viewPage = "resource/page_1/modifyCustomer.jsp";
+		}
 		
 		// 회원정보 상세페이지
+		else if(url.equals("/modifyDetailAction.cc")) {
+			System.out.println("<<< url ==> /modifyDetailAction.cc >>>");
+			
+			service.modifyDetailAction(request, response);
+			viewPage = "resource/page_1/modifyDetailAction.jsp";
+		}
 		
 		// 회원수정 처리페이지
+		else if(url.equals("/modifyCustomerAction.cc")) {
+			System.out.println("<<< url ==> /modifyCustomerAction.cc >>>");
+			
+			service.modifyCustomerAction(request, response);
+			viewPage = "resource/page_1/modifyCustomerAction.jsp";
+		}
 		
 		
 		// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.

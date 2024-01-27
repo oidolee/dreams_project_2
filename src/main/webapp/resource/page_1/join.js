@@ -25,8 +25,8 @@ function confirmId() {
 		return false;
 	}
 	
-	let url="/jsp_pj_ict02/idConfirmAction.do?userid=" + document.joinform.userid.value;
-	window.open(url, "confirm", "menubar=no, width=600, height=300")
+	let url="/dreams_project_2/idConfirmAction.cc?userid=" + document.joinform.userid.value;
+	window.open(url, "confirm", "menubar=no, width=900, height=400")
 	// 컨트롤러 url을 넘기므로 컨트롤러에 url 추가
 }
 

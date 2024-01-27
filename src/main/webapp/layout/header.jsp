@@ -35,8 +35,8 @@
                         <div class="right">
                             <ul>
                                 <li><a href="/dreams_project_2/resource/page_6/myPage.html">마이페이지</a></li>
-                                <li><a href="/dreams_project_2/resource/page_1/login.html">로그인</a></li>
-                                <li><a href="/dreams_project_2/resource/page_1/join.html">회원가입</a></li>
+                                <li><a href="/dreams_project_2/login.cc">로그인</a></li>
+                                <li><a href="/dreams_project_2/join.cc">회원가입</a></li>
                                 <li><a href="/dreams_project_2/resource/page_4/qna.html">안내 및 Q&A</a></li>
                                 <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
                                         <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"

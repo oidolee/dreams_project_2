@@ -14,10 +14,10 @@
     <script src="https://kit.fontawesome.com/48086a0d4e.js" crossorigin="anonymous"></script>
     <!-- (3-3-2). 자바스크립트 소스 추가 :  -->
     <!-- defer : 모든 html 파일을 로딩할때까지 html이 브라우저창에 표시가 안되는 것을 방지 -->
-    <script src="${path}/resources/js/customer/main.js" defer></script>
+    <%--  <script src="${path}/resources/js/customer/main.js" defer></script> --%>
     
     <!-- join.js -->
-    <script src="${path}/resources/js/customer/join.js" defer></script>
+    <script src="${path}/resource/page_1/join.js" defer></script>
     
     <title>main</title>
 
@@ -41,7 +41,7 @@
                 <div id="section2">
                     <div id="s2_inner">
                         <div class="join">
-                            <form name="confirmform" action="idConfirmAction.do" method="post" 
+                            <form name="confirmform" action="idConfirmAction.cc" method="post" 
                             onsubmit="return idConfirmCheck()">
                           	
 	                            <c:if test="${selectCnt == 1}"> <!-- id 중복일 때 -->

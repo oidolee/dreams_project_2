@@ -4,10 +4,10 @@ public class CustomerDTO {
 	
 	// 멤버변수
 	private String cust_Id;			// 고객 아이디
-	private String cust_Password;	// 비밀번호
 	private String cust_Name;		// 이름
+	private String cust_Password;	// 비밀번호
 	private String cust_Email;		// 이메일
-	private int cust_Birth;			// 생년월일
+	private String cust_Birth;		// 생년월일
 	private String cust_Phone;		// 연락처
 	private String cust_Address;	// 주소
 	
@@ -19,7 +19,7 @@ public class CustomerDTO {
 
 	
 	// 매개변수 생성자
-	public CustomerDTO(String cust_Id, String cust_Name, String cust_Password, String cust_Email, int cust_Birth,
+	public CustomerDTO(String cust_Id, String cust_Name, String cust_Password, String cust_Email, String cust_Birth,
 			String cust_Phone, String cust_Address) {
 		super();
 		this.cust_Id = cust_Id;
@@ -72,12 +72,12 @@ public class CustomerDTO {
 	}
 
 
-	public int getCust_Birth() {
+	public String getCust_Birth() {
 		return cust_Birth;
 	}
 
 
-	public void setCust_Birth(int cust_Birth) {
+	public void setCust_Birth(String cust_Birth) {
 		this.cust_Birth = cust_Birth;
 	}
 
