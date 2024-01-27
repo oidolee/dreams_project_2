@@ -63,12 +63,12 @@ public class CustomerController extends HttpServlet {
 			  
 			viewPage = "page_1/join.jsp"; 
 		}
-		  
+		 
 		// 아이디 중복확인 
 		else if(url.equals("/idConfirmAction.cc")) {
 			System.out.println("<<< url ==> /idConfirmAction.cc >>>");
 			  
-			service.idConfirmAction(request, response); 
+			// service.idConfirmAction(request, response); 
 			viewPage = "page_1/idConfirmAction.jsp";
 		}
 		 
@@ -76,12 +76,16 @@ public class CustomerController extends HttpServlet {
 		else if(url.equals("/joinAction.do")) {
 			System.out.println("<<< url ==> /joinAction.cc >>>");
 			
-			service.signInAction(request, response);
+			// service.signInAction(request, response);
 			viewPage = "page_1/joinAction.jsp";
 		}
 		
 		// -- [ 로그인 ] --
+		
 		// 로그인 화면
+//		else if() {
+//			
+//		}
 		
 		// 로그인 처리
 		
