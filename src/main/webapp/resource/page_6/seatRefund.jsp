@@ -178,7 +178,7 @@
 
                 <div class="seatRefund-button">
                     <button class="btn btn-primary" type="button" style="color: #FFF !important;">환불</button>
-                    <a href="./myPage.html"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+                    <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
                 </div>    
 
         </div>

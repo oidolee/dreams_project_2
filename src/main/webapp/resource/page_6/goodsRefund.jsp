@@ -209,7 +209,7 @@
                             <div align = "center">
                                 <button class="btn btn-primary" type="button" style="color: #fff !important;">상품환불</button>
                                 <button class="btn btn-primary" type="button" style="color: #fff !important;">상품교환</button>
-                                <a href="${path}/mypage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+                                <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
                             </div>
                         </td>	
                     </tr>
