@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-유니폼.png" width="300px" height="350px"></td>
+                            <td colspan="3"><img src="../image/goods/uniform1.png" width="300px" height="350px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 유니폼</h1>
                                 
@@ -163,10 +163,10 @@
                     <hr>
             
                     <div class="product-image">
-                        <img src="../image/goods/사이즈 정보.jpg">
-                        <img src="../image/goods/유니폼 사이즈 정보1.jpg" width="800px">
-                        <img src="../image/goods/유니폼 사이즈 정보2.PNG" width="800px">
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/sizeInform.jpg">
+                        <img src="../image/goods/uniformSize1.jpg" width="800px">
+                        <img src="../image/goods/uniformSize2.PNG" width="800px">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">

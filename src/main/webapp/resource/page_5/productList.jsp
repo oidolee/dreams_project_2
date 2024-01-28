@@ -90,7 +90,7 @@
 					<div class="goods_card_container">
 						<div class="goods_card"
 							onclick="window.location.href='detail-1.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-마우스패드.png"
+							<img class="goods_image" src="../image/goods/mousepad1.png"
 								alt="상품 1 이미지">
 
 							<form>
@@ -109,7 +109,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-2.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-마우스패드2.png"
+							<img class="goods_image" src="../image/goods/mousepad2.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -128,7 +128,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-3.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-모자.PNG"
+							<img class="goods_image" src="../image/goods/hat.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -147,7 +147,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-4.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-스마트거치대.PNG"
+							<img class="goods_image" src="../image/goods/smartholder.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -166,7 +166,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-5.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-스마트거치대2.PNG"
+							<img class="goods_image" src="../image/goods/smartholder2.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -185,7 +185,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-6.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-아크릴키링.PNG"
+							<img class="goods_image" src="../image/goods/key.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -204,7 +204,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-7.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-야구공.png"
+							<img class="goods_image" src="../image/goods/ball.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -223,7 +223,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-8.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-유니폼.png"
+							<img class="goods_image" src="../image/goods/uniform1.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -242,7 +242,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-9.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-유니폼2.png"
+							<img class="goods_image" src="../image/goods/uniform2.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -261,7 +261,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-10.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-응원머플러.PNG"
+							<img class="goods_image" src="../image/goods/muffler.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -280,7 +280,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-11.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-후드.png"
+							<img class="goods_image" src="../image/goods/hood.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -299,7 +299,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-12.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-휴대폰케이스.png"
+							<img class="goods_image" src="../image/goods/case1.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -318,7 +318,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-13.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-휴대폰케이스2.png"
+							<img class="goods_image" src="../image/goods/case2.png"
 								alt="상품 2 이미지">
 
 							<form>
@@ -337,7 +337,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-14.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-열접착패치.PNG"
+							<img class="goods_image" src="../image/goods/patch1.PNG"
 								alt="상품 2 이미지">
 
 							<form>
@@ -356,7 +356,7 @@
 
 						<div class="goods_card"
 							onclick="window.location.href='detail-15.jsp';">
-							<img class="goods_image" src="../image/goods/굿즈-열접착패치2.PNG"
+							<img class="goods_image" src="../image/goods/patch2.PNG"
 								alt="상품 2 이미지">
 
 							<form>

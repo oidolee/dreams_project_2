@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../../../layout/setting.jsp" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,8 +12,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<link rel="stylesheet" href="/resource/admin/css/product.css">
-<link href="resource/css/styles.css" rel="stylesheet" />
+<link  href="/dreams_project_2/resource/admin/css/product.css" rel="stylesheet">
+<link href="/dreams_project_2/resource/admin/css/styles.css" rel="stylesheet" />
 <title>드림즈 관리자</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
@@ -80,33 +82,24 @@
 					<table border="1" id="productTable">
 						<tr>
 							<th>상품 번호</th>
-							<th>상품 이미지</th>
 							<th>상품이름</th>
 							<th>가격</th>
-							<th>상품 규격</th>
-							<th>상품 상세 설명1</th>
-							<th>상품 상세 설명2</th>
-							<th>반품 및 환불 규정</th>
+							<th>상품 재고</th>
 						</tr>
 
-						<tr>
-							<td>1</td>
-							<td><img src="../../image/goods/굿즈-마우스패드.png" width="50px"
-								height="50px"></td>
-							<td>DREAM STOVE 마우스패드</td>
-							<td>10000원</td>
-							<td><img src="../../image/goods/마우스패드사이즈.jpg" width="50px"
-								height="50px"></td>
-							<td></td>
-							<td></td>
-							<td><img src="../../image/goods/배송교환환불.PNG" width="50px"
-								height="50px"></td>
-						</tr>
+						<c:forEach var="dto" items="${list }">
+							<tr>
+								<td> ${dto.product_No} </td>
+								<td> ${dto.product_Name}</td>
+								<td> ${dto.product_Price} </td>
+								<td> ${dto.product_TotalQty} </td>
+							</tr>
+						</c:forEach>
 					</table>
 
 					<br> <br>
 					<div class="button">
-						<button id="addProduct" onclick="addProduct()">물품관리</button>
+						<button id="addProduct" onclick="window.location='insertProduct.pc'">물품관리</button>
 					</div>
 				</div>
 			</main>

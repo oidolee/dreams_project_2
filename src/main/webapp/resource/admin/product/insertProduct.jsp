@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../../../layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -27,7 +28,7 @@
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -125,6 +126,22 @@ to {
 			window.location.href = "./ticket/ticket.html";
 		}
 	}
+	
+	$(function(){
+		
+		// 목록으로 돌아가기
+		$("#btnList").click(function(){
+			location.href="${path}/product_list.pc";
+		});
+		
+		// 상품등록 누를시 컨트롤러의 등록처리화면으로 이동
+		$('#btnAdd').click(function() {
+			alert("test");
+			document.insertform.action = "${path}/insertProductAction.pc";
+			document.insertform.submit();
+		});
+	});
+	
 </script>
 </head>
 
@@ -143,66 +160,64 @@ to {
 			<main>
 
 				<div class="table_div">
-					<form name="joinform" action="ad_productAddAction.html"
-						method="post">
+					<form name="insertform"	method="post" id="insertform">
 						<table border="1">
 							
 							<tr>
 								<th>* 상품번호</th>
-								<td><input type="text" class="input" name="pdNo"
+								<td><input type="text" class="input" name="product_No" id="product_No"
 									size="40" placeholder="상품번호" required></td>
 							</tr>
 						
 							<tr>
 								<th>* 상품명</th>
-								<td><input type="text" class="input" name="pdName"
+								<td><input type="text" class="input" name="product_Name" id="product_Name"
 									size="40" placeholder="상품명을 작성하시오(40자 이내)" required></td>
 							</tr>
 
 							<tr>
 								<th>상품이미지</th>
-								<td><input type="file" class="input" name="pdImage"
+								<td><input type="file" class="input" name="pdImage" id="pdImage"
 									size="40"></td>
 							</tr>
 
 
 							<tr>
 								<th>* 판매가격</th>
-								<td><input type="number" class="input" name="price"
+								<td><input type="number" class="input" name="product_Price" id="product_Price"
 									size="10" placeholder="상품가격을 작성하시오" required></td>
 							</tr>
 
 							<tr>
 								<th>* 등록수량</th>
-								<td><input type="number" class="input" name="quantity"
+								<td><input type="number" class="input" name="product_Qty" id="product_Qty"
 									size="10" placeholder="등록수량을 작성하시오" required></td>
 							</tr>
 							
 							<tr>
 								<th>상품상세설명 이미지1</th>
-								<td><input type="file" class="input" name="pdDetailImage1"
+								<td><input type="file" class="input" name="pdDetailImage1" id="pdDetailImage1"
 									size="40"></td>
 							</tr>
 							
 							<tr>
 								<th>상품상세설명 이미지2</th>
-								<td><input type="file" class="input" name="pdDetailImage2"
+								<td><input type="file" class="input" name="pdDetailImage2" id="pdDetailImage2"
 									size="40"></td>
 							</tr>
 							
 							<tr>
 								<th>반품/환불 이미지</th>
-								<td><input type="file" class="input" name="pdPolicy"
+								<td><input type="file" class="input" name="pdPolicy" id="pdPolicy"
 									size="40"></td>
 							</tr>
 
 							<tr>
 								<td colspan="2"><br>
 									<div align="right">
-										<input class="inputbutton" type="submit" value="상품등록">
-										<input class="inputbutton" type="reset" value="초기화"> 
-										<input class="inputbutton" type="button" value="등록취소"
-											onclick="window.location='product.jsp'">
+										<input class="inputbutton" type="submit" value="상품등록" id="btnAdd">
+										<input class="inputbutton" type="reset" value="초기화" > 
+										<input class="inputbutton" type="button" value="등록취소" id="btnList">
 										<!--  -->
 									</div></td>
 							</tr>
