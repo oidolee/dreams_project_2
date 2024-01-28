@@ -20,4 +20,12 @@ public interface TicketService {
 	public void ticketDeleteAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
+	// 티켓 추가 처리
+	public void ticketInsertAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+		
+	// 티켓 개별 조회
+	public void ticketEachAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
 }

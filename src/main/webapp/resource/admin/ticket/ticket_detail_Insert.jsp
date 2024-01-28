@@ -26,53 +26,7 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script>
-let member = {};
-    
-    <%
-				
-    			List<TicketDTO> list = (List<TicketDTO>)request.getAttribute("list");	
-    			for(TicketDTO tdto : list){
-    %>
-    				member['<%= tdto.getTicket_seat() %>'] = {
-    					'bgNormalPrice' : '<%= tdto.getTicket_grade_normal() %>',	
-    					'bgMPrice' : '<%= tdto.getTicket_grade_membership() %>',	
-    					'bgCPrice' : '<%= tdto.getTicket_grade_child() %>',	
-    				}
-    <%				
-    			}
-    %>
-    function calculator(){
-        let parkseat =  document.getElementById("parkseat").value; // 좌석 등급
-//      let bgNormalPrice = document.getElementById("bgNormalPrice").value; // 일반등급 좌석
-        let bgNormalPrice = member[parkseat]['bgNormalPrice']; // 일반등급 좌석
-        let bgMPrice = member[parkseat]['bgMPrice'];	// 멤버쉽 등급 가격
-        let bgCPrice = member[parkseat]['bgCPrice']; 	// 어린이 등급 가격
-        
-        /* let bgNCnt = parseInt(document.getElementById("bgnCnt").value);
-        let bgMCnt = parseInt(document.getElementById("bgmCnt").value);
-        let bgCCnt = parseInt(document.getElementById("bgcCnt").value);
-        let discount = 0; // 할인율 */
-		
 
-        document.getElementById('bgNormalPrice').textContent = bgNormalPrice.toLocaleString() + '원';
-        document.getElementById('bgMPrice').textContent = bgMPrice.toLocaleString() + '원';
-        document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원';
-    };
-    </script>
-     <script>
-        function priceSelect(){
-            calculator()
-            // let getIdx = $("#parkseat").val();
-            // let priceArr = [
-            //     [100,200,300],
-            //     [400,500,600],
-            //     [100,200,300]
-            // ]
-
-            // let normalPrice = priceArr[getIdx][0];
-            // $("#bgNormalPrice").html(priceArr[1][1])
-            // // priceArr[1][1]
-        } 
     </script>
     <style>
         .tableContent .displayNone {
@@ -161,23 +115,44 @@ let member = {};
                 window.location.href = "./ticket/ticket.jsp";
             }
         }
-        $(function(){
-        	$('#btnEdit').click(function(){
+        $(function(){ // 티켓 가격 수정
+        	$('#btnInsert').click(function(){
+        		
+        		const insertSeat = $("#insertSeat").val();
+        		const insertPrice-normal = $("#insertPrice-normal").val();
+    			const insertPrice-membership = $("#insertPrice-membership").val();
+    			const insertPrice-child = $("#insertPrice-child").val();
     			
-    			alert('수정페이지');
-    			document.ticket_ChangeForm.action="${path}/ticket_update.tc"; 
-    			document.ticket_ChangeForm.submit();
     			
-    		});
-    		$('#btnInsert').click(function(){
     			
-    			alert('추가페이지');
-    			document.ticket_ChangeForm.action="${path}/insertTicket.tc"; 
-    			document.ticket_ChangeForm.submit();
+    			if(insertSeat == ""){
+    				alert("좌석명을 입력하시오.");
+    				$("#insertSeat").focus();
+    				return false;
+    			}
+    			if(insertPrice-normal == 0){
+    				alert("일반 가격을 입력하시오.");
+    				$("#insertPrice-normal").focus();
+    				return false;
+    			}
     			
-    		});
-        });
-		
+    			if(insertPrice-membership == 0){
+    				alert("멤버쉽 가격을 입력하시오");
+    				$("#insertPrice-membership").focus();
+    				return false;
+    			}
+    			
+    			if(insertPrice-child ==0){
+    				alert("어린이 가격을 입력하시오");
+    				$("#insertPrice-child").focus();
+    				return false;
+    			}
+    			
+    			//alert("수정 페이지 - btnEdit");
+    			document.ticket_insertForm.action="${path}/insertTicket.tc"; 
+    			document.ticket_insertForm.submit();
+        		
+        	});
     </script>
 </head>
 <body class="sb-nav-fixed">
@@ -195,62 +170,35 @@ let member = {};
              	<div class="purchase">
 				        <div class="elements">
 				            <h3>가격</h3>
-				            <form name = "ticket_ChangeForm" method="post">
+				            <form name = "ticket_insertForm" method="post">
 							<table border="1" style="width: 416.55px;">
-								<tr>
-									<td colspan="4">
+								<tr style="border: 1">
+									<td colspan="4" style="border: 1">
 										<strong>좌석</strong>
-										<select id="parkseat" name="parkseat" onchange="priceSelect()">
-						                    <option value="#">좌석을 선택해 주세요.</option>
-										<% 
-											/* List<TicketDTO> list = (List<TicketDTO>)request.getAttribute("list"); */	
-											for(TicketDTO tdto : list){
-										%>
-											<!-- html -->
-											 <option value="<%= tdto.getTicket_seat() %>"><%= tdto.getTicket_seat() %></option> 
-										<%		
-												
-											}
-										
-										%>
-						                    <!-- <option value="R.d club">R.d club</option>
-						                    <option value="1층 테이블석">1층 테이블석</option>
-						                    <option value="2층 테이블석">2층 테이블석</option>
-						                    <option value="내야커플석">내야커플석</option>
-						                    <option value="외야커플석">외야커플석</option>
-						                    <option value="다크버건디석">다크버건디석</option>
-						                    <option value="버건디석">버건디석</option>
-						                    <option value="3층 지정석">3층 지정석</option>
-						                    <option value="4층 지정석">4층 지정석</option>
-						                    <option value="휠체어석">휠체어석</option>
-						                    <option value="외야 지정석">외야 지정석</option>
-						                    <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
-						                    <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
-						                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option> -->
-					                	</select>
+									</td>
+									<td colspan="2" style="border: 1">
+										<input id="insertSeat" name="insertSeat" type="text" style="width: 100px;" placeholder="좌석 이름을 정해주세요." >석
 									</td>
 	             				 </tr>
-                        
-                            
-                            
-	                            <tr id="normal-price">
-	                                <td style="background: whitesmoke;">기본가</td>
-	                                <td>일반</td>
-	                                <td id="bgNormalPrice">0</td>
+	                            <tr>
+	                                <td style="background: whitesmoke; border: 1">기본가</td>
+	                                <td>가격</td>
+	                                <td><input id="insertPrice-normal" name="insertPrice-normal" type="text" style="width: 100px;" placeholder="일반 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
 	                                <td rowspan="2" style="background: whitesmoke;">기본할인</td>
 	                                <td>멤버쉽</td>
-	                                <td id="bgMPrice">0</td>
+	                                <td>가격</td>
+	                                <td><input id="insertPrice-membership" name="insertPrice-membership" type="text" style="width: 100px;" placeholder="멤버쉽 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
 	                                <td>듬린이</td>
-	                                <td id="bgCPrice">0</td>
+	                                <td>가격</td>
+	                                <td><input id="insertPrice-child" name="insertPrice-child" type="text"  style="width: 100px;" placeholder="어린이 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
 	                                <td colspan="5" align="center">
-	                                    <input type="button" class="inputButton" value="티켓 추가" id="btnInsert">
-	                                    <input type="button" class="inputButton" value="수정/삭제" id="btnEdit">
+	                                    <input type="button" class="inputButton" value="추가" id="btnInsert">
 	                                    <input type="reset" value="초기화">
 	                                </td>
 	                            </tr>

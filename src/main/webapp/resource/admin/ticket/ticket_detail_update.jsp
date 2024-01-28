@@ -26,7 +26,7 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script>
-let member = {};
+<%-- let member = {};
     
     <%
 				
@@ -56,11 +56,11 @@ let member = {};
 
         document.getElementById('bgNormalPrice').textContent = bgNormalPrice.toLocaleString() + '원';
         document.getElementById('bgMPrice').textContent = bgMPrice.toLocaleString() + '원';
-        document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원';
+        document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원'; --%>
     };
     </script>
      <script>
-        function priceSelect(){
+        /* function priceSelect(){
             calculator()
             // let getIdx = $("#parkseat").val();
             // let priceArr = [
@@ -72,7 +72,8 @@ let member = {};
             // let normalPrice = priceArr[getIdx][0];
             // $("#bgNormalPrice").html(priceArr[1][1])
             // // priceArr[1][1]
-        } 
+        }  */
+        
     </script>
     <style>
         .tableContent .displayNone {
@@ -161,23 +162,49 @@ let member = {};
                 window.location.href = "./ticket/ticket.jsp";
             }
         }
-        $(function(){
+       
+        $(function(){ // 티켓 가격 수정
         	$('#btnEdit').click(function(){
+        		
+        		/* alert('티켓 가격 수정');
+        		let changePrice-normal = $("#changePrice-normal").val();
+    			let changePrice-membership = $("#changePrice-membership").val();
+    			let changePrice-child = $("#changePrice-child").val();
     			
-    			alert('수정페이지');
-    			document.ticket_ChangeForm.action="${path}/ticket_update.tc"; 
-    			document.ticket_ChangeForm.submit();
+    			if(changePrice-normal == ""){
+    				alert("일반 가격을 입력하시오.");
+    				$("#changePrice-normal").focus();
+    				return false;
+    			}
     			
-    		});
-    		$('#btnInsert').click(function(){
+    			else if(changePrice-membership == ""){
+    				alert("멤버쉽 가격을 입력하시오");
+    				$("#changePrice-membership").focus();
+    				return false;
+    			}
     			
-    			alert('추가페이지');
-    			document.ticket_ChangeForm.action="${path}/insertTicket.tc"; 
-    			document.ticket_ChangeForm.submit();
+    			else if(changePrice-child == ""){
+    				alert("어린이 가격을 입력하시오");
+    				$("#changePrice-child").focus();
+    				return false;
+    			} */
     			
+    			alert("티켓 가격 수정 - btnEdit");
+    			document.ticket_updateForm.action="${path}/updateTicket.tc"; 
+    			document.ticket_updateForm.submit();
+        		
+        	});
+        	
+        	// 게시글 삭제 화면으로 이동
+    		$("#btnDelete").click(function(){
+    			
+    			if(confirm("삭제하시겠습니까?")){
+    				document.ticket_updateForm.action="${path}/deleteTicket.tc";
+    				document.ticket_updateForm.submit();
+    			}
     		});
         });
-		
+        
     </script>
 </head>
 <body class="sb-nav-fixed">
@@ -195,65 +222,43 @@ let member = {};
              	<div class="purchase">
 				        <div class="elements">
 				            <h3>가격</h3>
-				            <form name = "ticket_ChangeForm" method="post">
+				            <form name = "ticket_updateForm" method="post">
 							<table border="1" style="width: 416.55px;">
 								<tr>
 									<td colspan="4">
 										<strong>좌석</strong>
-										<select id="parkseat" name="parkseat" onchange="priceSelect()">
-						                    <option value="#">좌석을 선택해 주세요.</option>
-										<% 
-											/* List<TicketDTO> list = (List<TicketDTO>)request.getAttribute("list"); */	
-											for(TicketDTO tdto : list){
-										%>
-											<!-- html -->
-											 <option value="<%= tdto.getTicket_seat() %>"><%= tdto.getTicket_seat() %></option> 
-										<%		
-												
-											}
-										
-										%>
-						                    <!-- <option value="R.d club">R.d club</option>
-						                    <option value="1층 테이블석">1층 테이블석</option>
-						                    <option value="2층 테이블석">2층 테이블석</option>
-						                    <option value="내야커플석">내야커플석</option>
-						                    <option value="외야커플석">외야커플석</option>
-						                    <option value="다크버건디석">다크버건디석</option>
-						                    <option value="버건디석">버건디석</option>
-						                    <option value="3층 지정석">3층 지정석</option>
-						                    <option value="4층 지정석">4층 지정석</option>
-						                    <option value="휠체어석">휠체어석</option>
-						                    <option value="외야 지정석">외야 지정석</option>
-						                    <option value="외야 패밀리석 4인">외야 패밀리석 4인</option>
-						                    <option value="외야 패밀리석 5인">외야 패밀리석 5인</option>
-						                    <option value="외야 유아동반석 2인">외야 유아동반석 2인</option> -->
-					                	</select>
 									</td>
+									<td>${tdto.ticket_seat}</td>
 	             				 </tr>
-                        
                             
-                            
-	                            <tr id="normal-price">
-	                                <td style="background: whitesmoke;">기본가</td>
-	                                <td>일반</td>
-	                                <td id="bgNormalPrice">0</td>
-	                            </tr>
-	                            <tr>
-	                                <td rowspan="2" style="background: whitesmoke;">기본할인</td>
-	                                <td>멤버쉽</td>
-	                                <td id="bgMPrice">0</td>
-	                            </tr>
-	                            <tr>
-	                                <td>듬린이</td>
-	                                <td id="bgCPrice">0</td>
-	                            </tr>
-	                            <tr>
-	                                <td colspan="5" align="center">
-	                                    <input type="button" class="inputButton" value="티켓 추가" id="btnInsert">
-	                                    <input type="button" class="inputButton" value="수정/삭제" id="btnEdit">
-	                                    <input type="reset" value="초기화">
-	                                </td>
-	                            </tr>
+								<tr id="normal-price">
+								    <td style="background: whitesmoke;">기본가</td>
+									<td>일반</td>
+									<td id="bgNormalPrice">${tdto.ticket_grade_normal }</td>
+									<td>수정할 가격</td>
+									<td><input id="changePrice-normal" name="changePrice-normal" type="text" style="width: 100px;" value="${tdto.ticket_grade_normal}">원</td>
+								</tr>
+								<tr>
+									<td rowspan="2" style="background: whitesmoke;">기본할인</td>
+									<td>멤버쉽</td>
+									<td id="bgNormalPrice">${tdto.ticket_grade_membership}</td>
+									<td>수정할 가격</td>
+									<td><input id="changePrice-membership" name="changePrice-membership" type="text" style="width: 100px;" value="${tdto.ticket_grade_membership }">원</td>
+								</tr>
+								<tr>
+								    <td>듬린이</td>
+								    <td id="bgNormalPrice">${tdto.ticket_grade_child}</td>
+									<td>수정할 가격</td>
+									<td><input id="changePrice-child" name="changePrice-child" type="text"  style="width: 100px;" value="${tdto.ticket_grade_child }">원</td>
+								</tr>
+								<tr>
+								    <td colspan="5" align="center">
+								    	<input type="hidden" name="hidden_ticket" value="${tdto.ticket_seat}">
+								        <input type="button" class="inputButton" value="수정" id="btnEdit">
+								        <input type="button" class="inputButton" value="삭제" id="btnDelete">
+								        <input type="reset" value="초기화">
+								    </td>
+								</tr>
 	                        </table>
 	                    </form>    
                         <hr>
