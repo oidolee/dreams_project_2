@@ -64,7 +64,7 @@
 <div class="wrap">
   
     <body>
-    	<jsp:include page="../../layout/header.jsp"></jsp:include> 
+    	<%@ include file="/layout/header.jsp" %>
       
         <div class="slider-con">
             <div class="slider-box">
@@ -224,7 +224,7 @@
                 </div>  
      
       
-     	<jsp:include page="../../layout/footer.jsp"></jsp:include> 
+     	<%@ include file="/layout/footer.jsp" %>
         
         <script>
             //메인 스크롤 이벤트 

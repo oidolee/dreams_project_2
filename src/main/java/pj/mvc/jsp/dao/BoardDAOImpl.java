@@ -182,4 +182,68 @@ public class BoardDAOImpl implements BoardDAO{
 		return dto;
 	}
 
+	// 게시글 추가
+	@Override
+	public void boardWrite(BoardDTO dto) {
+		System.out.println("BoardDAOImpl - boardWrite");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content, board_Date) "
+					+ "VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), ?, ?, ?, ?)";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCust_Id());
+			pstmt.setString(2, dto.getBoard_Title());
+			pstmt.setString(3, dto.getBoard_Content());
+			pstmt.setString(4, dto.getBoard_Date());
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+
+	@Override
+	public void boardEdit(BoardDTO dto) {
+		System.out.println("BoardDAOImpl - boardEdit");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_board SET board_title = ?, board_Content = ? WHERE board_No = ?;";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getBoard_Title());
+			pstmt.setString(2, dto.getBoard_Content());
+			pstmt.setInt(3, dto.getBoard_No());
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+	}
+
 }
