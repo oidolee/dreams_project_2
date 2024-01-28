@@ -114,7 +114,7 @@
 			<hr>
 			<table class="wrap-table">
 				<tr class="product-inform">
-					<td colspan="3"><img src="../image/goods/굿즈-후드.png"
+					<td colspan="3"><img src="../image/goods/hood.png"
 						width="300px" height="350px"></td>
 					<td colspan="2">
 						<h1>Dream Stove 후드</h1> <br>
@@ -160,9 +160,9 @@
 			<hr>
 
 			<div class="product-image">
-				<img src="../image/goods/사이즈 정보.jpg"> <img
-					src="../image/goods/후드티 사이즈.jpg" width="800px"> <img
-					src="../image/goods/배송교환환불.PNG">
+				<img src="../image/goods/sizeInform.jpg"> <img
+					src="../image/goods/hoodSize.jpg" width="800px"> <img
+					src="../image/goods/refund.PNG">
 
 			</div>
 

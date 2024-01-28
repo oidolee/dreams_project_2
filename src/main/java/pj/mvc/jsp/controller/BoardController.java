@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pj.mvc.jsp.service.BoardService;
 import pj.mvc.jsp.service.BoardServiceImpl;
@@ -55,14 +56,26 @@ public class BoardController extends HttpServlet {
 			
 			service.boardListAction(request, response);
 			viewPage = "resource/page_4/dreamsBoard.jsp";
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("sessionID", "로그인된 아이디");
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+			
 		}
 		
 		// 상세페이지
-		if(url.equals("/dreamsBoarDetail.bc")) {
-			System.out.println("<<< url ==> /dreamsBoarDetail.bc >>>");
+		if(url.equals("/dreamsBoardDetail.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardDetail.bc >>>");
 			
+			service.boardDetailAction(request, response);
+			viewPage = "resource/page_4/dreamsBoardDetail.jsp";
 			
-			viewPage = "resource/page_4/dreamsBoarDetail.jsp";
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 		}
 		
 		
@@ -70,20 +83,42 @@ public class BoardController extends HttpServlet {
 		else if(url.equals("/dreamsBoardSearch.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
 			viewPage = "resource/page_4/dreamsBoardSearch.jsp";
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 		}
 		
 		// 드림즈게시판 글쓰기페이지
 		else if(url.equals("/dreamsBoardWrite.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardWrite.bc >>>");
 			viewPage = "resource/page_4/dreamsBoardWrite.jsp";
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 		}
 		
+		// 드림즈게시판 글쓰기 처리
+		else if(url.equals("/dreamsBoardAction.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardAction.bc >>>");
+			
+			service.boardWrite(request, response);
+			
+			viewPage = request.getContextPath() + "/dreamsBoard.bc";
+			response.sendRedirect(viewPage);
+		}
 		
+		// 드림즈게시판 게시글 수정처리
+		else if(url.equals("/dreamsBoardEdit.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardAction.bc >>>");
+			
+			service.boardEdit(request, response);
+			
+			viewPage = request.getContextPath() + "/dreamsBoardDetail.bc";
+			response.sendRedirect(viewPage);
+		}
 		
-		
-		// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
-		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-		dispatcher.forward(request, response);
 		
 	}
 

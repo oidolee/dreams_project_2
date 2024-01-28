@@ -5,7 +5,7 @@ import pj.mvc.jsp.dto.ProductDTO;
 public interface ProductDAO {
 	
 	// 2. 상품 등록
-	public int insertProduct(int product_No);
+	public int insertProduct(ProductDTO dto);
 	// 3. 상품 삭제
 	public int deleteProduct(int product_No);
 	// 4. 상품 수정

@@ -58,9 +58,25 @@ public class ProductController extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 				dispatcher.forward(request, response);
 			}
+			
+		// 상품 추가 화면
+			if(url.equals("/insertProduct.pc")) { // 요청
+				System.out.println("<<< url ==> /insertProduct.pc >>>");
+				
+				viewPage = "resource/admin/product/insertProduct.jsp";
+				response.sendRedirect(viewPage);
+			}
+			
+		// 상품 추가 처리
 		
-		
-		
+			if(url.equals("/insertProductAction.pc")) { // 요청
+				System.out.println("<<< url ==> /insertProductAction.pc >>>");
+				
+				service.productInsertAction(request, response);
+				
+				viewPage = request.getContextPath() + "/product_list.pc";
+				response.sendRedirect(viewPage);
+			}
 		
 	}
 }

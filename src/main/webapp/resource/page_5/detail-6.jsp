@@ -114,7 +114,7 @@
                     <hr>
                     <table class="wrap-table">
                         <tr class="product-inform">
-                            <td colspan="3"><img src="../image/goods/굿즈-아크릴키링.PNG" width="300px" height="350px"></td>
+                            <td colspan="3"><img src="../image/goods/key.PNG" width="300px" height="350px"></td>
                             <td colspan="2">
                                 <h1>Dream Stove 키링</h1>
                                 
@@ -162,7 +162,7 @@
                    <div class="product-image">
                         <!-- <img src="../image/goods/사이즈 정보.jpg">
                         <img src="../image/goods/마우스패드사이즈.jpg" width="600px"> -->
-                        <img src="../image/goods/배송교환환불.PNG">
+                        <img src="../image/goods/refund.PNG">
                     </div>
                     
                     <div class="product-description">

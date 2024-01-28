@@ -522,7 +522,7 @@
         <div id="goTop" class="goTop">
             <a href="#header"></a>
         </div>
-        <a href="${path }/resource/admin/index.jsp">
+        <a href="${path }/admin.tc">
             <div class="floating-box left"></div>
         </a>
         <footer>

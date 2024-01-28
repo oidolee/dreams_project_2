@@ -14,6 +14,11 @@ public interface BoardDAO {
 
 	// 게시글 상세페이지
 	public BoardDTO getBoardDetail(int boardNo);
+
+	// 게시글 추가
+	public void boardWrite(BoardDTO dto);
+
+	public void boardEdit(BoardDTO dto);
 	
 	
 }
