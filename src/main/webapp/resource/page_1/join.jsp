@@ -36,6 +36,8 @@
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
     <script src="${path}/resource/js/common/header.js"></script>
+    <!-- join.js -->
+    <script src="${path}/resource/page_1/join.js" defer></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -64,104 +66,7 @@
         })
 
     </script>
-    
-    <script type="text/javascript">
-	function inputChk() {
 
-		// 아이디 입력확인
-		if (!document.joinform.userid.value) {
-			alert("아이디를 입력해주세요");
-			document.joinform.userid.focus();
-			return false;	// 동작 중지
-		}
-
-		// 비밀번호 입력확인
-		if (!document.joinform.userpwd.value) {
-			alert("비밀번호를 입력해주세요");
-			document.joinform.userpwd.focus();
-			return false;	// 동작 중지
-		}
-
-		// 비밀번호 재입력확인
-		if (!document.joinform.userrepwd.value) {
-			alert("비밀번호를 재입력해주세요");
-			document.joinform.userrepwd.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 비밀번호와 비밀번호 재입력 불일치
-		if (document.joinform.userpwd.value != document.joinform.userrepwd.value) {
-			alert("비밀번호가 일치하지 않습니다");
-			document.joinform.userpwd.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 이름 입력확인
-		if (!document.joinform.username.value) {
-			alert("이름을 입력해주세요");
-			document.joinform.username.focus();
-			return false;	// 동작 중지
-		}
-
-		// 생년월일 입력확인
-		if (!document.joinform.birthday.value) {
-			alert("생년월일을 입력해주세요");
-			document.joinform.birthday.focus();
-			return false;	// 동작 중지
-		}
-		
-		// 주소 입력확인
-		if (!document.joinform.post1.value) {
-			alert("우편번호를 입력해주세요");
-			document.joinform.post1.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.post2.value) {
-			alert("우편번호를 입력해주세요");
-			document.joinform.post2.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.adress1.value) {
-			alert("기본주소를 입력해주세요");
-			document.joinform.adress1.focus();
-			return false;	// 동작 중지
-		}
-		if (!document.joinform.adress2.value) {
-			alert("나머지주소를 입력해주세요");
-			document.joinform.adress2.focus();
-			return false;	// 동작 중지
-		}
-
-		// 연락처 입력확인
-		if (!document.joinform.hp1.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp1.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.hp2.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp2.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.hp3.value) {
-		alert("휴대폰번호를 입력해주세요");
-		document.joinform.hp3.focus();
-		return false;	// 동작 중지
-		}
-
-		// 이메일 입력확인
-		if (!document.joinform.email1.value) {
-		alert("이메일을 입력해주세요");
-		document.joinform.email1.focus();
-		return false;	// 동작 중지
-		}
-		if (!document.joinform.email2.value) {
-		alert("이메일을 입력해주세요");
-		document.joinform.email2.focus();
-		return false;	// 동작 중지
-		}
-	}
-	</script>
 	
 	<style>
 		.slider-con img {
@@ -249,7 +154,12 @@
                 <div id="section2">
                     <div id="s2_inner">
                         <div class="join" >
-                            <form name="joinform" action="joinAction.jsp" method="post" onsubmit="return inputChk()">   <!-- post : 노출x / get : 노출o -->
+                            <form name="joinform" action="joinAction.cc" method="post" 
+                            		onsubmit="return signIncheck()">   <!-- post : 노출x / get : 노출o -->
+								
+								<!-- 2-1. 중복확인 -->
+                                <input type="hidden" name="hiddenUserid" value="0">
+								
 								<table>
                                     <tr>
                                         <th>
@@ -257,8 +167,8 @@
 											
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="userId" name="userid" size="20" placeholder="공백없이 20자이내로 작성" style="width: 225px;" autofocus>    <!-- placeholder : 힌트 -->
-											<input type="button" size="20" value="중복확인" style="font-size: 15px;  width: 70px; height: 40px; color: #000 !important; padding-top: 0.5px ">
+                                            <input type="text" class="input" id="userId" name="userid" size="20" placeholder="공백없이 20자이내로 작성" style="width: 225px;" autofocus required>    <!-- placeholder : 힌트 -->
+											<input type="button" size="20" value="중복확인" style="font-size: 15px;  width: 70px; height: 40px; color: #000 !important; padding-top: 0.5px" onclick="confirmId()">
 										</td>
                                     </tr>
 
@@ -267,7 +177,7 @@
 											<label for="userPwd" style="color: #ffffff !important;">비밀번호</label>
 										</th>
                                         <td>
-                                            <input type="password" class="input" id="userPwd" name="userpwd" size="20" placeholder="영숫자 8자이상" >   
+                                            <input type="password" class="input" id="userPwd" name="userpwd" size="20" placeholder="영숫자 8자이상" required>   
                                         </td>
                                     </tr>
 
@@ -276,7 +186,7 @@
                                         	<label for="userRePwd" style="color: #ffffff  !important;">비밀번호<br>(확인)</label>
 										</th>
                                         <td>
-                                            <input type="password" class="input" id="userRePwd" name="userrepwd" size="20" placeholder="비밀번호 확인" >    
+                                            <input type="password" class="input" id="userRePwd" name="userrepwd" size="20" placeholder="비밀번호 확인" required>    
                                         </td>
                                     </tr>
 
@@ -285,7 +195,7 @@
                                         	<label for="userName" style="color: #ffffff  !important;"> 이름 </label>
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="userName" name="username" size="20" placeholder="이름 작성" >    
+                                            <input type="text" class="input" id="userName" name="username" size="20" placeholder="이름 작성" required>    
                                         </td>
                                     </tr>
 
@@ -294,7 +204,7 @@
                                         	<label for="brithDay" style="color: #ffffff  !important;"> 생년월일 </label>
 										</th>
                                         <td>
-                                            <input type="date" class="input" id="brithDay" name="birthday" size="10" placeholder="생년월일 8자리" >   
+                                            <input type="date" class="input" id="brithDay" name="birthday" size="10" placeholder="생년월일 8자리" required>   
                                         </td>
                                     </tr>
 
@@ -304,36 +214,36 @@
 											<label for="Hp1" style="color: #ffffff  !important;">  주소</label>
 										</th>
 										<td style="border-bottom: none; ">
-											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px; "  >  
+											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px; " required >  
 											-
-											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;"  > 
+											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;" required > 
 											<input type="button" class="input" name="post3" size="4" style="width: 90px; padding-right: 10px; height: 30px; color: #000000  !important; font-size: 90%;" value="우편번호▶" onclick="location.href='https://www.epost.go.kr/search.RetrieveNewAddressNewZipCdList.comm'" >   
 										</td>
 									</tr>
 									
 									<tr>
 										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%; ">
-											<input type="text" class="input" name="adress1" size="8" style="width: 73%; height: 80%;">&nbsp;기본주소
+											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;" required>&nbsp;기본주소
 										</td>
 									</tr>
 										
 									<tr>
 										<td style="color: #000000  !important; font-size: 90%;">
-											<input type="text" class="input" name="adress2" size="8" style="width: 73%; height: 80%;">&nbsp;나머지주소
+											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;"required>&nbsp;나머지주소
 
 										</td>
 									</tr>
 
                                     <tr>
 										<th>
-                                        	<label for="Hp1" style="color: #ffffff  !important;">  연락처</label>
+                                        	<label for="Hp1" style="color: #ffffff  !important;">연락처</label>
 										 </th>
                                         <td>
-                                            <input type="text" class="input" id="Hp1" name="hp1" size="3" style="width: 75px"  >  
+                                            <input type="text" class="input" id="phone1" name="phone1" size="3" style="width: 75px"  >  
                                             -
-                                            <input type="text" class="input" name="hp2" size="4" style="width: 95px"  > 
+                                            <input type="text" class="input" name="phone2" size="4" style="width: 95px"  > 
                                             -
-                                            <input type="text" class="input" name="hp3" size="4" style="width: 95px"  >   
+                                            <input type="text" class="input" name="phone3" size="4" style="width: 95px"  >   
                                         </td>
                                     </tr>
 
@@ -342,10 +252,10 @@
                                         	<label for="Email1" style="color: #ffffff  !important;"> 이메일</label> 
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" style="width: 70px">    
+                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" style="width: 70px" required>    
                                             @
-                                            <input type="text" class="input" name="email2" maxlength="20" style="width: 100px" >   
-                                            <select class="input" name="email3" style="width: 100px; color: #000 !important;">
+                                            <input type="text" class="input" name="email2" maxlength="20" style="width: 100px" required>   
+                                            <select class="input" name="email3" style="width: 100px; color: #000 !important;" onchange="selectEmailChk()">
                                                 <option value="0">직접입력</option>
                                                 <option value="naver.com">네이버</option>
                                                 <option value="google.com">구글</option>

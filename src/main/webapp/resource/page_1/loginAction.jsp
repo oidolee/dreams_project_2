@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 윤석무 -->
@@ -171,28 +172,63 @@ input:focus {
 								</div>
 							</div>
 							<form name="loginform" action="loginAction.cc" method="post">
-								<table style="display: flex; justify-content: center;">
-									<tr>
-										<td><input type="text" class="input" name="userid" title="아이디" placeholder="아이디" autofocus onclick="checkForm" required>
-										</td>
-									</tr>
-
-									<tr>
-										<td>
-											<input type="password" class="input" name="userpwd" title="비밀번호" placeholder="비밀번호" required>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<button type="submit">로그인</button> 
-											<div style="display: flex; justify-content: center;">
-												<a href="join.cc" style="padding-right: 15px;"> <strong>회원가입</strong></a> 
-												<a href="login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
-												<a href="login_pwd.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
-											</div>
-										</td>
-									</tr>
-								</table>
+								<c:if test="${sessionScope.sessionID == null}">	<!-- 세션이 없는 경우 : 로그인 실패 -->
+									<table style="display: flex; justify-content: center;">
+										<tr>
+	                                        <td colspan="2" align="center">
+	                                        	<h3 style="color: red !important; padding-bottom: 15px; margin-top: -20px; font-size:25px;">
+	                                        		<%
+	                                        			out.print("아이디나 비밀번호가 존재하지 않습니다.!!");
+	                                        		%>
+	                                        	</h3>
+	                                        </td>
+	                                    </tr>
+	                                    
+										<tr>
+											<td><input type="text" class="input" name="userid" title="아이디" placeholder="아이디" autofocus onclick="checkForm">
+											</td>
+										</tr>
+	
+										<tr>
+											<td>
+												<input type="password" class="input" name="password" title="비밀번호" placeholder="비밀번호">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button type="submit">로그인</button> 
+												<div style="display: flex; justify-content: center;">
+													<a href="join.cc" style="padding-right: 15px;"> <strong>회원가입</strong></a> 
+													<a href="login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
+													<a href="login_pwd.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</c:if>
+								
+								<c:if test="${sessionScope.sessionID != null}">	<!-- 세션이 있는 경우 : 로그인 성공 -->
+									<table style="display: flex; justify-content: center;">
+										<tr>
+	                                        <td colspan="2" align="center">
+	                                        	<h3 style="color: black !important; font-size:28px;">
+	                                        		<span><b style="color: black !important;" >${sessionID}</b></span>님 반갑습니다.
+	                                        	</h3>
+	                                        </td>
+	                                    </tr>
+	                                    
+	                                    <tr>
+	                                        <td colspan="2" style="border-bottom: none">
+	                                            <br>
+	                                            <div align="center">
+	                                                <input class="inputButton" type="button" value="회원수정" onclick="window.location='modifyCustomer.cc'">
+	                                                <input class="inputButton" type="button" value="회원탈퇴" onclick="window.location='deleteCustomer.cc'">
+	                                                <input class="inputButton" type="button" value="로그아웃" onclick="window.location='logout.cc'">
+	                                            </div>
+	                                        </td>
+	                                    </tr>
+									</table>
+								</c:if>
 							</form>
 							<hr id="blackline" style="margin-top: 50px; color: black !important; opacity: 1;">
 						</div>
