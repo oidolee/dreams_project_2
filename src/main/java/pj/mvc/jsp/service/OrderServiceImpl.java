@@ -11,10 +11,13 @@ import pj.mvc.jsp.dao.OrderDAOImpl;
 import pj.mvc.jsp.dto.RefundDTO;
 
 public class OrderServiceImpl implements OrderService {
-
+	
+	// 내 주문내역 조회
+	
 	// 상품 환불/교환 신청서 제출
 	@Override
-	public void productRefund(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public void productRefund(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
 		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달	
 		// DTO 생성
 		RefundDTO dto = new RefundDTO();
@@ -23,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 		dto.getREF_No();
 		
 		// 주문번호(구매당시)
-		dto.getOrder_No();
+		int order_No = Integer.parseInt(req.getParameter("order_No"));
 		
 		// 아이디
 		dto.getREF_cust_Id();
@@ -55,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
 		// 환불/교환 신청일
 		dto.getREF_Date();
 		
-		// 1: 환불, 2: 교환
+		// 상태 1: 환불, 2: 교환
 		dto.getREF_isExchan();
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -63,9 +66,6 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 5단계. 환불신청서 제출
 		dao.submissionRefund(dto);
-		
-		// 6단계. jsp로 처리결과 전달
-			
 			
 	}
 	

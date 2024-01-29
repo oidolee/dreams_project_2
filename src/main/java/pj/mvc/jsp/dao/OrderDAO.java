@@ -1,6 +1,5 @@
 package pj.mvc.jsp.dao;
 
-import pj.mvc.jsp.dto.OrderDTO;
 import pj.mvc.jsp.dto.RefundDTO;
 
 public interface OrderDAO {

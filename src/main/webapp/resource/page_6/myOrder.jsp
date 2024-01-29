@@ -123,43 +123,39 @@
                         <th scope="col">선택</th>
                         <th scope="col">주문번호</th>
                         <th scope="col">사진</th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">가격</th>
-                        <th scope="col">구매일자</th>
-                        <th scope="col">배송</th>
+                        <th scope="col">주문 내역</th>
+                        <th scope="col">결제 금액</th>
+                        <th scope="col">구매일</th>
+                        <th scope="col">상태</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider" style="vertical-align: middle !important">
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball1"> </label></td>
+                        <td><label><input type="radio" name="goods" value="ball1"> </label></td>
                         <td>20240107A001</td>
                         <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
+                        <td>로고볼(소)등 2건</td>
                         <td>5000원</td>
                         <td>2024년 1월 7일</td>
                         <td>배송완료</td>
                       </tr>
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball2"> </label></td>
+                        <td><label><input type="radio" name="goods" > </label></td>
                         <td>20240107A002</td>
                         <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
-                        <td>2024년 1월 7일</td>
+                        <td>야구배트 등 3건 </td>
+                        <td>74000원</td>
+                        <td>2024년 1월 15일</td>
                         <td>배송완료</td>
                       </tr>
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball3"> </label></td>
+                        <td><label><input type="radio" name="goods" value="ball3"> </label></td>
                         <td>20240107A003</td>
                         <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
+                        <td>야구글러브 등 4건</td>
+                        <td>52000원</td>
+                        <td>2024년 1월 29일</td>
+                        <td>배송중</td>
                       </tr>
                     </tbody>
                 </table>
