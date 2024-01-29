@@ -173,6 +173,7 @@ input:focus {
 							</div>
 							<form name="loginform" action="loginAction.cc" method="post">
 								<c:if test="${sessionScope.sessionID == null}">	<!-- 세션이 없는 경우 : 로그인 실패 -->
+								
 									<table style="display: flex; justify-content: center;">
 										<tr>
 	                                        <td colspan="2" align="center">
@@ -191,7 +192,7 @@ input:focus {
 	
 										<tr>
 											<td>
-												<input type="password" class="input" name="password" title="비밀번호" placeholder="비밀번호">
+												<input type="password" class="input" name="userpwd" title="비밀번호" placeholder="비밀번호">
 											</td>
 										</tr>
 										<tr>
@@ -208,6 +209,7 @@ input:focus {
 								</c:if>
 								
 								<c:if test="${sessionScope.sessionID != null}">	<!-- 세션이 있는 경우 : 로그인 성공 -->
+									
 									<table style="display: flex; justify-content: center;">
 										<tr>
 	                                        <td colspan="2" align="center">
