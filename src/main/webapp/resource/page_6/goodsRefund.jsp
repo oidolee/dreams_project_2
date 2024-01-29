@@ -52,7 +52,22 @@
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
         })
-
+        
+        // 환불 버튼 (REF_isExChan == 1 )
+        $(function() {
+        	$('#refund_btn').click(function() {
+        		var REF_isExChan = 1;
+        	});
+        });
+        
+        
+     	// 교환 버튼 (REF_isExChan == 2 )
+		$(function() {
+        	$('#exchange_btn').click(function() {
+        		var REF_isExChan = 2
+        	});
+        });
+     	
     </script>
     <style>
         .slider-con img{
@@ -161,39 +176,39 @@
                 <br><br>
                 <table class="form">
                     <tr>
-                        <th align="center"><label for="orderNo">주문번호</label></th>
-                        <td align="left"><input type="text" id="orderNo" name="orderNo" size="65" required></td>
+                        <th align="center"><label for="order_No">주문번호</label></th>
+                        <td align="left"><input type="text" id="order_No" name="order_No" size="65" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="orderName">성명</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
+                        <th align="center"><label for="REF_Name">성명</label></th>
+                        <td align="left"><input type="text" id="REF_Name" name="REF_Name" size="65" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="orderName">연락처</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
+                        <th align="center"><label for="REF_Phone">연락처</label></th>
+                        <td align="left"><input type="text" id="REF_Phone" name="REF_Phone" size="65" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="orderAddress">주소</label></th>
-                        <td align="left"><input type="text" id="orderAddress" name="orderAddress" size="65" required></td>
+                        <th align="center"><label for="REF_Address">주소</label></th>
+                        <td align="left"><input type="text" id="REF_Address" name="REF_Address" size="65" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="goods_name">상품명</label></th>
-                        <td align="left"><input type="text" id="goods_name" name="goods_name" size="65" required></td>
+                        <th align="center"><label for="REF_Prod_Name">상품명</label></th>
+                        <td align="left"><input type="text" id="REF_Prod_Name" name="REF_Prod_Name" size="65" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="goods_cnt">개수</label></th>
-                        <td align="left"><input type="text" id="goods_cnt" name="goods_cnt" size="3" required></td>
+                        <th align="center"><label for="REF_Prod_qty">개수</label></th>
+                        <td align="left"><input type="text" id="REF_Prod_qty" name="REF_Prod_qty" size="3" required></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="userMessage"> 교환/환불 사유 </label></th>
-                        <td align="left"><textarea name="user_message" id="userMessage" cols="66" rows="5"></textarea></td>
+                        <th align="center"><label for="REF_Reason"> 교환/환불 사유 </label></th>
+                        <td align="left"><textarea name="REF_Reason" id="REF_Reason" cols="66" rows="5"></textarea></td>
                     </tr>
                     <tr>
                         <td align="center"><label for="attachFile"> 파일 첨부 </label></td>
                         <td align="left"><input type="file"></td>
                     </tr>
                     <tr>
-                        <th align="center"><label for="refundAccount"> 환불시 계좌 번호</label></th>
+                        <th align="center"><label for="REF_Account"> 환불시 계좌 번호</label></th>
                         <td align="left">
                             <select name="bank" style="width:100px" >
                                 <option value="keb">국민은행</option>
@@ -201,14 +216,14 @@
                                 <option value="woori">우리은행</option>
                                 <option value="kakao">카카오뱅크</option>
                             </select>
-                            <input type="text" id="refundAccount" name="refundAccount" size="50" required>
+                            <input type="text" id="REF_Account" name="REF_Account" size="50" required>
                         </td>		
                     </tr>
                     <tr>
                         <td colspan="2"><br>
                             <div align = "center">
-                                <button class="btn btn-primary" type="button" style="color: #fff !important;">상품환불</button>
-                                <button class="btn btn-primary" type="button" style="color: #fff !important;">상품교환</button>
+                                <button id=refund_btn class="btn btn-primary" type="button" style="color: #fff !important;">상품환불</button>
+                                <button id=exchange_btn class="btn btn-primary" type="button" style="color: #fff !important;">상품교환</button>
                                 <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
                             </div>
                         </td>	

@@ -111,19 +111,19 @@
 
         <!-- 내 주문 내역 시작 -->
         <div class="mypage">
-            <h2 style="color: #000 !important; font-weight: bold;"> <br>내 주문 내역<br><br> </h2>
+            <h2 style="color: #000 !important; font-weight: bold;"> <br>내가 구매한 티켓<br><br> </h2>
             
-            <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지</button></a><br><br>
+            <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지로</button></a><br><br>
             
-            
-            <h4 style="color: #000 !important; font-weight: bold;"> <br> 최근 구매한 상품 <br><br></h4>
+            <h4 style="color: #000 !important; font-weight: bold;"> <br>최근 구매한 티켓 <br><br></h4>
                 <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">선택</th>
                         <th scope="col">주문번호</th>
-                        <th scope="col">사진</th>
-                        <th scope="col">상품명</th>
+                        <th scope="col">경기 일자</th>
+                        <th scope="col">좌석</th>
+                        <th scope="col">구분</th>
                         <th scope="col">수량</th>
                         <th scope="col">가격</th>
                         <th scope="col">구매일자</th>
@@ -132,42 +132,67 @@
                     </thead>
                     <tbody class="table-group-divider" style="vertical-align: middle !important">
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball1"> </label></td>
-                        <td>20240107A001</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
+                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
+                        <td>20240107T001</td>
+                        <td>2024년 4월 3일</td>
+                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot12.png">외야지정석</td>
+                        <td>일반</td>
+                        <td>3개</td>
+                        <td>39,000원</td>
                         <td>2024년 1월 7일</td>
                         <td>배송완료</td>
                       </tr>
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball2"> </label></td>
-                        <td>20240107A002</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
+                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
+                        <td>20240107T002</td>
+                        <td>2024년 4월 3일</td>
+                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot01.png">R.d club(로얄다이아몬드클럽)</td>
+                        <td>일반</td>
+                        <td>2개</td>
+                        <td>170,000원</td>
                         <td>2024년 1월 7일</td>
                         <td>배송완료</td>
                       </tr>
                       <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball3"> </label></td>
-                        <td>20240107A003</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
+                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
+                        <td>20240107T003</td>
+                        <td>2024년 4월 3일</td>
+                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot03.png">1층 테이블석</td>
+                        <td>일반</td>
+                        <td>2개</td>
+                        <td>150,000원</td>
                         <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
+                        <td>결제완료</td>
                       </tr>
+                      <tr>
+                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
+                        <td>20240107T004</td>
+                        <td>2024년 4월 3일</td>
+                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot04.png">2층 테이블석</td>
+                        <td>일반</td>
+                        <td>3개</td>
+                        <td>150,000원</td>
+                        <td>2024년 1월 7일</td>
+                        <td>배송중</td>
+                      </tr>
+                      <tr>
+                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
+                        <td>20240107T005</td>
+                        <td>2024년 4월 3일</td>
+                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot05.png">내야커플석</td>
+                        <td>일반</td>
+                        <td>2개</td>
+                        <td>90,000원</td>
+                        <td>2024년 1월 7일</td>
+                        <td>배송중</td>
+                      </tr>
+                      
                     </tbody>
-                </table>
+                </table><br>
 
-                <div class="mypage-button">
-                    <button class="btn btn-primary" type="button" style="color: #fff !important;">구매확정</button>
-                    <a href="${path}/goodsRefund.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">교환/환불</button></a>
-                </div>    
+            <a class="btn btn-primary" href="${path}/ticketRefund.oc" role="button" style="color: aliceblue !important; ">티켓 환불</a><br><br>
+
+            
 
         </div>
 

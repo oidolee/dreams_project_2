@@ -62,7 +62,7 @@
         }
         
         .card {
-        	width: 18rem; 
+        	width: 15rem; 
          	text-align: center;
             margin: 30px;
             padding-top: 80px;
@@ -96,27 +96,34 @@
         
         <div class="card-list" style="text-align:center">
             <div class="card" >
-                <i class="fa-solid fa-user-pen fa-5x"></i>
+                <i class="fa-solid fa-user-pen fa-3x"></i>
                 <div class="card-body">
                 <h5 class="card-title">회원 정보 수정</h5>
                 <p class="card-text"></p>
                 <a href="${path}/modifyMember.oc" class="btn btn-primary">바로가기</a>
                 </div>
-                
             </div>
 
             <div class="card" >
-                <i class="fa-solid fa-cart-flatbed fa-5x"></i>
+                <i class="fa-solid fa-cart-flatbed fa-3x"></i>
                 <div class="card-body">
                 <h5 class="card-title">내 주문 내역</h5>
                 <p class="card-text"></p>
                 <a href="${path}/myOrder.oc" class="btn btn-primary">바로가기</a>
                 </div>
-                
             </div>
-
+			
+			<div class="card" >
+                <i class="fa-solid fa-ticket fa-3x"></i>
+                <div class="card-body">
+                <h5 class="card-title">내 티켓</h5>
+                <p class="card-text"></p>
+                <a href="${path}/myTicket.oc" class="btn btn-primary">바로가기</a>
+                </div>
+            </div>
+            
             <div class="card" >
-                <i class="fa-solid fa-trash-can fa-5x"></i>
+                <i class="fa-solid fa-trash-can fa-3x"></i>
                 <div class="card-body">
                 <h5 class="card-title">회원 탈퇴</h5>
                 <p class="card-text"></p>
