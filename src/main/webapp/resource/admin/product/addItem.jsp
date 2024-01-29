@@ -91,7 +91,7 @@
     <form id="addItemForm">
         <label for="productImage">상품 이미지:</label>
         <div id="displayProductImage"></div>
-        <input type="file" id="productImage" name="productImage" onchange="displayImageAsync(this, document.getElementById('displayProductImage'))">
+        <input type="text" id="productImage" name="productImage" onchange="displayImageAsync(this, document.getElementById('displayProductImage'))">
         <br>
 
         <label for="productName">상품 이름:</label>
