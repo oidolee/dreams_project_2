@@ -15,6 +15,7 @@
     <title>드림즈 관리자</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="resource/admin/css/styles.css" rel="stylesheet" />
+    <link href="resource/admin/css/ticket.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- chartJs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
@@ -99,6 +100,7 @@
             transform: translateY(10px);
         }
     }
+    
     </style>
 
     <script>
@@ -118,41 +120,42 @@
         $(function(){ // 티켓 가격 수정
         	$('#btnInsert').click(function(){
         		
-        		const insertSeat = $("#insertSeat").val();
+        		/* const insertSeat = $("#insertSeat").val();
         		const insertPrice-normal = $("#insertPrice-normal").val();
     			const insertPrice-membership = $("#insertPrice-membership").val();
     			const insertPrice-child = $("#insertPrice-child").val();
     			
     			
     			
-    			if(insertSeat == ""){
+    			 if(insertSeat == ""){
     				alert("좌석명을 입력하시오.");
     				$("#insertSeat").focus();
     				return false;
     			}
-    			if(insertPrice-normal == 0){
+    			if(insertPrice-normal == ""){
     				alert("일반 가격을 입력하시오.");
     				$("#insertPrice-normal").focus();
     				return false;
     			}
     			
-    			if(insertPrice-membership == 0){
+    			if(insertPrice-membership == ""){
     				alert("멤버쉽 가격을 입력하시오");
     				$("#insertPrice-membership").focus();
     				return false;
     			}
     			
-    			if(insertPrice-child ==0){
+    			if(insertPrice-child == ""){
     				alert("어린이 가격을 입력하시오");
     				$("#insertPrice-child").focus();
     				return false;
-    			}
+    			}  */
     			
     			//alert("수정 페이지 - btnEdit");
     			document.ticket_insertForm.action="${path}/insertTicket.tc"; 
     			document.ticket_insertForm.submit();
         		
         	});
+        });
     </script>
 </head>
 <body class="sb-nav-fixed">
@@ -169,32 +172,30 @@
             <main>
              	<div class="purchase">
 				        <div class="elements">
-				            <h3>가격</h3>
+				            <h3 align="center">티켓 추가</h3>
 				            <form name = "ticket_insertForm" method="post">
-							<table border="1" style="width: 416.55px;">
+							<table border="1" id="ticketIns" style="width:1000px;">
 								<tr style="border: 1">
-									<td colspan="4" style="border: 1">
-										<strong>좌석</strong>
+									<td colspan="2">
+									좌석
 									</td>
-									<td colspan="2" style="border: 1">
-										<input id="insertSeat" name="insertSeat" type="text" style="width: 100px;" placeholder="좌석 이름을 정해주세요." >석
+									<td colspan="2">
+										<input id="insertSeat" name="insertSeat" type="text" style="width: 300px;" placeholder="좌석 이름을 정해주세요." >
 									</td>
 	             				 </tr>
 	                            <tr>
 	                                <td style="background: whitesmoke; border: 1">기본가</td>
-	                                <td>가격</td>
-	                                <td><input id="insertPrice-normal" name="insertPrice-normal" type="text" style="width: 100px;" placeholder="일반 좌석 가격을 정해주세요.">원</td>
+	                                <td>일반 가격</td>
+	                                <td><input id="insertPrice-normal" name="insertPrice-normal" type="text" style="width: 300px;" placeholder="일반 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
-	                                <td rowspan="2" style="background: whitesmoke;">기본할인</td>
-	                                <td>멤버쉽</td>
-	                                <td>가격</td>
-	                                <td><input id="insertPrice-membership" name="insertPrice-membership" type="text" style="width: 100px;" placeholder="멤버쉽 좌석 가격을 정해주세요.">원</td>
+	                                <td rowspan="2" style="background: whitesmoke; border: 1">기본할인</td>
+	                                <td>멤버쉽 가격</td>
+	                                <td><input id="insertPrice-membership" name="insertPrice-membership" type="text" style="width: 300px;" placeholder="멤버쉽 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
-	                                <td>듬린이</td>
-	                                <td>가격</td>
-	                                <td><input id="insertPrice-child" name="insertPrice-child" type="text"  style="width: 100px;" placeholder="어린이 좌석 가격을 정해주세요.">원</td>
+	                                <td style="border: 1px solid black">듬린이 가격</td>
+	                                <td><input id="insertPrice-child" name="insertPrice-child" type="text"  style="width: 300px;" placeholder="어린이 좌석 가격을 정해주세요.">원</td>
 	                            </tr>
 	                            <tr>
 	                                <td colspan="5" align="center">

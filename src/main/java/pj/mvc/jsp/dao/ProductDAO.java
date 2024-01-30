@@ -1,8 +1,16 @@
 package pj.mvc.jsp.dao;
 
+import java.util.List;
+
 import pj.mvc.jsp.dto.ProductDTO;
 
 public interface ProductDAO {
+	
+	//  상품 목록
+	public List<ProductDTO> productList(int start, int end);
+	
+	// 상품 목록 갯수 구하기
+	public int productCnt();
 	
 	// 2. 상품 등록
 	public int insertProduct(ProductDTO dto);

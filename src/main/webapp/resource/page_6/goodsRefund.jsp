@@ -52,7 +52,23 @@
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
         })
-
+        
+        function selectBankChk(){
+            
+            if(document.refundForm.REF_Account1.value == 0) {  // 직접입력인 경우
+               document.refundForm.REF_Account2.value = "";
+               document.refundForm.REF_Account2.focus();
+               return false;
+            }
+            else {
+               document.refundForm.REF_Account2.value = document.refundForm.REF_Account1.value;
+               return false;
+            }
+        }
+        
+     	
+     	
+     	
     </script>
     <style>
         .slider-con img{
@@ -159,65 +175,101 @@
                 <br>
                 <h2 style="color:#000 !important; font-weight: bold;">교환/환불 신청서</h2>
                 <br><br>
-                <table class="form">
-                    <tr>
-                        <th align="center"><label for="orderNo">주문번호</label></th>
-                        <td align="left"><input type="text" id="orderNo" name="orderNo" size="65" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="orderName">성명</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="orderName">연락처</label></th>
-                        <td align="left"><input type="text" id="orderName" name="orderName" size="65" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="orderAddress">주소</label></th>
-                        <td align="left"><input type="text" id="orderAddress" name="orderAddress" size="65" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="goods_name">상품명</label></th>
-                        <td align="left"><input type="text" id="goods_name" name="goods_name" size="65" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="goods_cnt">개수</label></th>
-                        <td align="left"><input type="text" id="goods_cnt" name="goods_cnt" size="3" required></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="userMessage"> 교환/환불 사유 </label></th>
-                        <td align="left"><textarea name="user_message" id="userMessage" cols="66" rows="5"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><label for="attachFile"> 파일 첨부 </label></td>
-                        <td align="left"><input type="file"></td>
-                    </tr>
-                    <tr>
-                        <th align="center"><label for="refundAccount"> 환불시 계좌 번호</label></th>
-                        <td align="left">
-                            <select name="bank" style="width:100px" >
-                                <option value="keb">국민은행</option>
-                                <option value="hana">하나은행</option>
-                                <option value="woori">우리은행</option>
-                                <option value="kakao">카카오뱅크</option>
-                            </select>
-                            <input type="text" id="refundAccount" name="refundAccount" size="50" required>
-                        </td>		
-                    </tr>
-                    <tr>
-                        <td colspan="2"><br>
-                            <div align = "center">
-                                <button class="btn btn-primary" type="button" style="color: #fff !important;">상품환불</button>
-                                <button class="btn btn-primary" type="button" style="color: #fff !important;">상품교환</button>
-                                <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
-                            </div>
-                        </td>	
-                    </tr>
-                    
-                    
-                </table>
-
-
+                <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
+                	
+                	<input type="hidden" name="REF_cust_Id" value="임시로 채워놓음">
+                	<input type="hidden" name="REF_Prod_No" value="9999">
+                	
+	                <table class="form">
+	                    <tr>
+	                        <th align="center"><label for="order_No">주문번호</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="order_No" name="order_No" size="65" required autofocus>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Name">성명</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Name" name="REF_Name" size="65" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Phone">연락처</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Phone" name="REF_Phone" size="65" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Address">주소</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Address" name="REF_Address" size="65" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Prod_Name">상품명</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Prod_Name" name="REF_Prod_Name" size="65" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Prod_qty">개수</label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Prod_qty" name="REF_Prod_qty" size="3" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Status"> 교환/환불 </label></th>
+	                        <td align="left" style="color:black !important">
+	                        	<input type="radio" id="REF_Status" name="REF_Status" value="교환"> 교환
+	                        	<input type="radio" id="REF_Status" name="REF_Status" value="환불"> 환불
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Reason"> 교환/환불 사유 </label></th>
+	                        <td align="left">
+	                        	<textarea name="REF_Reason" id="REF_Reason" cols="66" rows="5"></textarea>
+	                        </td>
+	                    </tr>
+	                    
+	                    <!-- <tr>
+	                        <td align="center"><label for="attachFile"> 파일 첨부 </label></td>
+	                        <td align="left"><input type="file"></td>
+	                    </tr> -->
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Account"> 환불시 계좌 번호</label></th>
+	                        <td align="left">
+	                            <select name="REF_Account1" style="width:100px" onchange="selectBankChk()" >
+	                                <option value="">은행선택</option>
+	                                <option value="국민은행">국민은행</option>
+	                                <option value="하나은행">하나은행</option>
+	                                <option value="우리은행">우리은행</option>
+	                                <option value="카카오뱅크">카카오뱅크</option>
+	                                <option value="0">직접입력</option>
+	                            </select>
+	                            <input type="text" id="REF_Account2" name="REF_Account2" size="15" required>
+	                            <input type="text" id="REF_Account3" name="REF_Account3" size="30" required placeholder="-없이 숫자만 입력"> 
+	                        </td>		
+	                    </tr>
+	                    
+	                    <tr>
+	                        <td colspan="2"><br>
+	                            <div align = "center">
+	                                <button id=refund_btn class="btn btn-primary" type="submit" style="color: #fff !important;">교환/환불</button>
+	                                <a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+	                            </div>
+	                        </td>	
+	                    </tr>
+	                    
+	                </table>
+				</form>	
             </div>
         </div>
         <!-- 상단 이동버튼 -->

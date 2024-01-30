@@ -202,7 +202,7 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "DELETE DR_ticket"
+			String sql = "DELETE "
 					+ "   FROM DR_ticket "
 					+ " WHERE ticket_seat = ?";
 					
@@ -231,6 +231,41 @@ public class TicketDAOImpl implements TicketDAO {
 	
 	// 티켓 추가
 	public int ticketInsert(TicketDTO tdto) {
-		return 0;
+		System.out.println("TicketDAOImpl - ticketInsert");
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int insertCnt = 0;
+		
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "INSERT INTO DR_ticket (ticket_seat, ticket_grade_normal, ticket_grade_membership, ticket_grade_child)"
+					+ "   VALUES(?, ?, ?, ?) ";
+					
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, tdto.getTicket_seat());
+			pstmt.setInt(2, tdto.getTicket_grade_normal());
+			pstmt.setInt(3, tdto.getTicket_grade_membership());
+			pstmt.setInt(4, tdto.getTicket_grade_child());
+			
+			
+			insertCnt = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return insertCnt;
 	}
 }

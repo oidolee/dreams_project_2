@@ -25,4 +25,12 @@ public interface BoardService {
 	// 게시글 수정
 	public void boardEdit(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
+
+	// 게시글 삭제
+	public void boardDelete(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+	
+	// 게시글 조회
+	public void boardSearch(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
 }

@@ -253,7 +253,7 @@
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 아이디 </th>
                                         <td>
-                                            <input type="text" class="input" id="userId" name="userid" size="20" placeholder="hong123" disabled >    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="userId" name="userid" size="20" value="${dto.getCust_Id()}" disabled >    <!-- placeholder : 힌트 -->
                                         </td>
                                     </tr>
 
@@ -279,14 +279,14 @@
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 이름 </th>
                                         <td>
-                                            <input type="text" class="input" id="userName" name="username" size="20" placeholder="홍길동" disabled>    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="userName" name="username" size="20" value="${dto.getCust_Name()}" disabled>    <!-- placeholder : 힌트 -->
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 생년월일 </th>
                                         <td>
-                                            <input type="text" class="input" id="brithDay" name="birthday" size="8" placeholder="1995-01-05" disabled>    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="brithDay" name="birthday" size="8" value="${dto.getCust_Birth()}" disabled>    <!-- placeholder : 힌트 -->
                                         </td>
                                     </tr>
 
@@ -322,11 +322,22 @@
                                         	<label for="Hp1" style="color: #ffffff  !important;">  연락처</label>
 										 </th>
                                         <td>
-                                            <input type="text" class="input" id="Hp1" name="hp1" size="3" style="width: 75px"  >  
-                                            -
-                                            <input type="text" class="input" name="hp2" size="4" style="width: 95px"  > 
-                                            -
-                                            <input type="text" class="input" name="hp3" size="4" style="width: 95px"  >   
+                                        	<c:if test="${dto.getCust_Phone() == null}">
+	                                            <input type="text" class="input" id="Hp1" name="hp1" size="3" style="width: 75px"  >  
+	                                            -
+	                                            <input type="text" class="input" name="hp2" size="4" style="width: 95px"  > 
+	                                            -
+	                                            <input type="text" class="input" name="hp3" size="4" style="width: 95px"  >   
+                                        	</c:if>
+                                        	
+                                        	<c:if test="${dto.getCust_Phone() != null}">
+                                        		<c:set var="phArr" value="${fn:split(dto.getCust_Phone(), '-')}" />
+		                                            <input type="text" class="input" id="Hp1" name="hp1" size="3" style="width: 75px" value="${phArr[0]}" >  
+		                                            -
+		                                            <input type="text" class="input" name="hp2" size="4" style="width: 95px" value="${phArr[1]}" > 
+		                                            -
+		                                            <input type="text" class="input" name="hp3" size="4" style="width: 95px" value="${phArr[2]}" >   
+                                        	</c:if>
                                         </td>
                                     </tr>
 
@@ -335,10 +346,11 @@
                                         	<label for="Email1" style="color: #ffffff  !important;"> 이메일</label> 
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" style="width: 70px">    
+                                        	<c:set var="emailArr" value="${fn:split(dto.getCust_Email(), '@')}" />
+                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" value="${emailArr[0]}" style="width: 70px">    
                                             @
-                                            <input type="text" class="input" name="email2" maxlength="20" style="width: 100px" >   
-                                            <select class="input" name="email3" style="width: 100px; color: #000 !important;">
+                                            <input type="text" class="input" name="email2" maxlength="20" value="${emailArr[1]}" style="width: 100px" >   
+                                            <select class="input" name="email3" style="width: 100px; color: #000 !important;" onchange="selectEmailChk_detail()">
                                                 <option value="0">직접입력</option>
                                                 <option value="naver.com">네이버</option>
                                                 <option value="google.com">구글</option>

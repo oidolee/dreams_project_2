@@ -59,7 +59,9 @@ public class BoardDAOImpl implements BoardDAO{
 					+ "                rownum AS rn "   // 일련번호 가져오기 
 					+ "            FROM "
 					+ "                ( "
-					+ "                 SELECT * FROM DR_board "
+					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date "
+					+ "					FROM DR_board "
+					+ "					WHERE show = 'y' "
 					+ "                    ORDER BY board_No DESC "
 					+ "                ) A "
 					+ "        ) "
@@ -216,6 +218,7 @@ public class BoardDAOImpl implements BoardDAO{
 		}		
 	}
 
+	// 게시글 수정
 	@Override
 	public void boardEdit(BoardDTO dto) {
 		System.out.println("BoardDAOImpl - boardEdit");
@@ -225,7 +228,7 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql = "UPDATE DR_board SET board_title = ?, board_Content = ? WHERE board_No = ?;";
+			String sql = "UPDATE DR_board SET board_title = ?, board_Content = ? WHERE board_No = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getBoard_Title());
@@ -244,6 +247,38 @@ public class BoardDAOImpl implements BoardDAO{
 				e.printStackTrace();
 			}
 		}	
+	}
+
+	// 게시글 삭제
+	@Override
+	public void boardDelete(int boardNo) {
+		System.out.println("BoardDAOImpl - boardDelete");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_board "
+					+ " SET show = 'n' "
+					+ " WHERE board_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 
 }

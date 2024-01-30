@@ -79,16 +79,6 @@ public class BoardController extends HttpServlet {
 		}
 		
 		
-		// 드림즈게시판 검색페이지
-		else if(url.equals("/dreamsBoardSearch.bc")) {
-			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
-			viewPage = "resource/page_4/dreamsBoardSearch.jsp";
-			
-			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
-			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-			dispatcher.forward(request, response);
-		}
-		
 		// 드림즈게시판 글쓰기페이지
 		else if(url.equals("/dreamsBoardWrite.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardWrite.bc >>>");
@@ -109,14 +99,50 @@ public class BoardController extends HttpServlet {
 			response.sendRedirect(viewPage);
 		}
 		
-		// 드림즈게시판 게시글 수정처리
+		// 드림즈게시판 게시글 수정페이지
 		else if(url.equals("/dreamsBoardEdit.bc")) {
-			System.out.println("<<< url ==> /dreamsBoardAction.bc >>>");
+			System.out.println("<<< url ==> /dreamsBoardEdit.bc >>>");
+			
+			service.boardDetailAction(request, response);
+			
+			viewPage = "resource/page_4/dreamsBoardEdit.jsp";
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		// 드림즈게시판 게시글 수정처리
+		else if(url.equals("/dreamsBoardEditAction.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardEditAction.bc >>>");
 			
 			service.boardEdit(request, response);
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
 			
-			viewPage = request.getContextPath() + "/dreamsBoardDetail.bc";
+			viewPage = request.getContextPath() + "/dreamsBoardDetail.bc?board_No="+board_No;
 			response.sendRedirect(viewPage);
+		}
+		
+		// 드림즈게시판 게시글 삭제처리
+		else if(url.equals("/dreamsBoardDelete.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardDelete.bc >>>");
+			
+			service.boardDelete(request, response);
+			
+			viewPage = request.getContextPath() + "/dreamsBoard.bc";
+			response.sendRedirect(viewPage);
+		}
+		
+		// 드림즈게시판 검색페이지
+		else if(url.equals("/dreamsBoardSearch.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
+			
+			service.boardSearch(request, response);
+			viewPage = "resource/page_4/dreamsBoardSearch.jsp";
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 		}
 		
 		

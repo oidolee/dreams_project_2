@@ -146,6 +146,13 @@
             transform: translateY(10px);
         }
     }
+    
+    #ticketIns{
+    	width: 960px;
+    }
+    #ticketIns td{
+    	border: 1px solid black;
+    }
     </style>
 
     <script>
@@ -221,9 +228,9 @@
             <main>
              	<div class="purchase">
 				        <div class="elements">
-				            <h3>가격</h3>
+				            <h3 align="center">티켓 가격 수정</h3>
 				            <form name = "ticket_updateForm" method="post">
-							<table border="1" style="width: 416.55px;">
+							<table id="ticketIns">
 								<tr>
 									<td colspan="4">
 										<strong>좌석</strong>

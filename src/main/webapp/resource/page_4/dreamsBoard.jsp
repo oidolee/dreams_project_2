@@ -103,7 +103,7 @@
 	                
 	                <hr id="blackline">
 	                <div style="display: flex; justify-content: right;">
-	                    <input type="text" class="search" name="search" style="height: 30px;">
+	                    <input type="text" class="search" name="search" style="height: 30px;" placeholder="제목 키워드 입력">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
 	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
 	                </div>

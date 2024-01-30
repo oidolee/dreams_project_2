@@ -174,20 +174,14 @@ to {
 								<td><input type="text" class="input" name="product_Name" id="product_Name"
 									size="40" placeholder="상품명을 작성하시오(40자 이내)" required></td>
 							</tr>
-
-							<tr>
-								<th>상품이미지</th>
-								<td><input type="file" class="input" name="pdImage" id="pdImage"
-									size="40"></td>
-							</tr>
-
-
+							
+							
 							<tr>
 								<th>* 판매가격</th>
 								<td><input type="number" class="input" name="product_Price" id="product_Price"
 									size="10" placeholder="상품가격을 작성하시오" required></td>
 							</tr>
-
+							
 							<tr>
 								<th>* 등록수량</th>
 								<td><input type="number" class="input" name="product_Qty" id="product_Qty"
@@ -195,20 +189,27 @@ to {
 							</tr>
 							
 							<tr>
-								<th>상품상세설명 이미지1</th>
-								<td><input type="file" class="input" name="pdDetailImage1" id="pdDetailImage1"
+								<th>상품이미지</th>
+								<td><input type="text" class="input" name="product_ImgName" id="product_ImgName"
+									size="40"></td>
+							</tr>
+
+							<tr>
+								<th>상품 상세 설명 이미지</th>
+								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
 									size="40"></td>
 							</tr>
 							
 							<tr>
-								<th>상품상세설명 이미지2</th>
-								<td><input type="file" class="input" name="pdDetailImage2" id="pdDetailImage2"
+								<th>상품 정보 이미지</th>
+								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
 									size="40"></td>
 							</tr>
+							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
-								<td><input type="file" class="input" name="pdPolicy" id="pdPolicy"
+								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
 									size="40"></td>
 							</tr>
 

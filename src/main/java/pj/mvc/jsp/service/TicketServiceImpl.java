@@ -111,7 +111,7 @@ public class TicketServiceImpl implements TicketService {
 		TicketDTO tdto = new TicketDTO();
 		
 		// 3단계. 화면에서 입력받은 값을 가져온다.
-		String strTicket_seat = req.getParameter("hidden_ticket");
+		String strTicket_seat = req.getParameter("insertSeat");
 		int strTicket_grade_normal = Integer.parseInt(req.getParameter("insertPrice-normal"));
 		int strTicket_grade_membership = Integer.parseInt(req.getParameter("insertPrice-membership"));
 		int strTicket_grade_child = Integer.parseInt(req.getParameter("insertPrice-child"));

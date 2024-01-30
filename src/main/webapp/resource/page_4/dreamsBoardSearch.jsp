@@ -90,19 +90,17 @@
 	                        <col width="100px">
 	                    </colgroup>
 	                    <tbody>
-	                    <c:if test="dto != null">
+	                    <c:forEach var="dto" items="${list}">
 	                    	<tr class="boardtable">
 	                    		<td> 
 	                    		</td>
 	                    		<td class="boardtitle">
-	                    			<a href="">드림즈 화이팅!!</a>
+	                    			<a href="dreamsBoardDetail.bc?board_No=${dto.board_No}">${dto.board_Title}</a>
 	                    		</td>
-	                    		<td class="name">
-	                    			"남궁민 (namgung**)"
-	                    		</td>
-	                    		<td class="date">2024.01.03</td>
+	                    		<td class="name">${dto.cust_Id}</td>
+	                    		<td class="date">${dto.board_Date}</td>
 	                    	</tr>
-	                    </c:if>	
+	                    </c:forEach>
 	                    </tbody>
 	                </table>
 	                

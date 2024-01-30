@@ -85,6 +85,11 @@
 							<th>상품이름</th>
 							<th>가격</th>
 							<th>상품 재고</th>
+							<th>상품이미지</th>
+							<th>상품상세이미지</th>
+							<th>상품정보이미지</th>
+							<th>반품관련이미지</th>
+							<th>등록일</th>
 						</tr>
 
 						<c:forEach var="dto" items="${list }">
@@ -92,9 +97,33 @@
 								<td> ${dto.product_No} </td>
 								<td> ${dto.product_Name}</td>
 								<td> ${dto.product_Price} </td>
-								<td> ${dto.product_TotalQty} </td>
+								<td> ${dto.product_Qty} </td>
+								<td> ${dto.product_ImgName} </td>
+								<td> ${dto.product_ImgDetail}</td>
+								<td> ${dto.product_ImgSize}</td>
+								<td> ${dto.product_ImgRfd}</td>
+								<td> ${dto.regDate}</td>
 							</tr>
 						</c:forEach>
+						
+						<tr>
+							<td colspan="9" align="center">
+								<!-- 페이징 처리 -->
+								<!-- 이전 버튼 활성화 -->
+								<c:if test="${paging.startPage > 10}">
+									<a href="${path}/product_list.pc?pageNum=${paging.prev}">[이전]</a>
+								</c:if>
+								<!-- 페이지 번호 처리 -->
+								<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+									<a href="${path }/product_list.pc?pageNum=${num}">${num}</a>
+								</c:forEach>
+								
+								<!-- 다음 버튼 활성화 -->
+								<c:if test="${paging.startPage < paging.pageCount}">
+									<a href="${path }/product_list.pc?pageNum=${paging.next}">[다음]</a>
+								</c:if>
+							</td>
+						</tr>
 					</table>
 
 					<br> <br>
