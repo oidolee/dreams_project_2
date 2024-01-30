@@ -8,6 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface OrderService {
 	
+
+	// 상품 환불/교환 신청서 제출
+	public void productRefundAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+	
+	
+	
+	
+	
 	// 주문 등록(고객)
 	public void orderInsertAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;

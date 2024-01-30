@@ -43,7 +43,9 @@ public class OrderController extends HttpServlet {
 		String uri = req.getRequestURI();
 		String contextPath = req.getContextPath();
 		String url = uri.substring(contextPath.length());
-
+		
+		OrderService service = new OrderServiceImpl();
+		
 		// 마이페이지
 		if (url.equals("/*.oc") || url.equals("/myPage.oc")) {
 
@@ -56,10 +58,16 @@ public class OrderController extends HttpServlet {
 			viewPage = "/resource/page_6/myOrder.jsp";
 		}
 		
-		// 티켓 환불 페이지
-		else if (url.equals("/seatRefund.oc")) {
+		// 내가 구매한 티켓 페이지
+		else if (url.equals("/myTicket.oc")) {
 			
-			viewPage = "/resource/page_6/seatRefund.jsp";
+			viewPage = "/resource/page_6/myTicket.jsp";
+		}
+		
+		// 티켓 환불 페이지
+		else if (url.equals("/ticketRefund.oc")) {
+			
+			viewPage = "/resource/page_6/ticketRefund.jsp";
 		}
 		
 		// 상품 교환/환불 페이지
@@ -68,6 +76,12 @@ public class OrderController extends HttpServlet {
 			viewPage = "/resource/page_6/goodsRefund.jsp";
 		}
 		
+		// 상품 교환/환불 신청서 제출
+		else if (url.equals("/goodsRefundSubmit.oc")) {
+			
+			service.productRefundAction(req, res);
+			viewPage = "/resource/page_6/goodsRefundAction.jsp";
+		}
 		
 		
 		
