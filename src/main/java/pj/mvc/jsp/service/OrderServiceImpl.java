@@ -1,6 +1,7 @@
 package pj.mvc.jsp.service;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,57 +17,52 @@ public class OrderServiceImpl implements OrderService {
 	
 	// 상품 환불/교환 신청서 제출
 	@Override
-	public void productRefund(HttpServletRequest req, HttpServletResponse res) 
+	public void productRefundAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
+		System.out.println("productRefundAction");
+		
 		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달	
 		// DTO 생성
 		RefundDTO dto = new RefundDTO();
-		
 		// 환불번호
-		dto.getREF_No();
-		
+		// dto.setREF_No(Integer.parseInt(req.getParameter("REF_No")));
 		// 주문번호(구매당시)
-		int order_No = Integer.parseInt(req.getParameter("order_No"));
-		
+		//dto.setOrder_No(Integer.parseInt(req.getParameter("Order_No")));
 		// 아이디
-		dto.getREF_cust_Id();
-		
+		dto.setREF_cust_Id(req.getParameter("REF_cust_Id"));
 		// 이름
-		dto.getREF_Name();
-		
+		dto.setREF_Name(req.getParameter("REF_Name"));
 		// 연락처
-		dto.getREF_Phone();
-		
+		dto.setREF_Phone(req.getParameter("REF_Phone"));
 		// 주소
-		dto.getREF_Address();
-		
+		dto.setREF_Address(req.getParameter("REF_Address"));
 		// 상품번호
-		dto.getREF_Prod_No();
-		
+		dto.setREF_Prod_No(Integer.parseInt(req.getParameter("REF_Prod_No")));
 		// 상품명
-		dto.getREF_Prod_Name();
-		
+		dto.setREF_Prod_Name(req.getParameter("REF_Prod_Name"));
 		// 환불/교환 개수
-		dto.getREF_Prod_qty();
-		
+		dto.setREF_Prod_qty(Integer.parseInt(req.getParameter("REF_Prod_qty")));
 		// 환불/교환 사유
-		dto.getREF_Reason();
-		
+		dto.setREF_Reason(req.getParameter("REF_Reason"));
 		// 환불 받을계좌
-		dto.getREF_Account();
-		
+		String Account ="";
+		String REF_Account2 = req.getParameter("REF_Account2");
+		String REF_Account3 = req.getParameter("REF_Account3");
+		Account = REF_Account2 + " " + REF_Account3;
+		dto.setREF_Account(Account);
 		// 환불/교환 신청일
-		dto.getREF_Date();
-		
-		// 상태 1: 환불, 2: 교환
-		dto.getREF_isExchan();
-		
+		dto.setREF_Date(new Timestamp(System.currentTimeMillis()));
+		// 상태 환불, 교환
+		dto.setREF_Status(req.getParameter("REF_Status"));
+		System.out.println(dto);
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		OrderDAO dao = OrderDAOImpl.getInstance();
 		
 		// 5단계. 환불신청서 제출
-		dao.submissionRefund(dto);
-			
+		int insertCnt = dao.submissionRefund(dto);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("insertCnt", insertCnt);
 	}
 	
 	

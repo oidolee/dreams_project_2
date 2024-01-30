@@ -10,7 +10,7 @@ public interface OrderService {
 	
 
 	// 상품 환불/교환 신청서 제출
-	public void productRefund(HttpServletRequest req, HttpServletResponse res)
+	public void productRefundAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
 	

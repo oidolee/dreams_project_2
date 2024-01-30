@@ -18,29 +18,10 @@ public class RefundDTO {
     private String REF_Account;   		// 환불 받을 계좌
     private Date REF_Date;       		// 환불/교환 신청일
     
-    private int REF_isExchan;    		// 1: 환불, 2: 교환
+    private String REF_Status;    	// 1: 환불, 2: 교환
 
 	public RefundDTO() {
 		super();
-	}
-
-	public RefundDTO(int rEF_No, int order_No, String rEF_cust_Id, String rEF_Name, String rEF_Phone,
-			String rEF_Address, int rEF_Prod_No, String rEF_Prod_Name, int rEF_Prod_qty, String rEF_Reason,
-			String rEF_Account, Date rEF_Date, int rEF_isExchan) {
-		super();
-		REF_No = rEF_No;
-		this.order_No = order_No;
-		REF_cust_Id = rEF_cust_Id;
-		REF_Name = rEF_Name;
-		REF_Phone = rEF_Phone;
-		REF_Address = rEF_Address;
-		REF_Prod_No = rEF_Prod_No;
-		REF_Prod_Name = rEF_Prod_Name;
-		REF_Prod_qty = rEF_Prod_qty;
-		REF_Reason = rEF_Reason;
-		REF_Account = rEF_Account;
-		REF_Date = rEF_Date;
-		REF_isExchan = rEF_isExchan;
 	}
 
 	public int getREF_No() {
@@ -139,12 +120,12 @@ public class RefundDTO {
 		REF_Date = rEF_Date;
 	}
 
-	public int getREF_isExchan() {
-		return REF_isExchan;
+	public String getREF_Status() {
+		return REF_Status;
 	}
 
-	public void setREF_isExchan(int rEF_isExchan) {
-		REF_isExchan = rEF_isExchan;
+	public void setREF_Status(String rEF_Status) {
+		REF_Status = rEF_Status;
 	}
 
 	@Override
@@ -153,7 +134,7 @@ public class RefundDTO {
 				+ REF_Name + ", REF_Phone=" + REF_Phone + ", REF_Address=" + REF_Address + ", REF_Prod_No="
 				+ REF_Prod_No + ", REF_Prod_Name=" + REF_Prod_Name + ", REF_Prod_qty=" + REF_Prod_qty + ", REF_Reason="
 				+ REF_Reason + ", REF_Account=" + REF_Account + ", REF_Date=" + REF_Date + ", REF_isExchan="
-				+ REF_isExchan + "]";
+				+ REF_Status + "]";
 	}
     
     

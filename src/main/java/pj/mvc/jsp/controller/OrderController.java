@@ -77,11 +77,10 @@ public class OrderController extends HttpServlet {
 		}
 		
 		// 상품 교환/환불 신청서 제출
-		else if (url.equals("/goodsRefund.oc")) {
+		else if (url.equals("/goodsRefundSubmit.oc")) {
 			
-			service.productRefund(req, res);
-			
-			viewPage = "/resource/page_6/goodsRefund.jsp";
+			service.productRefundAction(req, res);
+			viewPage = "/resource/page_6/goodsRefundAction.jsp";
 		}
 		
 		
