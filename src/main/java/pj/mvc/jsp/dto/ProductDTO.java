@@ -9,6 +9,7 @@ public class ProductDTO {
 	private int product_Price;		// 상품가격
 	private int product_Qty;	// 상품수량
 	private String product_ImgName;	// 상품이미지
+	private String product_ImgDetail;	// 상품 상세 이미지
 	private String product_ImgSize; 	// 상품정보 이미지
 	private String product_ImgRfd;		// 반품관련 이미지
 	private Timestamp regDate;			// 등록일
@@ -17,13 +18,14 @@ public class ProductDTO {
 	public ProductDTO() {}
 
 	public ProductDTO(int product_No, String product_Name, int product_Price, int product_Qty, String product_ImgName,
-			String product_ImgSize, String product_ImgRfd, Timestamp regDate) {
+			String product_ImgDetail, String product_ImgSize, String product_ImgRfd, Timestamp regDate) {
 		super();
 		this.product_No = product_No;
 		this.product_Name = product_Name;
 		this.product_Price = product_Price;
 		this.product_Qty = product_Qty;
 		this.product_ImgName = product_ImgName;
+		this.product_ImgDetail = product_ImgDetail;
 		this.product_ImgSize = product_ImgSize;
 		this.product_ImgRfd = product_ImgRfd;
 		this.regDate = regDate;
@@ -69,6 +71,14 @@ public class ProductDTO {
 		this.product_ImgName = product_ImgName;
 	}
 
+	public String getProduct_ImgDetail() {
+		return product_ImgDetail;
+	}
+
+	public void setProduct_ImgDetail(String product_ImgDetail) {
+		this.product_ImgDetail = product_ImgDetail;
+	}
+
 	public String getProduct_ImgSize() {
 		return product_ImgSize;
 	}
@@ -93,13 +103,7 @@ public class ProductDTO {
 		this.regDate = regDate;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductDTO [product_No=" + product_No + ", product_Name=" + product_Name + ", product_Price="
-				+ product_Price + ", product_Qty=" + product_Qty + ", product_ImgName=" + product_ImgName
-				+ ", product_ImgSize=" + product_ImgSize + ", product_ImgRfd=" + product_ImgRfd + ", regDate=" + regDate
-				+ "]";
-	}
+	
 
 	
 	
