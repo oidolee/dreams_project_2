@@ -18,7 +18,11 @@ public interface BoardDAO {
 	// 게시글 추가
 	public void boardWrite(BoardDTO dto);
 
+	// 게시글 수정
 	public void boardEdit(BoardDTO dto);
+	
+	// 게시글 삭제
+	public void boardDelete(int boardNo);
 	
 	
 }

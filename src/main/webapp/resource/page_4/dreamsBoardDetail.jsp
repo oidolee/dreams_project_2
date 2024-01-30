@@ -124,8 +124,9 @@
 	                <c:if test="${sessionScope.sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
 	                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
 	                        <div id="writebutton">
-	                        	<input type="button" value="수정" onclick="location.href='dreamsBoard.bc'">
-	                        	<input type="button" value="삭제" onclick="location.href='dreamsBoard.bc'">
+	                        	<input type="hidden" name="board_No" value="${dto.board_No}">
+	                        	<input type="button" value="수정" onclick="location.href='dreamsBoardEdit.bc?board_No=${dto.board_No}'">
+	                        	<input type="button" value="삭제" onclick="location.href='dreamsBoardDelete.bc?board_No=${dto.board_No}'">
 	                        </div>
 	                    </div>
 	                </c:if>
@@ -145,7 +146,7 @@
                                         2024.01.03                                      
                                     </td>
                                     <td>
-                                        <button style="border: none; background-color: white; ">신고</button>                                  
+                                        <button id="reportButton">신고</button>                                  
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid gray;">
@@ -157,10 +158,15 @@
                                     <div style="display: inline;">
                                     	<tr>
 	                                        <td style="width: 100%; padding: 20px 0">
-	                                            <textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+	                                        	<c:if test="${sessionScope.sessionID == null}">
+	                                            	<textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+	                                            </c:if>
+	                                        	<c:if test="${sessionScope.sessionID != null}">
+	                                            	<textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
+	                                            </c:if>
 	                                        </td>
 	                                        <td>
-	                                            <button> 댓글달기 </button>
+	                                            <button id="reviewButton"> 댓글달기 </button>
 	                                        </td>
                                     	</tr>
                                     </div>
