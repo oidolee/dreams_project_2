@@ -145,6 +145,12 @@ let member = {};
             transform: translateY(10px);
         }
     }
+    #ticketIns tr{
+    	width: 960px;
+    }
+    #ticketIns td{
+    	border: 1px solid black;
+    }
     </style>
 
     <script>
@@ -172,7 +178,7 @@ let member = {};
     		$('#btnInsert').click(function(){
     			
     			alert('추가페이지');
-    			document.ticket_ChangeForm.action="${path}/insertTicket.tc"; 
+    			document.ticket_ChangeForm.action="${path}/ticket_insert.tc"; 
     			document.ticket_ChangeForm.submit();
     			
     		});
@@ -194,11 +200,16 @@ let member = {};
             <main>
              	<div class="purchase">
 				        <div class="elements">
-				            <h3>가격</h3>
+				            <h3 align="center">티켓 조회</h3>
 				            <form name = "ticket_ChangeForm" method="post">
-							<table border="1" style="width: 416.55px;">
+							<table style="width: 1000px"  id="ticketIns">
+								<colgroup>
+								<col style="width: 20%">
+								<col style="width: 20%">
+								<col>
+								</colgroup>
 								<tr>
-									<td colspan="4">
+									<td colspan="3">
 										<strong>좌석</strong>
 										<select id="parkseat" name="parkseat" onchange="priceSelect()">
 						                    <option value="#">좌석을 선택해 주세요.</option>
