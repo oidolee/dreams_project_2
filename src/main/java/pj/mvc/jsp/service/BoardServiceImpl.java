@@ -92,6 +92,7 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
+	// 게시글 수정
 	@Override
 	public void boardEdit(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
@@ -101,7 +102,7 @@ public class BoardServiceImpl implements BoardService{
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_Title(req.getParameter("writeTitle"));
 		dto.setBoard_Content(req.getParameter("writeTextarea"));
-		dto.setBoard_No(Integer.parseInt(req.getParameter("hidden_num")));
+		dto.setBoard_No(Integer.parseInt(req.getParameter("board_No")));
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		BoardDAO dao = BoardDAOImpl.getInstance();
@@ -110,5 +111,57 @@ public class BoardServiceImpl implements BoardService{
 		dao.boardEdit(dto);
 		
 	}
+	
+	// 게시글 삭제
+	@Override
+	public void boardDelete(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - boardDelete");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int board_No = Integer.parseInt(req.getParameter("board_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제 처리 후 컨트롤러에서 list로 이동
+		dao.boardDelete(board_No);
+		
+	}
+	
+
+	// 게시글 조회
+	@Override
+	public void boardSearch(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - boardSearch");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		String pageNum = req.getParameter("pageNum");
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5-1단계. 전체 게시글 갯수 카운트
+		Paging paging = new Paging(pageNum);
+		int total = dao.boardCnt();
+		System.out.println("total : " + total);
+		
+		paging.setTotalCount(total);
+		
+		// 5-2단계. 게시글 목록 조회
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
+		
+		List<BoardDTO> list = dao.boardList(start, end);
+		
+		// 6단계. jsp로 처리결과를 전달
+		req.setAttribute("paging", paging);
+		req.setAttribute("list", list);
+	}
+
 
 }
