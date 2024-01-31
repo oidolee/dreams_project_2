@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import pj.mvc.jsp.dao.BoardDAO;
 import pj.mvc.jsp.dao.BoardDAOImpl;
 import pj.mvc.jsp.dto.BoardDTO;
+import pj.mvc.jsp.dto.Board_reviewDTO;
 import pj.mvc.jsp.page.Paging;
 
 /* 작업자 : 강승재 */
@@ -161,6 +162,45 @@ public class BoardServiceImpl implements BoardService{
 		// 6단계. jsp로 처리결과를 전달
 		req.setAttribute("paging", paging);
 		req.setAttribute("list", list);
+	}
+
+	@Override
+	public void reviewAdd(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("서비스 - reviewAdd");
+		
+		// 화면으로부터 입력받은 값을 dto에 담는다.
+		Board_reviewDTO dto = new Board_reviewDTO();
+		dto.setBoard_No(Integer.parseInt(request.getParameter("board_No")));
+		dto.setCust_Id(request.getParameter("cust_Id"));
+		dto.setReview_Content(request.getParameter("reveiwWrite"));
+		
+		// DAO 객체 생성
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 댓글 작성 처리 후 컨트롤러에서 list로 이동
+		dao.reviewInsert(dto);
+		
+	}
+
+	@Override
+	public void reviewList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("서비스 - reviewList");
+		
+		// 화면으로부터 입력받은 값을 받는다.
+		int board_No = Integer.parseInt(request.getParameter("board_No"));
+		
+		// DAO 객체 생성
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 댓글 목록 조회
+		List<Board_reviewDTO> list = dao.reviewList(board_No);
+		
+		// jsp로 결과 전달
+		request.setAttribute("list", list);
+		
+		
 	}
 
 

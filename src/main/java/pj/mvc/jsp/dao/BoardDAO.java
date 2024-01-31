@@ -3,6 +3,7 @@ package pj.mvc.jsp.dao;
 import java.util.List;
 
 import pj.mvc.jsp.dto.BoardDTO;
+import pj.mvc.jsp.dto.Board_reviewDTO;
 
 public interface BoardDAO {
 	
@@ -23,6 +24,12 @@ public interface BoardDAO {
 	
 	// 게시글 삭제
 	public void boardDelete(int boardNo);
+
+	// 댓글 추가
+	public void reviewInsert(Board_reviewDTO dto);
+
+	// 댓글 목록
+	public List<Board_reviewDTO> reviewList(int board_No);
 	
 	
 }
