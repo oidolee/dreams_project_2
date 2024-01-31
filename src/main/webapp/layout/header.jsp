@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file = "/layout/setting.jsp" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -57,7 +58,7 @@
                 <div class="header-bottom">
                     <nav>
                         <h2>
-                            <a href="./index.html">
+                            <a href="${path}/index.jsp">
                                 <img src="/dreams_project_2/resource/image/logoSmall.png" style="width: 100%;" alt="logoSmall">
                             </a>
                         </h2>
