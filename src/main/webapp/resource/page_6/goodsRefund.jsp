@@ -177,9 +177,8 @@
                 <br><br>
                 <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
                 	
-                	<input type="hidden" name="REF_cust_Id" value="임시로 채워놓음">
+                	<input type="hidden" name="REF_cust_Id" value="임시">
                 	<input type="hidden" name="REF_Prod_No" value="9999">
-                	
 	                <table class="form">
 	                    <tr>
 	                        <th align="center"><label for="order_No">주문번호</label></th>
