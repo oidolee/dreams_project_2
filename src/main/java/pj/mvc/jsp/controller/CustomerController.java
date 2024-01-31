@@ -115,13 +115,6 @@ public class CustomerController extends HttpServlet {
 		}
 		
 		// -- [ 회원수정 ] --
-		// 회원수정 - 인증화면
-		else if(url.equals("/modifyCustomer.cc")) {
-			System.out.println("<<< url ==> /modifyCustomer.cc >>>");
-
-			viewPage = "resource/page_1/modifyCustomer.jsp";
-		}
-		
 		// 회원정보 상세페이지
 		else if(url.equals("/modifyDetailAction.cc")) {
 			System.out.println("<<< url ==> /modifyDetailAction.cc >>>");

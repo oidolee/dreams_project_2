@@ -16,7 +16,6 @@ public class CustomerDTO {
 	public CustomerDTO() {
 		super();
 	}
-
 	
 	// 매개변수 생성자
 	public CustomerDTO(String cust_Id, String cust_Name, String cust_Password, String cust_Email, String cust_Birth,
