@@ -34,6 +34,8 @@
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
     <script src="${path}/resource/js/common/header.js"></script>
+    <!-- join.js -->
+    <script src="${path}/resource/page_1/join.js" defer></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -248,12 +250,12 @@
                 <div id="section2">
                     <div id="s2_inner">
                         <div class="join" >
-                            <form name="joinform" action="joinAction.cc" method="post" onsubmit="return inputChk()">   <!-- post : 노출x / get : 노출o -->
+                            <form name="modifyform" action="modifyCustomerAction.cc" method="post" onsubmit="return inputChk()">   <!-- post : 노출x / get : 노출o -->
 								<table>
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 아이디 </th>
                                         <td>
-                                            <input type="text" class="input" id="userId" name="userid" size="20" value="" disabled > <!-- ${dto.getCust_Id()} -->   <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="userId" name="userid" size="20" value="${dto.getCust_Id()}" disabled > <!-- ${dto.getCust_Id()} -->   <!-- placeholder : 힌트 -->
                                         </td>
                                     </tr>
 
@@ -279,14 +281,14 @@
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 이름 </th>
                                         <td>
-                                            <input type="text" class="input" id="userName" name="username" size="20" value="${dto.getCust_Name()}" required>    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="userName" name="username" size="20" value="${dto.getCust_Name()}" required>   
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <th style="color: #ffffff  !important;"> 생년월일 </th>
                                         <td>
-                                            <input type="text" class="input" id="brithDay" name="birthday" size="8" value="${dto.getCust_Birth()}" required>    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="brithDay" name="birthday" size="8" value="${dto.getCust_Birth()}" required>  
                                         </td>
                                     </tr>
 
@@ -305,13 +307,13 @@
 									
 									<tr>
 										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%; ">
-											<input type="text" class="input" name="adress1" size="8" style="width: 73%; height: 80%;">&nbsp;기본주소
+											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;">&nbsp;기본주소
 										</td>
 									</tr>
 										
 									<tr>
 										<td style="color: #000000  !important; font-size: 90%;">
-											<input type="text" class="input" name="adress2" size="8" style="width: 73%; height: 80%;">&nbsp;나머지주소
+											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;">&nbsp;나머지주소
 
 										</td>
 									</tr>

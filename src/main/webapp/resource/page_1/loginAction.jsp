@@ -223,7 +223,7 @@ input:focus {
 	                                        <td colspan="2" style="border-bottom: none">
 	                                            <br>
 	                                            <div align="center">
-	                                                <input class="inputButton" type="button" value="회원수정" onclick="window.location='modifyCustomer.cc'">
+	                                                <input class="inputButton" type="button" value="회원수정" onclick="window.location='modifyDetailAction.cc'">
 	                                                <input class="inputButton" type="button" value="회원탈퇴" onclick="window.location='deleteCustomer.cc'">
 	                                                <input class="inputButton" type="button" value="로그아웃" onclick="window.location='logout.cc'">
 	                                            </div>
