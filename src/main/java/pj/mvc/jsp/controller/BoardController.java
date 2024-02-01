@@ -133,7 +133,7 @@ public class BoardController extends HttpServlet {
 			response.sendRedirect(viewPage);
 		}
 		
-		// 드림즈게시판 검색페이지 -- 미완
+		// 드림즈게시판 검색페이지
 		else if(url.equals("/dreamsBoardSearch.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
 			
