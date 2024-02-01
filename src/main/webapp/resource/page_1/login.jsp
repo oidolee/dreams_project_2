@@ -187,8 +187,8 @@ input:focus {
 											<button type="submit">로그인</button> 
 											<div style="display: flex; justify-content: center;">
 												<a href="join.cc" style="padding-right: 15px;"> <strong>회원가입</strong></a> 
-												<a href="login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
-												<a href="login_pwd.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
+												<a href="${path}/resource/page_1/login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
+												<a href="${path}/resource/page_1/login_pwd.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
 											</div>
 										</td>
 									</tr>
@@ -208,11 +208,11 @@ input:focus {
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="${path}/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
+                        <li><a href="${path}/resource/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
-                        <li><a href="${path}/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
+                        <li><a href="${path}/resource/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
                                     alt=""></a></li>
                     </ul>
                 </div>
