@@ -33,4 +33,12 @@ public interface BoardService {
 	// 게시글 조회
 	public void boardSearch(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
+
+	// 댓글 추가
+	public void reviewAdd(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException;
+
+	// 댓글 추가
+	public void reviewList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException;
 }

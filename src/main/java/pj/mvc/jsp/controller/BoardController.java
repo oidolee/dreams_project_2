@@ -133,7 +133,7 @@ public class BoardController extends HttpServlet {
 			response.sendRedirect(viewPage);
 		}
 		
-		// 드림즈게시판 검색페이지
+		// 드림즈게시판 검색페이지 -- 미완
 		else if(url.equals("/dreamsBoardSearch.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardSearch.bc >>>");
 			
@@ -141,6 +141,25 @@ public class BoardController extends HttpServlet {
 			viewPage = "resource/page_4/dreamsBoardSearch.jsp";
 			
 			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		// 드림즈게시판 댓글 작성처리
+		else if(url.equals("/dreamsBoardReview_add.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardReview_add.bc >>>");
+		
+			service.reviewAdd(request, response);
+		}
+		
+		// 드림즈게시판 댓글 목록
+		else if(url.equals("/dreamsBoardReview.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardReview.bc >>>");
+			
+			service.reviewList(request, response);
+			
+			viewPage = "resource/page_4/dreamsBoardReview.jsp";
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}

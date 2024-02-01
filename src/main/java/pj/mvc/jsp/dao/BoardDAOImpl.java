@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import pj.mvc.jsp.dto.BoardDTO;
+import pj.mvc.jsp.dto.Board_reviewDTO;
 
 public class BoardDAOImpl implements BoardDAO{
 	
@@ -279,6 +280,90 @@ public class BoardDAOImpl implements BoardDAO{
 				e.printStackTrace();
 			}
 		}		
+	}
+
+	// 댓글 추가
+	@Override
+	public void reviewInsert(Board_reviewDTO dto) {
+		System.out.println("BoardDAOImpl - reviewInsert");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content, review_Date) "
+					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?, '2024-01-31');";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getBoard_No());
+			pstmt.setString(2, dto.getCust_Id());
+			pstmt.setString(3, dto.getReview_Content());
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
+	}
+
+	@Override
+	public List<Board_reviewDTO> reviewList(int board_No) {
+		System.out.println("BoardDAOImpl - reviewList");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<Board_reviewDTO> list = new ArrayList<Board_reviewDTO>();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT * FROM mvc_comment_tbl WHERE board_No = ? ORDER BY review_No DESC";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_No);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 2. dto 생성
+				Board_reviewDTO dto = new Board_reviewDTO();
+				
+				// 3. dto에 1건의 rs 게시글 정보를 담는다.
+				dto.setReview_No(rs.getInt("review_No"));
+				dto.setBoard_No(rs.getInt("board_No"));
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setReview_Content(rs.getString("review_Content"));
+				dto.setReview_date(rs.getString("review_Date"));
+				
+				// 4. list에 dto를 추가한다.
+				list.add(dto);
+			} 
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
 	}
 
 }
