@@ -51,12 +51,8 @@ public class OrderDAOImpl implements OrderDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "INSERT INTO DR_refund(REF_No, order_No, REF_cust_Id, REF_Name, REF_Phone, REF_Address, REF_Prod_No, REF_Prod_Name, REF_Prod_qty, REF_Reason, REF_Account, REF_isExchan) "
-					+ "     VALUES((SELECT NVL( "
-					+ "            MAX(REF_No) + 1, "
-					+ "            TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD') || '0001') "
-					+ "        ) "
-					+ "        FROM DR_refund), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO DR_refund (REF_No, order_No, REF_cust_Id, REF_Name, REF_Phone, REF_Address, REF_Prod_No, REF_Prod_Name, REF_Prod_qty, REF_Reason, REF_Account, REF_Status) "
+					+ "VALUES ((SELECT NVL(MAX(REF_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD') || '0001')) FROM DR_refund), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getOrder_No());
@@ -72,7 +68,6 @@ public class OrderDAOImpl implements OrderDAO {
 			pstmt.setString(11, dto.getREF_Status());
 			
 			insertCnt = pstmt.executeUpdate();
-			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>드림즈게시판 상세</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
     <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
@@ -35,6 +35,7 @@
     <script>
         // 페이지 로드 후 실행될 함수
         $(document).ready(function () {
+        	alert("뜨냐??");
             // top 버튼 클릭 시 스크롤
             $('#goTop a[href="#header"]').on('click', function (e) {
                 window.scroll({
@@ -46,6 +47,8 @@
             $(".floating-box.center").on("click",function(){
                 $(".first-bg").hide();
             })
+            
+            
         });
 
         //크롬 스크롤 오류로 시간 지정 후 동장
@@ -56,8 +59,63 @@
                 $("#goTop a").attr("href", "#header")
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
-        })
+        });
 
+    
+    $(function() {	// 페이지 로딩시
+    	alert("뜨냐??");
+	 	// 댓글쓰기 버튼 클릭
+	 	$('#reviewButton').click(function() {
+	 		review_add();
+	 	});
+	 	
+	 	// 댓글 목록
+	 	review_list();
+    
+    });
+    
+    // 댓글쓰기 버튼 클릭시
+    function review_add(){
+    	alert("review_add()");
+    	
+    	let param= {
+    			"board_No": ${dto.board_No},
+    			"reveiwWrite": $('#reveiwWrite').val(),
+    			"cust_Id": ${sessionScope.sessionID}
+    	}
+    	
+    	$.ajax({
+    		url: '${path}/dreamsBoardReview_add.bc',
+    		type: 'POST',
+    		data: param,
+    		success: function(){
+    			$('#reveiwWrite').val("");
+    			review_list();
+    		},
+    		error: function() {
+    			alert('review_add() 오류')
+    		}
+    	});
+    	
+    }
+    
+    // 자동으로 댓글목록 호출
+    function review_list() {
+    	alert("review_list()");
+    	$.ajax({
+    		url: '${path}/dreamsBoardReview.bc',
+    		type: 'POST',
+    		data: 'board_No=${dto.board_No}',
+    		
+    		success: function(result){
+    			$('#reviewList').html(result);
+    		},
+    		error: function(){
+    			alert('review_list() 오류')
+    		}
+    	})
+    }
+    
     </script>
 </head>
 <body>
@@ -130,51 +188,30 @@
 	                        </div>
 	                    </div>
 	                </c:if>
-                    <div>
-                        <div style="display: flex; justify-content: left;">
-                            <table id="reveiw" style="margin-bottom: 50px; width: 100%;">
-                                <tr  style="border-bottom: 2px solid gray;">
-                                    <td style="font-size: 15px;">
-                                        댓글 1
-                                    </td>                                    
-                                </tr>
-                                <tr style="display: inline;">
-                                    <td style="width: 50px;">
-                                        남궁민                                  
-                                    </td>
-                                    <td>
-                                        2024.01.03                                      
-                                    </td>
-                                    <td>
-                                        <button id="reportButton">신고</button>                                  
-                                    </td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid gray;">
-                                    <td style="color: rgb(110, 107, 107) !important;">
-                                        이번 시범경기보니까 다들 폼이 올랐더라구요.                                   
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <div style="display: inline;">
-                                    	<tr>
-	                                        <td style="width: 100%; padding: 20px 0">
-	                                        	<c:if test="${sessionScope.sessionID == null}">
-	                                            	<textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
-	                                            </c:if>
-	                                        	<c:if test="${sessionScope.sessionID != null}">
-	                                            	<textarea name="writeArea" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
-	                                            </c:if>
-	                                        </td>
-	                                        <td>
-	                                            <button id="reviewButton"> 댓글달기 </button>
-	                                        </td>
-                                    	</tr>
-                                    </div>
-                                </tr>
-                            </table>
-                        </div>
-
-                    </div>
+	                <br><br>
+	                
+                    <div id="reviewList"></div>
+                    <br><br>
+                    
+                    <table>
+                         <tr>
+                             <div style="display: inline;">
+                             	<tr>
+                                  <td style="width: 100%; padding: 20px 0">
+                                  	<c:if test="${sessionScope.sessionID == null}">
+                                      	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+                                      </c:if>
+                                  	<c:if test="${sessionScope.sessionID != null}">
+                                      	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
+                                      </c:if>
+                                  </td>
+                                  <td>
+                                      <button id="reviewButton"> 댓글달기 </button>
+                                  </td>
+                             	</tr>
+                             </div>
+                         </tr>
+					</table>
 
 					<!-- 우측메뉴 종료 -->
                 </div>

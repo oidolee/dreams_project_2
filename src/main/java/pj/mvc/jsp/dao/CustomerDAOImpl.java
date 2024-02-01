@@ -157,14 +157,87 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원 상세페이지
 	@Override
 	public CustomerDTO getCustomerDetail(String strId) {
-		return null;
+		System.out.println("CustomerDAOImpl - getCustomerDetail");
+		
+		// 1. customerDTO 바구니 생성
+		CustomerDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = dataSource.getConnection();
+			// 2. strId(로그인화면에서 입력받은 세션 ID)와 일치하는 데이터가 존재하는지 확인
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, strId);
+
+			rs = pstmt.executeQuery();
+			
+			// 3. ResultSet에 userid와 일치하는 한사람의 회원정보가 존재하면
+			if(rs.next()) {
+				// ResultSet을 읽어서 customerDTO에 setter로 담는다.
+				dto = new CustomerDTO();
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setCust_Password(rs.getString("cust_Password"));
+				dto.setCust_Name(rs.getString("cust_Name"));
+				dto.setCust_Birth(rs.getString("cust_Birth"));
+				dto.setCust_Address(rs.getString("cust_Address"));
+				dto.setCust_Phone(rs.getString("cust_Phone"));
+				dto.setCust_Email(rs.getString("cust_Email"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
 	}
 
 	// 회원정보 수정 처리
 	@Override
 	public int updateCustomer(CustomerDTO dto) {
-		return 0;
+		System.out.println("CustomerDAOImpl - updateCustomer");
+		
+		int updateCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "UPDATE DR_customers SET cust_Name = ?, cust_Password = ?, cust_Email = ?, "
+							+ "cust_Birth = ?, cust_Phone = ?, cust_Address = ? "
+							+ "WHERE cust_Id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getCust_Name());
+			pstmt.setString(2, dto.getCust_Password());
+			pstmt.setString(3, dto.getCust_Email());
+			pstmt.setString(4, dto.getCust_Birth());
+			pstmt.setString(5, dto.getCust_Phone());
+			pstmt.setString(6, dto.getCust_Address());
+			pstmt.setString(7, dto.getCust_Id());
+			
+			updateCnt = pstmt.executeUpdate();
+			System.out.println("updateCnt : " + updateCnt);
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return updateCnt;
 	}
-	
-	
 }

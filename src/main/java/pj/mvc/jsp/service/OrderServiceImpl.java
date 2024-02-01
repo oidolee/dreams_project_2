@@ -24,10 +24,12 @@ public class OrderServiceImpl implements OrderService {
 		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달	
 		// DTO 생성
 		RefundDTO dto = new RefundDTO();
-		// 환불번호
-		// dto.setREF_No(Integer.parseInt(req.getParameter("REF_No")));
+		System.out.println(dto);
+		
+		//
+		dto.setREF_No((Integer)req.getAttribute("REF_No"));
 		// 주문번호(구매당시)
-		//dto.setOrder_No(Integer.parseInt(req.getParameter("Order_No")));
+		dto.setOrder_No(Integer.parseInt(req.getParameter("order_No")));
 		// 아이디
 		dto.setREF_cust_Id(req.getParameter("REF_cust_Id"));
 		// 이름
@@ -63,6 +65,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 6단계. jsp로 처리결과 전달
 		req.setAttribute("insertCnt", insertCnt);
+		req.setAttribute("dto", dto);
+		System.out.println(dto);
 	}
 	
 	
