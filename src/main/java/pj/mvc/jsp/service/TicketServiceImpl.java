@@ -7,11 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pj.mvc.jsp.dao.BoardDAO;
-import pj.mvc.jsp.dao.BoardDAOImpl;
+import pj.mvc.jsp.dto.CustomerDTO;
 import pj.mvc.jsp.dao.TicketDAO;
 import pj.mvc.jsp.dao.TicketDAOImpl;
 import pj.mvc.jsp.dto.TicketDTO;
+import pj.mvc.jsp.dto.TicketResDTO;
 
 public class TicketServiceImpl implements TicketService {
 
@@ -25,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
 		
 		// 3단계. 화면에서 입력받은 값을 가져온다.
 		String strTicket_seat = req.getParameter("parkseat");
-		
+		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
 		tdto.setTicket_seat(req.getParameter("parkseat"));
 		
@@ -33,9 +33,39 @@ public class TicketServiceImpl implements TicketService {
 		TicketDAO tdao = TicketDAOImpl.getInstance();
 		
 		List<TicketDTO> list = tdao.ticketList(strTicket_seat);
-		
+		CustomerDTO cdto = tdao.customerDetail(srtId);
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("list", list);
+		req.setAttribute("cdto", cdto);
+	}
+	
+	// 티켓 예매 처리
+	@Override
+	public void ticketResAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		System.out.println("서비스 - ticketResAction");
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int ticket_price = Integer.parseInt(req.getParameter("totalprice"));
+		String ticket_seat = req.getParameter("parkseat");
+		String srtId = (String)req.getSession().getAttribute("sessionID");
+		
+		TicketResDTO trdto = new TicketResDTO();
+		
+		trdto.setTicket_price(ticket_price);
+		trdto.setTicket_seat(ticket_seat);
+		trdto.setCust_Id(srtId);
+		
+		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		TicketDAO tdao = TicketDAOImpl.getInstance();
+		
+		int insertResCnt = tdao.ticketRes(trdto);
+	}
+	
+	// 티켓 예매 내역 조회
+	@Override
+	public void resCheckAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		
 	}
 	
 	// 티켓 개별 조회

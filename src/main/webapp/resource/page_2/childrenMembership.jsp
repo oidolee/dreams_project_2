@@ -228,7 +228,7 @@
 							<li class="hasChild">
 								<a href="#">일일티켓</a>
 								<ul>
-									<li><a href="ticketFee.html">입장요금</a></li>
+									<li><a href="ticketFee.jsp">입장요금</a></li>
 									<li><a href="reservationInfo.html">예매안내</a></li>
 									<li><a href="discountTicket.html">할인안내</a></li>
 								</ul>
@@ -239,10 +239,10 @@
 								<a href="#">멤버쉽</a>
 								<ul style="display: block;">
 									<li>
-										<a href="DreamsMembership.html" class="on">드림즈멤버쉽</a>
+										<a href="DreamsMembership.jsp" class="on">드림즈멤버쉽</a>
 									</li>
 									<li>
-										<a href="childrenMembership.html" class="on">듬린이(어린이 회원)</a>
+										<a href="childrenMembership.jsp" class="on">듬린이(어린이 회원)</a>
 									</li>
 								</ul>
 							</li>
@@ -252,7 +252,7 @@
 								<a href="#">단체관람</a>
 								<ul style="display: block;">
 									<li>
-										<a href="groupViewing.html" class="on">안내</a>
+										<a href="groupViewing.jsp" class="on">안내</a>
 									</li>
 								</ul>
 							</li>
@@ -262,7 +262,7 @@
 								<a href="#">스카이박스</a>
 								<ul style="display: block;">
 									<li>
-										<a href="skybox.html" class="on">소개 / 예약</a>
+										<a href="skybox.jsp" class="on">소개 / 예약</a>
 									</li>
 								</ul>
 							</li>

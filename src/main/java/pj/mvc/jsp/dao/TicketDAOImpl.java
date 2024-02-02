@@ -12,7 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import pj.mvc.jsp.dto.CustomerDTO;
 import pj.mvc.jsp.dto.TicketDTO;
+import pj.mvc.jsp.dto.TicketResDTO;
 
 public class TicketDAOImpl implements TicketDAO {
 
@@ -90,6 +92,45 @@ public class TicketDAOImpl implements TicketDAO {
 		return list;
 		
 	}
+	// 티켓 예매 처리 - insert
+	public int ticketRes(TicketResDTO trdto) {
+		System.out.println("TicketDAOImpl - ticketInsert");
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int insertResCnt = 0;
+		
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
+					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), ?, ?, sysdate, sysdate, ?);"
+					;
+					
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, trdto.getTicket_seat());
+			pstmt.setString(2, trdto.getCust_Id());
+			pstmt.setInt(3, trdto.getTicket_price());
+			
+			insertResCnt = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return insertResCnt;
+	}
+	// 티켓 예매 확인 - select
 
 	// 티켓 개별 조회
 		@Override
@@ -267,5 +308,54 @@ public class TicketDAOImpl implements TicketDAO {
 			}
 		}
 		return insertCnt;
+	}
+	
+	// 회원정보 찾기
+	@Override
+	public CustomerDTO customerDetail(String srtId) {
+		System.out.println("TicketDAOImpl - customerDetail");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CustomerDTO cdto = new CustomerDTO();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id=?";
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, srtId);
+			
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				
+				cdto.setCust_Name(rs.getString("cust_Name"));
+				cdto.setCust_Birth(rs.getString("cust_Birth"));
+				cdto.setCust_Phone(rs.getString("cust_Phone"));
+				cdto.setCust_Email(rs.getString("cust_Address"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return cdto;
+		
 	}
 }
