@@ -245,12 +245,29 @@ pre {
 #reviewButton{
    margin-top: 5px;
    width: 100px;
-   height: 40px;
+   height: 50px;
+   background-color: #1c5c50;
+   color: white !important;
+} 
+
+#reviewButton0{
+   margin-top: 5px;
+   width: 100px;
+   height: 50px;
    background-color: #1c5c50;
    color: white !important;
 } 
 
  #reveiwWrite {
+   margin-top: 10px;
+   border: 0.8px solid #000;
+   width: 100%;
+   height: 100%;
+   resize: none;
+   color: #000 !important;
+ }
+ 
+ #reveiwWrite0 {
    margin-top: 10px;
    border: 0.8px solid #000;
    width: 100%;

@@ -110,7 +110,8 @@ public class CustomerController extends HttpServlet {
 		
 		else if(url.equals("/deleteCustomerAction.cc")) {
 			System.out.println("<<< url ==> /deleteCustomerAction.cc >>>");
-
+			
+			service.deleteCustomerAction(request, response);
 			viewPage = "resource/page_1/deleteCustomerAction.jsp";
 		}
 		
@@ -130,7 +131,6 @@ public class CustomerController extends HttpServlet {
 			service.modifyCustomerAction(request, response);
 			viewPage = "resource/page_1/modifyCustomerAction.jsp";
 		}
-		
 		
 		// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

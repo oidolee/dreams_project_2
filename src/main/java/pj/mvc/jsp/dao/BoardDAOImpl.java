@@ -40,7 +40,7 @@ public class BoardDAOImpl implements BoardDAO{
 		}
 	}
 	
-
+	// 게시글 목록
 	@Override
 	public List<BoardDTO> boardList(int start, int end) {
 		System.out.println("BoardDAOImpl - boardList");
@@ -49,7 +49,7 @@ public class BoardDAOImpl implements BoardDAO{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		// 1. list 생성
-		List<BoardDTO> list = new ArrayList<BoardDTO>();;
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
 		
 		try {
 			conn = dataSource.getConnection();
@@ -294,7 +294,7 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content, review_Date) "
-					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?, '2024-01-31');";
+					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?, '2024-01-31')";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getBoard_No());
@@ -316,8 +316,9 @@ public class BoardDAOImpl implements BoardDAO{
 		
 	}
 
+	// 댓글조회
 	@Override
-	public List<Board_reviewDTO> reviewList(int board_No) {
+	public List<Board_reviewDTO> reviewList(int start, int end) {
 		System.out.println("BoardDAOImpl - reviewList");
 		
 		Connection conn = null;
@@ -329,10 +330,23 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql= "SELECT * FROM mvc_comment_tbl WHERE board_No = ? ORDER BY review_No DESC";
+			String sql= "SELECT * "
+					+ "    FROM( "
+					+ "        SELECT A.*, "
+					+ "                rownum AS rn "   // 일련번호 가져오기 
+					+ "            FROM "
+					+ "                ( "
+					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date "
+					+ "					FROM DR_review "
+					+ "					WHERE show = 'y' "
+					+ "                    ORDER BY review_No DESC "
+					+ "                ) A "
+					+ "        ) "
+					+ "WHERE rn BETWEEN ? AND ? ";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, board_No);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -363,6 +377,153 @@ public class BoardDAOImpl implements BoardDAO{
 			}
 		}
 		
+		return list;
+	}
+
+	// 댓글 갯수 조회
+	@Override
+	public int reviewCount(int board_No) {
+		System.out.println("BoardDAOImpl - reviewCount");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int reviewCnt = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT COUNT(*) as cnt "
+					+ "    FROM DR_review "
+					+ "    WHERE board_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_No);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				reviewCnt = rs.getInt("cnt");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return reviewCnt;
+	}
+
+	// 검색한 게시글 갯수 조회
+	@Override
+	public int boardSearchCnt(String searchKey) {
+		System.out.println("BoardDAOImpl - boardSearchCnt");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int searchCnt = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT COUNT(*) as cnt "
+					+ "    FROM DR_board "
+					+ "    WHERE board_Title LIKE ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchKey+"%");
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				searchCnt = rs.getInt("cnt");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return searchCnt;
+	}
+
+	@Override
+	public List<BoardDTO> boardSearchList(int start, int end, String searchKey) {
+		System.out.println("BoardDAOImpl - boardSearchList");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// 1. list 생성
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT * "
+					+ "    FROM( "
+					+ "        SELECT A.*, "
+					+ "                rownum AS rn "   // 일련번호 가져오기 
+					+ "            FROM "
+					+ "                ( "
+					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date "
+					+ "					FROM DR_board "
+					+ "					WHERE show = 'y' AND board_Title LIKE ? "
+					+ "                    ORDER BY board_No DESC "
+					+ "                ) A "
+					+ "        ) "
+					+ "WHERE rn BETWEEN ? AND ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%'+searchKey+'%');
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 2. dto 생성
+				BoardDTO dto = new BoardDTO();
+				
+				// 3. dto에 1건의 rs 게시글 정보를 담는다.
+				dto.setBoard_No(rs.getInt("board_No"));
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setBoard_Title(rs.getString("board_Title"));
+				dto.setBoard_Content(rs.getString("board_Content"));
+				dto.setBoard_Date(rs.getString("board_date"));
+				
+				// 4. list에 dto를 추가한다.
+				list.add(dto);
+			} 
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 5. list 리턴
 		return list;
 	}
 

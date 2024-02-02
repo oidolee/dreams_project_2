@@ -25,13 +25,13 @@ function clearTextarea() {
 }
 
 function searchBoard() {
-	if(!document.boardform.search.value){
+	if(!document.boardForm.searchKey.value){
 		alert("키워드를 입력하세요!");
-		document.boardform.search.focus();
+		document.boardForm.searchKey.focus();
 		return false;
 	}
 	
-	let url="/dreams_project_2/dreamsBoardSearch.do?search=" + document.boardform.search.value;
-	
+	let url="/dreams_project_2/dreamsBoardSearch.bc?searchKey=" + document.boardForm.searchKey.value;
+	window.location.href = url;
 	
 }

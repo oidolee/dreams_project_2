@@ -35,10 +35,10 @@ public interface BoardService {
 			throws ServletException, IOException;
 
 	// 댓글 추가
-	public void reviewAdd(HttpServletRequest request, HttpServletResponse response)
+	public void reviewAdd(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 
 	// 댓글 추가
-	public void reviewList(HttpServletRequest request, HttpServletResponse response)
+	public void reviewList(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 }

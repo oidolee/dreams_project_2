@@ -151,7 +151,36 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원 탈퇴 처리
 	@Override
 	public int deleteCustomer(String strId) {
-		return 0;
+		
+		System.out.println("CustomerDAOImpl - deleteCustomer");
+		
+		int deleteCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql ="UPDATE DR_customers "
+					+ "SET show = 'n' "
+					+ "WHERE cust_Id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, strId);
+			
+			deleteCnt = pstmt.executeUpdate();
+			System.out.println("updateCnt : " + deleteCnt);
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return deleteCnt;
 	}
 
 	// 회원 상세페이지

@@ -40,16 +40,16 @@
             <table id="reveiw" style="margin-bottom: 50px; width: 100%;">
                 <tr  style="border-bottom: 2px solid gray;">
                     <td style="font-size: 15px;">
-                        댓글 1
+                        댓글 ${reviewCnt}
                     </td>                                    
                 </tr>
                 <c:forEach var="dto" items="${list}">
                 <tr style="display: inline;">
-                    <td style="width: 50px;">
+                    <td style="width: 100px;">
                         ${dto.cust_Id}                                  
                     </td>
                     <td>
-                        ${dto.review_Date}                                     
+                        ${dto.review_date}                                     
                     </td>
                     <td>
                         <button id="reportButton">신고</button>                                  
@@ -63,6 +63,39 @@
                 </c:forEach>
             </table>
         </div>
+        <div class="pageNav">
+	                	<!-- 이전 버튼 활성화 -->
+	                	<c:if test="${paging.startPage > 10}">
+	                    <span class="prev1">
+	                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${paging.prev}" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
+	                            <span style="color: white !important;">< 이전</span>
+	                        </a>
+	                    </span>
+	                    </c:if>
+	                    
+	                    <!-- 이전 버튼 활성화 -->
+	                    <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+	                    	<c:if test="${paging.currentPage == num}">
+			                    <span class="page">
+			                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on" >${num}</a>
+			                    </span>
+			                </c:if>
+	                    	<c:if test="${paging.currentPage != num}">
+			                    <span class="page1">
+			                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on">${num}</a>
+			                    </span>
+			                </c:if>
+	                    </c:forEach>
+	                    
+	                    <!-- 다음 버튼 활성화 -->
+	                    <c:if test="${paging.endPage < paging.pageCount}">
+	                    <span class="next1">
+	                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${paging.next}" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
+	                            <span style="color: white !important;">다음 ></span>
+	                        </a>
+	                    </span>
+	                    </c:if>
+	                </div>
 
     </div>
 

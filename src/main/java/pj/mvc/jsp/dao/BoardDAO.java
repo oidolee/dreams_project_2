@@ -10,7 +10,7 @@ public interface BoardDAO {
 	// 게시글 목록
 	public List<BoardDTO> boardList(int start, int end);
 
-	// 게시글 갯수 구하기
+	// 게시글 갯수 조회
 	public int boardCnt();
 
 	// 게시글 상세페이지
@@ -29,7 +29,17 @@ public interface BoardDAO {
 	public void reviewInsert(Board_reviewDTO dto);
 
 	// 댓글 목록
-	public List<Board_reviewDTO> reviewList(int board_No);
+	public List<Board_reviewDTO> reviewList(int start, int end);
+
+	// 댓글 갯수 조회
+	public int reviewCount(int board_No);
+
+	// 검색한 게시글 갯수 조회
+	public int boardSearchCnt(String searchKey);
+
+	// 검색한 게시글 목록
+	public List<BoardDTO> boardSearchList(int start, int end, String searchKey);
+
 	
 	
 }
