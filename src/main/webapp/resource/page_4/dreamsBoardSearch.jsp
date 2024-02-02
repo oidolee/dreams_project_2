@@ -9,22 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>드림즈게시판</title>
+    <title>드림즈게시판 검색결과</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="./resource/css/common/common.css">
-    <link rel="stylesheet" href="./resource/css/common/header.css">
-    <link rel="stylesheet" href="./resource/css/common/footer.css">
-    <link rel="stylesheet" href="./resource/css/index.css">
-    <link rel="stylesheet" href="../css/common/page4_board.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/index.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/page4_board.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -32,8 +30,7 @@
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
-    <script src="./resource/js/common/header.js"></script>
-	<script src="dreamsBoard.js"></script>
+	<script src="${path}/resource/page_4/dreamsBoard.js"></script>
     <script>
         // 페이지 로드 후 실행될 함수
         $(document).ready(function () {
@@ -59,6 +56,21 @@
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
         })
+        
+    // 검색 버튼 클릭시
+    function searchBoard(){
+    	var searchkey = "$('#searchKey').val()";
+        	
+       	if(searchkey == ""){
+       		alert("키워드를 입력하세요!");
+       	}
+       	else{
+       		location.href="${path}/dreamsBoardSearch.bc?searchKey="+searchkey;
+       	}	
+    	
+    	});
+    	
+    }
 
     </script>
 </head>
@@ -69,18 +81,18 @@
       
         <div class="slider-con">
             <div class="slider-box">
-                <img src="../image/banner/category_BOARDS.jpg" alt="">
+                <img src="${path}/resource/image/banner/category_BOARDS.jpg" alt="">
             </div>
         </div>
         <!-- 상단 중앙1 시작 -->
-			<form name="boardform" method="post">
+			<form name="boardForm" method="post">
 				<div style="display: flex; justify-content: center;"class="board">
                     <!-- 좌측메뉴 시작 -->
 					<%@ include file="/resource/page_4/boardLeftMenu.jsp" %>
 					<!-- 좌측메뉴 종료 -->	
 					<!-- 우측메뉴 시작 -->
 	                <div style="width: 800px;">
-						<h2 align="center" class="title"> 드림즈 게시판 검색결과 </h2><br>
+						<h2 align="center" class="title"> '${searchKey}' 검색 결과 </h2><br>
 	                    
 	                <table>
 	                    <colgroup>
@@ -106,33 +118,50 @@
 	                
 	                <hr id="blackline">
 	                <div style="display: flex; justify-content: right;">
-	                    <input type="text" class="search" name="search" style="height: 30px;">
+	                    <input type="text" class="search" name="searchKey" id="searchKey" style="height: 30px;" placeholder="제목 키워드 입력">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
-	                    <a href="dreamsBoardWrite.jsp"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
 	                </div>
 	
 	                <div class="pageNav">
+	                	<!-- 이전 버튼 활성화 -->
+	                	<c:if test="${paging.startPage > 10}">
 	                    <span class="prev1">
-	                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
+	                        <a href="${path}/dreamsBoard.bc?pageNum=${paging.prev}" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
 	                            <span style="color: white !important;">< 이전</span>
 	                        </a>
 	                    </span>
-	                    <span class="page">
-	                        <a href="" class="on">1</a>
-	                    </span>
-	                   <span class="next1">
-	                        <a href="" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
+	                    </c:if>
+	                    
+	                    <!-- 이전 버튼 활성화 -->
+	                    <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+	                    	<c:if test="${paging.currentPage == num}">
+			                    <span class="page">
+			                        <a href="${path}/dreamsBoard.bc?pageNum=${num}" class="on" >${num}</a>
+			                    </span>
+			                </c:if>
+	                    	<c:if test="${paging.currentPage != num}">
+			                    <span class="page1">
+			                        <a href="${path}/dreamsBoard.bc?pageNum=${num}" class="on">${num}</a>
+			                    </span>
+			                </c:if>
+	                    </c:forEach>
+	                    
+	                    <!-- 다음 버튼 활성화 -->
+	                    <c:if test="${paging.endPage < paging.pageCount}">
+	                    <span class="next1">
+	                        <a href="${path}/dreamsBoard.bc?pageNum=${paging.next}" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
 	                            <span style="color: white !important;">다음 ></span>
 	                        </a>
 	                    </span>
+	                    </c:if>
 	                </div>
                 </div>
             </div>
           </form>
 		<!-- 우측메뉴 종료 -->
      
-      
-     	<%@ include file="/layout/footer.jsp" %>
+      	<%@ include file="/layout/footer.jsp" %>
         
         <script>
             //메인 스크롤 이벤트 

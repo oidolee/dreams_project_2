@@ -22,7 +22,7 @@
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <%-- <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script> --%>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -35,7 +35,6 @@
     <script>
         // 페이지 로드 후 실행될 함수
         $(document).ready(function () {
-        	alert("뜨냐??");
             // top 버튼 클릭 시 스크롤
             $('#goTop a[href="#header"]').on('click', function (e) {
                 window.scroll({
@@ -63,10 +62,14 @@
 
     
     $(function() {	// 페이지 로딩시
-    	alert("뜨냐??");
 	 	// 댓글쓰기 버튼 클릭
 	 	$('#reviewButton').click(function() {
 	 		review_add();
+	 	});
+    
+	 	// 로그인 안하고 댓글쓰기 버튼 클릭
+	 	$('#reviewButton0').click(function() {
+	 		alert("로그인을 해주세요");
 	 	});
 	 	
 	 	// 댓글 목록
@@ -76,12 +79,11 @@
     
     // 댓글쓰기 버튼 클릭시
     function review_add(){
-    	alert("review_add()");
     	
     	let param= {
     			"board_No": ${dto.board_No},
     			"reveiwWrite": $('#reveiwWrite').val(),
-    			"cust_Id": ${sessionScope.sessionID}
+    			"cust_Id": '${sessionScope.sessionID}'
     	}
     	
     	$.ajax({
@@ -101,12 +103,20 @@
     
     // 자동으로 댓글목록 호출
     function review_list() {
-    	alert("review_list()");
+    	var sendData;
+    	
+    	if("${param.pageNum}" == ""){
+    		sendData =  'board_No=${dto.board_No}';
+		}
+    	else{
+			sendData =  'board_No=${dto.board_No}&pageNum=${param.pageNum}';
+		}
+    	
     	$.ajax({
     		url: '${path}/dreamsBoardReview.bc',
     		type: 'POST',
-    		data: 'board_No=${dto.board_No}',
-    		
+   			data: sendData,
+    		    		
     		success: function(result){
     			$('#reviewList').html(result);
     		},
@@ -179,7 +189,7 @@
                             <a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
                         </div>
                     </div>
-	                <c:if test="${sessionScope.sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
+	                <c:if test="${sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
 	                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
 	                        <div id="writebutton">
 	                        	<input type="hidden" name="board_No" value="${dto.board_No}">
@@ -195,21 +205,22 @@
                     
                     <table>
                          <tr>
-                             <div style="display: inline;">
-                             	<tr>
-                                  <td style="width: 100%; padding: 20px 0">
-                                  	<c:if test="${sessionScope.sessionID == null}">
-                                      	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
-                                      </c:if>
-                                  	<c:if test="${sessionScope.sessionID != null}">
-                                      	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
-                                      </c:if>
-                                  </td>
-                                  <td>
-                                      <button id="reviewButton"> 댓글달기 </button>
-                                  </td>
-                             	</tr>
-                             </div>
+                          	<c:if test="${sessionScope.sessionID == null}">
+	                          	<td style="width: 100%; padding: 20px 0">
+	                              	<textarea name="reveiwWrite0" id="reveiwWrite0" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+	                         	</td>
+	                         	<td>
+	                              	<button id="reviewButton0"> 댓글달기 </button>
+	                         	</td>
+                            </c:if>
+                          	<c:if test="${sessionScope.sessionID != null}">
+	                         	<td style="width: 100%; padding: 20px 0">
+	                              	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
+	                          	</td>
+	                          	<td>
+	                              	<button id="reviewButton"> 댓글달기 </button>
+	                         	</td>
+                            </c:if>
                          </tr>
 					</table>
 

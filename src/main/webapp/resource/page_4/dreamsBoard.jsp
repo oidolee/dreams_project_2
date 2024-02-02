@@ -56,6 +56,21 @@
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
         })
+        
+ /*    // 검색 버튼 클릭시
+    function searchBoard(){
+    	var searchkey = "$('#searchKey').val()";
+        	
+       	if(searchkey == ""){
+       		alert("키워드를 입력하세요!");
+       	}
+       	else{
+       		location.href="${path}/dreamsBoardSearch.bc?searchKey="+searchkey;
+       	}	
+    	
+    	});
+    	
+    } */
 
     </script>
 </head>
@@ -103,7 +118,7 @@
 	                
 	                <hr id="blackline">
 	                <div style="display: flex; justify-content: right;">
-	                    <input type="text" class="search" name="search" style="height: 30px;" placeholder="제목 키워드 입력">
+	                    <input type="text" class="search" name="searchKey" id="searchKey" style="height: 30px;" placeholder="제목 키워드 입력">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
 	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
 	                </div>
