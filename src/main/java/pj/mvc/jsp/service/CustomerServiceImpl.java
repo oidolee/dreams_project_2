@@ -122,21 +122,28 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomerAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		System.out.println("서비스 - deleteCustomerAction()");
 		
-		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
-		String strId = req.getParameter("userid");
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		String strId = (String)req.getSession().getAttribute("sessionID");
 		String strPassword = req.getParameter("userpwd");
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		CustomerDAO dao = CustomerDAOImpl.getInstance();
 		
 		// 5-1단계. 회원인증처리
-		
+		int selectCnt = dao.idPasswordChk(strId, strPassword);
 		// 회원인증 성공시
+		int deleteCnt = 0;
 		
+		if(selectCnt == 1) {
 			// 5-2단계. 회원탈퇴 처리
+			deleteCnt = dao.deleteCustomer(strId);
+			req.getSession().invalidate();
+		}
 		
 		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
 	}
 
 	// 회원정보 상세페이지
@@ -158,7 +165,6 @@ public class CustomerServiceImpl implements CustomerService {
 		req.setAttribute("dto", dto);
 	}
 
-	
 	// 회원정보 수정 처리
 	@Override
 	public void modifyCustomerAction(HttpServletRequest req, HttpServletResponse res)
