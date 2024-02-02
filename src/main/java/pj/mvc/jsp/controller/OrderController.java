@@ -50,13 +50,22 @@ public class OrderController extends HttpServlet {
 		if (url.equals("/*.oc") || url.equals("/myPage.oc")) {
 
 			viewPage = "/resource/page_6/myPage.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 		
 		// 내 주문 조회
 		else if (url.equals("/myOrder.oc")) {
 			
+			service.orderDetailAction(req, res);
 			viewPage = "/resource/page_6/myOrder.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
+		
+		
 		
 		// 내가 구매한 티켓 페이지
 		else if (url.equals("/myTicket.oc")) {
@@ -68,12 +77,18 @@ public class OrderController extends HttpServlet {
 		else if (url.equals("/ticketRefund.oc")) {
 			
 			viewPage = "/resource/page_6/ticketRefund.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 		
 		// 상품 교환/환불 페이지
 		else if (url.equals("/goodsRefund.oc")) {
 			
 			viewPage = "/resource/page_6/goodsRefund.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 		
 		// 상품 교환/환불 신청서 제출
@@ -81,25 +96,45 @@ public class OrderController extends HttpServlet {
 			
 			service.productRefundAction(req, res);
 			viewPage = "/resource/page_6/goodsRefundAction.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 		
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// -------------------------------------------------------------------------
 		// 마이페이지 -> 회원정보 수정
 		else if (url.equals("/modifyMember.oc")) {
 
 			viewPage = "/resource/page_6/modifyMember.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 		
 		// 마이페이지 -> 회원 탈퇴
 		else if (url.equals("/deleteMember.oc")) {
 
 			viewPage = "/resource/page_6/deleteMember.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
 		}
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-		dispatcher.forward(req, res);
+		
 	}
 
 }
