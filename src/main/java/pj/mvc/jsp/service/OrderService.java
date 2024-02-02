@@ -13,7 +13,9 @@ public interface OrderService {
 	public void productRefundAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
-	
+	// 주문 확인(고객)
+	public void orderDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
 	
 	
 	
@@ -29,7 +31,5 @@ public interface OrderService {
 	public void cancelOrderAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
-	// 주문 확인(고객)
-	public void orderDetailAction(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException;
+	
 }

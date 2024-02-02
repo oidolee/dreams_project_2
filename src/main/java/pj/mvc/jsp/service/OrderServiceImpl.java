@@ -71,12 +71,16 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println(dto);
 	}
 	
+	// 환불 신청시 보여줄
+	
+	
 	// 내 주문 조회
 	@Override
 	public void orderDetailAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		// 3단계. 값을 가져옴
-		String cust_Id = "";
+		RefundDTO dto = new RefundDTO();
+		String cust_Id = (String) req.getSession().getAttribute("sessionID");
 		
 		// 4단계. 싱글톤 방식으로 DAO객체 생성, 다형성 적용
 		OrderDAO dao = OrderDAOImpl.getInstance();
@@ -88,6 +92,7 @@ public class OrderServiceImpl implements OrderService {
 		req.setAttribute("list", list);
 	}
 	
+	// 
 	
 	
 	
@@ -119,9 +124,6 @@ public class OrderServiceImpl implements OrderService {
 	
 	
 	
-	// 상품 환불
-	
-	// 상품 교환
 	
 	// 티켓 환불
 	

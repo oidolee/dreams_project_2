@@ -135,7 +135,7 @@
                         <td><label><input type="radio" name="goods"> </label></td>
                         <td>${list.order_No}</td>
                         <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>${list.order_Name}</td>
+                        <td>${list.order_Content}</td>
                         <td>${list.order_Amount} 원</td>
                         <td>${list.order_Date}</td>
                         <td>${list.order_Status}</td>
