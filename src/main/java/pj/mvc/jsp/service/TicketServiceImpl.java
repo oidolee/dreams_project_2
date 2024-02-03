@@ -59,13 +59,26 @@ public class TicketServiceImpl implements TicketService {
 		TicketDAO tdao = TicketDAOImpl.getInstance();
 		
 		int insertResCnt = tdao.ticketRes(trdto);
+		
+		// 5단계. jsp로 처리결과 전달
+		req.setAttribute("insertResCnt", insertResCnt);
 	}
 	
 	// 티켓 예매 내역 조회
 	@Override
 	public void resCheckAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException{
+		System.out.println("서비스 - ticketResAction");
 		
+		// session에서 아이디를 받아온다.
+		String srtId = (String)req.getSession().getAttribute("sessionID");
+		
+		// 3단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		TicketDAO tdao = TicketDAOImpl.getInstance();
+		List<TicketResDTO> list = tdao.ResCheckTicket(srtId);
+		
+		// 5단계. jsp로 처리결과 전달
+		req.setAttribute("list", list);
 	}
 	
 	// 티켓 개별 조회

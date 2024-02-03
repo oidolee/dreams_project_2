@@ -142,9 +142,9 @@
                 
                 // 1. validation check
                 // 아이디 입력 확인
-                if(!$("#user_id").val()){
-                    $("#result").html("아이디를 입력하시오");
-                    $("#user_id").focus();
+                if(!$("#user_name").val()){
+                    $("#result").html("이름을 입력하시오");
+                    $("#user_name").focus();
                     return false; // 다음칸으로 내려가는 동작 중지
                 }
                 
@@ -176,9 +176,9 @@
         function openNewWindow() {
             // 1. validation check
             // 아이디 입력 확인
-            if(!$("#user_id").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#user_email_1").val() || !$("#user_email_2").val()){
+            if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#user_email_1").val() || !$("#user_email_2").val()){
                 alert("예매자 확인을 해주세요!")
-                $("#user_id").focus();
+                $("#user_name").focus();
                 return false; // 다음칸으로 내려가는 동작 중지
             }
             else{
@@ -316,7 +316,7 @@
                     <tr>
                         <td> 이메일 </td>
                         <td>
-	                        <c:set var="emailArr" value="${fn:split(cdto.getEmail(),'@') }"/>
+	                        <c:set var="emailArr" value="${fn:split(cdto.getCust_Email(),'@') }"/>
 								<input type="text" class="input" name="email1" maxlength="20" style="width:100px" required value="${emailArr[0]}" required>
 								@
 								<input type="text" class="input" name="email2" maxlength="20" style="width:100px" required value="${emailArr[1]} " required>

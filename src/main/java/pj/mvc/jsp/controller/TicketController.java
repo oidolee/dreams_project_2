@@ -80,7 +80,16 @@ public class TicketController extends HttpServlet {
 		}
 		
 		// 티켓 예매 확인
+		else if (url.equals("/ResCheck.tc")) {
+			System.out.println("<<< url ==> /ResCheck.tc >>>");
+			tservice.resCheckAction(request, response);
+			
+			viewPage = "resource/page_2/ReserationTicket_check.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 
+		}
+		
 		// 관리자 페이지
 		else if (url.equals("/admin.tc")) {
 			System.out.println("<<< url ==> /admin.tc >>>");

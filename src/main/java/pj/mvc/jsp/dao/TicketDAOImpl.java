@@ -131,54 +131,105 @@ public class TicketDAOImpl implements TicketDAO {
 		return insertResCnt;
 	}
 	// 티켓 예매 확인 - select
-
-	// 티켓 개별 조회
-		@Override
-		public TicketDTO ticketEach(String strTicket_seat) {
-			System.out.println("TicketDAOImpl - ticketList");
+	@Override
+	public List<TicketResDTO> ResCheckTicket(String strId) {
+		System.out.println("TicketDAOImpl - ticketList");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<TicketResDTO> list = new ArrayList<>();
+		
+		try {
+			conn = dataSource.getConnection();
 			
-			Connection conn = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			TicketDTO tdto = new TicketDTO();
 			
-			try {
-				conn = dataSource.getConnection();
+			String sql = "SELECT * FROM DR_ticket_reservation WHERE cust_Id=?";
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, strId);
+			
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				TicketResDTO trdto = new TicketResDTO();
+				trdto.setTicket_no(rs.getInt("ticket_no"));
+				trdto.setTicket_seat(rs.getString("ticket_seat"));
+				trdto.setCust_Id(rs.getString("cust_Id"));
+				trdto.setGame_date(rs.getDate("game_date"));
+				trdto.setPurchase_date(rs.getDate("purchase_date"));
+				trdto.setTicket_price(rs.getInt("ticket_price"));
 				
-				
-				String sql = "SELECT * FROM DR_ticket WHERE ticket_seat=?";
-				
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, strTicket_seat);
-				
-				rs = pstmt.executeQuery();
-				
-				
-				if(rs.next()) {
-					tdto.setTicket_seat(strTicket_seat);
-					tdto.setTicket_grade_normal(rs.getInt("ticket_grade_normal"));
-					tdto.setTicket_grade_membership(rs.getInt("ticket_grade_membership"));
-					tdto.setTicket_grade_child(rs.getInt("ticket_grade_child"));
-				}
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}finally {
-				try {
-					if(pstmt != null) pstmt.close();
-					if(conn != null) conn.close();
-					if(rs != null) rs.close();
-				}
-				catch(SQLException e) {
-					e.printStackTrace();
-				}
+				list.add(trdto);
 			}
 			
-			
-			return tdto;
-			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
+		return list;
+		
+	}
+	
+	// 티켓 개별 조회
+	@Override
+	public TicketDTO ticketEach(String strTicket_seat) {
+		System.out.println("TicketDAOImpl - ticketList");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		TicketDTO tdto = new TicketDTO();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT * FROM DR_ticket WHERE ticket_seat=?";
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, strTicket_seat);
+			
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				tdto.setTicket_seat(strTicket_seat);
+				tdto.setTicket_grade_normal(rs.getInt("ticket_grade_normal"));
+				tdto.setTicket_grade_membership(rs.getInt("ticket_grade_membership"));
+				tdto.setTicket_grade_child(rs.getInt("ticket_grade_child"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return tdto;
+		
+	}
 	// 티켓 가격 수정
 	@Override
 	public int ticketUpdate(TicketDTO tdto) {
@@ -338,7 +389,7 @@ public class TicketDAOImpl implements TicketDAO {
 				cdto.setCust_Name(rs.getString("cust_Name"));
 				cdto.setCust_Birth(rs.getString("cust_Birth"));
 				cdto.setCust_Phone(rs.getString("cust_Phone"));
-				cdto.setCust_Email(rs.getString("cust_Address"));
+				cdto.setCust_Email(rs.getString("cust_Email"));
 			}
 			
 		}catch(SQLException e) {
