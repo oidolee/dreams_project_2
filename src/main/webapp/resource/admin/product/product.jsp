@@ -98,10 +98,10 @@
 								<td> ${dto.product_Name}</td>
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
-								<td> ${dto.product_ImgName} </td>
-								<td> ${dto.product_ImgDetail}</td>
-								<td> ${dto.product_ImgSize}</td>
-								<td> ${dto.product_ImgRfd}</td>
+								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
+								<td> <img src="${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="${dto.product_ImgSize}" width="100px"></td>
+								<td> <img src="${dto.product_ImgRfd}" width="100px"></td>
 								<td> ${dto.regDate}</td>
 							</tr>
 						</c:forEach>

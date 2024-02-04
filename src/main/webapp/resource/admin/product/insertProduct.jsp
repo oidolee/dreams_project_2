@@ -136,7 +136,7 @@ to {
 		
 		// 상품등록 누를시 컨트롤러의 등록처리화면으로 이동
 		$('#btnAdd').click(function() {
-			alert("test");
+			// alert("test");
 			document.insertform.action = "${path}/insertProductAction.pc";
 			document.insertform.submit();
 		});
@@ -160,14 +160,14 @@ to {
 			<main>
 
 				<div class="table_div">
-					<form name="insertform"	method="post" id="insertform">
+					<form name="insertform"	method="post" id="insertform" enctype="multipart/form-data">
 						<table border="1">
 							
-							<tr>
+							<!-- <tr>
 								<th>* 상품번호</th>
 								<td><input type="text" class="input" name="product_No" id="product_No"
 									size="40" placeholder="상품번호" required></td>
-							</tr>
+							</tr> -->
 						
 							<tr>
 								<th>* 상품명</th>
@@ -190,27 +190,27 @@ to {
 							
 							<tr>
 								<th>상품이미지</th>
-								<td><input type="text" class="input" name="product_ImgName" id="product_ImgName"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgName" id="product_ImgName"
+									size="40" accept="image/*"></td>
 							</tr>
 
 							<tr>
 								<th>상품 상세 설명 이미지</th>
-								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgDetail" id="product_ImgDetail"
+									size="40" accept="image/*"></td>
 							</tr>
 							
 							<tr>
 								<th>상품 정보 이미지</th>
-								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgSize" id="product_ImgSize"
+									size="40" accept="image/*"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
-								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgRfd" id="product_ImgRfd"
+									size="40" accept="image/*"></td>
 							</tr>
 
 							<tr>

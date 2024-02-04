@@ -6,9 +6,9 @@ public class ProductDTO {
 
 	private int product_No;				// 상품번호
 	private String product_Name;		// 상품명
-	private int product_Price;		// 상품가격
-	private int product_Qty;	// 상품수량
-	private String product_ImgName;	// 상품이미지
+	private int product_Price;			// 상품가격
+	private int product_Qty;			// 상품수량
+	private String product_ImgName;		// 상품이미지
 	private String product_ImgDetail;	// 상품 상세 이미지
 	private String product_ImgSize; 	// 상품정보 이미지
 	private String product_ImgRfd;		// 반품관련 이미지

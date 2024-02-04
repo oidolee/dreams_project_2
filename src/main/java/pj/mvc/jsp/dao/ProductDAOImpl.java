@@ -160,18 +160,17 @@ public class ProductDAOImpl implements ProductDAO {
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql = " INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd) "
-					+ "         VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = " INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) "
+					+ "         VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, sysdate) ";
 					
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getProduct_No());
-			pstmt.setString(2, dto.getProduct_Name());
-			pstmt.setInt(3, dto.getProduct_Price());
-			pstmt.setInt(4, dto.getProduct_Qty());
-			pstmt.setString(5, dto.getProduct_ImgName());
-			pstmt.setString(6, dto.getProduct_ImgDetail());
-			pstmt.setString(7, dto.getProduct_ImgSize());
-			pstmt.setString(8, dto.getProduct_ImgRfd());
+			pstmt.setString(1, dto.getProduct_Name());
+			pstmt.setInt(2, dto.getProduct_Price());
+			pstmt.setInt(3, dto.getProduct_Qty());
+			pstmt.setString(4, dto.getProduct_ImgName());
+			pstmt.setString(5, dto.getProduct_ImgDetail());
+			pstmt.setString(6, dto.getProduct_ImgSize());
+			pstmt.setString(7, dto.getProduct_ImgRfd());
 			
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
