@@ -1,102 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/layout/setting.jsp" %> 
+	pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>드림즈 관리자</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="${path}/resource/admin/css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- chartJs -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>드림즈 관리자</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link href="${path}/resource/admin/css/styles.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- chartJs -->
+<script
+	src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <style>
-        .tableContent .displayNone {
-            display: none !important;
-        }
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+	crossorigin="anonymous">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+	crossorigin="anonymous"></script>
+<style>
+.tableContent .displayNone {
+	display: none !important;
+}
 
-        .tableContent .pageBox,
-        .tableContent .pageCon {
-            display: flex;
-        }
+.tableContent .pageBox, .tableContent .pageCon {
+	display: flex;
+}
 
-        .chartCon {
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-        }
+.chartCon {
+	display: flex;
+	justify-content: center;
+	overflow-x: auto;
+}
 
-    .floating-box {
-        width: 50px;
-        height: 50px;
-        background: url("../../image/logoSmall.png") no-repeat 50% 50%;
-        background-size: 110px;
-        position: fixed;
-        bottom: 10px;
-        left: 250px;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-        animation: floatUpDown 1s infinite alternate;
-        transition: transform 0.3s;
-        z-index: 10000;
-    }
+.floating-box {
+	width: 50px;
+	height: 50px;
+	background: url("../../image/logoSmall.png") no-repeat 50% 50%;
+	background-size: 110px;
+	position: fixed;
+	bottom: 10px;
+	left: 250px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+	animation: floatUpDown 1s infinite alternate;
+	transition: transform 0.3s;
+	z-index: 10000;
+}
 
-    .floating-box:hover {
-        transform: translateY(-5px);
-    }
+.floating-box:hover {
+	transform: translateY(-5px);
+}
 
-    .floating-box::before {
-        content: "드림즈 메인";
-        white-space: pre-line;
-        position: absolute;
-        width: 58px;
-        text-align: center;
-        top: -50px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #1c5c50;
-        color: #fff;
-        padding: 5px;
-        border-radius: 3px;
-        font-size: 12px;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
+.floating-box::before {
+	content: "드림즈 메인";
+	white-space: pre-line;
+	position: absolute;
+	width: 58px;
+	text-align: center;
+	top: -50px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #1c5c50;
+	color: #fff;
+	padding: 5px;
+	border-radius: 3px;
+	font-size: 12px;
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
 
-    .floating-box:hover::before {
-        opacity: 1;
-    }
+.floating-box:hover::before {
+	opacity: 1;
+}
 
-    @keyframes floatUpDown {
-        from {
-            transform: translateY(0);
-        }
+@
+keyframes floatUpDown {from { transform:translateY(0);
+	
+}
 
-        to {
-            transform: translateY(10px);
-        }
-    }
-    </style>
+to {
+	transform: translateY(10px);
+}
+}
+</style>
 
-    <script>
+<script>
         //왼쪽 페이지 이동
         function moveChange(type){
             console.log(type)
@@ -110,168 +119,146 @@
                 window.location.href = "./ticket/ticket.html";
             }
         }
+        //select form 조건
+        $(function(){
+            $("#gamesInsertButton").on("click",function(){
+                if($("#DG_Home").val() == ""){
+                    alert("홈팀을 선택해주세요");
+                    $("#DG_Home").focus();
+                    return false;
+                }
+                if($("#DG_Away").val() == ""){
+                    alert("원정팀을 선택해주세요");
+                    $("#DG_Away").focus();
+                    return false;
+                }
+
+                if($("#DG_Home").val() == $("#DG_Away").val()){
+                    alert("원정팀 선택을 확인해 주세요!");
+                    $("#DG_Away option").eq(0).prop("selected", true); 
+                    $("#DG_Away").focus();
+                    return false;
+                }
+
+                if($("#DG_Time").val() == ""){
+                    alert("시간을 선택해주세요");
+                    $("#DG_Time").focus();
+                    return false;
+                }
+                $("#gamesInsertForm").submit();
+            })
+        })
     </script>
 </head>
 
 <body class="sb-nav-fixed">
 
-    <%@ include file="../templet/header.jsp" %>
+	<%@ include file="../templet/header.jsp"%>
 
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-        	<%@ include file="../templet/nav.jsp" %>
-            <a href="../index.html">
-                <div class="floating-box"></div>
-            </a>
-        </div>
-        <div id="layoutSidenav_content">
-             <main>
-                <div class="container-fluid px-4">
-                    <div class="row mt-4">
-                        <div class="col-xl-2 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">게임일정</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${path}/games.gc">게임일정 상세내역</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
+	<div id="layoutSidenav">
+		<div id="layoutSidenav_nav">
+			<%@ include file="../templet/nav.jsp"%>
+			<a href="../index.html">
+				<div class="floating-box"></div>
+			</a>
+		</div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<div class="row mt-4">
+						<div class="col-xl-2 col-md-6">
+							<div class="card bg-primary text-white mb-4">
+								<div class="card-body">경기일정 등록</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link"
+										href="${path}/games.gc">게임일정 상세내역</a>
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- chart 부분 -->
+					<div class="row">
+						<section class="mt-5">
+							<div class="container card" style="max-width: 600px;">
+								<div class="row d-flex justify-content-center">
+									<div class="col-md-6 text-center"
+										style="display: flex; flex-direction: column; height: 400px; justify-content: center; align-items: center;">
+										<h2>경기일정 등록</h2>
+										
+								         <form action="" class="mt-5" id="gamesInsertForm" name="gamesInsertForm">
+                        <div class="row mb-3 text-start">
+                            <label for="colFormLabelSm"
+                                class="text-left col-sm-4 col-form-label col-form-label-sm ">Home</label>
+                            <div class="col-sm-8">
+                                <select id="DG_Home" name="DG_Home" class="form-select" aria-label="Default select example">
+                                    <option value="">팀 선택</option>
+                                    <c:forEach var="dto" items="${list}">
+                                        <option value="${dto.getDK_No()}"><c:out value="${dto.getDK_TeamName()}" /></option>
+                                    </c:forEach>>
+                                </select>
                             </div>
                         </div>
-                   
-                    </div>
-
-                    <!-- chart 부분 -->
-                    <div class="row">
-                        <!-- // 차트를 그릴 영역으로 canvas태그를 사용한다. -->
-                        <div class="chartCon">
-                            <canvas id="myChart" width="900" height="500"></canvas>
+                        <div class="row mb-3 text-start">
+                            <label for="colFormLabelSm"
+                                class="text-left col-sm-4 col-form-label col-form-label-sm">away</label>
+                            <div class="col-sm-8">
+                                <select  id="DG_Away" name="DG_Away" class="form-select" aria-label="Default select example">
+                                    <option value="">팀 선택</option>
+                                    <c:forEach var="dto" items="${list}">
+                                        <option value="${dto.getDK_No()}"><c:out value="${dto.getDK_TeamName()}" /></option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <script>
-                        //chartJs
-
-                        // 차트를 그럴 영역을 dom요소로 가져온다.
-                        var chartArea = document.getElementById('myChart').getContext('2d');
-
-                        // 차트를 생성한다. 
-                        var myChart = new Chart(chartArea, {
-                            // ①차트의 종류(String)
-                            type: 'bar',
-                            // ②차트의 데이터(Object)
-                            data: {
-                                // ③x축에 들어갈 이름들(Array)
-                                labels: ['2023-08', '2023-09', '2023-10', '2023-11', '2023-12', '2024-01'],
-                                // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
-                                datasets: [{
-                                    // ⑤dataset의 이름(String)
-                                    label: '드림즈 회원 현황',
-                                    // ⑥dataset값(Array)
-                                    data: [5, 19, 3, 5, 2, 3],
-                                    // ⑦dataset의 배경색(rgba값을 String으로 표현)
-                                    backgroundColor: 'rgba(28, 92, 80, 0.2)',
-                                    // backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                    // ⑧dataset의 선 색(rgba값을 String으로 표현)
-                                    borderColor: 'rgba(28, 92, 80, 0.2)',
-                                    // ⑨dataset의 선 두께(Number)
-                                    borderWidth: 1
-                                }]
-                            },
-                            // ⑩차트의 설정(Object)
-                            options: {
-                                //가로 세로 값 수동 주기위함
-                                responsive: false,
-                                // ⑪축에 관한 설정(Object)
-                                scales: {
-                                    x: {
-                                        beginAtZero: true,
-                                        title: {
-                                            display: true,
-                                            text: '월' // x축 레이블
-                                        }
-                                    },
-                                    y: {
-                                        beginAtZero: true,
-                                        title: {
-                                            display: true,
-                                            text: '회원명' // y축 레이블
-                                        }
-                                    }
-                                },
-
-                                plugins: {
-                                    title: {
-                                        display: true,
-                                    },
-                                }
-                            }
-                        });
-
-
-                    </script>
-
-                    <!-- 드림즈 테이블 -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            드림즈 회원 가입 목록
+                        <div class="row mb-3 text-start">
+                            <label for="DG_Time"
+                                class="text-left col-sm-4 col-form-label col-form-label-sm">시간</label>
+                            <div class="col-sm-8">
+                                <input type="datetime-local" id="DG_Time" name="DG_Time"
+                                    required class="form-control form-control-sm">
+                            </div>
                         </div>
+                        <button type="button" id="gamesInsertButton" class="btn btn-success mt-3">등록</button>
+                    </form>
+										
+										
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
 
-                        <div class="tableContent">
-                            <input type="hidden" id="nowPage" name="nowPage" value="1">
-                            <input type="hidden" id="startNum" name="startNum" value="1">
-                            <input type="hidden" id="endNum" name="endNum" value="15">
-                            <table id="table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
-                                    </tr>
-                                </thead>
-                            </table>
+				</div>
+			</main>
+			<%@ include file="../templet/footer.jsp"%>
+		</div>
+	</div>
 
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
 
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <%@ include file="../templet/footer.jsp" %>
-        </div>
-    </div>
- 	
-	
-	
 
- 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="${path}/resource/admin/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
-    <script src="${path}/resource/admin/js/datatables-simple-demo.js"></script>
-    <!-- 드림즈 테이블, chartJs -->
-    <script src="${path}/resource/admin/js/admin.js"></script>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="${path}/resource/admin/js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="${path}/resource/admin/js/datatables-simple-demo.js"></script>
+	<!-- 드림즈 테이블, chartJs -->
+	<script src="${path}/resource/admin/js/admin.js"></script>
 </body>
 
 </html>

@@ -52,6 +52,8 @@ public class GamesController extends HttpServlet {
 		if (url.equals("/gamesInsert.gc")) {
 			System.out.println("<<< url ==> /gamesInsert.bc >>>");
 			viewPage = "/resource/admin/games/games.jsp";
+			
+			service.teamListAction(request, response);
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pj.mvc.jsp.dao.gamesDAOImpl;
+import pj.mvc.jsp.dto.TeamDTO;
 import pj.mvc.jsp.dto.gamesDTO;
 
 public class GamesServiceImpl implements GamesService {
@@ -20,6 +21,15 @@ public class GamesServiceImpl implements GamesService {
 		
 		List<gamesDTO> list = dao.selectGamesList();
 		System.out.println(" GamesServiceImpl gamesListAction list.toString() : " + list.toString());
+		req.setAttribute("list", list);
+	}
+
+	public void teamListAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		gamesDAOImpl dao = gamesDAOImpl.getInstance();
+		
+		List<TeamDTO> list = dao.selectTeamList();
+		System.out.println(" GamesServiceImpl teamListAction list.toString() : " + list.toString());
 		req.setAttribute("list", list);
 	}
 

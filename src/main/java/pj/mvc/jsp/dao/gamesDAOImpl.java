@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import pj.mvc.jsp.dto.TeamDTO;
 import pj.mvc.jsp.dto.gamesDTO;
 
 public class gamesDAOImpl implements gamesDAO {
@@ -36,6 +37,7 @@ public class gamesDAOImpl implements gamesDAO {
 		}
 	}
 	
+	//경기 일정 출력
 	public List<gamesDTO> selectGamesList() {
 		System.out.println("gamesDAOImpl - selectGamesList");
 		List<gamesDTO> list = null;
@@ -64,6 +66,33 @@ public class gamesDAOImpl implements gamesDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return list;
+	}
+
+	//팀 내역 출력
+	public List<TeamDTO> selectTeamList() {
+		List<TeamDTO> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			list = new ArrayList<>();
+			conn = dataSource.getConnection();
+			String sql = "SELECT * FROM DR_KBOTeams";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				TeamDTO dto = new TeamDTO();
+				dto.setDK_No(rs.getInt("dK_No"));
+				dto.setDK_TeamName(rs.getString("DK_TeamName"));
+				dto.setDK_Location(rs.getString("DK_Location"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return list;
 	}
 	
