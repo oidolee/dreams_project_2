@@ -51,18 +51,7 @@ const renderCalendar = () => {
    const lastDateIndex = dates.lastIndexOf(TLDate);
 
    //데이터 추가 
-   let games = {
-        month_1: {
-            2: { home: '드림즈', away: 'LG',     time: "18:00" ,checkHome : "T"},
-            3: { home: '드림즈', away: 'LG',     time: "19:00" ,checkHome : "T"},
-            4: { home: '키움',   away: '드림즈', time: "20:00" ,checkHome : "F"},
-        },
-        month_2: {
-            12: { home: '드림즈', away: '한화', time: "18:00" ,checkHome : "T"},
-            13: { home: '드림즈', away: '한화', time: "19:00" ,checkHome : "T"},
-            14: { home: '두산', away: '드림즈', time: "20:00" ,checkHome : "F"},
-        },
-    };
+
 
     let location = {
         "드림즈" : "고척",
@@ -70,37 +59,39 @@ const renderCalendar = () => {
         "LG" : "잠실",
         "두산" : "잠실",
         "한화" : "대전",
+        "Kia" : "광주",
     }
 
 
     let selectMonth = "month_" + (viewMonth + 1);
 
     let homeAndAwayTag = '';
-   dates.forEach((date, i) => {
-     const condition = i >= firstDateIndex && i < lastDateIndex + 1
-                       ? 'this'
-                       : 'other';
-
-        if (games[selectMonth] && games[selectMonth][i]) {
-            if(games[selectMonth][i]['checkHome'] == 'T'){
-                homeAndAwayTag = '<strong style="color:#bb1b39 !important; ">HOME</strong>'
-            }else {
-                homeAndAwayTag = '<strong style="color:#369dd9 !important; ">AWAY</strong>'; 
+    dates.forEach((date, i) => {
+        const dayIndex = i - firstDateIndex + 1; // 날짜에 대한 인덱스 조정
+    
+        const condition = dayIndex >= 1 && dayIndex <= lastDateIndex - firstDateIndex + 1
+                        ? 'this'
+                        : 'other';
+    
+        if (games[selectMonth] && games[selectMonth][dayIndex]) {
+            if (games[selectMonth][dayIndex]['checkHome'] == 'T') {
+                homeAndAwayTag = '<strong style="color:#bb1b39 !important; ">HOME</strong>';
+            } else {
+                homeAndAwayTag = '<strong style="color:#369dd9 !important; ">AWAY</strong>';
             }
             dates[i] = `<div class="date">
-                            
                             <div class="contents">
-                                <span clsss="${games[selectMonth][i]['checkHome']}">
+                                <span class="${games[selectMonth][dayIndex]['checkHome']}">
                                     <span class="${condition}">${date}</span>
                                     ${homeAndAwayTag}
                                 </span>
                                 <div>
-                                    <div>${games[selectMonth][i]['home']} : </div>
-                                    <div>${games[selectMonth][i]['away']}</div>
+                                    <div>${games[selectMonth][dayIndex]['home']} : </div>
+                                    <div>${games[selectMonth][dayIndex]['away']}</div>
                                 </div>
                                 <p>
-                                    ${location[games[selectMonth][i]['home']]}
-                                    ${games[selectMonth][i]['time']}
+                                    ${location[games[selectMonth][dayIndex]['home']]}
+                                    ${games[selectMonth][dayIndex]['time']}
                                 </p>
                             </div>
                         </div>`;
@@ -109,11 +100,9 @@ const renderCalendar = () => {
                             <div class="contents">
                                 <span class="${condition}">${date}</span>
                             </div>
-
                         </div>`;
         }
-   })
-
+    })
     // Dates 그리기
     document.querySelector('.dates').innerHTML = dates.join('');
 
