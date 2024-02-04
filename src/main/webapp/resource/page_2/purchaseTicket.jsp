@@ -120,6 +120,7 @@
 			
             let totalCnt = (bgNCnt + bgMCnt + bgCCnt);
             let totalprice = ((bgNormalPrice*bgNCnt) + (bgMPrice*bgMCnt) + (bgCPrice*bgCCnt));
+            
             let finalTotalprice = (totalprice - discount);
 
             document.getElementById('bgNormalPrice').textContent = bgNormalPrice.toLocaleString() + '원';
@@ -129,6 +130,7 @@
             document.getElementById('totalprice').textContent = totalprice.toLocaleString() + '원';
             document.getElementById('finalTotalprice').textContent = finalTotalprice.toLocaleString() + '원'; 
             
+            document.getElementById('totalprice').value() = totalprice;
         }
         
 
@@ -140,9 +142,9 @@
                 
                 // 1. validation check
                 // 아이디 입력 확인
-                if(!$("#user_id").val()){
-                    $("#result").html("아이디를 입력하시오");
-                    $("#user_id").focus();
+                if(!$("#user_name").val()){
+                    $("#result").html("이름을 입력하시오");
+                    $("#user_name").focus();
                     return false; // 다음칸으로 내려가는 동작 중지
                 }
                 
@@ -174,15 +176,15 @@
         function openNewWindow() {
             // 1. validation check
             // 아이디 입력 확인
-            if(!$("#user_id").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#user_email_1").val() || !$("#user_email_2").val()){
+            if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#user_email_1").val() || !$("#user_email_2").val()){
                 alert("예매자 확인을 해주세요!")
-                $("#user_id").focus();
+                $("#user_name").focus();
                 return false; // 다음칸으로 내려가는 동작 중지
             }
             else{
                 // // 새 창 열기
                 alert("결제가 완료되었습니다.");
-                window.open('ticketFee.jsp', '_blank');
+                window.close();
                 return false;                        
             }
         }
@@ -208,7 +210,9 @@
     		});
     	}); */
 
-    
+    	function closeWindow() {
+            window.close();
+        }
     </script>
     
     <style>
@@ -233,7 +237,7 @@
     <div class="purchase">
         <div class="elements">
             <h3>가격</h3>
-            <form name = "ticketForm" method="post">
+            <form name = "ticketForm" method="post" action="ticketRes.tc">
 			<table border="1" style="width: 416.55px;">
 				<tr>
 					<td colspan="4">
@@ -276,7 +280,7 @@
                 <tr id="normal-price">
                     <td style="background: whitesmoke;">기본가</td>
                     <td>일반</td>
-                    <td id="bgNormalPrice">${tdto.ticket_grade_normal}</td>
+                    <td id="bgNormalPrice" >${tdto.ticket_grade_normal}</td>
                     <td><input id="bgnCnt" type="number" style="width: 25px;" value="0" min="0" max="5" oninput="calculator()">매</td>
                 </tr>
                 <tr>
@@ -294,37 +298,36 @@
             </form>
             <hr>
             
-            <h3>예매자 확인</h3>
+            <h3>예매자 정보</h3>
             <form id="sign_In" name="signIn" action="#">
                 <table>
                     <tr>
                         <td> 이름 </td>
-                        <td><input id="user_id" type="text" size="30px" name="이름" ></td>
+                        <td><input id="user_name" type="text" size="30px" name="이름" value="${cdto.cust_Name }" ></td>
                     </tr>
                     <tr>
                         <td> 생년월일 </td>
-                        <td><input id="user_birthday" type="date" ></td>
+                        <td><input id="user_birthday" type="date" value="${cdto.cust_Birth }"></td>
                     </tr>
                     <tr>
                         <td> 연락처 </td>
-                        <td><input id="user_hp" type="text" size="30px"  placeholder="-빼고 입력하세요" ></td>
+                        <td><input id="user_hp" type="text" size="30px"  value="${cdto.cust_Phone }" ></td>
                     </tr>
                     <tr>
                         <td> 이메일 </td>
-                        <div>
-                            <td>
-                            <input type="text"  id="user_email_1"  name="userEmail1"  size="20"  style="width:100px">
-                            
-                            <input type="text"  id="user_email_2"  name="userEmail2"  size="20"  style="width:100px">
-                            <select name="userEmail3"  style="width:100px"  onchange="selectEmailChk();">
-                                <option value="0">직접입력</option>
-                                <option value="@naver.com">네이버</option>
-                                <option value="@gmail.com">구글</option>
-                                <option value="@daum.net">다음</option>
-                                <option value="@nate.com">네이트</option>
-                            </select>
-                            </td>
-                        </div>
+                        <td>
+	                        <c:set var="emailArr" value="${fn:split(cdto.getCust_Email(),'@') }"/>
+								<input type="text" class="input" name="email1" maxlength="20" style="width:100px" required value="${emailArr[0]}" required>
+								@
+								<input type="text" class="input" name="email2" maxlength="20" style="width:100px" required value="${emailArr[1]} " required>
+								<select class="input" name="email3" style="width:100px" required onchange="selectEmailChk_detail()">
+									<option value="0">직접입력</option>
+									<option value="naver.com">네이버</option>
+									<option value="gmail.com">구글</option>
+									<option value="daum.net">다음</option>
+									<option value="nate.com">네이트</option>
+								</select>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -385,7 +388,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>선택좌석<br>(<span id="totalCnt">0</span>석)</th>
+                        <th>선택좌석<br>(<span id="totalCnt" name="totalCnt">0</span>석)</th>
+                        
                         <td class="seat">
                             <div class="scrollY">
                                 <ul>
@@ -396,7 +400,7 @@
                     </tr>
                     <tr>
                         <th>티켓금액</th>
-                        <td id="totalprice">0원</td>
+                        <td id="totalprice" name="totalprice">0원</td>
                     </tr>
                     
                     <tr>
@@ -417,7 +421,7 @@
                         <td style="padding-right: 0;">
                             <div style="display: flex; justify-content: flex-end; background: white; " >
                                 <div id="cancle" style="margin-right: 10px;">
-                                    <input type="reset" value="취소하기" onclick="alert('결제가 취소되었습니다.'), openNewWindow()" >
+                                    <input type="button" value="취소하기" onclick="closeWindow()">
                                 </div>
                                 <div id="payit">
                                     <input type="button" value="결제하기"  onclick="openNewWindow()">

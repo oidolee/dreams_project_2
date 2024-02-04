@@ -35,7 +35,7 @@ public class OrderDAOImpl implements OrderDAO {
 	private OrderDAOImpl() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/jsp_pj_ict02");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +103,6 @@ public class OrderDAOImpl implements OrderDAO {
 			
 			pstmt = conn.prepareStatement(sql);
 	        //pstmt.setString(1, cust_Id);
-			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

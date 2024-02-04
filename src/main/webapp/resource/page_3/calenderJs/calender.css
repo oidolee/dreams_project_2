@@ -85,12 +85,12 @@
 .today::before {
     position: absolute;
     top: 50%;
-    left: 20%;
+    left: 8%;
     z-index: -1;
     display: block;
     width: 30px;
     height: 30px;
-    background-color: #FF0000;
+    background-color: gold;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     content: '';

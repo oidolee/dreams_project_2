@@ -62,6 +62,16 @@
              width: 100%;
         }
         
+        .refundAction table{
+        	margin-left:auto !important;
+        	margin-right:auto !important;
+        	text-align:center; 
+        	border:1px solid black !important;
+        	width:1280px;
+        	display:inline-block;
+        	color:black !important; 
+        }
+        
 
     </style>
 </head>
@@ -79,39 +89,42 @@
         <h2 style="text-align: center; color: black !important; font-weight: bold;" > 교환/환불 신청 완료 </h2>
         <br><br><br>
         
-        
-        ${dto.REF_No}<br>
-        ${dto.REF_No}${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        ${dto.REF_No}<br>
-        
+        <div class="refundAction">
+	        <table>
+				<tr>
+					<th style="width: 200px"> 글번호 </th>
+					<td style="width: 200px; text-align:center">dfdasda  </td>
+					
+					<th style="width: 200px"> 조회수 </th>
+					<td style="width: 200px; text-align:center">  </td>
+				</tr>
+				
+				<tr>
+					<th style="width: 200px"> 작성자 </th>
+					<td style="width: 200px; text-align:center"> </td>
+					
+					<th style="width: 200px"> 비밀번호 </th>
+					<td style="width: 200px; text-align:center"> 
+					</td> 
+				</tr>
+				
+				<tr>
+					<th style="width: 200px"> 글제목 </th>
+					<td colspan="3" style="text-align:center">  </td>
+				</tr>
+				
+				<tr>										
+					<th style="width: 200px"> 글내용 </th>
+					<td colspan="3" style="text-align:center">  </td>
+				</tr>
+				
+				<tr>
+					<th style="width: 200px"> 작성일 </th>
+					<td colspan="3" style="text-align:center">  </td>
+				</tr>
+				
+			</table>
+		</div>
         
         
         

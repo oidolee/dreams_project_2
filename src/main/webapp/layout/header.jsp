@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file = "/layout/setting.jsp" %>    
+<%@ include file = "/layout/setting.jsp" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -11,19 +13,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>드림즈</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/reset.css">
-    <!-- Bootstrap css-->
-    <link href="/dreams_project_2/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- swiper css-->
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/common.css">
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="/dreams_project_2/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- header.js -->
-    <script src="/dreams_project_2/resource/js/common/header.js"></script>
+    <script src="${path}/resource/js/common/header.js"></script>
 </head>
 <div class="wrap">
     <!-- 상단 이동 헤더 -->
@@ -35,10 +33,14 @@
                     <div class="top-box">
                         <div class="right">
                             <ul>
-                                <li><a href="/dreams_project_2/resource/page_6/myPage.html">마이페이지</a></li>
-                                <li><a href="/dreams_project_2/login.cc">로그인</a></li>
-                                <li><a href="/dreams_project_2/join.cc">회원가입</a></li>
-                                <li><a href="/dreams_project_2/resource/page_4/qna.html">안내 및 Q&A</a></li>
+                            	<c:if test="${not empty sessionID}">
+	                                <li><a href="${path}/resource/page_6/myPage.html">마이페이지</a></li>
+                            	</c:if>
+                            	<c:if test="${empty sessionID}">
+                                	<li><a href="${path}/login.cc">로그인</a></li>
+                            	</c:if>
+                                <li><a href="${path}/join.cc">회원가입</a></li>
+                                <li><a href="${path}/resource/page_4/qna.html">안내 및 Q&A</a></li>
                                 <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
                                         <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
                                             alt="youtube">
@@ -59,59 +61,59 @@
                     <nav>
                         <h2>
                             <a href="${path}/index.jsp">
-                                <img src="/dreams_project_2/resource/image/logoSmall.png" style="width: 100%;" alt="logoSmall">
+                                <img src="${path}/resource/image/logoSmall.png" style="width: 100%;" alt="logoSmall">
                             </a>
                         </h2>
                         <!-- pc -->
                         <ul id="menu_box" class="menu-box">
                             <li>
-                                <a href="/dreams_project_2/resource/page_6/Introduce.html">DREAMS</a>
+                                <a href="${path}/resource/page_6/Introduce.html">DREAMS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_6/Introduce.html">드림즈 소개</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_6/Introduce.html">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/players.jsp">PLAYERS</a>
+                                <a href="${path}/resource/page_4/players.jsp">PLAYERS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_4/players.jsp">선수</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/coaching.jsp">코칭스태프</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/steff.jsp">구단관계자</a></li>
+                                    <li><a href="${path}/resource/page_4/players.jsp">선수</a></li>
+                                    <li><a href="${path}/resource/page_4/coaching.jsp">코칭스태프</a></li>
+                                    <li><a href="${path}/resource/page_4/steff.jsp">구단관계자</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">GAMES</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_3/games.html">경기일정 및 결과</a></li>
+                                    <li><a href="${path}/games.gc">경기일정 및 결과</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/stats.jsp">STATS</a>
+                                <a href="${path}/resource/page_4/stats.jsp">STATS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_4/stats.jsp">팀순위</a></li>
+                                    <li><a href="${path}/resource/page_4/stats.jsp">팀순위</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_5/productList.html">GOODS</a>
+                                <a href="${path}/resource/page_5/productList.html">GOODS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/news.jsp">BOARDS</a>
+                                <a href="${path}/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_4/news.jsp">구단소식</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
+                                    <li><a href="${path}/resource/page_4/news.jsp">구단소식</a></li>
+                                    <li><a href="${path}/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="${path}/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_2/ticketFee.html">TICKET</a>
+                                <a href="${path}/resource/page_2/ticketFee.html">TICKET</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="/dreams_project_2/resource/page_2/ticketFee.jsp">일일티켓</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.jsp">단체관람</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/skybox.jsp">스카이박스</a></li>
+                                    <li><a href="${path}/resource/page_2/ticketFee.jsp">일일티켓</a></li>
+                                    <li><a href="${path}/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
+                                    <li><a href="${path}/resource/page_2/groupViewing.jsp">단체관람</a></li>
+                                    <li><a href="${path}/resource/page_2/skybox.jsp">스카이박스</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -121,59 +123,64 @@
                             <li style="position: relative;">
                                 <div class="home-box">
                                     <a href="#">HOME</a>
-                                    <a href="/dreams_project_2/resource/page_6/myPage.html">마이페이지</a>
-                                    <a href="/dreams_project_2/resource/page_1/login.html">로그인</a>
-                                    <a href="/dreams_project_2/resource/page_1/join.html">회원가입</a>
+                                    
+                                   	<c:if test="${not empty sessionID}">
+		                               <a href="${path}/resource/page_6/myPage.html">마이페이지</a>
+	                            	</c:if>
+	                            	<c:if test="${empty sessionID}">
+	                                	<a href="${path}/resource/page_1/login.html">로그인</a>
+	                            	</c:if>
+                                    <a href="${path}/resource/page_1/join.html">회원가입</a>
                                 </div>
                             </li>
                             <li>
                                 <a href="#">DREAMS</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_1/test.html">드림즈 소개</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_1/test.html">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/players.jsp">PLAYERS</a>
+                                <a href="${path}/resource/page_4/players.jsp">PLAYERS</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_4/players.jsp">선수</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/coaching.jsp">코칭스태프</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/steff.jsp">구단관계자</a></li>
+                                    <li><a href="${path}/resource/page_4/players.jsp">선수</a></li>
+                                    <li><a href="${path}/resource/page_4/coaching.jsp">코칭스태프</a></li>
+                                    <li><a href="${path}/resource/page_4/steff.jsp">구단관계자</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">GAMES</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_3/games.html">경기일정 및 결과</a></li>
+                                    <li><a href="${path}/games.gc">경기일정 및 결과</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/stats.jsp">STATS</a>
+                                <a href="${path}/resource/page_4/stats.jsp">STATS</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_4/stats.jsp">팀순위</a></li>
+                                    <li><a href="${path}/resource/page_4/stats.jsp">팀순위</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">GOODS</a>
                                 <ul class="menu-son">
-                                    <li><a href="/dreams_project_2/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/dreams_project_2/resource/page_4/news.jsp">BOARDS</a>
+                                <a href="${path}/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son ">
-                                    <li><a href="/dreams_project_2/resource/page_4/news.jsp">구단소식</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
+                                    <li><a href="${path}/resource/page_4/news.jsp">구단소식</a></li>
+                                    <li><a href="${path}/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="${path}/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">TICKET</a>
                                 <ul class="menu-son ">
                                     <li><a href="${path}/resource/page_2/ticketFee.jsp">일일티켓</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/groupViewing.jsp">단체관람</a></li>
-                                    <li><a href="/dreams_project_2/resource/page_2/skybox.jsp">스카이박스</a></li>
+                                    <li><a href="${path}/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
+                                    <li><a href="${path}/resource/page_2/groupViewing.jsp">단체관람</a></li>
+                                    <li><a href="${path}/resource/page_2/skybox.jsp">스카이박스</a></li>
                                 </ul>
                             </li>
                             <div class="ul-bg"></div>

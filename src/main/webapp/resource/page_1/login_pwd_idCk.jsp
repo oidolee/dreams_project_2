@@ -118,6 +118,16 @@ input:focus {
 	 color: #000  !important;
 }
 
+.inputButton {
+    width: 120px; /* 너비 조정 */
+    height: 40px; /* 높이 조정 */
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-top: -7px;
+    background-color: rgb(28 92 80);
+    color: #fff !important;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -158,40 +168,37 @@ input:focus {
 						<li class="here">LOGIN</li>
 					</div>
 						<!-- post : 노출x / get : 노출o -->
-						<div id="login" class="wideWrap" style="margin-top: 4px;">		<!-- 아랫선 -->
-							<div style="display: flex; justify-content: space-between; border-bottom: 2px solid; color: #000 !important; margin-bottom: 47px; position: relative; padding-bottom: 20px">
+						<div id="login" class="wideWrap">		<!-- 아랫선 -->
+							<div style="display: flex; justify-content: space-between; border-bottom: 2px solid; color: #000 !important; margin-bottom: 47px; position: relative; padding-bottom: 10px">
 								<div style="margin-top: -10px; z-index: -1;">
 									<img src="${path}/resource/image/logoSmall.png" width="230" height="120">
 								</div>
 
-								<div style= "font-size: larger; color: #000 !important; margin-top: 20px; text-align: left; margin-right: 50px; position: absolute; left: 200px; z-index: -1;">
-									드림즈 회원에 가입하시면 다양한 이벤트 및 
-									<br> 
-									편리한 One Stop 예매 / 혜택을 누리실 수있습니다.
+								<div style= "color: #000 !important; margin-top: 5px; margin-right: 50px; position: absolute; left: 200px; z-index: -1; padding-top: 28.5px;">
+									<h4><b style="letter-spacing: -1px; font-size: 21px; color:#333 !important">비밀번호를 찾고자하는 아이디를 입력해주세요.</b></h4>
 								</div>
 							</div>
-							<form name="loginform" action="loginAction.cc" method="post">
+							<form name="loginform" action="login_pwd.jsp" method="post">
 								<table style="display: flex; justify-content: center;">
+									
 									<tr>
-										<td><input type="text" class="input" name="userid" title="아이디" placeholder="아이디" autofocus onclick="checkForm" required>
+										<td>
+											<input type="text" class="input" name="userid" title="아이디" placeholder="아이디" required style="margin-bottom: -5px; height: 50px; font-size: 17px;">
 										</td>
+									</tr>
+									
+									<tr>
+										<td style="padding-top: 19px;">
+											<input class="input" type="submit" value="다음" style="margin-bottom:-5px; padding: 14px 183px; border: none; background-color: rgb(33 113 98); font-size: 18px; font-weight: 550; color: #fff !important;">
+										</td>
+									</tr>
+									
+									<tr>
+									    <td style="padding-top: 30px;">
+									        <span style="font-size:15px">아이디가 기억나지 않는다면?</span> <a href="${path}/resource/page_1/login_id.jsp" style="font-size: 15px; color: #217162 !important ">아이디 찾기</a>
+									    </td>
 									</tr>
 
-									<tr>
-										<td>
-											<input type="password" class="input" name="userpwd" title="비밀번호" placeholder="비밀번호" required>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<button type="submit">로그인</button> 
-											<div style="display: flex; justify-content: center;">
-												<a href="join.cc" style="padding-right: 15px;"> <strong>회원가입</strong></a> 
-												<a href="${path}/resource/page_1/login_id.jsp" style="padding: 0 15px; border-left: 1px solid #dadada !important;"> 아이디 찾기</a> 
-												<a href="${path}/resource/page_1/login_pwd_idCk.jsp" style="padding-left: 15px; border-left: 1px solid #dadada !important;"> 비밀번호 찾기</a>
-											</div>
-										</td>
-									</tr>
 								</table>
 							</form>
 							<hr id="blackline" style="margin-top: 50px; color: black !important; opacity: 1;">
@@ -208,11 +215,11 @@ input:focus {
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="${path}/resource/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
+                        <li><a href="${path}/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
-                        <li><a href="${path}/resource/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
+                        <li><a href="${path}/page_6/stadium.jsp"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item3.png"
                                     alt=""></a></li>
                     </ul>
                 </div>
