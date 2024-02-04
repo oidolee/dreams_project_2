@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/layout/setting.jsp" %>  
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">HOME</div>
-            <a class="nav-link" href="../index.html">
+            <a class="nav-link" href="${path}/resource/admin/index.jsp">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                 메인
             </a>
@@ -17,11 +18,12 @@
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="../member/member.html">회원</a>
-                    <a class="nav-link" href="../account/acocunt.html">결제</a>
-                    <a class="nav-link" href="../board/board.html">게시판</a>
-                    <a class="nav-link" href="../ticket/ticket.html">티켓</a>
-                    <a class="nav-link" href="../product/product.jsp">상품</a>
+                    <a class="nav-link" href="${path}/resource/admin/member/member.html">회원</a>
+                    <a class="nav-link" href="${path}/resource/admin/account/acocunt.html">결제</a>
+                    <a class="nav-link" href="${path}/resource/admin/board/board.html">게시판</a>
+                    <a class="nav-link" href="${path}/resource/admin/ticket/ticket.html">티켓</a>
+                    <a class="nav-link" href="${path}/resource/admin/product/product.jsp">상품</a>
+                    <a class="nav-link" href="${path}/resource/admin/games/games.jsp">게임일정</a>
                 </nav>
             </div>
 
