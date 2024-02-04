@@ -177,7 +177,7 @@
                 <br><br>
                 <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
                 	
-                	<input type="hidden" name="REF_cust_Id" value="임시">
+                	<input type="hidden" name="REF_cust_Id" value="임시"> <!-- ${sessionId} -->
                 	<input type="hidden" name="REF_Prod_No" value="9999">
 	                <table class="form">
 	                    <tr>
