@@ -12,6 +12,14 @@ public interface TicketService {
 	public void ticketListAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
+	// 티켓 예매 처리
+	public void ticketResAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
+	// 티켓 예매 내역 조회
+	public void resCheckAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
 	// 티켓 가격 수정
 	public void ticketUpdateAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;

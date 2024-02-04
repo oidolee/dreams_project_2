@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pj.mvc.jsp.service.TicketServiceImpl;
 
@@ -51,6 +52,9 @@ public class TicketController extends HttpServlet {
 		if (url.equals("/*.tc") || url.equals("/ticket.tc")) {
 			System.out.println("<<< url ==> /ticket.tc >>>");
 
+			HttpSession session = request.getSession();
+			session.setAttribute("sessionID", "hong123");
+			
 			viewPage = "resource/page_2/ticketFee.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
@@ -64,7 +68,28 @@ public class TicketController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
+		
+		// 티켓 예매 처리
+		else if (url.equals("/ticketRes.tc")) {
+			System.out.println("<<< url ==> /ticketRes.tc >>>");
+			tservice.ticketResAction(request, response);
+			
+			viewPage = request.getContextPath() + "/ticket.tc";
 
+			response.sendRedirect(viewPage);
+		}
+		
+		// 티켓 예매 확인
+		else if (url.equals("/ResCheck.tc")) {
+			System.out.println("<<< url ==> /ResCheck.tc >>>");
+			tservice.resCheckAction(request, response);
+			
+			viewPage = "resource/page_2/ReserationTicket_check.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+
+		}
+		
 		// 관리자 페이지
 		else if (url.equals("/admin.tc")) {
 			System.out.println("<<< url ==> /admin.tc >>>");
