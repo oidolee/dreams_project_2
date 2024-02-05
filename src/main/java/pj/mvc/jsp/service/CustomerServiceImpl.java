@@ -1,5 +1,7 @@
 package pj.mvc.jsp.service;
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -220,4 +222,21 @@ public class CustomerServiceImpl implements CustomerService {
 		// 6단계. jsp로 처리결과 전달
 		req.setAttribute("updateCnt", updateCnt);
 	}
+	
+	// 관리자모드 - 회원 전체 조회
+	@Override
+	public void customerListAll(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - customerListAll()");
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		List<CustomerDTO> list = dao.SelectCustomer();
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("list", list);
+	}
+
 }

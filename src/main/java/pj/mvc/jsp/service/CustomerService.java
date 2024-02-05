@@ -26,11 +26,16 @@ public interface CustomerService {
 	public void deleteCustomerAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
-	// 회원정보 인증처리 및 상세페이지
+	// 회원정보 인증처리 및 상세페이지 + 관리자모드 - 회원 상세 조회
 	public void modifyDetailAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
 	// 회원정보 수정 처리
 	public void modifyCustomerAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
+	
+	// 관리자모드 - 회원 전체 조회
+	public void customerListAll(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
 }

@@ -36,9 +36,9 @@
                             	<c:if test="${not empty sessionID}">
 	                                <li><a href="${path}/resource/page_6/myPage.html">마이페이지</a></li>
                             	</c:if>
-                            	<c:if test="${empty sessionID}">
+                            	<%-- <c:if test="${empty sessionID}"> --%>
                                 	<li><a href="${path}/login.cc">로그인</a></li>
-                            	</c:if>
+                            	<%-- </c:if> --%>
                                 <li><a href="${path}/join.cc">회원가입</a></li>
                                 <li><a href="${path}/resource/page_4/qna.html">안내 및 Q&A</a></li>
                                 <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
@@ -128,9 +128,9 @@
 		                               <a href="${path}/resource/page_6/myPage.html">마이페이지</a>
 	                            	</c:if>
 	                            	<c:if test="${empty sessionID}">
-	                                	<a href="${path}/resource/page_1/login.html">로그인</a>
+	                                	<a href="${path}/resource/page_1/login.cc">로그인</a>
 	                            	</c:if>
-                                    <a href="${path}/resource/page_1/join.html">회원가입</a>
+                                    <a href="${path}/resource/page_1/join.cc">회원가입</a>
                                 </div>
                             </li>
                             <li>
