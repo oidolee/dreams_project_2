@@ -1,6 +1,7 @@
 package pj.mvc.jsp.service;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,8 +46,9 @@ public class TicketServiceImpl implements TicketService {
 			throws ServletException, IOException{
 		System.out.println("서비스 - ticketResAction");
 		// 3단계. 화면에서 입력받은 값을 가져온다.
-		int ticket_price = Integer.parseInt(req.getParameter("totalprice"));
-		String ticket_seat = req.getParameter("parkseat");
+		int ticket_price = (Integer)req.getAttribute("totalprice");
+		String ticket_seat = (String)req.getAttribute("parkseat");
+		Date game_date = (Date)req.getAttribute("game_date");
 		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
 		System.out.println("srtId : " + srtId);
@@ -56,6 +58,7 @@ public class TicketServiceImpl implements TicketService {
 		TicketResDTO trdto = new TicketResDTO();
 		
 		trdto.setTicket_price(ticket_price);
+		trdto.setGame_date(game_date);
 		trdto.setTicket_seat(ticket_seat);
 		trdto.setCust_Id(srtId);
 		
