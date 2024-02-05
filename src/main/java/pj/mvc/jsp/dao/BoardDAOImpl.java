@@ -119,7 +119,8 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql= "SELECT COUNT(*) as cnt "
-					+ "    FROM DR_board ";
+					+ "    FROM DR_board "
+					+ "    WHERE show = 'y'";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -318,7 +319,7 @@ public class BoardDAOImpl implements BoardDAO{
 
 	// 댓글조회
 	@Override
-	public List<Board_reviewDTO> reviewList(int start, int end) {
+	public List<Board_reviewDTO> reviewList(int start, int end, int board_No) {
 		System.out.println("BoardDAOImpl - reviewList");
 		
 		Connection conn = null;
@@ -336,17 +337,18 @@ public class BoardDAOImpl implements BoardDAO{
 					+ "                rownum AS rn "   // 일련번호 가져오기 
 					+ "            FROM "
 					+ "                ( "
-					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date "
+					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, show "
 					+ "					FROM DR_review "
-					+ "					WHERE show = 'y' "
+					+ "					WHERE show = 'y' AND board_No = ? "
 					+ "                    ORDER BY review_No DESC "
 					+ "                ) A "
 					+ "        ) "
 					+ "WHERE rn BETWEEN ? AND ? ";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt.setInt(1, board_No);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -360,6 +362,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setReview_Content(rs.getString("review_Content"));
 				dto.setReview_date(rs.getString("review_Date"));
+				dto.setShow(rs.getString("show"));
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -395,7 +398,7 @@ public class BoardDAOImpl implements BoardDAO{
 			
 			String sql= "SELECT COUNT(*) as cnt "
 					+ "    FROM DR_review "
-					+ "    WHERE board_No = ?";
+					+ "    WHERE board_No = ? AND show ='y' ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_No);
@@ -462,6 +465,7 @@ public class BoardDAOImpl implements BoardDAO{
 		return searchCnt;
 	}
 
+	// 게시글 검색
 	@Override
 	public List<BoardDTO> boardSearchList(int start, int end, String searchKey) {
 		System.out.println("BoardDAOImpl - boardSearchList");
@@ -526,5 +530,375 @@ public class BoardDAOImpl implements BoardDAO{
 		// 5. list 리턴
 		return list;
 	}
+
+	// 댓글 삭제 / 관리자 댓글 숨기기
+	@Override
+	public void reviewDelete(int review_No) {
+		System.out.println("BoardDAOImpl - reviewDelete");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_review "
+					+ " SET show = 'n' "
+					+ " WHERE review_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_No);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+
+	// 관리자 게시글 총갯수 조회
+	@Override
+	public int boardTotalCnt() {
+		System.out.println("BoardDAOImpl - boardTotalCnt");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int total = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT COUNT(*) as cnt "
+					+ "    FROM DR_board ";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt("cnt");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return total;
+	}
+
+	// 댓글조회
+	@Override
+	public List<Board_reviewDTO> reviewList_admin(int start, int end, int board_No) {
+		System.out.println("BoardDAOImpl - reviewList_admin");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<Board_reviewDTO> list = new ArrayList<Board_reviewDTO>();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT * "
+					+ "    FROM( "
+					+ "        SELECT A.*, "
+					+ "                rownum AS rn "   // 일련번호 가져오기 
+					+ "            FROM "
+					+ "                ( "
+					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, show "
+					+ "					FROM DR_review "
+					+ "					WHERE  board_No = ? "
+					+ "                    ORDER BY review_No DESC "
+					+ "                ) A "
+					+ "        ) "
+					+ "WHERE rn BETWEEN ? AND ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_No);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 2. dto 생성
+				Board_reviewDTO dto = new Board_reviewDTO();
+				
+				// 3. dto에 1건의 rs 게시글 정보를 담는다.
+				dto.setReview_No(rs.getInt("review_No"));
+				dto.setBoard_No(rs.getInt("board_No"));
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setReview_Content(rs.getString("review_Content"));
+				dto.setReview_date(rs.getString("review_Date"));
+				dto.setShow(rs.getString("show"));
+				
+				// 4. list에 dto를 추가한다.
+				list.add(dto);
+			} 
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+	
+	// 관리자 게시글 목록
+	@Override
+	public List<BoardDTO> admin_boardList(int start, int end) {
+		System.out.println("BoardDAOImpl - admin_boardList");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		// 1. list 생성
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT * "
+					+ "    FROM( "
+					+ "        SELECT A.*, "
+					+ "                rownum AS rn "   // 일련번호 가져오기 
+					+ "            FROM "
+					+ "                ( "
+					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date, show "
+					+ "					FROM DR_board "
+					+ "                    ORDER BY board_No DESC "
+					+ "                ) A "
+					+ "        ) "
+					+ "WHERE rn BETWEEN ? AND ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// 2. dto 생성
+				BoardDTO dto = new BoardDTO();
+				
+				// 3. dto에 1건의 rs 게시글 정보를 담는다.
+				dto.setBoard_No(rs.getInt("board_No"));
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setBoard_Title(rs.getString("board_Title"));
+				dto.setBoard_Content(rs.getString("board_Content"));
+				dto.setBoard_Date(rs.getString("board_date"));
+				dto.setShow(rs.getString("show"));
+				
+				// 4. list에 dto를 추가한다.
+				list.add(dto);
+			} 
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		// 5. list 리턴
+		return list;
+	}
+
+	// 관리자 게시글 보이기
+	@Override
+	public void boardView(int boardNo) {
+		System.out.println("BoardDAOImpl - boardView");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_board "
+					+ " SET show = 'y' "
+					+ " WHERE board_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+
+	// 관리자 게시글 삭제
+	@Override
+	public void boardDelete_admin(int boardNo) {
+		System.out.println("BoardDAOImpl - boardDelete_admin");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "DELETE FROM DR_board "
+					+ "WHERE board_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}		
+	}
+
+	// 관리자 댓글 총갯수 조회
+	@Override
+	public int reviewTotalCnt(int board_No) {
+		System.out.println("BoardDAOImpl - reviewTotalCnt");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int reviewCnt = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT COUNT(*) as cnt "
+					+ "    FROM DR_review "
+					+ "    WHERE board_No = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, board_No);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				reviewCnt = rs.getInt("cnt");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return reviewCnt;
+	}
+	
+	// 관리자 댓글 보이기
+	@Override
+	public void reviewView_admin(int review_No) {
+		System.out.println("BoardDAOImpl - reviewView_admin");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_review "
+					+ " SET show = 'y' "
+					+ " WHERE review_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_No);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+	}
+
+	// 관리자 댓글 완전삭제
+	@Override
+	public void reviewDelete_admin(int review_No) {
+		System.out.println("BoardDAOImpl - reviewDelete_admin");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "DELETE FROM DR_review "
+					+ "WHERE review_No = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_No);
+			
+			pstmt.executeUpdate();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
+	}
+
 
 }

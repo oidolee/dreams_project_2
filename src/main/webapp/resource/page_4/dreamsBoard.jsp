@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-    <!-- header.js -->
+    <!-- dreamsBoard.js -->
 	<script src="${path}/resource/page_4/dreamsBoard.js"></script>
     <script>
         // 페이지 로드 후 실행될 함수
@@ -56,21 +56,6 @@
                 $("#goTop").css({ "background-color": "rgba(255, 255, 255, 0.7)" });
             }, 2000);
         })
-        
- /*    // 검색 버튼 클릭시
-    function searchBoard(){
-    	var searchkey = "$('#searchKey').val()";
-        	
-       	if(searchkey == ""){
-       		alert("키워드를 입력하세요!");
-       	}
-       	else{
-       		location.href="${path}/dreamsBoardSearch.bc?searchKey="+searchkey;
-       	}	
-    	
-    	});
-    	
-    } */
 
     </script>
 </head>
@@ -120,7 +105,12 @@
 	                <div style="display: flex; justify-content: right;">
 	                    <input type="text" class="search" name="searchKey" id="searchKey" style="height: 30px;" placeholder="제목 키워드 입력">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
-	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    <c:if test="${sessionScope.sessionID != null}">
+	                    	<a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    </c:if>
+	                    <c:if test="${sessionScope.sessionID == null}">
+	                    	<a href="#"><button type="button" id="write" onclick="nonSessionID()">드림즈 게시판 글쓰기</button></a>
+	                    </c:if>
 	                </div>
 	
 	                <div class="pageNav">
@@ -160,6 +150,12 @@
             </div>
           </form>
 		<!-- 우측메뉴 종료 -->
+		<div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div>
+        <a href="${path}/admin_board.bc">
+            <div class="floating-box left"></div>
+        </a>
      
       	<%@ include file="/layout/footer.jsp" %>
         

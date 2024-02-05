@@ -209,7 +209,7 @@ public class BoardServiceImpl implements BoardService{
 		int end = paging.getEndRow();
 		
 		// 댓글 목록 조회
-		List<Board_reviewDTO> list = dao.reviewList(start, end);
+		List<Board_reviewDTO> list = dao.reviewList(start, end, board_No);
 		
 		// jsp로 결과 전달
 		req.setAttribute("list", list);
@@ -218,6 +218,175 @@ public class BoardServiceImpl implements BoardService{
 		
 		
 	}
+
+	// 댓글 삭제 / 관리자 댓글 숨기기
+	@Override
+	public void reviewDelete(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - reviewDelete");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int review_No = Integer.parseInt(req.getParameter("review_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제 처리 후 컨트롤러에서 list로 이동
+		dao.reviewDelete(review_No);
+	}
+
+	// 관리자 게시글 목록
+	@Override
+	public void admin_boardList(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_boardList");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		String pageNum = req.getParameter("pageNum");
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5-1단계. 전체 게시글 갯수 카운트
+		Paging paging = new Paging(pageNum);
+		int total = dao.boardTotalCnt();
+		System.out.println("total : " + total);
+		
+		paging.setTotalCount(total);
+		
+		// 5-2단계. 게시글 목록 조회
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
+		
+		List<BoardDTO> list = dao.admin_boardList(start, end);
+		
+		// 6단계. jsp로 처리결과를 전달
+		req.setAttribute("paging", paging);
+		req.setAttribute("list", list);
+		
+		
+	}
+
+	// 관리자 게시글 숨기기
+	@Override
+	public void boardHide(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("서비스 - boardHide");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int boardNo = Integer.parseInt(req.getParameter("board_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제(숨기기) 처리 
+		dao.boardDelete(boardNo);
+		
+	}
+
+	// 관리자 게시글 보이기
+	@Override
+	public void boardView(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - boardView");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int boardNo = Integer.parseInt(req.getParameter("board_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제(숨기기) 처리 
+		dao.boardView(boardNo);
+		
+	}
+	
+	// 관리자 게시글 삭제
+	@Override
+	public void boardDelete_admin(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - boardDelete_admin");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int boardNo = Integer.parseInt(req.getParameter("board_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제(숨기기) 처리 
+		dao.boardDelete_admin(boardNo);
+		
+	}
+
+
+	// 관리자 댓글 목록
+	@Override
+	public void reviewList_admin(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("서비스 - reviewList_admin");
+		
+		// 화면으로부터 입력받은 값을 받는다.
+		int board_No = Integer.parseInt(req.getParameter("board_No"));
+		String pageNum = req.getParameter("pageNum");
+		
+		// DAO 객체 생성
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 댓글 개수 조회, 페이지처리
+		int reviewCnt = dao.reviewTotalCnt(board_No);
+		Paging paging = new Paging(pageNum);
+		
+		paging.setTotalCount(reviewCnt);
+		
+		// 5-2단계. 게시글 목록 조회
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		// 댓글 목록 조회
+		List<Board_reviewDTO> list = dao.reviewList_admin(start, end, board_No);
+		
+		// jsp로 결과 전달
+		req.setAttribute("list", list);
+		req.setAttribute("paging", paging);
+		req.setAttribute("reviewCnt", reviewCnt);
+	}
+	
+	// 관리자 댓글 보이기
+	@Override
+	public void reviewView(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - reviewView");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int review_No = Integer.parseInt(req.getParameter("review_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제(숨기기) 처리 
+		dao.reviewView_admin(review_No);
+		
+	}
+
+	// 관리자 댓글 완전삭제
+	@Override
+	public void reviewDelete_admin(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
+		System.out.println("서비스 - reviewHide");
+		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int review_No = Integer.parseInt(req.getParameter("review_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5단계. 게시글 삭제(숨기기) 처리 
+		dao.reviewDelete_admin(review_No);
+		
+		
+	}
+
 
 
 }
