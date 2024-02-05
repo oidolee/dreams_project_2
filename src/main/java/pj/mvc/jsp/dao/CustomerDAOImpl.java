@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -268,5 +270,57 @@ public class CustomerDAOImpl implements CustomerDAO {
 			}
 		}
 		return updateCnt;
+	}
+
+	// 관리자모드 - 회원 전체 조회
+	@Override
+	public List<CustomerDTO> SelectCustomer() {
+		
+		// 2. dto 생성
+		CustomerDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 1. list 생성
+		List<CustomerDTO> list = new ArrayList<>();
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "SELECT * FROM DR_customers";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				// 3. dto에 1건의 rs 게시글 정보를 담는다.
+				dto = new CustomerDTO();
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setCust_Password(rs.getString("cust_Password"));
+				dto.setCust_Name(rs.getString("cust_Name"));
+				dto.setCust_Birth(rs.getString("cust_Birth"));
+				dto.setCust_Address(rs.getString("cust_Address"));
+				dto.setCust_Phone(rs.getString("cust_Phone"));
+				dto.setCust_Email(rs.getString("cust_Email"));
+				
+				// 4. list에 dto를 추가한다.
+				list.add(dto);
+			} 
+			
+		} catch(SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            if(rs != null) rs.close();
+	            if(pstmt != null) pstmt.close();
+	            if(conn != null) conn.close();
+	         } catch(SQLException e) {
+	            e.printStackTrace();
+	         }
+	      }
+		// 5. list 리턴
+		return list;
 	}
 }
