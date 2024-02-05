@@ -196,21 +196,21 @@ to {
 
 							<tr>
 								<th>상품 상세 설명 이미지</th>
-								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgDetail" id="product_ImgDetail"
+									size="40" accept="image/*"></td>
 							</tr>
 							
 							<tr>
 								<th>상품 정보 이미지</th>
-								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgSize" id="product_ImgSize"
+									size="40" accept="image/*"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
-								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40"></td>
+								<td><input type="file" class="input" name="product_ImgRfd" id="product_ImgRfd"
+									size="40" accept="image/*"></td>
 							</tr>
 
 							<tr>

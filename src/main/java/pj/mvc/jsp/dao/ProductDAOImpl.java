@@ -160,6 +160,20 @@ public class ProductDAOImpl implements ProductDAO {
 		try {
 			conn = dataSource.getConnection();
 			
+<<<<<<< HEAD
+=======
+			String sql = " INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) "
+					+ "         VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, sysdate) ";
+					
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getProduct_Name());
+			pstmt.setInt(2, dto.getProduct_Price());
+			pstmt.setInt(3, dto.getProduct_Qty());
+			pstmt.setString(4, dto.getProduct_ImgName());
+			pstmt.setString(5, dto.getProduct_ImgDetail());
+			pstmt.setString(6, dto.getProduct_ImgSize());
+			pstmt.setString(7, dto.getProduct_ImgRfd());
+>>>>>>> 2d8981e53560432efde295c564da69f94e67f278
 			
 
 			String sql = "INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) "

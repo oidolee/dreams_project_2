@@ -99,9 +99,15 @@
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
 								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
+<<<<<<< HEAD
 								<td> <img src="${path}/resource/image/goods/${dto.product_ImgDetail}" width="100px"></td>
 								<td> <img src="${path}/resource/image/goods/${dto.product_ImgSize}" width="100px"></td>
 								<td> <img src="${path}/resource/image/goods/${dto.product_ImgRfd}" width="100px"></td>
+=======
+								<td> <img src="${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="${dto.product_ImgSize}" width="100px"></td>
+								<td> <img src="${dto.product_ImgRfd}" width="100px"></td>
+>>>>>>> 2d8981e53560432efde295c564da69f94e67f278
 								<td> ${dto.regDate}</td>
 								
 								<td>
