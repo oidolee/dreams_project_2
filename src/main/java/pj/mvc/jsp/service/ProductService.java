@@ -18,4 +18,13 @@ public interface ProductService {
 	// 상품 추가
 	public void productInsertAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
+	
+	// 상품 상세페이지
+	public void productDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+	
+	// 상품수정
+	public void productUpdateAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException; 
+	
 }

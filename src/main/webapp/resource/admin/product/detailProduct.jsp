@@ -134,8 +134,8 @@ to {
 			location.href="${path}/product_list.pc";
 		});
 		
-		// 상품등록 누를시 컨트롤러의 등록처리화면으로 이동
-		$('#btnAdd').click(function() {
+		// 상품수정 누를시 컨트롤러의 등록처리화면으로 이동
+		$('#btnUpdate').click(function() {
 			// alert("test");
 			document.insertform.action = "${path}/insertProductAction.pc";
 			document.insertform.submit();
@@ -152,7 +152,7 @@ to {
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<%@ include file="../templet/nav.jsp"%>
-			<a href="../index.html">
+			<a href="../index.jsp">
 				<div class="floating-box"></div>
 			</a>
 		</div>
@@ -160,65 +160,73 @@ to {
 			<main>
 
 				<div class="table_div">
-					<form name="insertform"	method="post" id="insertform" enctype="multipart/form-data">
+					<form name="detailform"	method="post" action="updateAction.pc" id="insertform" enctype="multipart/form-data">
+					
+						<!-- hidden : 직접 input 태그에서 입력받지 못한 값들을 전달할 때 사용 -->
+						<input type="hidden" name="hiddenPageNum" value="${pageNum}">
+						<input type="hidden" name="hiddenproduct_No" value="${dto.product_No}">
+						<input type="hidden" name="hiddenproduct_ImgName" value="${dto.product_ImgName}"> <!-- 수정된 상품이미지 -->
+						<%-- <input type="hidden" name="hiddenPdContent" value="${dto.pdContent}"> --%>
 						<table border="1">
 							
-							<!-- <tr>
+							<tr>
 								<th>* 상품번호</th>
-								<td><input type="text" class="input" name="product_No" id="product_No"
-									size="40" placeholder="상품번호" required></td>
-							</tr> -->
+								<td>${dto.product_No}</td>
+							</tr>
 						
 							<tr>
 								<th>* 상품명</th>
 								<td><input type="text" class="input" name="product_Name" id="product_Name"
-									size="40" placeholder="상품명을 작성하시오(40자 이내)" required></td>
+									size="40" placeholder="상품명을 작성하시오(40자 이내)" required value="${dto.product_Name}"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>* 판매가격</th>
 								<td><input type="number" class="input" name="product_Price" id="product_Price"
-									size="10" placeholder="상품가격을 작성하시오" required></td>
+									size="10" placeholder="상품가격을 작성하시오" required value="${dto.product_Price}"></td>
 							</tr>
 							
 							<tr>
 								<th>* 등록수량</th>
 								<td><input type="number" class="input" name="product_Qty" id="product_Qty"
-									size="10" placeholder="등록수량을 작성하시오" required></td>
+									size="10" placeholder="등록수량을 작성하시오" required value="${dto.product_Qty}"></td>
 							</tr>
 							
 							<tr>
 								<th>상품이미지</th>
-								<td><input type="file" class="input" name="product_ImgName" id="product_ImgName"
-									size="40" accept="image/*"></td>
+								<td>
+									<img src="${dto.product_ImgName}" width="80px"><br>
+									<input type="file" class="input" name="product_ImgName" id="product_ImgName"
+										size="40" accept="image/*">
+								</td>
 							</tr>
 
 							<tr>
 								<th>상품 상세 설명 이미지</th>
 								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
-									size="40"></td>
+									size="40" value="${dto.product_ImgDetail}"></td>
 							</tr>
 							
 							<tr>
 								<th>상품 정보 이미지</th>
 								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40"></td>
+									size="40" value="${dto.product_ImgSize}"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
 								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40"></td>
+									size="40" value="${dto.product_ImgRfd}"></td>
 							</tr>
 
 							<tr>
 								<td colspan="2"><br>
 									<div align="right">
-										<input class="inputbutton" type="submit" value="상품등록" id="btnAdd">
+										<input class="inputbutton" type="submit" value="상품수정" id="btnUpdate">
 										<input class="inputbutton" type="reset" value="초기화" > 
-										<input class="inputbutton" type="button" value="등록취소" id="btnList">
+										<input class="inputbutton" type="button" value="취소" id="btnList">
 										<!--  -->
 									</div></td>
 							</tr>
