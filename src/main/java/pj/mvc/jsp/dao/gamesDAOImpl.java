@@ -95,5 +95,10 @@ public class gamesDAOImpl implements gamesDAO {
 		
 		return list;
 	}
+
+	public int deleteGames(int dG_No) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

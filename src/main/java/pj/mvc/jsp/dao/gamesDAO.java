@@ -11,4 +11,7 @@ public interface gamesDAO {
 	
 	//팀 내역 출력
 	public List<TeamDTO> selectTeamList();
+	
+	//경기 일정 삭제
+	public int deleteGames(int dG_No);
 }

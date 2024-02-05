@@ -13,4 +13,7 @@ public interface GamesService {
 	//팀내역 출력 
 	public void teamListAction(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException;
+	//경기 일정 삭제
+	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
 }
