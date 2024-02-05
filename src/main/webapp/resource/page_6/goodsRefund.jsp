@@ -13,7 +13,8 @@
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <%-- <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" /> --%>
     <!-- swiper css-->
     <link rel="stylesheet" href="${path}/css/common/common.css">
     <link rel="stylesheet" href="${path}/css/common/header.css">
@@ -67,8 +68,24 @@
         }
         
      	
-     	
-     	
+        $(document).ready(function () {
+            // 라디오 버튼이 변경될 때 실행되는 함수
+            $('input[name="goods"]').on('change', function () {
+                // 선택된 라디오 버튼의 부모 행을 찾음
+                var selectedRow = $(this).closest('tr');
+
+                // 부모 행에서 각 필드의 값을 가져와서 폼에 할당
+                var prodNo = selectedRow.find('td:eq(2)').text();
+                var prodName = selectedRow.find('td:eq(4)').text();
+
+                // 폼의 각 입력란에 값을 할당
+                $('#REF_Prod_No').val(prodNo);
+                $('#REF_Prod_Name').val(prodName);
+
+                // 성명(input 요소)에 포커스 설정
+                $('#REF_Name').focus();
+            });
+        });
     </script>
     <style>
         .slider-con img{
@@ -91,6 +108,7 @@
         thead tr th {
             font-weight: bold;
             vertical-align: middle !important;
+            color:black !important;
         }
 
         tbody tr td {
@@ -124,48 +142,28 @@
                 <legend style="color: #000 !important; font-weight: bold;"> 최근 구매한 상품<hr> </legend>
                 <table class="table" align="center">
                     <thead>
-                      <tr>
-                        <th scope="col">선택</th>
-                        <th scope="col">주문번호</th>
-                        <th scope="col">사진</th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">가격</th>
-                        <th scope="col">구매일자</th>
-                        <th scope="col">배송</th>
+                      <tr style="color:black !important">
+                        <th scope="col" style="color:black !important">선택</th>
+                        <th scope="col" style="color:black !important">주문상세번호</th>
+                        <th scope="col" style="color:black !important">상품번호</th>
+                        <th scope="col" style="color:black !important">사진</th>
+                        <th scope="col" style="color:black !important">상품명</th>
+                        <th scope="col" style="color:black !important">수량</th>
+                        <th scope="col" style="color:black !important">가격</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball1"> </label></td>
-                        <td>20240107A001</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
-                      </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball2"> </label></td>
-                        <td>20240107A002</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
-                      </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="goods" value="ball3"> </label></td>
-                        <td>20240107A003</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>로고볼(소)</td>
-                        <td>1개</td>
-                        <td>5000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
-                      </tr>
+	                    <c:forEach var="list" items="${ list }">
+	                      <tr>
+	                        <td><input type="radio" name="goods"></td>
+	                        <td>${list. orderDetail_No}</td>
+	                        <td>${list. product_No}</td>
+	                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
+	                        <td>${list. product_Name}</td>
+	                        <td>${list. orderDetail_qty}</td>
+	                        <td>${list. orderDetail_price}</td>
+	                      </tr>
+	                    </c:forEach>  
                     </tbody>
                 </table>
             </fieldset>
@@ -177,13 +175,13 @@
                 <br><br>
                 <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
                 	
-                	<input type="hidden" name="REF_cust_Id" value="임시"> <!-- ${sessionId} -->
-                	<input type="hidden" name="REF_Prod_No" value="9999">
+                	<input type="hidden" name="REF_cust_Id" value="{sessionId}"> <!-- ${sessionId} -->
 	                <table class="form">
 	                    <tr>
 	                        <th align="center"><label for="order_No">주문번호</label></th>
 	                        <td align="left">
-	                        	<input type="text" id="order_No" name="order_No" size="65" required autofocus>
+	                        	<input type="text" id="order_No" name="order_No" size="65" required value="${param.order_No}" disabled>
+	                        	<input type="hidden" id="order_No" name="order_No" value="${param.order_No}">
 	                        </td>
 	                    </tr>
 	                    
@@ -205,6 +203,13 @@
 	                        <th align="center"><label for="REF_Address">주소</label></th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Address" name="REF_Address" size="65" required>
+	                        </td>
+	                    </tr>
+	                    
+	                    <tr>
+	                        <th align="center"><label for="REF_Prod_No"> 상품번호 </label></th>
+	                        <td align="left">
+	                        	<input type="text" id="REF_Prod_No" name="REF_Prod_No" size="65" required>
 	                        </td>
 	                    </tr>
 	                    

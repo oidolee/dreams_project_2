@@ -64,34 +64,30 @@ public class OrderController extends HttpServlet {
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 			dispatcher.forward(req, res);
 		}
-		
-		
-		
-		// 내가 구매한 티켓 페이지
-		else if (url.equals("/myTicket.oc")) {
+
+		// 내 주문 내역 -> 구매 확정
+		else if (url.equals("/orderConfirm.oc")) {
 			
-			viewPage = "/resource/page_6/myTicket.jsp";
-		}
-		
-		// 티켓 환불 페이지
-		else if (url.equals("/ticketRefund.oc")) {
-			
-			viewPage = "/resource/page_6/ticketRefund.jsp";
+			service.orderConfirm(req, res);
+			viewPage = "/resource/page_6/orderConfirm.jsp";
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 			dispatcher.forward(req, res);
 		}
 		
-		// 상품 교환/환불 페이지
+		
+		// 내 주문 조회 -> 교환/환불 페이지 - 최근 구매한 상품
 		else if (url.equals("/goodsRefund.oc")) {
+			System.out.println(" Controller => goodsRefund.oc ");
 			
+			service.MyorderDetailAction(req, res);
 			viewPage = "/resource/page_6/goodsRefund.jsp";
 			
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 			dispatcher.forward(req, res);
 		}
 		
-		// 상품 교환/환불 신청서 제출
+		// 상품 교환/환불 페이지 신청서 제출
 		else if (url.equals("/goodsRefundSubmit.oc")) {
 			
 			service.productRefundAction(req, res);
@@ -102,17 +98,33 @@ public class OrderController extends HttpServlet {
 		}
 		
 		
+		// 교환/환불 신청 목록
+		else if (url.equals("/refundDetail.oc")) {
+			
+			service.refundDetailAction(req, res);
+			viewPage = "/resource/page_6/refundDetail.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
 		
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// -----------------------------------------------------------------------
+		// 내가 구매한 티켓 페이지
+				else if (url.equals("/myTicket.oc")) {
+					
+					viewPage = "/resource/page_6/myTicket.jsp";
+				}
+				
+		// 티켓 환불 페이지
+		else if (url.equals("/ticketRefund.oc")) {
+			
+			viewPage = "/resource/page_6/ticketRefund.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
 		
 		
 		// -------------------------------------------------------------------------

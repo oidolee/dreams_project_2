@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../layout/setting.jsp" %>    
+<%@ include file="../../layout/setting.jsp" %>      
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 신재욱 --> 
@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>내 주문 내역</title>
+
+    <title> 회원 정보 수정 </title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -55,48 +56,32 @@
         })
 
     </script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/b0cbfa47b4.js" crossorigin="anonymous"></script>
     <style>
-        .slider-con img{
-            width: 100%;
+        .container-box {
+            padding: 0;
         }
 
-        .seat-refund {
-            text-align: center;
+        .slider-con img {
+             width: 100%;
         }
-
-        table {
-            text-align: center;
-        }
-
-        table {
-            margin: 0 auto;
-        }
-
-        .mypage {
-            text-align: center;
-        }
-
-        .table {
-            vertical-align: middles;
-        }
-
-        .mypage-button {
-            padding: 50px;
-            
-        }
-        .mypage {
+        
+        .refund-goods {
             width: 1280px;
-            margin: 0 auto;
+            text-align: center;
+            margin: auto;
+        }
+
+        .refund-goods label, input {
+            color: black !important;
         }
         
-        thead tr th {
-        	color: black !important;
+        table tr, th {
+        	margin: 0 auto;
+        	padding-right: 50px;
+        	padding
         }
-        
-        tbody tr td {
-        	color: black !important;
-        }
-        
         
     </style>
 </head>
@@ -106,51 +91,33 @@
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
-            <img src="${path}/resource/image/banner/category_DREAMS.jpg">
+            <img src="${path}/image/banner/category_DREAMS.jpg">
         </div>
         <br>
 
-        <!-- 내 주문 내역 시작 -->
-        <div class="mypage">
-            <h2 style="color: #000 !important; font-weight: bold;"> <br>내 주문 내역<br><br> </h2>
-            
-            
-            
-            
-            <h4 style="color: #000 !important; font-weight: bold;"> <br> 최근 구매한 상품 <br><br></h4>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">주문번호</th>
-                        <th scope="col">사진</th>
-                        <th scope="col">주문 내역</th>
-                        <th scope="col">결제 금액</th>
-                        <th scope="col">구매일</th>
-                        <th scope="col">상태</th>
-                        <th scope="col">구매확정</th>
-                        <th scope="col">교환/환불</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-group-divider" style="vertical-align: middle !important">
-                    <c:forEach var="list" items="${ list }">
-                      <tr>
-                        <td>${list.order_No}</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-                        <td>${list.order_Content}</td>
-                        <td>${list.order_Amount} 원</td>
-                        <td>${list.order_Date}</td>
-                        <td>${list.order_Status}</td>
-                        <td><a href="${path}/orderConfirm.oc?order_No=${list.order_No}"><button class="btn btn-primary" type="button" style="color: #fff !important;">구매확정</button></a></td>
-                        <td><a href="${path}/goodsRefund.oc?order_No=${list.order_No}"><button class="btn btn-primary" type="button" style="color: #fff !important;">교환/환불</button></a></td>
-                      </tr>
-                    </c:forEach>  
-                    </tbody>
-                </table>
-            <br><br>    
-			<a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지</button></a><br><br>
-			<a href="${path}/refundDetail.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;"> 교환/환불 신청 목록</button></a><br><br>
-        </div>
-
+        <br><br><br><br><br><br>
+        <h2 style="text-align: center; color: black !important; font-weight: bold;" > 구매확정 </h2>
+        <br><br><br>
+        
+        <c:if test="${updateCnt == 1}">
+			<script type="text/javascript">
+				setTimeout(function() {
+					alert("상품 구매확정!!");
+					window.location="${path}/myOrder.oc";
+				}, 1000)
+			</script>
+		</c:if>
+		
+		<c:if test="${updateCnt != 1}">
+			<script type="text/javascript">
+				setTimeout(function() {
+					alert("상품 구매확정 실패!!");
+					window.location="${path}/myOrder.oc";
+				}, 1000)
+			</script>
+		</c:if>
+        
+    
         <!-- 상단 이동버튼 -->
         <div id="goTop" class="goTop">
             <a href="#header"></a>
