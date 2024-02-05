@@ -49,7 +49,7 @@ public class GamesController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-		if (url.equals("/gamesInsert.gc")) {
+		else if (url.equals("/gamesInsert.gc")) {
 			System.out.println("<<< url ==> /gamesInsert.bc >>>");
 			viewPage = "/resource/admin/games/games.jsp";
 			
@@ -69,6 +69,14 @@ public class GamesController extends HttpServlet {
 		
 		
 		
+		else if (url.equals("/deleteGames.gc")) {
+			System.out.println("<<< url ==> /deleteGames.bc >>>");
+			viewPage = "/resource/page_3/deleteGamesAction.jsp";
+			
+			service.deleteGamesAction(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

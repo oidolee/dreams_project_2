@@ -127,5 +127,12 @@
     white-space: nowrap;
 }
 
-
+/* 일정 지우기 아이콘 색 */
+.date svg{
+    color: green !important;
+    cursor: pointer;
+}
+.date svg path{
+	color: green !important;
+}
 

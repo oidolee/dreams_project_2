@@ -29,7 +29,7 @@ public class GamesServiceImpl implements GamesService {
 		req.setAttribute("list", list);
 	}
 	
-	//팀내역 출력 
+	//팀 목록 리스트 (관리자)
 	public void teamListAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException{
 		gamesDAOImpl dao = gamesDAOImpl.getInstance();
@@ -37,6 +37,16 @@ public class GamesServiceImpl implements GamesService {
 		List<TeamDTO> list = dao.selectTeamList();
 		System.out.println(" GamesServiceImpl teamListAction list.toString() : " + list.toString());
 		req.setAttribute("list", list);
+	}
+	//경기 일정 삭제
+	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		gamesDAOImpl dao = gamesDAOImpl.getInstance();
+		
+		int DG_No = Integer.parseInt(req.getParameter("DG_No"));
+		
+		int deleteCnt = dao.deleteGames(DG_No);
+		
 	}
 
 	//게임일정 등록

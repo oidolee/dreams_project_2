@@ -173,6 +173,9 @@ public class gamesDAOImpl implements gamesDAO {
 			e.printStackTrace();
 		}
 		return DG_Location;
+	public int deleteGames(int dG_No) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

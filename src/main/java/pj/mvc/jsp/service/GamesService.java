@@ -17,4 +17,7 @@ public interface GamesService {
 	//게임일정 등록
 	public void gamesInsertAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
+	//경기 일정 삭제
+	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
 }
