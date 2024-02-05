@@ -201,7 +201,6 @@
 	                <br><br>
 	                
                     <div id="reviewList"></div>
-                    <br><br>
                     
                     <table>
                          <tr>
@@ -228,6 +227,7 @@
                 </div>
             </div>
      	</form>
+     	<br><br>
       
      	<%@ include file="/layout/footer.jsp" %>
         

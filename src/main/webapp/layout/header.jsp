@@ -103,7 +103,7 @@
                                 <a href="${path}/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son display-none">
                                     <li><a href="${path}/resource/page_4/news.jsp">구단소식</a></li>
-                                    <li><a href="${path}/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="${path}/dreamsBoard.bc">드림즈게시판</a></li>
                                     <li><a href="${path}/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>

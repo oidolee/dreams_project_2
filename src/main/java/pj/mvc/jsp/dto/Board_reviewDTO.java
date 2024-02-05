@@ -7,6 +7,7 @@ public class Board_reviewDTO {
 	private String cust_Id;
 	private String review_Content;
 	private String review_date;
+	private String show;
 	
 	public Board_reviewDTO() {
 		super();
@@ -52,12 +53,19 @@ public class Board_reviewDTO {
 		this.review_date = review_date;
 	}
 
+	public String getShow() {
+		return show;
+	}
+
+	public void setShow(String show) {
+		this.show = show;
+	}
+
 	@Override
 	public String toString() {
 		return "Board_reviewDTO [review_No=" + review_No + ", board_No=" + board_No + ", cust_Id=" + cust_Id
-				+ ", review_Content=" + review_Content + ", review_date=" + review_date + "]";
+				+ ", review_Content=" + review_Content + ", review_date=" + review_date + ", show=" + show + "]";
 	}
-	
-	
+
 
 }
