@@ -28,13 +28,13 @@
     %> 
          function selectEmailChk() {
             // select 박스에서 이메일 주소를 선택시 해당값이 들어가도록 한다.
-            if(document.signIn.userEmail3.value == 0) {  // 직접입력인 경우
-                document.signIn.userEmail2.value = "";
-                document.signIn.userEmail2.focus();
+            if(document.signIn.email3.value == 0) {  // 직접입력인 경우
+                document.signIn.email2.value = "";
+                document.signIn.email2.focus();
                 return false;
             }
             else {
-                document.signIn.userEmail2.value = document.signIn.userEmail3.value;
+                document.signIn.email2.value = document.signIn.email3.value;
                 return false;
             }
         }
@@ -163,9 +163,9 @@
                 
                 
                 // 이메일 입력 확인
-                if(!$("#user_email_1").val() || !$("#user_email_2").val()){
+                if(!$("#email1").val() || !$("#email2").val()){
                     $("#result").html("이메일을 입력하시오");
-                    $("#user_email").focus();
+                    $("#email1").focus();
                     return false;
                 }
                 $("#result").html("입력완료");
@@ -176,7 +176,7 @@
         function openNewWindow() {
             // 1. validation check
             // 아이디 입력 확인
-            if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#user_email_1").val() || !$("#user_email_2").val()){
+            if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#email1").val() || !$("#email2").val()){
                 alert("예매자 확인을 해주세요!")
                 $("#user_name").focus();
                 return false; // 다음칸으로 내려가는 동작 중지
@@ -295,6 +295,8 @@
                     <td><input id="bgcCnt" type="number" style="width: 25px;" value="0"  min="0" max="5" oninput="calculator()">매</td>
                 </tr>
             </table>
+            <hr>
+            
             </form>
             <hr>
             
@@ -317,10 +319,10 @@
                         <td> 이메일 </td>
                         <td>
 	                        <c:set var="emailArr" value="${fn:split(cdto.getCust_Email(),'@') }"/>
-								<input type="text" class="input" name="email1" maxlength="20" style="width:100px" required value="${emailArr[0]}" required>
+								<input type="text" class="input" id="email1" name="email1" maxlength="20" style="width:100px" required value="${emailArr[0]}" required>
 								@
-								<input type="text" class="input" name="email2" maxlength="20" style="width:100px" required value="${emailArr[1]} " required>
-								<select class="input" name="email3" style="width:100px" required onchange="selectEmailChk_detail()">
+								<input type="text" class="input" id="email2" name="email2" maxlength="20" style="width:100px" required value="${emailArr[1]} " required>
+								<select class="input" id="email3" name="email3" style="width:100px" required onchange="selectEmailChk()">
 									<option value="0">직접입력</option>
 									<option value="naver.com">네이버</option>
 									<option value="gmail.com">구글</option>
@@ -371,6 +373,7 @@
 
         </div>
         <div class="elements" style="background-color: white; width: 432px; height: 400px; margin-left: 100px;" >
+        <form name="resForm">
             <em>
                 <span title="드림즈 vs LG트윈스">드림즈 vs LG트윈스</span>
             </em>
@@ -393,7 +396,7 @@
                         <td class="seat">
                             <div class="scrollY">
                                 <ul>
-                                    <span id="MySelectedSeat" name="MySelectedSeat">자동배정</span>
+                                    <span id="parkseat" name="parkseat"></span>
                                 </ul>
                             </div>
                         </td>
@@ -431,7 +434,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+            </form>
         </div>
     </div>
 
