@@ -110,7 +110,7 @@
                             <li>
                                 <a href="${path}/resource/page_2/ticketFee.html">TICKET</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="${path}/resource/page_2/ticketFee.jsp">일일티켓</a></li>
+                                    <li><a href="${path}/ticket.tc">일일티켓</a></li>
                                     <li><a href="${path}/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
                                     <li><a href="${path}/resource/page_2/groupViewing.jsp">단체관람</a></li>
                                     <li><a href="${path}/resource/page_2/skybox.jsp">스카이박스</a></li>
@@ -177,7 +177,7 @@
                             <li>
                                 <a href="#">TICKET</a>
                                 <ul class="menu-son ">
-                                    <li><a href="${path}/resource/page_2/ticketFee.jsp">일일티켓</a></li>
+                                    <li><a href="${path}/ticket.tc">일일티켓</a></li>
                                     <li><a href="${path}/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
                                     <li><a href="${path}/resource/page_2/groupViewing.jsp">단체관람</a></li>
                                     <li><a href="${path}/resource/page_2/skybox.jsp">스카이박스</a></li>

@@ -49,6 +49,10 @@ public class TicketServiceImpl implements TicketService {
 		String ticket_seat = req.getParameter("parkseat");
 		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
+		System.out.println("srtId : " + srtId);
+		System.out.println("ticket_seat : " + ticket_seat);
+		System.out.println("ticket_price : " + ticket_price);
+		
 		TicketResDTO trdto = new TicketResDTO();
 		
 		trdto.setTicket_price(ticket_price);
