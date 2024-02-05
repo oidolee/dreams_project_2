@@ -1,24 +1,24 @@
 package pj.mvc.jsp.dto;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class ProductDTO {
 
 	private int product_No;				// 상품번호
 	private String product_Name;		// 상품명
-	private int product_Price;		// 상품가격
-	private int product_Qty;	// 상품수량
-	private String product_ImgName;	// 상품이미지
+	private int product_Price;			// 상품가격
+	private int product_Qty;			// 상품수량
+	private String product_ImgName;		// 상품이미지
 	private String product_ImgDetail;	// 상품 상세 이미지
 	private String product_ImgSize; 	// 상품정보 이미지
 	private String product_ImgRfd;		// 반품관련 이미지
-	private Timestamp regDate;			// 등록일
+	private Date regDate;			// 등록일
 	
 	// 디폴트 생성자
 	public ProductDTO() {}
 
 	public ProductDTO(int product_No, String product_Name, int product_Price, int product_Qty, String product_ImgName,
-			String product_ImgDetail, String product_ImgSize, String product_ImgRfd, Timestamp regDate) {
+			String product_ImgDetail, String product_ImgSize, String product_ImgRfd, Date regDate) {
 		super();
 		this.product_No = product_No;
 		this.product_Name = product_Name;
@@ -95,11 +95,11 @@ public class ProductDTO {
 		this.product_ImgRfd = product_ImgRfd;
 	}
 
-	public Timestamp getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(Timestamp regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 

@@ -17,8 +17,8 @@ public interface ProductDAO {
 	// 3. 상품 삭제
 	public int deleteProduct(int product_No);
 	// 4. 상품 수정
-	public int updateProduct(ProductDTO dto);
+	public int productUpdate(ProductDTO dto);
 	// 5. 상품 상제 페이지
-	public ProductDTO getProductDetail(int product_No);
+	public ProductDTO productDetail(int product_No);
 	
 }
