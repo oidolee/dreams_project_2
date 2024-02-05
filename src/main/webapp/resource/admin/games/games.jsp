@@ -190,44 +190,50 @@ to {
 									<div class="col-md-6 text-center"
 										style="display: flex; flex-direction: column; height: 400px; justify-content: center; align-items: center;">
 										<h2>경기일정 등록</h2>
-										
-								         <form action="" class="mt-5" id="gamesInsertForm" name="gamesInsertForm">
-                        <div class="row mb-3 text-start">
-                            <label for="colFormLabelSm"
-                                class="text-left col-sm-4 col-form-label col-form-label-sm ">Home</label>
-                            <div class="col-sm-8">
-                                <select id="DG_Home" name="DG_Home" class="form-select" aria-label="Default select example">
-                                    <option value="">팀 선택</option>
-                                    <c:forEach var="dto" items="${list}">
-                                        <option value="${dto.getDK_No()}"><c:out value="${dto.getDK_TeamName()}" /></option>
-                                    </c:forEach>>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3 text-start">
-                            <label for="colFormLabelSm"
-                                class="text-left col-sm-4 col-form-label col-form-label-sm">away</label>
-                            <div class="col-sm-8">
-                                <select  id="DG_Away" name="DG_Away" class="form-select" aria-label="Default select example">
-                                    <option value="">팀 선택</option>
-                                    <c:forEach var="dto" items="${list}">
-                                        <option value="${dto.getDK_No()}"><c:out value="${dto.getDK_TeamName()}" /></option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3 text-start">
-                            <label for="DG_Time"
-                                class="text-left col-sm-4 col-form-label col-form-label-sm">시간</label>
-                            <div class="col-sm-8">
-                                <input type="datetime-local" id="DG_Time" name="DG_Time"
-                                    required class="form-control form-control-sm">
-                            </div>
-                        </div>
-                        <button type="button" id="gamesInsertButton" class="btn btn-success mt-3">등록</button>
-                    </form>
-										
-										
+
+										<form action="${path}/gamesInsertAction.gc" class="mt-5" id="gamesInsertForm"
+											name="gamesInsertForm">
+											<div class="row mb-3 text-start">
+												<label for="colFormLabelSm"
+													class="text-left col-sm-4 col-form-label col-form-label-sm ">Home</label>
+												<div class="col-sm-8">
+													<select id="DG_Home" name="DG_Home" class="form-select"
+														aria-label="Default select example">
+														<option value="">팀 선택</option>
+														<c:forEach var="dto" items="${list}">
+															<option value="${dto.getDK_TeamName()}"><c:out
+																	value="${dto.getDK_TeamName()}" /></option>
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											<div class="row mb-3 text-start">
+												<label for="colFormLabelSm"
+													class="text-left col-sm-4 col-form-label col-form-label-sm">away</label>
+												<div class="col-sm-8">
+													<select id="DG_Away" name="DG_Away" class="form-select"
+														aria-label="Default select example">
+														<option value="">팀 선택</option>
+														<c:forEach var="dto" items="${list}">
+															<option value="${dto.getDK_TeamName()}"><c:out
+																	value="${dto.getDK_TeamName()}" /></option>
+														</c:forEach>
+													</select>
+												</div>
+											</div>
+											<div class="row mb-3 text-start">
+												<label for="DG_Time"
+													class="text-left col-sm-4 col-form-label col-form-label-sm">시간</label>
+												<div class="col-sm-8">
+													<input type="datetime-local" id="DG_Time" name="DG_Time"
+														required class="form-control form-control-sm">
+												</div>
+											</div>
+											<button type="button" id="gamesInsertButton"
+												class="btn btn-success mt-3">등록</button>
+										</form>
+
+
 									</div>
 								</div>
 							</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file = "/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -73,7 +74,7 @@
                         </div>
                     </div>
                     <div class="item-box">
-                        <a href="/dreams_project_2/index.html">
+                        <a href="${path}/index.jsp">
                             <img src="/dreams_project_2/resource/image/logoSmall.png" alt="드림즈 프로야구단" style="width: 200px;">
                         </a>
                     </div>

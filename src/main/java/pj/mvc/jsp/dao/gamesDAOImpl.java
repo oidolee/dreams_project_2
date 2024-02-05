@@ -1,9 +1,12 @@
 package pj.mvc.jsp.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +97,82 @@ public class gamesDAOImpl implements gamesDAO {
 		}
 		
 		return list;
+	}
+
+	public int insertGames(gamesDTO dto) {
+	    int insertCnt = 0;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        // 해당 연월일에 이미 정보가 있는지 확인하는 쿼리
+	        String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE DATE(DG_Time) = ?";
+	        
+	        conn = dataSource.getConnection();
+	        
+	        //연월일 체크를 위해 형식 변경 
+	        Timestamp timestamp = dto.getDG_Time();
+	        Date date = new Date(timestamp.getTime());
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        String formattedDate = dateFormat.format(date);
+
+	        // 이미 정보가 있는지 확인
+	        pstmt = conn.prepareStatement(checkSql);
+	        pstmt.setString(1, formattedDate);
+	        rs = pstmt.executeQuery();
+	        System.out.println(" 일정 등록 체크 : " + pstmt.toString());
+	        
+	        if (rs.next() && rs.getInt(1) > 0) {
+	            // 이미 정보가 있으면 insertCnt를 2로 설정
+	            insertCnt = 2;
+	        } else {
+	            // 정보가 없으면 INSERT 쿼리 실행
+	            String insertSql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
+	            pstmt = conn.prepareStatement(insertSql);
+	            pstmt.setString(1, dto.getDG_Home());
+	            pstmt.setString(2, dto.getDG_Away());
+	            pstmt.setString(3, dto.getDG_Location());
+	            pstmt.setTimestamp(4, dto.getDG_Time());
+	            insertCnt = pstmt.executeUpdate();
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // 리소스 정리
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return insertCnt;
+	}
+
+	// 홈팀 위치 정보
+	public String getLocation(String dG_Home) {
+		String DG_Location = "";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT DK_Location FROM DR_KBOTeams WHERE DK_TeamName = ? ";
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dG_Home);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				DG_Location = rs.getString("DK_Location");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return DG_Location;
 	}
 	
 }

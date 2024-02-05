@@ -38,7 +38,7 @@ public class GamesController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath(); // 플젝명
 		String url = uri.substring(contextPath.length());
-
+		System.out.println(url);
 		String viewPage = "";
 		// 드림즈게시판
 		if (url.equals("/*.gc") || url.equals("/games.gc")) {
@@ -57,6 +57,18 @@ public class GamesController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
+		
+		if (url.equals("/gamesInsertAction.gc")) {
+			System.out.println("<<< url ==> /gamesInsertAction.bc >>>");
+			viewPage = "/resource/admin/games/gamesInsertAction.jsp";
+			
+			service.gamesInsertAction(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		
+		
 	}
 
 }
