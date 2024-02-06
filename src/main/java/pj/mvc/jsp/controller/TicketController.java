@@ -90,6 +90,17 @@ public class TicketController extends HttpServlet {
 
 		}
 		
+		// 티켓 예매 취소
+		else if (url.equals("/ResCancle.tc")) {
+			System.out.println("<<< url ==> /ResCancle.tc >>>");
+			tservice.resCancleAction(request, response);
+			
+			viewPage = request.getContextPath() + "/ticket.tc";
+
+			response.sendRedirect(viewPage);
+
+		}
+		
 		// 관리자 페이지
 		else if (url.equals("/admin.tc")) {
 			System.out.println("<<< url ==> /admin.tc >>>");

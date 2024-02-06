@@ -64,6 +64,13 @@ public class TicketResDTO {
 		this.ticket_price = ticket_price;
 	}
 
+	@Override
+	public String toString() {
+		return "TicketResDTO [ticket_no=" + ticket_no + ", ticket_seat=" + ticket_seat + ", cust_Id=" + cust_Id
+				+ ", game_date=" + game_date + ", purchase_date=" + purchase_date + ", ticket_price=" + ticket_price
+				+ "]";
+	}
+
 	
 	
 	

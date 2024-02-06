@@ -174,8 +174,36 @@
 		        return false; // 반드시 있어야 정상작동한다.!!!!!!
 	        }); //.submit() => submit버튼을 눌렀을 때
 	   
+	        $('#payTicket').click(function(){
+        		let param={"totalPrice" : $('#totalprice').val(),
+        					"game_date" : $('#game_date').val(),
+        					"parkseat" : $('#parkseat').val(),
+        		}
+        		
+        		if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#email1").val() || !$("#email2").val()){
+                    alert("예매자 확인을 해주세요!")
+                    $("#user_name").focus();
+                    return false; // 다음칸으로 내려가는 동작 중지
+                }
+        		else{
+	        		$.ajax({
+	        			url: '${path}/ticketRes.tc',
+	        			type: 'GET',
+	        			dataType:"text",
+	        			//data: {param : param},	// setAttribute {key : value}
+	        			data: param ,	
+	        			success: function(result){ // 6. 콜백 함수
+	        				alert("결제가 완료되었습니다.");
+	        				window.close();
+	        			},
+	        			error: function(){
+	        				alert('오류');
+	        			}
+	        		});
+        		}
+        	});
         });
-        function openNewWindow() {
+       /*  function openNewWindow() {
             // 1. validation check
             // 아이디 입력 확인
             if(!$("#user_name").val() || !$("#user_birthday").val() || !$("#user_hp").val() || !$("#email1").val() || !$("#email2").val()){
@@ -184,30 +212,23 @@
                 return false; // 다음칸으로 내려가는 동작 중지
             }
             else{
-            	$('#payTicket').click(function(){
-            		let param={"totalPrice" : $('#totalprice').val(),
-            					"game_date" : $('#game_date').val(),
-            					"parkseat" : $('#parkseat').val(),
-            		}
-            		
-            		$.ajax({
-            			url: '${path}/ticketRes.tc',	// 3. 컨트롤러 basic5_next.jq 호출
-            			type: 'get',
-            			dataType:"json",
-//            			data: {param : param},	// setAttribute {key : value}
-            			data: param ,	// setAttribute {key : value}
-            			success: function(result){ // 6. 콜백 함수
-            				alert("결제가 완료되었습니다.");
-            				window.close();
-            			},
-            			error: function(){
-            				alert('오류');
-            			}
-            		});
-            	});
+            	$.ajax({
+        			url: '${path}/ticketRes.tc',	// 3. 컨트롤러 basic5_next.jq 호출
+        			type: 'get',
+        			dataType:"json",
+        			data: {param : param},	// setAttribute {key : value}
+        			data: param ,	// setAttribute {key : value}
+        			success: function(result){ // 6. 콜백 함수
+        				alert("결제가 완료되었습니다.");
+        				window.close();
+        			},
+        			error: function(){
+        				alert('오류');
+        			}
+        		});
                 return false;                        
             }
-        }
+        } */
  
         
         /* $(function(){
@@ -445,7 +466,7 @@
                                     <input type="button" value="취소하기" onclick="closeWindow()">
                                 </div>
                                 <div id="payit">
-                                    <input type="button" id="payTicket" value="결제하기"  onclick="openNewWindow()">
+                                    <input type="button" id="payTicket" value="결제하기" >
                                 </div>
                             </div>
                         </td>

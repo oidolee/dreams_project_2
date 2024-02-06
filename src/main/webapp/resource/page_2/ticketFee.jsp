@@ -207,6 +207,11 @@
             // 새 창 열기
             window.open('purchaseTicket.tc', '_blank', 'width=882, height=530');
          }
+        $(function(){
+        	$("#ticket-Checkbutton").click(function(){
+        		window.location.href = "${path}/ResCheck.tc"
+        	});
+        });
       </script>
 </head>
 <div class="wrap">
@@ -288,8 +293,8 @@
                     <h1 style="margin-top: 50px;">입장 요금</h1>
                 </div>
                 <div class="ticket-reservation">
-					<input style="margin-right: 10px;" id="ticketbutton" type="button" value="티켓 예약 확인 / 취소" >
-					<input id="ticketbutton" type="button" value="티켓예약" onclick="openNewWindow()">
+					<input style="margin-right: 10px;" id="ticket-Checkbutton" type="button" value="티켓 예약 확인 / 취소" >
+					<input id="ticket_Resbutton" type="button" value="티켓예약" onclick="openNewWindow()">
 				</div>
                 <table style="margin-bottom: 50px; margin-top: 40px; " align="center" >
                     <tr>
