@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>드림즈게시판 글쓰기</title>
+    <title>드림즈게시판 글수정</title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -105,7 +105,7 @@ $(function() {
 				<!-- 좌측메뉴 종료 -->	
 					<!-- 우측메뉴 시작 -->
 	                <div style="width: 800px; " >
-						<h2 align="center" class="title"> 게시판 글쓰기 </h2><br>
+						<h2 align="center" class="title"> 게시글 수정하기 </h2><br>
 	                    <table id="boardwrite">
 	                        <tr>
 	                            <th style="font-weight: bold">
@@ -141,6 +141,10 @@ $(function() {
                 </div>
             </div>
         </form>    
+        
+        <div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div>
      	<%@ include file="/layout/footer.jsp" %>
         
         <script>
