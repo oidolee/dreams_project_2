@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import pj.mvc.jsp.dto.CustomerDTO;
+import pj.mvc.jsp.dto.ProductDTO;
 import pj.mvc.jsp.dto.TicketDTO;
 import pj.mvc.jsp.dto.TicketResDTO;
 
@@ -94,7 +95,7 @@ public class TicketDAOImpl implements TicketDAO {
 	}
 	// 티켓 예매 처리 - insert
 	public int ticketRes(TicketResDTO trdto) {
-		System.out.println("TicketDAOImpl - ticketInsert");
+		System.out.println("TicketDAOImpl - ticketRes");
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int insertResCnt = 0;
@@ -105,17 +106,20 @@ public class TicketDAOImpl implements TicketDAO {
 			
 			
 			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
-					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), ?, ?, sysdate, sysdate, ?);"
+					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), "
+					+ "?, ?, ?, sysdate, ?)"
 					;
 					
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, trdto.getTicket_seat());
 			pstmt.setString(2, trdto.getCust_Id());
-			pstmt.setInt(3, trdto.getTicket_price());
+			pstmt.setTimestamp(3, trdto.getGame_date());
+			pstmt.setInt(4, trdto.getTicket_price());
 			
 			insertResCnt = pstmt.executeUpdate();
 			
+			System.out.println(trdto.toString());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -128,8 +132,45 @@ public class TicketDAOImpl implements TicketDAO {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("insertResCnt : " + insertResCnt);
 		return insertResCnt;
 	}
+	// 티켓 예매 취소
+	@Override
+	public int ticketDelete(int ticket_no) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int deleteCnt = 0;
+		TicketResDTO trdto = new TicketResDTO();
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_ticket_reservation "
+					+ "   SET show = 'n' "
+					+ " WHERE ticket_no = ?";
+					
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ticket_no);
+			
+			deleteCnt = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("deleteCnt : " + deleteCnt);
+		return deleteCnt;
+	}
+	
+	
 	// 티켓 예매 확인 - select
 	@Override
 	public List<TicketResDTO> ResCheckTicket(String strId) {
@@ -158,7 +199,7 @@ public class TicketDAOImpl implements TicketDAO {
 				trdto.setTicket_no(rs.getInt("ticket_no"));
 				trdto.setTicket_seat(rs.getString("ticket_seat"));
 				trdto.setCust_Id(rs.getString("cust_Id"));
-				trdto.setGame_date(rs.getDate("game_date"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
 				trdto.setPurchase_date(rs.getDate("purchase_date"));
 				trdto.setTicket_price(rs.getInt("ticket_price"));
 				

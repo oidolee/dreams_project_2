@@ -1,13 +1,14 @@
 package pj.mvc.jsp.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TicketResDTO {
 
 	private int ticket_no;
 	private String ticket_seat;
 	private String cust_Id;
-	private Date game_date;
+	private Timestamp game_date;
 	private Date purchase_date;
 	private int ticket_price;
 	
@@ -39,11 +40,11 @@ public class TicketResDTO {
 		this.cust_Id = cust_Id;
 	}
 
-	public Date getGame_date() {
+	public Timestamp getGame_date() {
 		return game_date;
 	}
 
-	public void setGame_date(Date game_date) {
+	public void setGame_date(Timestamp game_date) {
 		this.game_date = game_date;
 	}
 
@@ -61,6 +62,13 @@ public class TicketResDTO {
 
 	public void setTicket_price(int ticket_price) {
 		this.ticket_price = ticket_price;
+	}
+
+	@Override
+	public String toString() {
+		return "TicketResDTO [ticket_no=" + ticket_no + ", ticket_seat=" + ticket_seat + ", cust_Id=" + cust_Id
+				+ ", game_date=" + game_date + ", purchase_date=" + purchase_date + ", ticket_price=" + ticket_price
+				+ "]";
 	}
 
 	
