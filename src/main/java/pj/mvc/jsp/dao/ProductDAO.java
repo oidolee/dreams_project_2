@@ -12,10 +12,10 @@ public interface ProductDAO {
 	// 상품 목록 갯수 구하기
 	public int productCnt();
 	
-	// 2. 상품 등록
+	// 2. 상품 추가
 	public int insertProduct(ProductDTO dto);
 	// 3. 상품 삭제
-	public int deleteProduct(int product_No);
+	public int productDelete(int product_No);
 	// 4. 상품 수정
 	public int productUpdate(ProductDTO dto);
 	// 5. 상품 상제 페이지

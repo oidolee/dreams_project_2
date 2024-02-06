@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -86,8 +87,35 @@
 			<div>
 				<h3>Goods</h3>
 				<hr>
+				
 				<div class="goods_list">
 					<div class="goods_card_container">
+						
+						
+						
+						
+						
+						<%-- <c:forEach var="dto" items="${list }">						
+						<div class="goods_card"
+							onclick="window.location.href='${dto.product_ImgName}.jsp';">
+							<img class="goods_image" src="${dto.product_ImgName}"
+								alt="상품 1 이미지">
+
+							<form>
+								<table>
+									<tr>
+										<td>${dto.product_Name }</td>
+									</tr>
+									<hr>
+									<tr>
+										<td>${dto.product_Price }원</td>
+									</tr>
+
+								</table>
+							</form>
+						</div>
+						</c:forEach> --%>
+											
 						<div class="goods_card"
 							onclick="window.location.href='detail-1.jsp';">
 							<img class="goods_image" src="../image/goods/mousepad1.png"
