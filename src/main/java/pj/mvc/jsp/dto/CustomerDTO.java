@@ -10,6 +10,7 @@ public class CustomerDTO {
 	private String cust_Birth;		// 생년월일
 	private String cust_Phone;		// 연락처
 	private String cust_Address;	// 주소
+	private int cust_No;			// 넘버링
 	
 	
 	// 디폴트 생성자
@@ -19,7 +20,7 @@ public class CustomerDTO {
 	
 	// 매개변수 생성자
 	public CustomerDTO(String cust_Id, String cust_Name, String cust_Password, String cust_Email, String cust_Birth,
-			String cust_Phone, String cust_Address) {
+			String cust_Phone, String cust_Address, int cust_No) {
 		super();
 		this.cust_Id = cust_Id;
 		this.cust_Name = cust_Name;
@@ -28,6 +29,7 @@ public class CustomerDTO {
 		this.cust_Birth = cust_Birth;
 		this.cust_Phone = cust_Phone;
 		this.cust_Address = cust_Address;
+		this.cust_No = cust_No;
 	}
 
 
@@ -101,11 +103,19 @@ public class CustomerDTO {
 	}
 
 
+	public int getCust_No() {
+		return cust_No;
+	}
+	
+	public void setCust_No(int cust_No) {
+		this.cust_No = cust_No;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "CustomerDTO [cust_Id=" + cust_Id + ", cust_Name=" + cust_Name + ", cust_Password=" + cust_Password
 				+ ", cust_Email=" + cust_Email + ", cust_Birth=" + cust_Birth + ", cust_Phone=" + cust_Phone
-				+ ", cust_Address=" + cust_Address + "]";
+				+ ", cust_Address=" + cust_Address + ", cust_No=" + cust_No + "]";
 	}
 }

@@ -20,6 +20,10 @@ public interface TicketService {
 	public void resCheckAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
+	// 티켓 예매 취소
+	public void resCancleAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
 	// 티켓 가격 수정
 	public void ticketUpdateAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;

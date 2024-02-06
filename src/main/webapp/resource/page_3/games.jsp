@@ -7,6 +7,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>   
+<%
+	
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 경기일정 및 운영 작업자 : 이민진 -->
@@ -84,6 +88,7 @@
 
 	    	 // 시간만 추출 (HH:mm 형식)
 	    	games['month_<%= month %>'][<%= day %>] = {
+	    	    DG_No :  '<%= dto.getDG_No() %>',
     			home: '<%= dto.getDG_Home() %>',
    	            away: '<%= dto.getDG_Away() %>',
    	         	time: '<%= time %>',

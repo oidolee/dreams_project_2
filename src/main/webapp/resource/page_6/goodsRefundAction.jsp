@@ -83,6 +83,11 @@
         	padding
         }
         
+        .btn-primary {
+        	color: white !important;
+        	background-color: #1c5c50 !important;
+        }
+        
     </style>
 </head>
 
@@ -104,16 +109,16 @@
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("교환/환불 실패!!");
-					window.location="${path}/goodsRefund.oc?order_No=${}";
+					window.location="${path}/goodsRefund.oc";
 				}, 1000)
 			</script>
 		</c:if>
         
-        <c:if test="${updateCnt == 1}">
+        <c:if test="${insertCnt == 1}">
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("교환/환불 신청 완료!!");
-					window.location="${path}/refundDetail.oc";
+					window.location="${path}/refundDetail.oc?REF_cust_Id=${REF_cust_Id}";
 				}, 1000)
 			</script>
 		</c:if>

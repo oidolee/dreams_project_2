@@ -86,8 +86,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address) "
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?) ";
+			String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers)) ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCust_Id());
 			pstmt.setString(2, dto.getCust_Name());
@@ -96,7 +96,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(5, dto.getCust_Birth());
 			pstmt.setString(6, dto.getCust_Phone());
 			pstmt.setString(7, dto.getCust_Address());
-			
+			System.out.println("query : "  + pstmt.toString() );
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
 			
@@ -217,6 +217,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setCust_Address(rs.getString("cust_Address"));
 				dto.setCust_Phone(rs.getString("cust_Phone"));
 				dto.setCust_Email(rs.getString("cust_Email"));
+				dto.setCust_No(rs.getInt("cust_No"));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -287,7 +288,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers";
+			String sql = "SELECT * FROM DR_customers "
+					+ "ORDER BY cust_No DESC";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -304,6 +306,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setCust_Address(rs.getString("cust_Address"));
 				dto.setCust_Phone(rs.getString("cust_Phone"));
 				dto.setCust_Email(rs.getString("cust_Email"));
+				dto.setCust_No(rs.getInt("cust_No"));
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -322,5 +325,35 @@ public class CustomerDAOImpl implements CustomerDAO {
 	      }
 		// 5. list 리턴
 		return list;
+	}
+
+	// 회원상세 목록 - 영구삭제
+	@Override
+	public int admin_deleteCustomer(int cust_No) {
+		
+		System.out.println("CustomerDAOImpl - admin_deleteCustomer");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql ="DELETE FROM DR_customers WHERE cust_No = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cust_No);
+			pstmt.executeUpdate();
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cust_No;
 	}
 }

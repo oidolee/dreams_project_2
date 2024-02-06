@@ -60,7 +60,7 @@
     text-align: right;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #333333;
-    height: 120px;
+    height: 180px;
 }
 
 .day:nth-child(7n + 1),
@@ -117,6 +117,12 @@
 .contents>div{
     font-size: 12px;
 }
+/* 경기일정 */
+.contents  button{
+	font-size:10px;
+	margin-bottom:10px;
+	color:#fff !important;
+}
 
 .contents>p{
     height: 15px;
@@ -127,5 +133,12 @@
     white-space: nowrap;
 }
 
-
+/* 일정 지우기 아이콘 색 */
+.date svg{
+    color: green !important;
+    cursor: pointer;
+}
+.date svg path{
+	color: green !important;
+}
 

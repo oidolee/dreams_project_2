@@ -94,7 +94,7 @@
 
         .goods {
             text-align: center;
-            width: 1280px;
+            width: 640px;
             margin: 0 auto;
         }
 
@@ -103,6 +103,7 @@
             margin-right: auto;
             border-spacing: 2px;
             border-collapse: separate;
+            color: black !important;
         }
         
         thead tr th {
@@ -113,6 +114,7 @@
 
         tbody tr td {
             vertical-align: middle;
+            color: black !important;
         }
 
         .form tr label {
@@ -122,7 +124,14 @@
         .form {
             border-spacing: 10px;
             border-collapse: separate;
+            color: black !important;
         }
+        
+        .btn-primary {
+        	color: white !important;
+        	background-color: #1c5c50 !important;
+        }
+        
         </style>
 </head>
 
@@ -142,7 +151,7 @@
                 <legend style="color: #000 !important; font-weight: bold;"> 최근 구매한 상품<hr> </legend>
                 <table class="table" align="center">
                     <thead>
-                      <tr style="color:black !important">
+                      <tr style="color:black !important; background-color:#1c5c50 !important;">
                         <th scope="col" style="color:black !important">선택</th>
                         <th scope="col" style="color:black !important">주문상세번호</th>
                         <th scope="col" style="color:black !important">상품번호</th>
@@ -160,8 +169,8 @@
 	                        <td>${list. product_No}</td>
 	                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
 	                        <td>${list. product_Name}</td>
-	                        <td>${list. orderDetail_qty}</td>
-	                        <td>${list. orderDetail_price}</td>
+	                        <td>${list. orderDetail_qty}개</td>
+	                        <td>${list. orderDetail_price}원</td>
 	                      </tr>
 	                    </c:forEach>  
                     </tbody>
@@ -174,14 +183,13 @@
                 <h2 style="color:#000 !important; font-weight: bold;">교환/환불 신청서</h2>
                 <br><br>
                 <form name="refundForm" method="post" action="goodsRefundSubmit.oc">
-                	
-                	<input type="hidden" name="REF_cust_Id" value="{sessionId}"> <!-- ${sessionId} -->
+                	<input type="hidden" id="order_No" name="order_No" size="65" required value="${param.order_No}">
+                	<input type="hidden" id="REF_cust_Id" name="REF_cust_Id" value="sessionId"> <!-- ${sessionId} -->
 	                <table class="form">
 	                    <tr>
 	                        <th align="center"><label for="order_No">주문번호</label></th>
 	                        <td align="left">
 	                        	<input type="text" id="order_No" name="order_No" size="65" required value="${param.order_No}" disabled>
-	                        	<input type="hidden" id="order_No" name="order_No" value="${param.order_No}">
 	                        </td>
 	                    </tr>
 	                    
@@ -241,11 +249,6 @@
 	                        	<textarea name="REF_Reason" id="REF_Reason" cols="66" rows="5"></textarea>
 	                        </td>
 	                    </tr>
-	                    
-	                    <!-- <tr>
-	                        <td align="center"><label for="attachFile"> 파일 첨부 </label></td>
-	                        <td align="left"><input type="file"></td>
-	                    </tr> -->
 	                    
 	                    <tr>
 	                        <th align="center"><label for="REF_Account"> 환불시 계좌 번호</label></th>

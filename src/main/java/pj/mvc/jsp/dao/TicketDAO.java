@@ -21,6 +21,9 @@ public interface TicketDAO {
 	// 티켓 예매 확인
 	public List<TicketResDTO> ResCheckTicket(String strId);
 	
+	// 티켓 예매 취소
+	public int ticketDelete(int ticket_no);
+	
 	// 티켓 가격 수정
 	public int ticketUpdate(TicketDTO tdto);
 	

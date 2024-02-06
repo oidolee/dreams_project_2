@@ -13,8 +13,12 @@
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
+<<<<<<< HEAD
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+=======
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <%-- <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" /> --%>
+>>>>>>> c15ae46cf1693f4d3f300f7a0a6ebea3f6165de2
     <!-- swiper css-->
     <link rel="stylesheet" href="${path}/css/common/common.css">
     <link rel="stylesheet" href="${path}/css/common/header.css">
@@ -73,6 +77,7 @@
         
         .btn-primary {
         	color: white !important;
+        	background-color: #1c5c50 !important;
         }
         
         .card-title {
@@ -101,7 +106,7 @@
                 <div class="card-body">
                 <h5 class="card-title">회원 정보 수정</h5>
                 <p class="card-text"></p>
-                <a href="${path}/modifyMember.oc" class="btn btn-primary">바로가기</a>
+                <a href="${path}/modifyDetailAction.cc" class="btn btn-primary">바로가기</a>
                 </div>
             </div>
 
@@ -128,7 +133,7 @@
                 <div class="card-body">
                 <h5 class="card-title">회원 탈퇴</h5>
                 <p class="card-text"></p>
-                <a href="${path}/deleteMember.oc" class="btn btn-primary">바로가기</a>
+                <a href="${path}/deleteCustomer.cc" class="btn btn-primary">바로가기</a>
                 </div>
             </div>
             

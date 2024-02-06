@@ -1,7 +1,7 @@
 package pj.mvc.jsp.service;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -45,15 +45,12 @@ public class TicketServiceImpl implements TicketService {
 	public void ticketResAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException{
 		System.out.println("서비스 - ticketResAction");
-		// 3단계. 화면에서 입력받은 값을 가져온다.
-		int ticket_price = (Integer)req.getAttribute("totalprice");
-		String ticket_seat = (String)req.getAttribute("parkseat");
-		Date game_date = (Date)req.getAttribute("game_date");
-		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
-		System.out.println("srtId : " + srtId);
-		System.out.println("ticket_seat : " + ticket_seat);
-		System.out.println("ticket_price : " + ticket_price);
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		int ticket_price = Integer.parseInt(req.getParameter("totalPrice"));
+		String ticket_seat = req.getParameter("parkseat");
+		Timestamp game_date = Timestamp.valueOf(req.getParameter("game_date"));
+		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
 		TicketResDTO trdto = new TicketResDTO();
 		
@@ -61,11 +58,13 @@ public class TicketServiceImpl implements TicketService {
 		trdto.setGame_date(game_date);
 		trdto.setTicket_seat(ticket_seat);
 		trdto.setCust_Id(srtId);
+		trdto.setGame_date(game_date);
 		
 		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
 		TicketDAO tdao = TicketDAOImpl.getInstance();
 		
 		int insertResCnt = tdao.ticketRes(trdto);
+		
 		
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("insertResCnt", insertResCnt);
@@ -75,7 +74,7 @@ public class TicketServiceImpl implements TicketService {
 	@Override
 	public void resCheckAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException{
-		System.out.println("서비스 - ticketResAction");
+		System.out.println("서비스 - resCheckAction");
 		
 		// session에서 아이디를 받아온다.
 		String srtId = (String)req.getSession().getAttribute("sessionID");
@@ -86,6 +85,21 @@ public class TicketServiceImpl implements TicketService {
 		
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("list", list);
+	}
+	
+	// 티켓 예매 취소
+	public void resCancleAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		System.out.println("서비스 - resCancleAction");
+		
+		// 티켓 번호 값을 받아온다.
+		int ticket_no = Integer.parseInt(req.getParameter("ticket_no"));
+		
+		// 3단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		TicketDAO tdao = TicketDAOImpl.getInstance();
+		int deleteCnt = tdao.ticketDelete(ticket_no);
+		
+		
 	}
 	
 	// 티켓 개별 조회

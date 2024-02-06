@@ -257,6 +257,15 @@ input:focus {
             </div>
         </section>
      
+     	<c:if test='${sessionID.equals("admin")}'>
+		    <a href="${path}/admin_member.cc">
+		        <div class="floating-box left"></div>
+		    </a>
+		</c:if>
+     
+     
+     
+     
 		<%@ include file="/layout/footer.jsp"%>
         <script>
             //메인 스크롤 이벤트 
