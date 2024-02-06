@@ -123,6 +123,7 @@
             
             let finalTotalprice = (totalprice - discount);
 
+            
             document.getElementById('bgNormalPrice').textContent = bgNormalPrice.toLocaleString() + '원';
             document.getElementById('bgMPrice').textContent = bgMPrice.toLocaleString() + '원';
             document.getElementById('bgCPrice').textContent = bgCPrice.toLocaleString() + '원';
@@ -130,7 +131,8 @@
             document.getElementById('totalprice').textContent = totalprice.toLocaleString() + '원';
             document.getElementById('finalTotalprice').textContent = finalTotalprice.toLocaleString() + '원'; 
             
-            document.getElementById('totalprice').value() = totalprice;
+            document.getElementById('totalprice').value = totalprice;
+            
         }
         
 
@@ -182,14 +184,31 @@
                 return false; // 다음칸으로 내려가는 동작 중지
             }
             else{
-                // // 새 창 열기
-                alert("결제가 완료되었습니다.");
-                window.close();
+            	$('#payTicket').click(function(){
+            		let param={"totalPrice" : $('#totalprice').val(),
+            					"game_date" : $('#game_date').val(),
+            					"parkseat" : $('#parkseat').val(),
+            		}
+            		
+            		$.ajax({
+            			url: '${path}/ticketRes.tc',	// 3. 컨트롤러 basic5_next.jq 호출
+            			type: 'POST',
+            			data: {param : param},	// setAttribute {key : value}
+            			success: function(result){ // 6. 콜백 함수
+            				alert("결제가 완료되었습니다.");
+            				window.close();
+            			},
+            			error: function(){
+            				alert('오류');
+            			}
+            		});
+            	});
                 return false;                        
             }
         }
+ 
         
-         /* $(function(){
+        /* $(function(){
         	$("#parkseat").change(function(){
         		document.parkseat.action="${path}/purchaseTicketPrice.tc?parkseat=" + $("#parkseat").val();
 				document.parkseat.submit();
@@ -387,7 +406,8 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                            <span id="MyPlayDate" name="MyPlayDate" title="2024년 1월 10일(수) 19:00">2024년 1월 10일(수) 19:00</span>
+                        	<input type="text" id="game_date" name="game_date" value="${game_date }">
+                            <span id="game_date" name="game_date"  title="2024년 1월 10일(수) 19:00">${game_date }</span>
                         </td>
                     </tr>
                     <tr>
@@ -427,7 +447,7 @@
                                     <input type="button" value="취소하기" onclick="closeWindow()">
                                 </div>
                                 <div id="payit">
-                                    <input type="button" value="결제하기"  onclick="openNewWindow()">
+                                    <input type="button" id="payTicket" value="결제하기"  onclick="openNewWindow()">
                                 </div>
                             </div>
                         </td>

@@ -275,6 +275,10 @@ pre {
    resize: none;
    color: #000 !important;
  }
+ 
+ #reviewDelete{
+ 	margin-left: 500px;
+ }
 
 #detailbutton a{
    background-color: #1c5c50 !important;

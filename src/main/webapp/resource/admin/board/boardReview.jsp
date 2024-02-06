@@ -39,12 +39,16 @@
         <div style="display: flex; justify-content: left;">
             <table id="reveiw" style="margin-bottom: 50px; width: 100%;">
                 <tr  style="border-bottom: 2px solid gray;">
-                    <td style="font-size: 15px;">
-                        댓글 ${reviewCnt}
+                	<td>
+                	</td>
+                	<td>
+                	</td>
+                    <td style="font-size: 20px; padding-bottom: 10px">
+                        총 댓글 개수 : ${reviewCnt}개
                     </td>                                    
                 </tr>
                 <c:forEach var="dto" items="${list}">
-                <tr style="display: inline;">
+                <tr style="height: 40px">
                     <td style="width: 100px;">
                         ${dto.cust_Id}                                  
                     </td>
@@ -52,18 +56,22 @@
                         ${dto.review_date}
                     </td>
                     <td>
-                        <button id="reportButton">신고</button>                                  
-                    </td>
-                    <c:if test="${sessionID == dto.cust_Id}"> <!-- 세션아이디가 댓글 등록자와 같으면 삭제 버튼 생성 -->
-	                    <td>
-	                	 	<input type="button" name="reviewDelete" id="reviewDelete" value="삭제" onclick="location.href='dreamsBoardReview_delete.bc?review_No=${dto.review_No}&board_No=${dto.board_No}'">
-	                	</td>
-                	</c:if>
-                </tr>
-                <tr style="border-bottom: 1px solid gray;">
-                    <td style="color: rgb(110, 107, 107) !important;">
                         ${dto.review_Content}                                 
                     </td>
+                    <td>
+                    	${dto.show}
+                    </td>
+                    <td>
+                	 	<input type="button" name="reviewDelete" id="review" value="보이기" onclick="location.href='admin_review_view.bc?review_No=${dto.review_No}&board_No=${dto.board_No}'">
+                	</td>
+                    <td>
+                	 	<input type="button" name="reviewDelete" id="reviewD" value="숨기기" onclick="location.href='admin_review_hide.bc?review_No=${dto.review_No}&board_No=${dto.board_No}'">
+                	</td>
+                    <td>
+                	 	<input type="button" name="reviewDelete" id="reviewDe" value="완전삭제" onclick="location.href='admin_review_delete.bc?review_No=${dto.review_No}&board_No=${dto.board_No}'">
+                	</td>
+                </tr>
+                <tr style="border-bottom: 1px solid gray;">
                 </tr>
                 </c:forEach>
             </table>
@@ -72,7 +80,7 @@
 	                	<!-- 이전 버튼 활성화 -->
 	                	<c:if test="${paging.startPage > 10}">
 	                    <span class="prev1">
-	                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${paging.prev}" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
+	                        <a href="${path}/boardDetail.bc?board_No=${param.board_No}&pageNum=${paging.prev}" style="color: white !important; padding: 5px 5px 5px 5px; margin-right: 10px;">
 	                            <span style="color: white !important;">< 이전</span>
 	                        </a>
 	                    </span>
@@ -83,12 +91,12 @@
 	                    <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
 	                    	<c:if test="${paging.currentPage == num}">
 			                    <span class="page">
-			                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on" >${num}</a>
+			                        <a href="${path}/boardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on" >${num}</a>
 			                    </span>
 			                </c:if>
 	                    	<c:if test="${paging.currentPage != num}">
 			                    <span class="page1">
-			                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on">${num}</a>
+			                        <a href="${path}/boardDetail.bc?board_No=${param.board_No}&pageNum=${num}" class="on">${num}</a>
 			                    </span>
 			                </c:if>
 	                    </c:forEach>
@@ -96,7 +104,7 @@
 	                    <!-- 다음 버튼 활성화 -->
 	                    <c:if test="${paging.endPage < paging.pageCount}">
 	                    <span class="next1">
-	                        <a href="${path}/dreamsBoardDetail.bc?board_No=${param.board_No}&pageNum=${paging.next}" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
+	                        <a href="${path}/boardDetail.bc?board_No=${param.board_No}&pageNum=${paging.next}" style="color: white !important; padding: 5px 5px 5px 5px; margin-left: 10px;">
 	                            <span style="color: white !important;">다음 ></span>
 	                        </a>
 	                    </span>

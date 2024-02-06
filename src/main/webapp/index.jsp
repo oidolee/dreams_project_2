@@ -239,7 +239,11 @@
             <a href="#header"></a>
         </div>
 <%
+<<<<<<< HEAD
   		 //request.getSession().setAttribute("sessionID", "admin");
+=======
+  		 // request.getSession().setAttribute("sessionID", "admin");
+>>>>>>> c15ae46cf1693f4d3f300f7a0a6ebea3f6165de2
 %>
 
 		<c:if test='${sessionID.equals("admin")}'>

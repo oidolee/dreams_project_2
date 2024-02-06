@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import pj.mvc.jsp.dao.OrderDAO;
 import pj.mvc.jsp.dao.OrderDAOImpl;
 import pj.mvc.jsp.dto.OrderDTO;
+import pj.mvc.jsp.dto.OrderDetailDTO;
 import pj.mvc.jsp.dto.RefundDTO;
 
 public class OrderServiceImpl implements OrderService {
-	
-	// 내 주문내역 조회
 	
 	// 상품 환불/교환 신청서 제출
 	@Override
@@ -28,8 +27,6 @@ public class OrderServiceImpl implements OrderService {
 		RefundDTO dto = new RefundDTO();
 		System.out.println(dto);
 		
-		//
-		// dto.setREF_No((Integer)req.getAttribute("REF_No"));
 		// 주문번호(구매당시)
 		dto.setOrder_No(Integer.parseInt(req.getParameter("order_No")));
 		// 아이디
@@ -71,9 +68,6 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println(dto);
 	}
 	
-	// 환불 신청시 보여줄
-	
-	
 	// 내 주문 조회
 	@Override
 	public void orderDetailAction(HttpServletRequest req, HttpServletResponse res)
@@ -92,7 +86,62 @@ public class OrderServiceImpl implements OrderService {
 		req.setAttribute("list", list);
 	}
 	
-	// 
+	// 교환/환불 신청 페이지 - 최근 구매한 상품
+	public void MyorderDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println(" 서비스 - MyorderDetailAction");
+		
+		// 3단계. 화면에서 값 가져오기
+		OrderDetailDTO dto = new OrderDetailDTO();
+		System.out.println(req.getParameter("order_No"));
+		int order_No = Integer.parseInt(req.getParameter("order_No")); 
+		
+		// 4단계. 싱글톤 방식으로 DAO객체 생성, 다형성 적용
+		OrderDAO dao = OrderDAOImpl.getInstance();
+		
+		// 5단계.
+		List<OrderDetailDTO> list = dao.MyorderDetail(order_No);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("list", list);
+		
+	}
+	
+	// 내 주문내역 - 구매 확정
+	public void orderConfirm(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		// 3단계.
+		int order_No = Integer.parseInt(req.getParameter("order_No"));
+		
+		// 4단계. 싱글톤 방식으로 DAO객체 생성, 다형성 적용
+		OrderDAO dao = OrderDAOImpl.getInstance();
+		
+		// 5단계. 구매확정
+		int updateCnt = dao.confirmOrder(order_No);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("updateCnt", updateCnt);
+	}
+	
+	
+	// 교환/환불 신청서 확인 
+	public void refundDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		
+		// 3단계.
+		String REF_cust_Id = req.getParameter("REF_cust_Id");
+		
+		// 4단계. 싱글톤 방식으로 DAO객체 생성, 다형성 적용
+		OrderDAO dao = OrderDAOImpl.getInstance();
+		
+		// 5단계.
+		List<RefundDTO> list = dao.refundDetail(REF_cust_Id);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("list", list);
+		
+	}
+		
 	
 	
 	
