@@ -98,11 +98,30 @@
 								<td> ${dto.product_Name}</td>
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
-								<td> ${dto.product_ImgName} </td>
-								<td> ${dto.product_ImgDetail}</td>
-								<td> ${dto.product_ImgSize}</td>
-								<td> ${dto.product_ImgRfd}</td>
+								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
+<<<<<<< HEAD
+								<td> <img src="${path}/resource/image/goods/${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="${path}/resource/image/goods/${dto.product_ImgSize}" width="100px"></td>
+								<td> <img src="${path}/resource/image/goods/${dto.product_ImgRfd}" width="100px"></td>
+=======
+								<td> <img src="${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="${dto.product_ImgSize}" width="100px"></td>
+								<td> <img src="${dto.product_ImgRfd}" width="100px"></td>
+>>>>>>> 2d8981e53560432efde295c564da69f94e67f278
 								<td> ${dto.regDate}</td>
+								
+								<td>
+									<center>
+										<input type="button" type="button" value="수정" onclick="window.location='${path}/detailProduct.pc?product_No=${dto.product_No}&pageNum=${paging.pageNum}'">
+									</center>
+								</td>
+								
+								<td>
+									<center>
+										<input type="button" type="button" value="삭제" onclick="window.location='${path}/ad_product_deleteAction.pd?pdNo=${dto.product_No}'">
+									</center>
+								</td>
+								
 							</tr>
 						</c:forEach>
 						

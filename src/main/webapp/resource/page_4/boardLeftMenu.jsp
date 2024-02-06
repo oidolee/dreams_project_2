@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 강승재 -->
@@ -10,19 +11,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>board좌측메뉴</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="/dreams_project_2/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/common.css">
-    <link rel="stylesheet" href="/dreams_project_2/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="/dreams_project_2/resource/js/bootstrap/bootstrap.bundle.js"></script>
-    <!-- header.js -->
-    <script src="/dreams_project_2/resource/js/common/header.js"></script>
+    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
 </head>
 <body>
 	<div id="left">
@@ -33,9 +32,9 @@
 				<li>
                     <ul class="product_menu">
 						<p></p>
-						<li><a href="news.jsp">구단 소식</a></li>
-						<li><a href="dreamsBoard.jsp">드림즈게시판</a></li>
-						<li><a href="qna.jsp">안내 및 Q&A</a></li>
+						<li><a href="${path}/resource/page_4/news.jsp">구단 소식</a></li>
+						<li><a href="${path}/dreamsBoard.bc">드림즈게시판</a></li>
+						<li><a href="${path}/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
 					</ul>
 				</li>	
 			</ul>	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 강승재 -->
@@ -10,28 +11,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>구단소식</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
     <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="./resource/css/common/common.css">
-    <link rel="stylesheet" href="./resource/css/common/header.css">
-    <link rel="stylesheet" href="./resource/css/common/footer.css">
-    <link rel="stylesheet" href="./resource/css/index.css">
-    <link rel="stylesheet" href="../css/common/page4_board.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/common.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+    <link rel="stylesheet" href="${path}/resource/css/index.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/page4_board.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path}/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-    <!-- header.js -->
-    <script src="./resource/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -68,7 +67,7 @@
       
         <div class="slider-con">
             <div class="slider-box">
-                <img src="../image/banner/category_BOARDS.jpg" alt="">
+                <img src="${path}/resource/image/banner/category_BOARDS.jpg" alt="">
             </div>
         </div>
         <!-- 상단 중앙1 시작 -->

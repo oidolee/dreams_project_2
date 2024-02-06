@@ -67,15 +67,22 @@
              width: 100%;
         }
         
-        .modify-member {
+        .refund-goods {
             width: 1280px;
             text-align: center;
             margin: auto;
         }
 
-        .modify-member label, input {
+        .refund-goods label, input {
             color: black !important;
         }
+        
+        table tr, th {
+        	margin: 0 auto;
+        	padding-right: 50px;
+        	padding
+        }
+        
     </style>
 </head>
 
@@ -89,64 +96,128 @@
         <br>
 
         <br><br><br><br><br><br>
-        <h2 style="text-align: center; color: black !important; font-weight: bold;" > 회원 정보 수정 </h2>
+        <h2 style="text-align: center; color: black !important; font-weight: bold;" > 교환/환불 신청서 조회 </h2>
         <br><br><br>
         
-        <form class="modify-member">
+		
+		
+        <form class=refund-goods>
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_id" class="col-sm-2 col-form-label">아이디</label>
+              <label for="REF_No" class="col-sm-2 col-form-label"> 환불번호 </label>
               <div class="col-sm-5">
-                <input type="text" class="form-control" id="user_id" placeholder="dreamsfan0111" disabled>
+                <table style="color:black !important">
+                	<tr>
+                		<td style="color:black !important"> 환불 번호 1231</td>
+                	</tr>
+                </table>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2"></div>
+              <label for="order_No" class="col-sm-2 col-form-label"> 주문번호 </label>
+              <div class="col-sm-5">
+                <table style="color:black !important">
+                	<tr>
+                		<td style="color:black !important"> 환불 번호 1231</td>
+                	</tr>
+                </table>
+              </div>
+            </div>
+            
+            <table style="color:black !important; text-align:center; margin:0 auto !important ">
+               	<tr>
+               		<th style="color:black !important"> 이름 </th>
+               		<td style="color:black !important"> 환불 번호 1231</td>
+               	</tr>
+            </table>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2"></div>
+              <label for="REF_Name" class="col-sm-2 col-form-label"> 이름 </label>
+              <div class="col-sm-5">
+              	<table style="color:black !important">
+                	<tr>
+                		<td style="color:black !important"> 이름 ㅇㄹㄴㅇ</td>
+                	</tr>
+                </table>
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2"></div>
+              <label for="REF_Phone" class="col-sm-2 col-form-label"> 연락처 </label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="REF_Phone" >
               </div>
             </div>
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_pwd" class="col-sm-2 col-form-label">비밀번호</label>
+              <label for="REF_Address" class="col-sm-2 col-form-label"> 주소 </label>
               <div class="col-sm-5">
-                <input type="password" class="form-control" id="user_pwd" placeholder="********">
+                <input type="text" class="form-control" id="REF_Address" >
               </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_pwd_re" class="col-sm-2 col-form-label">비밀번호 확인</label>
+              <label for="REF_Prod_No" class="col-sm-2 col-form-label"> 상품번호 </label>
               <div class="col-sm-5">
-                <input type="password" class="form-control" id="user_pwd_re" placeholder="*********">
+                <input type="text" class="form-control" id="REF_Prod_No" >
               </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_birth" class="col-sm-2 col-form-label">생년월일</label>
+              <label for="user_pwd" class="col-sm-2 col-form-label"> 주문번호 </label>
               <div class="col-sm-5">
-                <input type="text" class="form-control" id="user_birth" placeholder="19900111">
+                <input type="text" class="form-control" id="order_No" >
               </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_hp" class="col-sm-2 col-form-label">연락처</label>
+              <label for="REF_Prod_Name" class="col-sm-2 col-form-label"> 상품명 </label>
               <div class="col-sm-5">
-                <input type="text" class="form-control" id="user_hp" placeholder="010-1111-2222">
+                <input type="text" class="form-control" id="REF_Prod_Name" >
               </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_address" class="col-sm-2 col-form-label">주소</label>
+              <label for="REF_Prod_qty" class="col-sm-2 col-form-label"> 환불/교환 개수 </label>
               <div class="col-sm-5">
-                <input type="text" class="form-control" id="user_address" placeholder="서울시 마포구 신수동 케이터틀 3층">
+                <input type="text" class="form-control" id="REF_Prod_qty" >
               </div>
             </div>
+            
             <div class="row mb-3">
                 <div class="col-sm-2"></div>
-              <label for="user_email" class="col-sm-2 col-form-label">이메일</label>
+              <label for="REF_Reason" class="col-sm-2 col-form-label"> 환불/교환 사유 </label>
               <div class="col-sm-5">
-                <input type="email" class="form-control" id="user_email" placeholder="ict02@naver.com">
+                <input type="text" class="form-control" id="REF_Reason" >
               </div>
             </div>
-            <br><br>
-            <button type="submit" class="btn btn-primary" style="color: white !important;" >회원 정보 수정</button>
-            <a href="./myPage.html"><button class="btn btn-primary" type="button" style="color: #fff !important;">취소</button></a>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2"></div>
+              <label for="REF_Account" class="col-sm-2 col-form-label"> 환불 받을 계좌번호 </label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="REF_Account" >
+              </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2"></div>
+              <label for="REF_Date" class="col-sm-2 col-form-label"> 환불/교환 신청일 </label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" id="REF_Date" >
+              </div>
+            </div>
+            <a href="${path}/myPage.oc"><button type="button" class="btn btn-primary" style="color: white !important;"> 마이페이지 </button></a>
         </form>
-          <br><br><br>
+        <br><br><br>
         
     
         <!-- 상단 이동버튼 -->

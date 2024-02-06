@@ -140,6 +140,7 @@ input:focus {
     
 </head>
 <div class="wrap">
+
     <body>
     	<%@ include file="/layout/header.jsp"%>
       
@@ -218,6 +219,15 @@ input:focus {
                 </div>
             </div>
         </section>
+     
+     
+     	<c:if test='${sessionID.equals("admin")}'>
+		    <a href="${path}/admin_member.cc">
+		        <div class="floating-box left"></div>
+		    </a>
+		</c:if>
+     
+     
      
 		<%@ include file="/layout/footer.jsp"%>
         <script>

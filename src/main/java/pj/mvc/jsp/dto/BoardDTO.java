@@ -8,6 +8,7 @@ public class BoardDTO {
 	private String board_Title;
 	private String board_Content;
 	private String board_Date;
+	private String show;
 	
 	// 디폴트 생성자
 	public BoardDTO() {
@@ -15,13 +16,15 @@ public class BoardDTO {
 	}
 
 	// 매개변수 생성자
-	public BoardDTO(int board_No, String cust_Id, String board_Title, String board_Content, String board_Date) {
+	public BoardDTO(int board_No, String cust_Id, String board_Title, String board_Content, String board_Date,
+			String show) {
 		super();
 		this.board_No = board_No;
 		this.cust_Id = cust_Id;
 		this.board_Title = board_Title;
 		this.board_Content = board_Content;
 		this.board_Date = board_Date;
+		this.show = show;
 	}
 
 	public int getBoard_No() {
@@ -64,10 +67,20 @@ public class BoardDTO {
 		this.board_Date = board_Date;
 	}
 
+	public String getShow() {
+		return show;
+	}
+
+	public void setShow(String show) {
+		this.show = show;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [board_No=" + board_No + ", cust_Id=" + cust_Id + ", board_Title=" + board_Title
-				+ ", board_Content=" + board_Content + ", board_Date=" + board_Date + "]";
+				+ ", board_Content=" + board_Content + ", board_Date=" + board_Date + ", show=" + show + "]";
 	}
+
+	
 	
 }

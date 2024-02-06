@@ -13,7 +13,8 @@
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <%-- <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" /> --%>
     <!-- swiper css-->
     <link rel="stylesheet" href="${path}/css/common/common.css">
     <link rel="stylesheet" href="${path}/css/common/header.css">

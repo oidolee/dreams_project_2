@@ -48,7 +48,7 @@ public class TicketController extends HttpServlet {
 
 		String url = uri.substring(contextPath.length());
 
-		// 첫페이지 main.do라고 가정
+		// 첫페이지 라고 가정
 		if (url.equals("/*.tc") || url.equals("/ticket.tc")) {
 			System.out.println("<<< url ==> /ticket.tc >>>");
 

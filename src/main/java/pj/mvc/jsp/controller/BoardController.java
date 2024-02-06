@@ -57,8 +57,8 @@ public class BoardController extends HttpServlet {
 			service.boardListAction(request, response);
 			viewPage = "resource/page_4/dreamsBoard.jsp";
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("sessionID", "로그인된 아이디");
+			//HttpSession session = request.getSession();
+			//session.setAttribute("sessionID", "로그인된 아이디");
 			
 			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
@@ -67,7 +67,7 @@ public class BoardController extends HttpServlet {
 		}
 		
 		// 상세페이지
-		if(url.equals("/dreamsBoardDetail.bc")) {
+		else if(url.equals("/dreamsBoardDetail.bc")) {
 			System.out.println("<<< url ==> /dreamsBoardDetail.bc >>>");
 			
 			service.boardDetailAction(request, response);
@@ -162,6 +162,126 @@ public class BoardController extends HttpServlet {
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
+		}
+		
+		// 드림즈게시판 댓글 삭제처리
+		else if(url.equals("/dreamsBoardReview_delete.bc")) {
+			System.out.println("<<< url ==> /dreamsBoardReview_delete.bc >>>");
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+		
+			service.reviewDelete(request, response);
+			
+			viewPage = request.getContextPath() + "/dreamsBoardDetail.bc?board_No="+board_No;
+			response.sendRedirect(viewPage);
+			
+		}
+		
+		// 관리자 페이지 진입 및 게시판 목록 조회
+		else if(url.equals("/admin_board.bc")) {
+			System.out.println("<<< url ==> /admin_board.bc >>>");
+			
+			service.admin_boardList(request, response);
+			
+			viewPage = "resource/admin/board/board.jsp";
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		// 관리자 게시글 숨기기
+		else if(url.equals("/admin_board_hide.bc")) {
+			System.out.println("<<< url ==> /admin_board_hide.bc >>>");
+			
+			service.boardHide(request, response);
+			
+			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			
+			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
+			response.sendRedirect(viewPage);
+		}
+		
+		// 관리자 게시글 보이기
+		else if(url.equals("/admin_board_view.bc")) {
+			System.out.println("<<< url ==> /admin_board_view.bc >>>");
+			
+			service.boardView(request, response);
+			
+			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			
+			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
+			response.sendRedirect(viewPage);
+		}
+		
+		// 관리자 게시글 완전삭제
+		else if(url.equals("/admin_board_delete.bc")) {
+			System.out.println("<<< url ==> /admin_board_delete.bc >>>");
+			
+			service.boardDelete_admin(request, response);
+			
+			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			
+			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
+			response.sendRedirect(viewPage);
+		}
+		
+		// 관리자 상세페이지
+		else if(url.equals("/boardDetail.bc")) {
+			System.out.println("<<< url ==> /boardDetail.bc >>>");
+			
+			service.boardDetailAction(request, response);
+			viewPage = "resource/admin/board/boardDetail.jsp";
+			
+			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		// 관리자 댓글 목록
+		else if(url.equals("/boardReview.bc")) {
+			System.out.println("<<< url ==> /boardReview.bc >>>");
+			
+			service.reviewList_admin(request, response);
+			
+			viewPage = "resource/admin/board/boardReview.jsp";
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		// 관리자 댓글 보이기
+		else if(url.equals("/admin_review_view.bc")) {
+			System.out.println("<<< url ==> /admin_review_view.bc >>>");
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+		
+			service.reviewView(request, response);
+			
+			viewPage = request.getContextPath() + "/boardDetail.bc?board_No="+board_No;
+			response.sendRedirect(viewPage);
+			
+		}
+		
+		// 관리자 댓글 숨기기
+		else if(url.equals("/admin_review_hide.bc")) {
+			System.out.println("<<< url ==> /admin_review_hide.bc >>>");
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+		
+			service.reviewDelete(request, response);
+			
+			viewPage = request.getContextPath() + "/boardDetail.bc?board_No="+board_No;
+			response.sendRedirect(viewPage);
+			
+		}
+		
+		// 관리자 댓글 완전삭제
+		else if(url.equals("/admin_review_delete.bc")) {
+			System.out.println("<<< url ==> /admin_review_delete.bc >>>");
+			int board_No = Integer.parseInt(request.getParameter("board_No"));
+			
+			service.reviewDelete_admin(request, response);
+			
+			viewPage = request.getContextPath() + "/boardDetail.bc?board_No="+board_No;
+			response.sendRedirect(viewPage);
+			
 		}
 		
 		

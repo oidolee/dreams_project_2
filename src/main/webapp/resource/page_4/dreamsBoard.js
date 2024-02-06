@@ -35,3 +35,7 @@ function searchBoard() {
 	window.location.href = url;
 	
 }
+
+function nonSessionID(){
+	alert("로그인 후 이용해 주세요!")
+}

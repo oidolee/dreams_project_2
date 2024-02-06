@@ -1,5 +1,7 @@
 package pj.mvc.jsp.dao;
 
+import java.util.List;
+
 import pj.mvc.jsp.dto.CustomerDTO;
 
 public interface CustomerDAO {
@@ -22,5 +24,6 @@ public interface CustomerDAO {
 	// 회원정보 수정 처리
 	public int updateCustomer(CustomerDTO dto);
 	
-	
+	// 관리자모드 - 회원 전체 조회
+	public List<CustomerDTO> SelectCustomer();
 }
