@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file = "/layout/setting.jsp" %>  
-<html lang="ko">
+<html lang="ko"> 
 <!-- 페이지 작업자 : 이민진 -->
 <head>    
     <meta charset="UTF-8">
