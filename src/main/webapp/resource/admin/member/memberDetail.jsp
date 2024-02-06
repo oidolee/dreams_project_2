@@ -11,7 +11,7 @@
     <meta name="author" content="" />
     <title> 관리자모드 - 회원상세관리 </title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet" />
+    <link href="resource/admin/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- chartJs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
@@ -170,21 +170,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <div class="row mt-4">
-                        <div class="col-xl-2 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">회원</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="#">회원 상세내역</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                   
-                    </div>
-
-                    
-
                     <script>
                         
 
@@ -207,30 +192,50 @@
                                         <th scope="col">No</th>
                                         <th scope="col">아이디</th>
                                         <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
                                         <th scope="col">생년월일</th>
                                         <th scope="col">주소</th>
                                         <th scope="col">연락처</th>
                                         <th scope="col">이메일</th>
                                         <th scope="col">비고</th>
                                     </tr>
+                                    <tr>
+                                        <td>${dto.cust_No}</td>
+                                        <td>${dto.cust_Id}</td>
+                                        <td>${dto.cust_Name}</td>
+                                        <td>${dto.cust_Birth}</td>
+                                        <td>${dto.cust_Address}</td>
+                                        <td>${dto.cust_Phone}</td>
+                                        <td>${dto.cust_Email}</td>
+                                        <td></td>
+                                    </tr>
                                 </thead>
                             </table>
 
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
+                                    <!-- 뒤로가기 -->
+                                    <li class="back_cust" onclick="back_cust()">
+                                        <a class="page-link">뒤로가기</a>
                                     </li>
 
                                     <div class="pageBox">
                                         <div class="pageCon">
                                         </div>
                                     </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
+                                    
+                                    <!-- 계정복구 -->
+                                    <li class="enable_cust" onclick="enableAccount()">
+                                        <a class="page-link">계정복구</a>
+                                    </li>
+                                    
+                                    <!-- 계정삭제 -->
+                                    <li class="block_cust" onclick="blockAccount()">
+                                        <a class="page-link">계정삭제</a>
+                                    </li>
+                                    
+                                    <!-- 영구삭제 -->
+                                    <li class="delete_cust" onclick="delete_cust()">
+                                        <a class="page-link">영구삭제</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -241,7 +246,7 @@
                 <script>
 
 //드림즈 table
-let data = [
+/* let data = [
   [1, 'abce', '이름1', '남',1990],
   [2, 'bbce', '이름2', '남'],
   [3, 'cbce', '이름3', '남'],
@@ -249,7 +254,7 @@ let data = [
   [5, 'ebce', '이름5', '남'],
 ];
 
-console.log(data[0][4])
+console.log(data[0][4]) */
 
 
 
@@ -398,7 +403,10 @@ function prevPage() {
         </div>
      
     </div>
- 
+    
+ 	<!-- member.js -->
+    <script src="${path}/resource/admin/member/member.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>

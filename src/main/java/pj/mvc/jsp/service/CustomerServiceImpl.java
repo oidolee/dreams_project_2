@@ -13,8 +13,6 @@ import pj.mvc.jsp.dto.CustomerDTO;
 
 public class CustomerServiceImpl implements CustomerService {
 
-	// 실질적인 서비스작업
-	
 	// ID 중복확인 처리
 	@Override
 	public void idConfirmAction(HttpServletRequest req, HttpServletResponse res) 
@@ -238,5 +236,25 @@ public class CustomerServiceImpl implements CustomerService {
 		// 6단계. jsp로 처리결과 전달
 		req.setAttribute("list", list);
 	}
+	
+	
+	// 회원상세 목록 - 영구삭제
+	@Override
+	public void admin_deleteCustomerAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_deleteCustomerAction()");
+		
+		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		dao.admin_deleteCustomer(cust_No);
+
+	}
+	
+	
 
 }

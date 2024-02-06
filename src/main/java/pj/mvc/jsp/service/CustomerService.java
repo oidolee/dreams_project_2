@@ -38,4 +38,13 @@ public interface CustomerService {
 	public void customerListAll(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
+	
+	
+	// 회원상세 목록 - 영구삭제
+	public void admin_deleteCustomerAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
+	
+	
+	
 }

@@ -26,4 +26,8 @@ public interface CustomerDAO {
 	
 	// 관리자모드 - 회원 전체 조회
 	public List<CustomerDTO> SelectCustomer();
+	
+	
+	// 회원상세 목록 - 영구삭제 
+	public int admin_deleteCustomer(int cust_No);
 }
