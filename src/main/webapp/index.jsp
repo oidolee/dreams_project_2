@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ include file = "/layout/setting.jsp" %>  
-<html lang="ko">
+<html lang="ko"> 
 <!-- 페이지 작업자 : 이민진 -->
 <head>    
     <meta charset="UTF-8">
@@ -11,7 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>드림즈</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
+       <!-- Bootstrap css-->
+    <link rel="stylesheet" href="${path}/resource/css/bootstrap/bootstrap.css"  />
     <!-- swiper css-->
     <link rel="stylesheet" href="./resource/css/common/common.css">
     <link rel="stylesheet" href="./resource/css/common/header.css">
@@ -237,7 +239,11 @@
             <a href="#header"></a>
         </div>
 <%
+<<<<<<< HEAD
+  		 //request.getSession().setAttribute("sessionID", "admin");
+=======
   		 // request.getSession().setAttribute("sessionID", "admin");
+>>>>>>> c15ae46cf1693f4d3f300f7a0a6ebea3f6165de2
 %>
 
 		<c:if test='${sessionID.equals("admin")}'>
