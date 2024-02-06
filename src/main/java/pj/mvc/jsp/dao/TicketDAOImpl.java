@@ -105,7 +105,7 @@ public class TicketDAOImpl implements TicketDAO {
 			
 			
 			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
-					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), ?, ?, sysdate, sysdate, ?);"
+					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), ?, ?, ?, sysdate, ?);"
 					;
 					
 			
@@ -113,6 +113,7 @@ public class TicketDAOImpl implements TicketDAO {
 			pstmt.setString(1, trdto.getTicket_seat());
 			pstmt.setString(2, trdto.getCust_Id());
 			pstmt.setInt(3, trdto.getTicket_price());
+			pstmt.setTimestamp(4, trdto.getGame_date());
 			
 			insertResCnt = pstmt.executeUpdate();
 			
@@ -158,7 +159,7 @@ public class TicketDAOImpl implements TicketDAO {
 				trdto.setTicket_no(rs.getInt("ticket_no"));
 				trdto.setTicket_seat(rs.getString("ticket_seat"));
 				trdto.setCust_Id(rs.getString("cust_Id"));
-				trdto.setGame_date(rs.getDate("game_date"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
 				trdto.setPurchase_date(rs.getDate("purchase_date"));
 				trdto.setTicket_price(rs.getInt("ticket_price"));
 				

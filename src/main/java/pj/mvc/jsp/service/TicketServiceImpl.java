@@ -2,6 +2,8 @@ package pj.mvc.jsp.service;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,14 +48,20 @@ public class TicketServiceImpl implements TicketService {
 			throws ServletException, IOException{
 		System.out.println("서비스 - ticketResAction");
 		// 3단계. 화면에서 입력받은 값을 가져온다.
-		int ticket_price = (Integer)req.getAttribute("totalprice");
-		String ticket_seat = (String)req.getAttribute("parkseat");
-		Date game_date = (Date)req.getAttribute("game_date");
+		int ticket_price = Integer.parseInt(req.getParameter("totalPrice"));
+		String ticket_seat = req.getParameter("parkseat");
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date parsedDate = dateFormat.parse(gameDateStr);
+		Timestamp game_date = new Timestamp(parsedDate.getTime())
+		
+		Timestamp game_date = Timestamp.valueOf(req.getParameter("game_date"));
 		String srtId = (String)req.getSession().getAttribute("sessionID");
 		
+		System.out.println("ticket_price : " + ticket_price);
 		System.out.println("srtId : " + srtId);
 		System.out.println("ticket_seat : " + ticket_seat);
-		System.out.println("ticket_price : " + ticket_price);
+		System.out.println("game_date : " + game_date);
 		
 		TicketResDTO trdto = new TicketResDTO();
 		
@@ -61,6 +69,7 @@ public class TicketServiceImpl implements TicketService {
 		trdto.setGame_date(game_date);
 		trdto.setTicket_seat(ticket_seat);
 		trdto.setCust_Id(srtId);
+		trdto.setGame_date(game_date);
 		
 		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
 		TicketDAO tdao = TicketDAOImpl.getInstance();
