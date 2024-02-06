@@ -25,7 +25,6 @@ public class OrderServiceImpl implements OrderService {
 		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달	
 		// DTO 생성
 		RefundDTO dto = new RefundDTO();
-		System.out.println(dto);
 		
 		// 주문번호(구매당시)
 		dto.setOrder_No(Integer.parseInt(req.getParameter("order_No")));
@@ -55,7 +54,6 @@ public class OrderServiceImpl implements OrderService {
 		dto.setREF_Date(new Timestamp(System.currentTimeMillis()));
 		// 상태 환불, 교환
 		dto.setREF_Status(req.getParameter("REF_Status"));
-		System.out.println(dto);
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		OrderDAO dao = OrderDAOImpl.getInstance();
 		
@@ -65,7 +63,6 @@ public class OrderServiceImpl implements OrderService {
 		// 6단계. jsp로 처리결과 전달
 		req.setAttribute("insertCnt", insertCnt);
 		req.setAttribute("dto", dto);
-		System.out.println(dto);
 	}
 	
 	// 내 주문 조회

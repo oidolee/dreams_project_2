@@ -76,6 +76,11 @@
         .modify-member label, input {
             color: black !important;
         }
+        
+        .btn-primary {
+        	color: white !important;
+        	background-color: #1c5c50 !important;
+        }
     </style>
 </head>
 
