@@ -60,7 +60,7 @@
     text-align: right;
     border-bottom: 1px solid #333333;
     border-left: 1px solid #333333;
-    height: 120px;
+    height: 180px;
 }
 
 .day:nth-child(7n + 1),
@@ -116,6 +116,11 @@
 /* 홈,어웨이 문구 */
 .contents>div{
     font-size: 12px;
+}
+
+.contents  > button{
+	font-size:10px;
+	margin-bottom:10px;
 }
 
 .contents>p{

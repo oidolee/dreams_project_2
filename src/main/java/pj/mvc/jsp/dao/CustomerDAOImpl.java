@@ -94,7 +94,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(5, dto.getCust_Birth());
 			pstmt.setString(6, dto.getCust_Phone());
 			pstmt.setString(7, dto.getCust_Address());
-			
+			System.out.println("query : "  + pstmt.toString() );
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
 			

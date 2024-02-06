@@ -89,8 +89,15 @@ input:focus {
 }
 </style>
 <script type="text/javascript">
-	   
- </script>
+	$(function(){
+		if(${deleteCnt != 0}){
+			alert("삭제 되었습니다.");
+		}else {
+			alert("다시 확인해 주세요.");
+		}
+		location.href = "./games.gc";
+	})	   
+</script>
 
 
 </head>

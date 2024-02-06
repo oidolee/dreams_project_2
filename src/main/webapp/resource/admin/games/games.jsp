@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp"%>
+<%
+	String getYear = request.getParameter("year");
+	String getMonth = request.getParameter("month");
+	String getDay = request.getParameter("day");
+	
+	
+	String formattedMonth = "";
+	String formattedDay = "";
+	if(getMonth != null){
+		formattedMonth = String.format("%02d", Integer.parseInt(getMonth));
+	}
+	if(getDay != null){
+		formattedDay = String.format("%02d", Integer.parseInt(getDay));
+	}
+
+	
+	String getDate = "";
+	getDate = getYear+"-"+formattedMonth+"-"+formattedDay+"T18:00";
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -226,7 +245,7 @@ to {
 													class="text-left col-sm-4 col-form-label col-form-label-sm">시간</label>
 												<div class="col-sm-8">
 													<input type="datetime-local" id="DG_Time" name="DG_Time"
-														required class="form-control form-control-sm">
+														required class="form-control form-control-sm" value="<%= getDate %>">
 												</div>
 											</div>
 											<button type="button" id="gamesInsertButton"

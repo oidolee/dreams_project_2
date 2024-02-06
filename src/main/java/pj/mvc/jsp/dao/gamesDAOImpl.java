@@ -173,9 +173,25 @@ public class gamesDAOImpl implements gamesDAO {
 			e.printStackTrace();
 		}
 		return DG_Location;
+	}
+	
 	public int deleteGames(int dG_No) {
-		// TODO Auto-generated method stub
-		return 0;
+		int deleteCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "delete from DR_Gemes where DG_No = ? ";
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dG_No);
+			deleteCnt = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return deleteCnt;
 	}
 	
 }

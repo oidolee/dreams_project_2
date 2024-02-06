@@ -11,7 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>드림즈</title>
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
+       <!-- Bootstrap css-->
+    <link rel="stylesheet" href="${path}/resource/css/bootstrap/bootstrap.css"  />
     <!-- swiper css-->
     <link rel="stylesheet" href="./resource/css/common/common.css">
     <link rel="stylesheet" href="./resource/css/common/header.css">

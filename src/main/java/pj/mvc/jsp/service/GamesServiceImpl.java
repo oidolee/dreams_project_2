@@ -47,6 +47,8 @@ public class GamesServiceImpl implements GamesService {
 		
 		int deleteCnt = dao.deleteGames(DG_No);
 		
+		req.setAttribute("deleteCnt", deleteCnt);
+		
 	}
 
 	//게임일정 등록
