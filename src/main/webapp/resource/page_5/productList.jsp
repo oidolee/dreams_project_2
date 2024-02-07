@@ -22,8 +22,7 @@
 
 
 <!-- productList.css 연결  -->
-<link rel="stylesheet" href="${path}/css/product/productList.css">
-<link rel="stylesheet" href="${path}/css/product/product.css">
+<link rel="stylesheet" href="${path}/resource/css/product/productList.css">
 
 <!-- jQuery -->
 <script
@@ -75,8 +74,8 @@
 <body>
 	<jsp:include page="../../layout/header.jsp"></jsp:include>
 
-	 <div id="slider_con" class="slider-con">
-            <img src="${path}/resource/image/banner/category_GOODS.jpg">
+	 <div id="slider_con" class="slider-con" >
+            <img src="${path}/resource/image/banner/category_GOODS.jpg"   style="width: 100%;">
      </div>
      <br>
 
@@ -96,23 +95,24 @@
 						
 						
 						
-						 <c:forEach var="dto" items="${list }">						
+						 <c:forEach var="dto" items="${list}" >						
 						<div class="goods_card"
-							onclick="window.location.href='detail-${dto.product_No}.jsp';">
+							onclick="window.location.href='${path}/detail.pc?product_Category=${dto.product_Category}&product_Name=${dto.product_Name}'">
 							<img class="goods_image" src="${dto.product_ImgName}"
 								alt="상품 1 이미지">
 							<form>
 								<table>
 									<tr>
-										<td>${dto.product_Name }</td>
+										<td>${dto.product_Name}</td>
 									</tr>
 									<hr>
 									<tr>
-										<td>${dto.product_Price }원</td>
+										<td id="product_Price">${dto.product_Price}원</td>
 									</tr>
 							</form>
 								</table>
 						</div>
+						
 						</c:forEach> 
 											
 						<!-- <div class="goods_card"

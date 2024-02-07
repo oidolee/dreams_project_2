@@ -85,6 +85,7 @@
 							<th>상품이름</th>
 							<th>가격</th>
 							<th>상품 재고</th>
+							<th>상품 카테고리</th>
 							<th>상품이미지</th>
 							<th>상품상세이미지</th>
 							<th>상품정보이미지</th>
@@ -97,6 +98,7 @@
 								<td> ${dto.product_Name}</td>
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
+								<td> ${dto.product_Category}</td>
 								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
 								<td> <img src="${path}/resource/upload/${dto.product_ImgDetail}" width="100px"></td>
 								<td> <img src="/dreams_project_2/resource/upload/${dto.product_ImgSize}" width="100px"></td>

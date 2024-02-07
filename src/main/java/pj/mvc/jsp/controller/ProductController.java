@@ -156,6 +156,38 @@ public class ProductController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			
+			// 고객 상세 리스트
+			else if(url.equals("/detail.pc")) {
+			    System.out.println("<<< url ==> /detail.pc >>>");
+			    
+			    // 카테고리 정보를 받아옴
+			    String product_Category = request.getParameter("product_Category");
+			    String product_Name = request.getParameter("product_Name");
+			    // request 속성에 설정
+			    request.setAttribute("product_Category", product_Category);
+			    
+			    
+			    String targetPage = null;
+			    if ("기타".equals(product_Category)) {
+			        targetPage = "etc.jsp";
+			    } else if ("핸드폰케이스".equals(product_Category)) {
+			        targetPage = "case.jsp";
+			    } else if ("의류".equals(product_Category)) {
+			        targetPage = "clothes.jsp";
+			    } else if ("마우스패드".equals(product_Category)) {
+			        targetPage = "mousepad.jsp";
+			    }
+			    
+			    service.customerListAction(request, response);
+			    
+			    System.out.println("targetPage : " + targetPage);
+			    
+			    // 응답 페이지로 forward
+			    viewPage = "resource/page_5/" + targetPage;
+			    RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			    dispatcher.forward(request, response);
+			}
+			
 	}
 }
 
