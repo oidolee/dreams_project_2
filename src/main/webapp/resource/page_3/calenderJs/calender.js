@@ -181,7 +181,7 @@ const purchaseTicket = (year, month, day, time) => {
     const purchaseDate = year + "-" + p_month + "-" + p_day + " " + p_time; // 변수명 수정
     
     // 예약 페이지로 이동할 때 구성된 날짜 정보를 전달합니다.
-    let url = "./purchaseTicket.tc?purchaseDate=" + purchaseDate;
+    let url = "./purchaseTicket.tc?game_date=" + purchaseDate;
     window.open(url, "_blank", "width=900, height=600");
 }
 
