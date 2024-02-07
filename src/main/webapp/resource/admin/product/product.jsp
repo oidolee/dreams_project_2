@@ -98,7 +98,7 @@
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
 								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
-								<td> <img src="${path}/resuouce/image/goods/${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="${path}/resource/upload/${dto.product_ImgDetail}" width="100px"></td>
 								<td> <img src="/dreams_project_2/resource/upload/${dto.product_ImgSize}" width="100px"></td>
 								<td> <img src="${path}/resource/upload/${dto.product_ImgRfd}" width="100px"></td>
 								<td> ${dto.regDate}</td>

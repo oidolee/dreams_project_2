@@ -11,6 +11,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<link  href="/dreams_project_2/resource/admin/css/product.css" rel="stylesheet">
+<link href="/dreams_project_2/resource/admin/css/styles.css" rel="stylesheet" />
 <title>드림즈 관리자</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
@@ -160,7 +162,7 @@ to {
 			<main>
 
 				<div class="table_div">
-					<form name="detailform"	method="post" action="updateAction.pc" id="insertform" enctype="multipart/form-data">
+					<form name="updateAction.pc"	method="post" action="updateAction.pc" id="insertform" enctype="multipart/form-data">
 					
 						<!-- hidden : 직접 input 태그에서 입력받지 못한 값들을 전달할 때 사용 -->
 						<input type="hidden" name="hiddenPageNum" value="${pageNum}">

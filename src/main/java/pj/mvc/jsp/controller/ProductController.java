@@ -135,10 +135,25 @@ public class ProductController extends HttpServlet {
 			}
 			// 상품삭제페이지
 			else if(url.equals("/deleteProductAction.pc")) { // 요청
-			System.out.println("<<< url ==> /deleteProductAction.pd >>>");
+				System.out.println("<<< url ==> /deleteProductAction.pd >>>");
+				
+				service.productDeleteAction(request, response);
+				viewPage = "resource/admin/product/deleteProductAction.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
+			}
 			
-			service.productDeleteAction(request, response);
-			viewPage = "resource/admin/product/deleteProductAction.jsp"; // 응답
+			// 고객 상품리스트
+			else if(url.equals("/customerProductList.pc")) { // 요청
+				System.out.println("<<< url ==> /customerProductList.pd >>>");
+				
+				
+				service.productListAction(request, response);
+				viewPage = "resource/page_5/productList.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
 			}
 			
 	}

@@ -57,9 +57,17 @@ public class ProductDAOImpl implements ProductDAO {
 		try {
 			conn = dataSource.getConnection();
 
-			String sql = "SELECT * " + "  FROM (" + "        SELECT A.*, " + "                rownum AS rn"
-					+ "        FROM " + "            (" + "            SELECT * FROM DR_product"
-					+ "            ORDER BY product_No DESC" + "            ) A" + "        )"
+			String sql = "SELECT * " 
+					+ "  FROM (" 
+					+ "        SELECT A.*, " 
+					+ "                rownum AS rn"
+					+ "        FROM " 
+					+ "            (" 
+					+ "            SELECT * FROM DR_product"
+					+ "              WHERE show = 'y' "
+					+ "            ORDER BY product_No DESC" 
+					+ "            ) A" 
+					+ "        )"
 					+ " WHERE rn BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);

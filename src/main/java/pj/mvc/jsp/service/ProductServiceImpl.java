@@ -50,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
 		System.out.println("서비스 - productInsertAction ");
 
 		// 3단계. 화면에서 입력받은 값을 가져온다.
-		// title, content, writer, password
 		ProductDTO dto = new ProductDTO();
 		// dto.setProduct_No(Integer.parseInt(req.getParameter("product_No")));
 		dto.setProduct_Name(req.getParameter("product_Name"));
@@ -61,6 +60,7 @@ public class ProductServiceImpl implements ProductService {
 		dto.setProduct_ImgName(p_img1);
 
 		dto.setProduct_ImgDetail(req.getParameter("product_ImgDetail"));
+		
 		dto.setProduct_ImgSize(req.getParameter("product_ImgSize"));
 		dto.setProduct_ImgRfd(req.getParameter("product_ImgRfd"));
 
