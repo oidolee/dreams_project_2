@@ -143,6 +143,44 @@ public class BoardDAOImpl implements BoardDAO{
 		}
 		return total;
 	}
+	
+	// 게시글 max 번호 조회
+	@Override
+	public int getMaxBoardNo() {
+		System.out.println("BoardDAOImpl - getMaxBoardNo");
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int maxBoardNo = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql= "SELECT MAX(board_No) as maxNo "
+					+ "    FROM DR_board ";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				maxBoardNo = rs.getInt("maxNo");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return maxBoardNo;
+	}
 
 	// 게시글 상세페이지
 	@Override
@@ -899,6 +937,8 @@ public class BoardDAOImpl implements BoardDAO{
 		}	
 		
 	}
+
+	
 
 
 }

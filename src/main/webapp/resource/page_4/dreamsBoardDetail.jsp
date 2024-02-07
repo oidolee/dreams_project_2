@@ -184,9 +184,13 @@
                     <div style="display: flex; justify-content: center; margin-bottom: 50px;">
                         <div id="detailbutton">
                         	<input type="hidden" name="hidden_num" value="${dto.board_No}">
-                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No - 1}" style="margin-right: 250px;"> < 이전 </a>
-                            <a href="dreamsBoard.bc"> 목록 </a>
-                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
+                            <c:if test="${dto.board_No != 1}">
+                            	<a href="dreamsBoardDetail.bc?board_No=${dto.board_No - 1}" style="margin-right: 250px;"> < 이전 </a>
+                            </c:if>
+                            	<a href="dreamsBoard.bc"> 목록 </a>
+                        	<c:if test="${dto.board_No != maxBoardNo}">
+                            	<a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
+                            </c:if>
                         </div>
                     </div>
 	                <c:if test="${sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
