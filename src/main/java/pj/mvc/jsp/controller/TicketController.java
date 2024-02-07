@@ -53,7 +53,7 @@ public class TicketController extends HttpServlet {
 			System.out.println("<<< url ==> /ticket.tc >>>");
 
 			HttpSession session = request.getSession();
-			session.setAttribute("sessionID", "hong123");
+			session.setAttribute("sessionID", "hong");
 			
 			viewPage = "resource/page_2/ticketFee.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
@@ -106,16 +106,31 @@ public class TicketController extends HttpServlet {
 			System.out.println("<<< url ==> /admin.tc >>>");
 
 			viewPage = "resource/admin/ticket/ticket.jsp";
+			tservice.resCheckAction(request, response);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
 
-		// 티켓 예매 내역 조회
+		// 티켓 예매 내역 조회 - 관리자페이지
 		else if (url.equals("/ResAdminCheck.tc")) {
 			System.out.println("<<< url ==> /ResAdminCheck.tc >>>");
-			tservice.resCheckAction(request, response);
 			
-			viewPage = "resource/admin/ReserationTicket_check.jsp";
+			tservice.resAdminCheckAction(request, response);
+			
+			viewPage = "resource/admin/ticket_res.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+
+		}
+		
+		// 티켓 예매 상세내역 조회 - 관리자페이지
+		else if (url.equals("/ResAdminCheck_Detail.tc")) {
+			System.out.println("<<< url ==> /ResAdminCheck_Detail.tc >>>");
+			
+			tservice.resAdminDetailAction(request, response);
+			
+			viewPage = "resource/admin/ticket_res_detail.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 

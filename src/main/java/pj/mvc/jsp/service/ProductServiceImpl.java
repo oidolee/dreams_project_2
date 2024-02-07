@@ -146,4 +146,22 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override 
+	// 상품 삭제
+	public void productDeleteAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - productDeleteAction");
+		
+		// 3단계. get으로  값 을 가져온다.	
+		int product_No = Integer.parseInt(req.getParameter("product_No"));
+		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		ProductDAO dao = ProductDAOImpl.getInstance();
+		// 5-1 단계. 상품 삭제 처리
+		int deleteCnt = dao.productDelete(product_No);
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
+	}
+	
+	
+
 }

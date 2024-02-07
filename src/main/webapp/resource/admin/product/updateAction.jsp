@@ -54,7 +54,9 @@
 
 <body class="sb-nav-fixed">
 
-	<%@ include file="../templet/header.jsp"%>
+	<%@ include file="/resource/admin/templet/header.jsp"%>
+	
+	
 
 
 	<c:if test="${updateCnt == 1}">

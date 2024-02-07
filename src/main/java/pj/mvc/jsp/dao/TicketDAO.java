@@ -36,5 +36,9 @@ public interface TicketDAO {
 	// 회원 조회
 	public CustomerDTO customerDetail(String srtId);
 
+	// 관리자 페이지 티켓 예매 전체내역 조회
+	public List<TicketResDTO> ticketResAdminList();
 	
+	// 관리자 페이지 티켓 넘버로 예매내역 조회 - select
+	public TicketResDTO ticketResDetail(int ticket_no);
 }

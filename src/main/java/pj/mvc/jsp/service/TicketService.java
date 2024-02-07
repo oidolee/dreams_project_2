@@ -40,4 +40,11 @@ public interface TicketService {
 	public void ticketEachAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
+	// 관리자 페이지 티켓 예매 전체내역 조회
+	public void resAdminCheckAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
+	// 관리자 페이지 티켓 예매 상세내역 조회
+	public void resAdminDetailAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
 }

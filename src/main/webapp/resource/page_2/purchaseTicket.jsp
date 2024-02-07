@@ -4,6 +4,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
+<%
+	String game_date = request.getParameter("game_date");
+
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +31,7 @@
     			}
     %> 
     <%
-    String game_date = request.getParameter("game_date");
+    	String game_date_1 = request.getParameter("game_date");
 
 	 %>
          function selectEmailChk() {
@@ -433,8 +437,8 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                        	<input type="text" id="game_date" name="game_date" value="<%= game_date %>">
-                            <span id="game_date" name="game_date"  title="<%= game_date %>"><%= game_date %>"</span>
+                        	<input type="text" id="game_date" name="game_date" value="<%= game_date_1 %>">
+                            <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %>"</span>
                         </td>
                     </tr>
                     <tr>

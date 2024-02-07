@@ -106,7 +106,7 @@ public class TicketDAOImpl implements TicketDAO {
 			
 			
 			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
-					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), "
+					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_ticket_reservation), "
 					+ "?, ?, ?, sysdate, ?)"
 					;
 					
@@ -461,5 +461,118 @@ public class TicketDAOImpl implements TicketDAO {
 		
 		return cdto;
 		
+	}
+	
+	// 관리자 페이지 티켓 예매 전체내역 조회
+	@Override
+	public List<TicketResDTO> ticketResAdminList() {
+		System.out.println("TicketDAOImpl - ticketResAdminList");
+		List<TicketResDTO> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT *  "
+					+ "  FROM ( "
+					+ "        SELECT A.*,  "
+					+ "                rownum AS rn " // 일련번호 가져오기
+					+ "        FROM  "
+					+ "            ( "
+					+ "            SELECT * "
+					+ "            FROM DR_ticket_reservation  "
+					+ "            WHERE show ='y' "
+					+ "            ORDER BY ticket_no DESC"
+					+ "            ) A "
+					+ "        ) ";
+					
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			/* pstmt.setString(1, strTicket_seat); */
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while(rs.next()) {
+				TicketResDTO trdto = new TicketResDTO();
+				trdto.setTicket_no(rs.getInt("ticket_no"));
+				trdto.setTicket_seat(rs.getString("ticket_seat"));
+				trdto.setCust_Id(rs.getString("cust_Id"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
+				trdto.setPurchase_date(rs.getDate("purchase_date"));
+				trdto.setTicket_price(rs.getInt("ticket_price"));
+				
+				list.add(trdto);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return list;
+	}
+	
+	// 관리자 페이지 티켓 넘버로 예매내역 조회 - select
+	@Override
+	public TicketResDTO ticketResDetail(int ticket_no) {
+		System.out.println("TicketDAOImpl - ticketResAdminList");
+		List<TicketResDTO> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		TicketResDTO trdto = new TicketResDTO();
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT *  "
+					+ "  FROM DR_ticket_reservation"
+					+ "   WHERE ticket_no =?";
+					
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ticket_no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				trdto.setTicket_no(rs.getInt("ticket_no"));
+				trdto.setTicket_seat(rs.getString("ticket_seat"));
+				trdto.setCust_Id(rs.getString("cust_Id"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
+				trdto.setPurchase_date(rs.getDate("purchase_date"));
+				trdto.setTicket_price(rs.getInt("ticket_price"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return trdto;
 	}
 }
