@@ -22,6 +22,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
+        
+     
+        
+        
     <style>
         .tableContent .displayNone {
             display: none !important;
@@ -266,15 +270,16 @@
                             <input type="hidden" id="endNum" name="endNum" value="15">
                             <table id="table" class="table">
                                 <thead>
-	                                    <tr>
+	                                    <tr >
 	                                        <th scope="col">No</th>
 	                                        <th scope="col">아이디</th>
 	                                        <th scope="col">이름</th>
 	                                        <th scope="col">생년월일</th>
 	                                    </tr>
                                 	<c:forEach var="dto" items="${list}">
-	                                    <tr>
-	                                        <td scope="col">No</td>
+	                                    <tr onclick="goToDetails('${dto.cust_No}', '${dto.cust_Id}', '${dto.cust_Name}', '${dto.cust_Birth}')">
+	                                   
+	                                        <td>${dto.cust_No}</td>
 	                                        <td>${dto.cust_Id}</td>
 	                                        <td>${dto.cust_Name}</</td>
 	                                        <td>${dto.cust_Birth}</</td>
@@ -315,6 +320,9 @@
      
     </div>
  
+ 	<!-- member.js -->
+    <script src="${path}/resource/admin/member/member.js"></script>
+     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>

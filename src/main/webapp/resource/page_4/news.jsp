@@ -122,7 +122,10 @@
 
                 </div>   
      
-      
+     
+     	<div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div> 
      	<%@ include file="/layout/footer.jsp" %>
         
         <script>

@@ -8,11 +8,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>티켓 결제</title>
+<title>티켓 예매</title>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-	
+	/* $(function(){
+		$('#cancle').click(function(){
+			if(confirm("취소하시겠습니까?")) {
+				window.location="${path}/ResCancle.tc?ticket_no=" + ${trdto.ticket_no };
+				alert("예매가 취소되었습니다.");
+			}
+		});
+	}); */
 </script>
 
 <style>
@@ -66,7 +73,7 @@ table thead {
 							<td>${trdto.game_date }</td>
 							<td>${trdto.purchase_date }</td>
 							<td>${trdto.ticket_price }</td>
-							<td><input type="button" id="cancle" name="cancle" value="예매 취소"></td>
+							<td><input type="button" value="예매 취소" onclick="window.location='${path}/ResCancle.tc?ticket_no=${trdto.ticket_no }'"></td>
 						</tr>
 					</c:forEach>
 				</table>

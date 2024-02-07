@@ -34,7 +34,8 @@
                         <div class="right">
                             <ul>
                             	<c:if test="${not empty sessionID}">
-	                                <li><a href="${path}/resource/page_6/myPage.html">마이페이지</a></li>
+	                                <li><a href="${path}/*.oc">마이페이지</a></li>
+	                                <li><a href="${path}/logout.cc">로그아웃</a></li>
                             	</c:if>
                             	<%-- <c:if test="${empty sessionID}"> --%>
                                 	<li><a href="${path}/login.cc">로그인</a></li>
@@ -125,7 +126,7 @@
                                     <a href="#">HOME</a>
                                     
                                    	<c:if test="${not empty sessionID}">
-		                               <a href="${path}/resource/page_6/myPage.html">마이페이지</a>
+		                               <a href="${path}/*.oc">마이페이지</a>
 	                            	</c:if>
 	                            	<c:if test="${empty sessionID}">
 	                                	<a href="${path}/resource/page_1/login.cc">로그인</a>

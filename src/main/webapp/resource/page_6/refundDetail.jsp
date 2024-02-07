@@ -100,123 +100,118 @@
         <br><br><br>
         
 		
+		<c:forEach var="list" items="list">
 		
-        <form class=refund-goods>
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_No" class="col-sm-2 col-form-label"> 환불번호 </label>
-              <div class="col-sm-5">
-                <table style="color:black !important">
-                	<tr>
-                		<td style="color:black !important"> 환불 번호 1231</td>
-                	</tr>
-                </table>
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="order_No" class="col-sm-2 col-form-label"> 주문번호 </label>
-              <div class="col-sm-5">
-                <table style="color:black !important">
-                	<tr>
-                		<td style="color:black !important"> 환불 번호 1231</td>
-                	</tr>
-                </table>
-              </div>
-            </div>
-            
-            <table style="color:black !important; text-align:center; margin:0 auto !important ">
-               	<tr>
-               		<th style="color:black !important"> 이름 </th>
-               		<td style="color:black !important"> 환불 번호 1231</td>
-               	</tr>
-            </table>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Name" class="col-sm-2 col-form-label"> 이름 </label>
-              <div class="col-sm-5">
-              	<table style="color:black !important">
-                	<tr>
-                		<td style="color:black !important"> 이름 ㅇㄹㄴㅇ</td>
-                	</tr>
-                </table>
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Phone" class="col-sm-2 col-form-label"> 연락처 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Phone" >
-              </div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Address" class="col-sm-2 col-form-label"> 주소 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Address" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Prod_No" class="col-sm-2 col-form-label"> 상품번호 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Prod_No" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="user_pwd" class="col-sm-2 col-form-label"> 주문번호 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="order_No" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Prod_Name" class="col-sm-2 col-form-label"> 상품명 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Prod_Name" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Prod_qty" class="col-sm-2 col-form-label"> 환불/교환 개수 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Prod_qty" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Reason" class="col-sm-2 col-form-label"> 환불/교환 사유 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Reason" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Account" class="col-sm-2 col-form-label"> 환불 받을 계좌번호 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Account" >
-              </div>
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm-2"></div>
-              <label for="REF_Date" class="col-sm-2 col-form-label"> 환불/교환 신청일 </label>
-              <div class="col-sm-5">
-                <input type="text" class="form-control" id="REF_Date" >
-              </div>
-            </div>
-            <a href="${path}/myPage.oc"><button type="button" class="btn btn-primary" style="color: white !important;"> 마이페이지 </button></a>
-        </form>
+	        <form class=refund-goods>
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_No" class="col-sm-2 col-form-label"> 환불번호 </label>
+	              <div class="col-sm-5">
+	                <table style="color:black !important">
+	                	<tr>
+	                		<td style="color:black !important"> </td>
+	                	</tr>
+	                </table>
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="order_No" class="col-sm-2 col-form-label"> 주문번호 </label>
+	              <div class="col-sm-5">
+	                <table style="color:black !important">
+	                	<tr>
+	                		<td style="color:black !important"> 환불 번호 1231</td>
+	                	</tr>
+	                </table>
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Name" class="col-sm-2 col-form-label"> 이름 </label>
+	              <div class="col-sm-5">
+	              	<table style="color:black !important">
+	                	<tr>
+	                		<td style="color:black !important"> 이름 ㅇㄹㄴㅇ</td>
+	                	</tr>
+	                </table>
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Phone" class="col-sm-2 col-form-label"> 연락처 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Phone" >
+	              </div>
+	            </div>
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Address" class="col-sm-2 col-form-label"> 주소 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Address" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Prod_No" class="col-sm-2 col-form-label"> 상품번호 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Prod_No" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="user_pwd" class="col-sm-2 col-form-label"> 주문번호 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="order_No" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Prod_Name" class="col-sm-2 col-form-label"> 상품명 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Prod_Name" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Prod_qty" class="col-sm-2 col-form-label"> 환불/교환 개수 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Prod_qty" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Reason" class="col-sm-2 col-form-label"> 환불/교환 사유 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Reason" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Account" class="col-sm-2 col-form-label"> 환불 받을 계좌번호 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Account" >
+	              </div>
+	            </div>
+	            
+	            <div class="row mb-3">
+	                <div class="col-sm-2"></div>
+	              <label for="REF_Date" class="col-sm-2 col-form-label"> 환불/교환 신청일 </label>
+	              <div class="col-sm-5">
+	                <input type="text" class="form-control" id="REF_Date" >
+	              </div>
+	            </div>
+	            <a href="${path}/myPage.oc"><button type="button" class="btn btn-primary" style="color: white !important;"> 마이페이지 </button></a>
+	        </form>
+        </c:forEach>
         <br><br><br>
         
     

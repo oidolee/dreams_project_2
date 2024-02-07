@@ -120,7 +120,12 @@
 	                <div style="display: flex; justify-content: right;">
 	                    <input type="text" class="search" name="searchKey" id="searchKey" style="height: 30px;" placeholder="제목 키워드 입력">
 	                    <input type="button" name="searchButton" id="search" value="Search" onclick="searchBoard()">
-	                    <a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    <c:if test="${sessionScope.sessionID != null}">
+	                    	<a href="dreamsBoardWrite.bc"><button type="button" id="write" >드림즈 게시판 글쓰기</button></a>
+	                    </c:if>
+	                    <c:if test="${sessionScope.sessionID == null}">
+	                    	<a href="#"><button type="button" id="write" onclick="nonSessionID()">드림즈 게시판 글쓰기</button></a>
+	                    </c:if>
 	                </div>
 	
 	                <div class="pageNav">
@@ -160,6 +165,10 @@
             </div>
           </form>
 		<!-- 우측메뉴 종료 -->
+		
+		<div id="goTop" class="goTop">
+            <a href="#header"></a>
+        </div>
      
       	<%@ include file="/layout/footer.jsp" %>
         
