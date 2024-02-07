@@ -94,7 +94,7 @@
 
         .goods {
             text-align: center;
-            width: 640px;
+            width: 768px;
             margin: 0 auto;
         }
 
@@ -151,14 +151,13 @@
                 <legend style="color: #000 !important; font-weight: bold;"> 최근 구매한 상품<hr> </legend>
                 <table class="table" align="center">
                     <thead>
-                      <tr style="color:black !important; background-color:#1c5c50 !important;">
-                        <th scope="col" style="color:black !important">선택</th>
-                        <th scope="col" style="color:black !important">주문상세번호</th>
-                        <th scope="col" style="color:black !important">상품번호</th>
-                        <th scope="col" style="color:black !important">사진</th>
-                        <th scope="col" style="color:black !important">상품명</th>
-                        <th scope="col" style="color:black !important">수량</th>
-                        <th scope="col" style="color:black !important">가격</th>
+                      <tr style="color:black !important; ">
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">선택</th>
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">주문상세번호</th>
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">상품번호</th>
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">상품명</th>
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">수량</th>
+                        <th scope="col" style="color:white !important; background-color:#1c5c50;">가격</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -167,10 +166,9 @@
 	                        <td><input type="radio" name="goods"></td>
 	                        <td>${list. orderDetail_No}</td>
 	                        <td>${list. product_No}</td>
-	                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
-	                        <td>${list. product_Name}</td>
-	                        <td>${list. orderDetail_qty}개</td>
-	                        <td>${list. orderDetail_price}원</td>
+	                        <td>${list.product_Name}</td>
+	                        <td>${list.orderDetail_qty}개</td>
+	                        <td>${list.orderDetail_price}원</td>
 	                      </tr>
 	                    </c:forEach>  
                     </tbody>
@@ -187,56 +185,72 @@
                 	<input type="hidden" id="REF_cust_Id" name="REF_cust_Id" value="sessionId"> <!-- ${sessionId} -->
 	                <table class="form">
 	                    <tr>
-	                        <th align="center"><label for="order_No">주문번호</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="order_No" style="color:white !important; padding:5px">주문번호</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="order_No" name="order_No" size="65" required value="${param.order_No}" disabled>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Name">성명</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Name" style="color:white !important; padding:5px">성명</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Name" name="REF_Name" size="65" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Phone">연락처</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Phone" style="color:white !important; padding:5px">연락처</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Phone" name="REF_Phone" size="65" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Address">주소</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Address" style="color:white !important; padding:5px">주소</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Address" name="REF_Address" size="65" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Prod_No"> 상품번호 </label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Prod_No" style="color:white !important; padding:5px"> 상품번호 </label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Prod_No" name="REF_Prod_No" size="65" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Prod_Name">상품명</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Prod_Name" style="color:white !important; padding:5px">상품명</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Prod_Name" name="REF_Prod_Name" size="65" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Prod_qty">개수</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Prod_qty" style="color:white !important; padding:5px">개수</label>
+	                        </th>
 	                        <td align="left">
 	                        	<input type="text" id="REF_Prod_qty" name="REF_Prod_qty" size="3" required>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Status"> 교환/환불 </label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Status" style="color:white !important; padding:5px"> 교환/환불 </label>
+	                        </th>
 	                        <td align="left" style="color:black !important">
 	                        	<input type="radio" id="REF_Status" name="REF_Status" value="교환"> 교환
 	                        	<input type="radio" id="REF_Status" name="REF_Status" value="환불"> 환불
@@ -244,14 +258,18 @@
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Reason"> 교환/환불 사유 </label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Reason" style="color:white !important; padding:5px"> 교환/환불 사유 </label>
+	                        </th>
 	                        <td align="left">
 	                        	<textarea name="REF_Reason" id="REF_Reason" cols="66" rows="5"></textarea>
 	                        </td>
 	                    </tr>
 	                    
 	                    <tr>
-	                        <th align="center"><label for="REF_Account"> 환불시 계좌 번호</label></th>
+	                        <th align="center" style="background-color:#1c5c50;">
+	                        	<label for="REF_Account" style="color:white !important; padding:5px"> 환불시 계좌 번호</label>
+	                        </th>
 	                        <td align="left">
 	                            <select name="REF_Account1" style="width:100px" onchange="selectBankChk()" >
 	                                <option value="">은행선택</option>

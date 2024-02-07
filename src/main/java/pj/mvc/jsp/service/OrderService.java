@@ -10,13 +10,13 @@ public interface OrderService {
 	
 
 		
-	// 내 주문 확인
+	// 내 주문 조회
 	public void orderDetailAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
 	// 내 주문내역 - 구매확정
-		public void orderConfirm(HttpServletRequest req, HttpServletResponse res)
-				throws ServletException, IOException;
+	public void orderConfirm(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
 	
 	// 교환/환불 신청 페이지 - 최근 구매한 상품
 	public void MyorderDetailAction(HttpServletRequest req, HttpServletResponse res)
@@ -31,17 +31,17 @@ public interface OrderService {
 			throws ServletException, IOException;
 	
 	// ---------------------------------------------------
-	// 주문 등록(고객)
-	public void orderInsertAction(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException;
-	
-	// 주문 수정(고객)
-	public void modifyOrderAction(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException;
-	
-	// 주문 취소(고객)
-	public void cancelOrderAction(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException;
+//	// 주문 등록(고객)
+//	public void orderInsertAction(HttpServletRequest req, HttpServletResponse res)
+//			throws ServletException, IOException;
+//	
+//	// 주문 수정(고객)
+//	public void modifyOrderAction(HttpServletRequest req, HttpServletResponse res)
+//			throws ServletException, IOException;
+//	
+//	// 주문 취소(고객)
+//	public void cancelOrderAction(HttpServletRequest req, HttpServletResponse res)
+//			throws ServletException, IOException;
 	
 	
 }
