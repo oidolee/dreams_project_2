@@ -13,7 +13,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import pj.mvc.jsp.dto.ProductDTO;
-import pj.mvc.jsp.util.ImageUploadHandler1;
 
 public class ProductDAOImpl implements ProductDAO {
 
@@ -159,26 +158,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 		try {
 			conn = dataSource.getConnection();
-			
-<<<<<<< HEAD
-=======
 			String sql = " INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) "
 					+ "         VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, sysdate) ";
 					
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getProduct_Name());
-			pstmt.setInt(2, dto.getProduct_Price());
-			pstmt.setInt(3, dto.getProduct_Qty());
-			pstmt.setString(4, dto.getProduct_ImgName());
-			pstmt.setString(5, dto.getProduct_ImgDetail());
-			pstmt.setString(6, dto.getProduct_ImgSize());
-			pstmt.setString(7, dto.getProduct_ImgRfd());
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
-			
-
-			String sql = "INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate) "
-					+ "VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, sysdate)";
-
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getProduct_Name());
 			pstmt.setInt(2, dto.getProduct_Price());
@@ -208,15 +190,42 @@ public class ProductDAOImpl implements ProductDAO {
 
 	// 상품 삭제
 	@Override
-	public int deleteProduct(int product_No) {
+	public int productDelete(int product_No) {
+		
 		int deleteCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "UPDATE DR_product "
+					+ "   SET show = 'n' "
+					+ " WHERE product_No = ? ";
+					
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, product_No);
+			
+			deleteCnt = pstmt.executeUpdate();
+			System.out.println("deleteCnt : " + deleteCnt);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return deleteCnt;
 	}
 
 	// 상품 수정
 	@Override
 	public int productUpdate(ProductDTO dto) {
-
+		System.out.println("ProductDAOImpl - productUpdate");
 		int updateCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -288,8 +297,7 @@ public class ProductDAOImpl implements ProductDAO {
 				dto.setProduct_ImgRfd("product_ImgRfd");
 				dto.setRegDate(rs.getDate("regDate"));
 
-			}
-			;
+			};
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -15,7 +15,7 @@ public class ImageUploadHandler {
 
    private String uploadPath;     // 이미지 경로
    
-   // "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload";
+   // "D:\\dev\\workspace\\jsp_pj_ict02\\src\\main\\webapp\\resources\\upload";
    public void setUploadPath(String uploadPath) {
       this.uploadPath = uploadPath;
    }
@@ -40,7 +40,7 @@ public class ImageUploadHandler {
          for(Part part : req.getParts()) {
             System.out.println(part.getHeader("content-disposition"));
             
-            fileName = getFileName(part);  
+            fileName = getFileName(part);  // 아래 create method후 호출 - 선택한 이미지(예 : 트롬세탁기.jpg) 리턴
             if(fileName != null && !"".contentEquals(fileName)) {
                part.write(uploadPath + File.separator + fileName);
                

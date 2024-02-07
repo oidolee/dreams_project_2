@@ -130,7 +130,7 @@
 					<script type="text/javascript">
 						setTimeout(function() {
 							alert("상품삭제 성공");
-							window.location = "${path}/ad_product_list.pd";
+							window.location = "${path}/product_list.pc";
 						}, 1000);
 					</script>
 				</c:if>
@@ -139,7 +139,7 @@
 					<script type="text/javascript">
 						setTimeout(function() {
 							alert("상품삭제 실패");
-							window.location = "${path}/ad_product_list.pd?";
+							window.location = "${path}/product_list.pc?";
 						}, 1000);
 					</script>
 				</c:if>

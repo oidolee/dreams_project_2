@@ -4,6 +4,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
+<%
+	String game_date = request.getParameter("game_date");
+
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -429,8 +433,8 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                        	<input type="text" id="game_date" name="game_date" value="2024-02-09 18:00:00">
-                            <span id="game_date" name="game_date"  title="2024년 1월 10일(수) 19:00">${game_date }</span>
+                        	<input type="text" id="game_date" name="game_date" value="<%= game_date %>">
+                            <span id="game_date" name="game_date"  title="2024년 1월 10일(수) 19:00">${game_date}</span>
                         </td>
                     </tr>
                     <tr>
