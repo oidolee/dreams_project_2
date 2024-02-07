@@ -12,22 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import pj.mvc.jsp.service.ProductService;
 import pj.mvc.jsp.service.ProductServiceImpl;
-<<<<<<< HEAD
-import pj.mvc.jsp.util.ImageUploadHandler1;
-=======
 import pj.mvc.jsp.util.ImageUploadHandler;
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
 
 @WebServlet("*.pc")
 @MultipartConfig(location="D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload",
 	fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-<<<<<<< HEAD
 	private static final String IMG_UPLOAD_DIR= "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload";
-=======
-	private static final String IMG_UPLOAD_DIR= "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resources\\upload";
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
        
     public ProductController() {
         super();
@@ -57,11 +49,7 @@ public class ProductController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url = uri.substring(contextPath.length());
-<<<<<<< HEAD
-		ImageUploadHandler1 uploader1 = null;	// 작성
-=======
 		ImageUploadHandler uploader = null;	// 작성
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
 		
 		ProductService service = new ProductServiceImpl();
 		
@@ -93,21 +81,15 @@ public class ProductController extends HttpServlet {
 				//추가 : 서비스 호출전에 추가
 				String contentType = request.getContentType();
 				if(contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
-<<<<<<< HEAD
-					uploader1 = new ImageUploadHandler1();
-					uploader1.setUploadPath(IMG_UPLOAD_DIR);
-					uploader1.imageUpload(request, response);
-=======
 					uploader = new ImageUploadHandler();
 					uploader.setUploadPath(IMG_UPLOAD_DIR);
 					uploader.imageUpload(request, response);
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
-				}
 				
 				service.productInsertAction(request, response);
 				
 				viewPage = request.getContextPath() + "/product_list.pc";
 				response.sendRedirect(viewPage);
+				}
 			}
 			
 			// 상품상세페이지 - 목록의 수정버튼 클릭시
@@ -129,9 +111,9 @@ public class ProductController extends HttpServlet {
 				//추가 : 서비스 호출전에 추가
 				String contentType = request.getContentType();
 				if(contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
-					uploader1 = new ImageUploadHandler1();
-					uploader1.setUploadPath(IMG_UPLOAD_DIR);
-					uploader1.imageUpload(request, response);
+					uploader = new ImageUploadHandler();
+					uploader.setUploadPath(IMG_UPLOAD_DIR);
+					uploader.imageUpload(request, response);
 				}
 				
 				service.productUpdateAction(request, response);
@@ -141,5 +123,24 @@ public class ProductController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			
+			// 상품상세페이지 - 목록의 수정버튼 클릭시
+			else if(url.equals("/detailProduct.pc")) { // 요청
+				System.out.println("<<< url ==> /detailProduct.pc >>>");
+				
+				service.productDetailAction(request, response);
+				viewPage = "resource/admin/product/detailProduct.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
+			}
+			// 상품삭제페이지
+			else if(url.equals("/deleteProductAction.pc")) { // 요청
+			System.out.println("<<< url ==> /deleteProductAction.pd >>>");
+			
+			service.productDeleteAction(request, response);
+			viewPage = "resource/admin/product/deleteProductAction.jsp"; // 응답
+			}
+			
 	}
 }
+
