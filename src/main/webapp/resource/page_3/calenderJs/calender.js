@@ -70,6 +70,12 @@ const renderCalendar = () => {
 		const condition = dayIndex >= 1 && dayIndex <= lastDateIndex - firstDateIndex + 1
 			? 'this'
 			: 'other';
+		let deleteButton = "";
+		let insertButton = "";
+		if(idCheck == "admin"){
+			//admin 일떄만 경기예약 등록 버튼 출력
+			
+		}
 
 		if (games[selectMonth] && games[selectMonth][dayIndex]) {
 			if (games[selectMonth][dayIndex]['checkHome'] == 'T') {
@@ -175,6 +181,7 @@ const purchaseTicket = (year, month, day, time) => {
     const purchaseDate = year + "-" + p_month + "-" + p_day + " " + p_time; // 변수명 수정
     
     // 예약 페이지로 이동할 때 구성된 날짜 정보를 전달합니다.
-    location.href = "./purchaseTicket.tc?purchaseDate=" + purchaseDate;
+    let url = "./purchaseTicket.tc?purchaseDate=" + purchaseDate;
+    window.open(url, "_blank", "width=900, height=600");
 }
 
