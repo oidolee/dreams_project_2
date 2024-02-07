@@ -125,7 +125,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=?";
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and show='y'";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, strId);
 			System.out.println(strId);
@@ -307,6 +307,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setCust_Phone(rs.getString("cust_Phone"));
 				dto.setCust_Email(rs.getString("cust_Email"));
 				dto.setCust_No(rs.getInt("cust_No"));
+				dto.setShow(rs.getString("show"));
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -327,22 +328,75 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return list;
 	}
 
-	// 회원상세 목록 - 영구삭제
+
+	// 관리자모드 - 회원 상세 정보
 	@Override
-	public int admin_deleteCustomer(int cust_No) {
+	public CustomerDTO admin_getCustomerDetail(int num) {
+		System.out.println("CustomerDAOImpl - admin_getCustomerDetail");
 		
-		System.out.println("CustomerDAOImpl - admin_deleteCustomer");
+		// 1. customerDTO 바구니 생성
+		CustomerDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
+		try {
+			conn = dataSource.getConnection();
+			// 2. strId(로그인화면에서 입력받은 세션 ID)와 일치하는 데이터가 존재하는지 확인
+			String sql = "SELECT * FROM DR_customers WHERE cust_No = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			rs = pstmt.executeQuery();
+			
+			// 3. ResultSet에 userid와 일치하는 한사람의 회원정보가 존재하면
+			if(rs.next()) {
+				// ResultSet을 읽어서 customerDTO에 setter로 담는다.
+				dto = new CustomerDTO();
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setCust_Name(rs.getString("cust_Name"));
+				dto.setCust_Birth(rs.getString("cust_Birth"));
+				dto.setCust_Address(rs.getString("cust_Address"));
+				dto.setCust_Phone(rs.getString("cust_Phone"));
+				dto.setCust_Email(rs.getString("cust_Email"));
+				dto.setCust_No(rs.getInt("cust_No"));
+				dto.setShow(rs.getString("show"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 계정복구
+	@Override
+	public int admin_recoverCustomer(int cust_No) {
+		
+		System.out.println("CustomerDAOImpl - admin_recoverCustomer");
+		int updateCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql ="DELETE FROM DR_customers WHERE cust_No = ? ";
+			String sql ="UPDATE DR_customers "
+					+ "SET show = 'y' "
+					+ "WHERE cust_No = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cust_No);
-			pstmt.executeUpdate();
+			
+			updateCnt = pstmt.executeUpdate();
+			System.out.println("updateCnt : " + updateCnt);
 		
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -354,6 +408,73 @@ public class CustomerDAOImpl implements CustomerDAO {
 				e.printStackTrace();
 			}
 		}
-		return cust_No;
+		return updateCnt;
 	}
+
+	// 관리자모드 - 회원 상세 정보 - 계정삭제
+	@Override
+	public int admin_suspendCustomer(int cust_No) {
+		
+		System.out.println("CustomerDAOImpl - admin_suspendCustomer");
+		int deleteCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql ="UPDATE DR_customers "
+					+ "SET show = 'n' "
+					+ "WHERE cust_No = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cust_No);
+			
+			deleteCnt = pstmt.executeUpdate();
+			System.out.println("deleteCnt : " + deleteCnt);
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return deleteCnt;
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 영구삭제
+		@Override
+		public int admin_deleteCustomer(int cust_No) {
+			
+			System.out.println("CustomerDAOImpl - admin_deleteCustomer");
+			int deleteCnt = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				conn = dataSource.getConnection();
+				String sql ="DELETE FROM DR_customers WHERE cust_No = ? ";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cust_No);
+				
+				deleteCnt = pstmt.executeUpdate();
+				System.out.println("deleteCnt : " + deleteCnt);
+			
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return deleteCnt;
+		}
 }
