@@ -185,7 +185,19 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "SELECT * FROM DR_ticket_reservation WHERE cust_Id=?";
+			String sql = "SELECT *  "
+					+ "  FROM ( "
+					+ "        SELECT A.*,  "
+					+ "                rownum AS rn " // 일련번호 가져오기
+					+ "        FROM  "
+					+ "            ( "
+					+ "            SELECT * "
+					+ "            FROM DR_ticket_reservation  "
+					+ "            WHERE show ='y' "
+					+ "            ORDER BY ticket_no DESC"
+					+ "            ) A "
+					+ "        ) "
+					+ " WHERE cust_Id=?";
 			
 			
 			pstmt = conn.prepareStatement(sql);

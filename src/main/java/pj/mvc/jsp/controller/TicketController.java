@@ -110,6 +110,17 @@ public class TicketController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
+		// 티켓 예매 내역 조회
+		else if (url.equals("/ResAdminCheck.tc")) {
+			System.out.println("<<< url ==> /ResAdminCheck.tc >>>");
+			tservice.resCheckAction(request, response);
+			
+			viewPage = "resource/admin/ReserationTicket_check.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+
+		}
+		
 		// 티켓 가격 조회 - 관리자 페이지
 		else if (url.equals("/ticket_detail.tc")) {
 			System.out.println("<<< url ==> /ticket_detail.tc >>>");
@@ -120,7 +131,7 @@ public class TicketController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-		// 티켓 수정버튼 클릭시 - 수정페이지 이동
+		// 티켓 가격 수정버튼 클릭시 - 수정페이지 이동
 		else if(url.equals("/ticket_update.tc")) {
 			System.out.println("<<< url ==> /ticket_update.tc >>>");
 			
@@ -130,7 +141,6 @@ public class TicketController extends HttpServlet {
 			viewPage = "resource/admin/ticket/ticket_detail_update.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
-			
 			
 		}
 

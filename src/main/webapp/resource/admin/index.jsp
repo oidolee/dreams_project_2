@@ -107,7 +107,7 @@
             }else if(type == 3){
                 window.location.href = "./board/board.html";
             }else {
-                window.location.href = "./ticket/ticket.html";
+                window.location.href = "./ticket/ticket.jsp";
             }
         }
     </script>
