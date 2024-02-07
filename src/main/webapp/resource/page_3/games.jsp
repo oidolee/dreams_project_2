@@ -62,8 +62,11 @@
         .section-1-bottom ul{display: flex; justify-content: space-between;  align-items: center; padding-top: 40px; padding-left: 0;}
     </style>
   <script type="text/javascript">
+  		let idCheck = "${sessionID}";
+  		console.log("idCheck : " + idCheck)
+  		
 	    let games = {};
-	    <%-- JSP 코드 부분 --%>
+	    <%-- JSP 코드 부분 --%>	    
 	    <%
 	        List<gamesDTO> list = (List<gamesDTO>)request.getAttribute("list");
 	        for(gamesDTO dto : list){
