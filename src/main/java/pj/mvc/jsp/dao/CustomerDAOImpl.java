@@ -275,7 +275,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	// 관리자모드 - 회원 전체 조회
 	@Override
-	public List<CustomerDTO> SelectCustomer() {
+	public List<CustomerDTO> SelectCustomer(int start, int end) {
 		
 		// 2. dto 생성
 		CustomerDTO dto = null;
@@ -288,10 +288,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers "
-					+ "ORDER BY cust_No DESC";
 			
+		       String sql = "SELECT * "
+		               + "      FROM ( "
+		               + "         SELECT A.*, "
+		               + "               rownum AS rn "   // 일련변호 가져오기
+		               + "          FROM "
+		               + "            ( "
+		               + "              SELECT * FROM DR_customers "
+		               + "                ORDER BY cust_No DESC "
+		               + "            ) A "
+		               + "        ) "
+		               + " WHERE rn BETWEEN ? AND ? ";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -308,6 +319,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setCust_Email(rs.getString("cust_Email"));
 				dto.setCust_No(rs.getInt("cust_No"));
 				dto.setShow(rs.getString("show"));
+				
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -476,5 +488,41 @@ public class CustomerDAOImpl implements CustomerDAO {
 				}
 			}
 			return deleteCnt;
+		}
+
+		
+		// 관리자모드 - 회원 전체 조회 갯수 구하기
+		@Override
+		public int CustomerCnt(CustomerDTO dto) {
+			System.out.println("CustomerDAOImpl - CustomerCnt");
+		      
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int total = 0;
+	      
+			try {
+				conn = dataSource.getConnection();
+				String sql = "SELECT COUNT(*) as cnt "
+						+ "  FROM DR_customers";
+				pstmt = conn.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					total = rs.getInt("cnt");
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			// 5. list 리턴
+			return total;
 		}
 }

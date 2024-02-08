@@ -133,11 +133,11 @@ public class CustomerController extends HttpServlet {
 			viewPage = "resource/page_1/modifyCustomerAction.jsp";
 		}
 		
-		
+		       
 		
 		// [ 관리자모드 ]
 		// 관리자모드 - 회원 전체 조회
-		if(url.equals("/admin_member.cc")) { // 요청
+		else if(url.equals("/admin_member.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_member.cc >>>");
 			
 			service.customerListAll(request, response);
@@ -145,15 +145,15 @@ public class CustomerController extends HttpServlet {
 		}
 					
 		// 관리자모드 - 회원 상세 정보
-		if(url.equals("/admin_memberDetail.cc")) { // 요청
+		else if(url.equals("/admin_memberDetail.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_memberDetail.cc >>>");
 			
 			service.admin_modifyDetailAction(request, response);
 			viewPage = "resource/admin/member/memberDetail.jsp";
 		}
-		
+		   
 		// 관리자모드 - 회원 상세 정보 - 계정복구
-		if(url.equals("/admin_enable_cust.cc")) { // 요청
+		else if(url.equals("/admin_enable_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_enable_cust.cc >>>");
 			
 			service.admin_recoverCustomerAction(request, response);
@@ -161,7 +161,7 @@ public class CustomerController extends HttpServlet {
 		}
 		
 		// 관리자모드 - 회원 상세 정보 - 계정삭제
-		if(url.equals("/admin_block_cust.cc")) { // 요청
+		else if(url.equals("/admin_block_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_block_cust.cc >>>");
 			
 			service.admin_suspendCustomerAction(request, response);
@@ -169,7 +169,7 @@ public class CustomerController extends HttpServlet {
 		}
 		
 		// 관리자모드 - 회원 상세 정보 - 영구삭제
-		if(url.equals("/admin_delete_cust.cc")) { // 요청
+		else if(url.equals("/admin_delete_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_delete_cust.cc >>>");
 			
 			service.admin_deleteCustomerAction(request, response);

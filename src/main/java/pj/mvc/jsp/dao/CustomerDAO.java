@@ -1,6 +1,11 @@
 package pj.mvc.jsp.dao;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import pj.mvc.jsp.dto.CustomerDTO;
 
@@ -27,7 +32,10 @@ public interface CustomerDAO {
 //////////////////////////////////////////////////////////////////	
 	
 	// 관리자모드 - 회원 전체 조회
-	public List<CustomerDTO> SelectCustomer();
+	public List<CustomerDTO> SelectCustomer(int start, int end);
+	
+	// 관리자모드 - 회원 전체 조회 갯수 구하기
+	public int CustomerCnt(CustomerDTO dto);
 	
 	// 관리자모드 - 회원 상세 정보
 	public CustomerDTO admin_getCustomerDetail(int num);

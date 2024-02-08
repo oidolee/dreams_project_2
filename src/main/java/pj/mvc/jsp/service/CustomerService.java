@@ -38,6 +38,7 @@ public interface CustomerService {
 	public void customerListAll(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	
+	
 	// 관리자모드 - 회원 상세 정보
 	public void admin_modifyDetailAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;

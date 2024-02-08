@@ -174,11 +174,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <script>
-                        
-
-                    </script>
-
                     <!-- 드림즈 테이블 상세 -->
                     <div class="card mb-4">
                         <div class="card-header">
