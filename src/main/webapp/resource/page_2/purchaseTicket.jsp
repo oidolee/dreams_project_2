@@ -424,9 +424,6 @@
         </div>
         <div class="elements" style="background-color: white; width: 432px; height: 400px; margin-left: 100px;" >
         <form name="resForm">
-            <em>
-                <span title="드림즈 vs LG트윈스">드림즈 vs LG트윈스</span>
-            </em>
             <h3 style="background-color: white; margin-bottom: 0;"><img src="https://ticketimage.interpark.com/TicketImage/onestop/tit_buy.gif" alt="My예매정보"></h3>
             <table style="background: white; height: 400px;" border="1" >
                 <colgroup>
@@ -437,7 +434,7 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                        	<input type="text" id="game_date" name="game_date" value="<%= game_date_1 %>:00">
+                        	<input type="hidden" id="game_date" name="game_date" value="<%= game_date_1 %>:00">
                             <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %>"</span>
                         </td>
                     </tr>
