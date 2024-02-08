@@ -90,22 +90,31 @@
         }
         
         thead tr th {
-        	color: black !important;
+           color: black !important;
         }
         
         tbody tr td {
-        	color: black !important;
+           color: black !important;
         }
         
         .btn-primary {
-        	color: white !important;
-        	background-color: #1c5c50 !important;
+           color: white !important;
+           background-color: #1c5c50 !important;
         }
     </style>
+    <script type="text/javascript">
+   
+   function cancle(ticketNo){
+      if(confirm("취소하시겠습니까?")){
+            alert("예매 취소 완료!");
+            window.location="${path}/ResCancle.tc?ticket_no=" + ticketNo;
+        }
+   }
+   </script>
 </head>
 
 <body>
-    	<!-- 상단 이동 헤더 -->
+       <!-- 상단 이동 헤더 -->
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
