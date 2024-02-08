@@ -103,14 +103,14 @@
         }
     </style>
     <script type="text/javascript">
-	
-	function cancle(ticketNo){
-		if(confirm("취소하시겠습니까?")){
+   
+   function cancle(ticketNo){
+      if(confirm("취소하시겠습니까?")){
             alert("예매 취소 완료!");
             window.location="${path}/ResCancle.tc?ticket_no=" + ticketNo;
         }
-	}
-	</script>
+   }
+   </script>
 </head>
 
 <body>

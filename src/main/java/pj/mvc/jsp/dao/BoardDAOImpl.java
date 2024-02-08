@@ -83,7 +83,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setBoard_Title(rs.getString("board_Title"));
 				dto.setBoard_Content(rs.getString("board_Content"));
-				dto.setBoard_Date(rs.getString("board_date"));
+				dto.setBoard_Date(rs.getDate("board_date"));
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -207,7 +207,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setBoard_Title(rs.getString("board_Title"));
 				dto.setBoard_Content(rs.getString("board_Content"));
-				dto.setBoard_Date(rs.getString("board_Date"));
+				dto.setBoard_Date(rs.getDate("board_Date"));
 			}
 			
 		} catch(SQLException e) {
@@ -235,14 +235,13 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql = "INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content, board_Date) "
-					+ "VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), ?, ?, ?, ?)";
+			String sql = "INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content) "
+					+ "VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCust_Id());
 			pstmt.setString(2, dto.getBoard_Title());
 			pstmt.setString(3, dto.getBoard_Content());
-			pstmt.setString(4, dto.getBoard_Date());
 			
 			pstmt.executeUpdate();
 			
@@ -332,8 +331,8 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content, review_Date) "
-					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?, '2024-01-31')";
+			String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content) "
+					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getBoard_No());
@@ -399,7 +398,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setBoard_No(rs.getInt("board_No"));
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setReview_Content(rs.getString("review_Content"));
-				dto.setReview_date(rs.getString("review_Date"));
+				dto.setReview_date(rs.getDate("review_Date"));
 				dto.setShow(rs.getString("show"));
 				
 				// 4. list에 dto를 추가한다.
@@ -547,7 +546,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setBoard_Title(rs.getString("board_Title"));
 				dto.setBoard_Content(rs.getString("board_Content"));
-				dto.setBoard_Date(rs.getString("board_date"));
+				dto.setBoard_Date(rs.getDate("board_date"));
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -683,7 +682,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setBoard_No(rs.getInt("board_No"));
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setReview_Content(rs.getString("review_Content"));
-				dto.setReview_date(rs.getString("review_Date"));
+				dto.setReview_date(rs.getDate("review_Date"));
 				dto.setShow(rs.getString("show"));
 				
 				// 4. list에 dto를 추가한다.
@@ -747,7 +746,7 @@ public class BoardDAOImpl implements BoardDAO{
 				dto.setCust_Id(rs.getString("cust_Id"));
 				dto.setBoard_Title(rs.getString("board_Title"));
 				dto.setBoard_Content(rs.getString("board_Content"));
-				dto.setBoard_Date(rs.getString("board_date"));
+				dto.setBoard_Date(rs.getDate("board_date"));
 				dto.setShow(rs.getString("show"));
 				
 				// 4. list에 dto를 추가한다.

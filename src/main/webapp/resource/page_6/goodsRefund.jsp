@@ -76,7 +76,7 @@
 
                 // 부모 행에서 각 필드의 값을 가져와서 폼에 할당
                 var prodNo = selectedRow.find('td:eq(2)').text();
-                var prodName = selectedRow.find('td:eq(4)').text();
+                var prodName = selectedRow.find('td:eq(3)').text();
 
                 // 폼의 각 입력란에 값을 할당
                 $('#REF_Prod_No').val(prodNo);

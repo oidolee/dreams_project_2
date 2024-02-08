@@ -112,41 +112,43 @@ public class OrderController extends HttpServlet {
 		
 	
 		
-		// -----------------------------------------------------------------------
-//		// 내가 구매한 티켓 페이지
-//			else if (url.equals("/myTicket.oc")) {
+		// ----------------------- 창해님 TicketController에서 연결--------------------------------s
+//		else if (url.equals("/myTicket.oc")) {
+//			
+//			viewPage = "/resource/page_6/myTicket.jsp";
+//			
+//			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+//			dispatcher.forward(req, res);
+//		}
 //				
-//				viewPage = "/resource/page_6/myTicket.jsp";
-//			}
-//				
-		// 티켓 환불 페이지
-		else if (url.equals("/ticketRefund.oc")) {
-			
-			viewPage = "/resource/page_6/ticketRefund.jsp";
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-			dispatcher.forward(req, res);
-		}
+//		// 티켓 환불 페이지
+//		else if (url.equals("/ticketRefund.oc")) {
+//			
+//			viewPage = "/resource/page_6/ticketRefund.jsp";
+//			
+//			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+//			dispatcher.forward(req, res);
+//		}
 		
 		
-		// -------------------------------------------------------------------------
-		// 마이페이지 -> 회원정보 수정
-		else if (url.equals("/modifyMember.oc")) {
-
-			viewPage = "/resource/page_6/modifyMember.jsp";
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-			dispatcher.forward(req, res);
-		}
-		
-		// 마이페이지 -> 회원 탈퇴
-		else if (url.equals("/deleteMember.oc")) {
-
-			viewPage = "/resource/page_6/deleteMember.jsp";
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-			dispatcher.forward(req, res);
-		}
+		// ---------------- 석무님 jsp로 대체함 -------------- 
+//		// 마이페이지 -> 회원정보 수정
+//		else if (url.equals("/modifyMember.oc")) {
+//
+//			viewPage = "/resource/page_6/modifyMember.jsp";
+//			
+//			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+//			dispatcher.forward(req, res);
+//		}
+//		
+//		// 마이페이지 -> 회원 탈퇴
+//		else if (url.equals("/deleteMember.oc")) {
+//
+//			viewPage = "/resource/page_6/deleteMember.jsp";
+//			
+//			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+//			dispatcher.forward(req, res);
+//		}
 
 		
 	}
