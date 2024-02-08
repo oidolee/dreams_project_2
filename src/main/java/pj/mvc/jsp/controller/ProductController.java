@@ -15,11 +15,14 @@ import pj.mvc.jsp.service.ProductServiceImpl;
 import pj.mvc.jsp.util.ImageUploadHandler;
 
 @WebServlet("*.pc")
-@MultipartConfig(location="D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload",
+//@MultipartConfig(location="D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload",
+@MultipartConfig(location="D:\\ICT\\드림즈\\dreams_project_2\\src\\main\\webapp\\resource\\upload",
+
 	fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String IMG_UPLOAD_DIR= "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload";
+	//private static final String IMG_UPLOAD_DIR= "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resource\\upload";
+	private static final String IMG_UPLOAD_DIR= "D:\\ICT\\드림즈\\dreams_project_2\\src\\main\\webapp\\resource\\upload";
        
     public ProductController() {
         super();
