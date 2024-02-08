@@ -220,6 +220,11 @@ input:focus {
             </div>
         </section>
      
+     	<c:if test='${sessionID.equals("admin")}'>
+		    <a href="${path}/resource/admin/index.jsp">
+		        <div class="floating-box left"></div>
+		    </a>
+		</c:if>
      
 		<%@ include file="/layout/footer.jsp"%>
         <script>
