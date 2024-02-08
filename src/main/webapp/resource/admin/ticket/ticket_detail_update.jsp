@@ -220,7 +220,7 @@
 	<div id="layoutSidenav">
         <div id="layoutSidenav_nav">
         	<%@ include file="/resource/admin/templet/nav.jsp" %>
-            <a href="../index.html">
+            <a href="../index.jsp">
                 <div class="floating-box"></div>
             </a>
         </div>
@@ -231,30 +231,37 @@
 				            <h3 align="center">티켓 가격 수정</h3>
 				            <form name = "ticket_updateForm" method="post">
 							<table id="ticketIns">
+								<colgroup>
+									<col>
+									<col>
+									<col style="width: 30%">
+									<col>
+									<col>
+								</colgroup>
 								<tr>
-									<td colspan="4">
-										<strong>좌석</strong>
+									<td colspan="4" style="background: whitesmoke; font-weight: bold;">
+										좌석
 									</td>
-									<td>${tdto.ticket_seat}</td>
+									<td style="background: whitesmoke; font-weight: bold;">${tdto.ticket_seat}</td>
 	             				 </tr>
                             
 								<tr id="normal-price">
 								    <td style="background: whitesmoke;">기본가</td>
 									<td>일반</td>
-									<td id="bgNormalPrice">${tdto.ticket_grade_normal }</td>
+									<td id="bgNormalPrice">${tdto.ticket_grade_normal }원</td>
 									<td>수정할 가격</td>
 									<td><input id="changePrice-normal" name="changePrice-normal" type="text" style="width: 100px;" value="${tdto.ticket_grade_normal}">원</td>
 								</tr>
 								<tr>
 									<td rowspan="2" style="background: whitesmoke;">기본할인</td>
 									<td>멤버쉽</td>
-									<td id="bgNormalPrice">${tdto.ticket_grade_membership}</td>
+									<td id="bgNormalPrice">${tdto.ticket_grade_membership}원</td>
 									<td>수정할 가격</td>
 									<td><input id="changePrice-membership" name="changePrice-membership" type="text" style="width: 100px;" value="${tdto.ticket_grade_membership }">원</td>
 								</tr>
 								<tr>
 								    <td>듬린이</td>
-								    <td id="bgNormalPrice">${tdto.ticket_grade_child}</td>
+								    <td id="bgNormalPrice">${tdto.ticket_grade_child}원</td>
 									<td>수정할 가격</td>
 									<td><input id="changePrice-child" name="changePrice-child" type="text"  style="width: 100px;" value="${tdto.ticket_grade_child }">원</td>
 								</tr>
@@ -268,47 +275,7 @@
 								</tr>
 	                        </table>
 	                    </form>    
-                        <hr>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            티켓 구매 목록
-                        </div>
-
-                        <div class="tableContent">
-                            <input type="hidden" id="nowPage" name="nowPage" value="1">
-                            <input type="hidden" id="startNum" name="startNum" value="1">
-                            <input type="hidden" id="endNum" name="endNum" value="15">
-                            <table id="table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
-                                    </tr>
-                                </thead>
-                            </table>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                        
                     </div>
                 </div>
             </main>

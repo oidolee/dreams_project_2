@@ -142,7 +142,7 @@
 
 					<br> <br>
 					<div class="button">
-						<button id="addProduct" onclick="window.location='insertProduct.pc'">물품관리</button>
+						<button id="addProduct" onclick="window.location.href='${path}/insertProduct.pc'">물품관리</button>
 					</div>
 				</div>
 			</main>

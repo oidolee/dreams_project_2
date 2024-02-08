@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 5단계. 
 		List<OrderDTO> list = dao.OrderDetail(cust_Id);
-		
+		System.out.println(" list: " + list);
 		// jsp로 처리결과 전달
 		req.setAttribute("list", list);
 	}
