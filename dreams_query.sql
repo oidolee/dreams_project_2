@@ -314,7 +314,7 @@ COMMIT;
 
 
 select * from tab;
---나 시작
+--민진 시작
 create table DR_Gemes(
     DG_No number primary key,
     DG_Home varchar2(100) ,
@@ -343,7 +343,7 @@ insert into DR_KBOTeams(DK_No, DK_TeamName, DK_Location) values(nvl((select max(
 insert into DR_KBOTeams(DK_No, DK_TeamName, DK_Location) values(nvl((select max(DK_No) from DR_KBOTeams)+1,1),'한화','대전');
 insert into DR_KBOTeams(DK_No, DK_TeamName, DK_Location) values(nvl((select max(DK_No) from DR_KBOTeams)+1,1),'kia','광주');
 commit;
---나 끝
+--민진 끝
  
 --  석무 시작
  
