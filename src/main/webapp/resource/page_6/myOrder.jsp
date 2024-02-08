@@ -126,7 +126,6 @@
                     <thead>
                       <tr>
                         <th scope="col">주문번호</th>
-                        <th scope="col">사진</th>
                         <th scope="col">주문 내역</th>
                         <th scope="col">결제 금액</th>
                         <th scope="col">구매일</th>
@@ -139,7 +138,6 @@
                     <c:forEach var="list" items="${ list }">
                       <tr>
                         <td>${list.order_No}</td>
-                        <td><img src="https://qi-o.qoo10cdn.com/goods_image/5/2/8/4/10818135284s.png" width="150px" height="150px"></td>
                         <td>${list.order_Content}</td>
                         <td>${list.order_Amount} 원</td>
                         <td>${list.order_Date}</td>
@@ -150,10 +148,26 @@
                     </c:forEach>  
                     </tbody>
                 </table>
-            <br><br>    
-			<a href="${path}/myPage.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;">마이페이지</button></a><br><br>
-			<a href="${path}/refundDetail.oc"><button class="btn btn-primary" type="button" style="color: #fff !important;"> 교환/환불 신청 목록</button></a><br><br>
+            <br><br>
+            <div style="width:100%; text-align:center;">    
+				<div style="display:inline-block; margin-right:20px">
+					<a href="${path}/myPage.oc">
+						<button class="btn btn-primary" type="button" style="color: #fff !important;">
+							마이페이지
+						</button>
+					</a>
+				</div>
+				<div style="display:inline-block">
+					<a href="${path}/refundDetail.oc">
+						<button class="btn btn-primary" type="button" style="color: #fff !important;"> 
+							교환/환불 신청 목록
+						</button>
+					</a>
+				</div>
+			</div>
+			<br><br>
         </div>
+        
 
         <!-- 상단 이동버튼 -->
         <div id="goTop" class="goTop">

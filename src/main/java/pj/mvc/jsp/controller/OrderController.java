@@ -65,7 +65,7 @@ public class OrderController extends HttpServlet {
 			dispatcher.forward(req, res);
 		}
 
-		// 내 주문 내역 -> 구매 확정
+		// 내 주문 조회 -> 구매 확정
 		else if (url.equals("/orderConfirm.oc")) {
 			
 			service.orderConfirm(req, res);
@@ -107,6 +107,8 @@ public class OrderController extends HttpServlet {
 			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 			dispatcher.forward(req, res);
 		}
+		
+		
 		
 	
 		
