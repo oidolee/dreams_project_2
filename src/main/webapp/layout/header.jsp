@@ -68,10 +68,10 @@
                         <!-- pc -->
                         <ul id="menu_box" class="menu-box">
                             <li>
-                                <a href="${path}/resource/page_6/Introduce.html">DREAMS</a>
+                                <a href="${path}/resource/page_6/Introduce.jsp">DREAMS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="${path}/resource/page_6/Introduce.html">드림즈 소개</a></li>
-                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_6/Introduce.jsp">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.jsp">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -137,8 +137,8 @@
                             <li>
                                 <a href="#">DREAMS</a>
                                 <ul class="menu-son">
-                                    <li><a href="${path}/resource/page_1/test.html">드림즈 소개</a></li>
-                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_6/Introduce.jsp">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.jsp">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
