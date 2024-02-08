@@ -118,7 +118,7 @@
 			<script type="text/javascript">
 				setTimeout(function() {
 					alert("교환/환불 신청 완료!!");
-					window.location="${path}/refundDetail.oc?REF_cust_Id=${REF_cust_Id}";
+					window.location="${path}/refundDetail.oc";
 				}, 1000)
 			</script>
 		</c:if>

@@ -30,6 +30,10 @@
     <%				
     			}
     %> 
+    <%
+    	String game_date_1 = request.getParameter("game_date");
+
+	 %>
          function selectEmailChk() {
             // select 박스에서 이메일 주소를 선택시 해당값이 들어가도록 한다.
             if(document.signIn.email3.value == 0) {  // 직접입력인 경우
@@ -433,8 +437,8 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                        	<input type="text" id="game_date" name="game_date" value="<%= game_date %>">
-                            <span id="game_date" name="game_date"  title="2024년 1월 10일(수) 19:00">${game_date}</span>
+                        	<input type="text" id="game_date" name="game_date" value="<%= game_date_1 %>">
+                            <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %>"</span>
                         </td>
                     </tr>
                     <tr>

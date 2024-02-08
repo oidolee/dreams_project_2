@@ -8,22 +8,25 @@ public class ProductDTO {
 	private String product_Name;		// 상품명
 	private int product_Price;			// 상품가격
 	private int product_Qty;			// 상품수량
+	private String product_Category;	// 상품 카테고리
 	private String product_ImgName;		// 상품이미지
 	private String product_ImgDetail;	// 상품 상세 이미지
-	private String product_ImgSize; 	// 상품정보 이미지
+	private String product_ImgSize; 	// 상품 사이즈 그림 이미지
 	private String product_ImgRfd;		// 반품관련 이미지
-	private Date regDate;			// 등록일
+	private Date regDate;				// 등록일
 	
 	// 디폴트 생성자
 	public ProductDTO() {}
 
-	public ProductDTO(int product_No, String product_Name, int product_Price, int product_Qty, String product_ImgName,
-			String product_ImgDetail, String product_ImgSize, String product_ImgRfd, Date regDate) {
+	public ProductDTO(int product_No, String product_Name, int product_Price, int product_Qty, String product_Category,
+			String product_ImgName, String product_ImgDetail, String product_ImgSize, String product_ImgRfd,
+			Date regDate) {
 		super();
 		this.product_No = product_No;
 		this.product_Name = product_Name;
 		this.product_Price = product_Price;
 		this.product_Qty = product_Qty;
+		this.product_Category = product_Category;
 		this.product_ImgName = product_ImgName;
 		this.product_ImgDetail = product_ImgDetail;
 		this.product_ImgSize = product_ImgSize;
@@ -61,6 +64,14 @@ public class ProductDTO {
 
 	public void setProduct_Qty(int product_Qty) {
 		this.product_Qty = product_Qty;
+	}
+
+	public String getProduct_Category() {
+		return product_Category;
+	}
+
+	public void setProduct_Category(String product_Category) {
+		this.product_Category = product_Category;
 	}
 
 	public String getProduct_ImgName() {
@@ -103,6 +114,17 @@ public class ProductDTO {
 		this.regDate = regDate;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductDTO [product_No=" + product_No + ", product_Name=" + product_Name + ", product_Price="
+				+ product_Price + ", product_Qty=" + product_Qty + ", product_Category=" + product_Category
+				+ ", product_ImgName=" + product_ImgName + ", product_ImgDetail=" + product_ImgDetail
+				+ ", product_ImgSize=" + product_ImgSize + ", product_ImgRfd=" + product_ImgRfd + ", regDate=" + regDate
+				+ "]";
+	}
+
+	
+	
 	
 
 	

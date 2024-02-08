@@ -68,21 +68,45 @@
         }
         
         .refund-goods {
-            width: 1280px;
+            width: 540px;
             text-align: center;
             margin: auto;
         }
 
         .refund-goods label, input {
             color: black !important;
+            font-weight: bold;
         }
         
         table tr, th {
         	margin: 0 auto;
         	padding-right: 50px;
-        	padding
+        	vertical-align:middle;
         }
         
+        .btn-primary {
+        	color: white !important;
+        	background-color: #1c5c50 !important;
+        }
+        
+        .col-sm-5 {
+        	padding: 7px, 12px !important;
+        }
+        
+        
+        .refund-detail th {
+        	color:white !important;
+        	text-align: center;
+        	padding:5px;
+        	background : #1c5c50;
+        	font-weight: bold;
+        }
+        
+        .refund-detail td {
+        	color:black !important;
+        	text-align: left;
+        	padding-left: 30px;
+        }
     </style>
 </head>
 
@@ -100,121 +124,75 @@
         <br><br><br>
         
 		
-		<c:forEach var="list" items="list">
-		
-	        <form class=refund-goods>
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_No" class="col-sm-2 col-form-label"> 환불번호 </label>
-	              <div class="col-sm-5">
-	                <table style="color:black !important">
-	                	<tr>
-	                		<td style="color:black !important"> </td>
-	                	</tr>
-	                </table>
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="order_No" class="col-sm-2 col-form-label"> 주문번호 </label>
-	              <div class="col-sm-5">
-	                <table style="color:black !important">
-	                	<tr>
-	                		<td style="color:black !important"> 환불 번호 1231</td>
-	                	</tr>
-	                </table>
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Name" class="col-sm-2 col-form-label"> 이름 </label>
-	              <div class="col-sm-5">
-	              	<table style="color:black !important">
-	                	<tr>
-	                		<td style="color:black !important"> 이름 ㅇㄹㄴㅇ</td>
-	                	</tr>
-	                </table>
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Phone" class="col-sm-2 col-form-label"> 연락처 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Phone" >
-	              </div>
-	            </div>
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Address" class="col-sm-2 col-form-label"> 주소 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Address" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Prod_No" class="col-sm-2 col-form-label"> 상품번호 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Prod_No" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="user_pwd" class="col-sm-2 col-form-label"> 주문번호 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="order_No" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Prod_Name" class="col-sm-2 col-form-label"> 상품명 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Prod_Name" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Prod_qty" class="col-sm-2 col-form-label"> 환불/교환 개수 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Prod_qty" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Reason" class="col-sm-2 col-form-label"> 환불/교환 사유 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Reason" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Account" class="col-sm-2 col-form-label"> 환불 받을 계좌번호 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Account" >
-	              </div>
-	            </div>
-	            
-	            <div class="row mb-3">
-	                <div class="col-sm-2"></div>
-	              <label for="REF_Date" class="col-sm-2 col-form-label"> 환불/교환 신청일 </label>
-	              <div class="col-sm-5">
-	                <input type="text" class="form-control" id="REF_Date" >
-	              </div>
-	            </div>
-	            <a href="${path}/myPage.oc"><button type="button" class="btn btn-primary" style="color: white !important;"> 마이페이지 </button></a>
-	        </form>
-        </c:forEach>
+		<c:forEach var="refund" items="${list}">
+			<h4 style="text-align:center; color:black !important;"> 환불신청번호 : ${refund.REF_No}  </h4><br>
+	        <div class=refund-goods>
+	            <div style="text-align:center; color:black !important; margin:5px">
+	            	<table class="refund-detail" style="margin:10px auto; border:1px black !important; color:black !important" >
+	            		<tr>
+	            			<th> 주문번호 </th>
+	            			<td>${refund.order_No}</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 이름 </th>
+	            			<td>${refund.REF_Name }</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 연락처 </th>
+	            			<td> ${refund.REF_Phone }</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 주소 </th>
+	            			<td> ${refund.REF_Address }</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 상품번호 </th>
+	            			<td> ${refund.REF_Prod_No }</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 상품명 </th>
+	            			<td> ${refund.REF_Prod_Name}</td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 환불/교환 개수 </th>
+	            			<td> ${refund.REF_Prod_qty } </td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 환불/교환 사유 </th>
+	            			<td> ${refund.REF_Reason } </td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 환불 받을 계좌번호 </th>
+	            			<td> ${refund.REF_Account } </td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 환불/교환 신청일 </th>
+	            			<td> ${refund.REF_Date } </td>
+	            		</tr>
+	            		
+	            		<tr>
+	            			<th> 환불/교환 </th>
+	            			<td> ${refund.REF_Status } </td>
+	            		</tr>
+	            	</table>
+	        	</div>     
+	        </div>
         <br><br><br>
-        
-    
+        </c:forEach>
+        <div class=refund-goods>
+        	<a href="${path}/myPage.oc"><button type="button" class="btn btn-primary" style="color: white !important;"> 마이페이지 </button></a>
+        </div>
+    	<br><br><br>
+    	
         <!-- 상단 이동버튼 -->
         <div id="goTop" class="goTop">
             <a href="#header"></a>

@@ -15,7 +15,7 @@ public class ImageUploadHandler {
 
    private String uploadPath;     // 이미지 경로
    
-   // "D:\\dev\\workspace\\jsp_pj_ict02\\src\\main\\webapp\\resources\\upload";
+   // "D:\\dev\\workspace\\dreams_project_2\\src\\main\\webapp\\resources\\upload";
    public void setUploadPath(String uploadPath) {
       this.uploadPath = uploadPath;
    }

@@ -155,10 +155,10 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="../member/member.html">회원</a>
-                                <a class="nav-link" href="../account/acocunt.html">결제</a>
-                                <a class="nav-link" href="../board/board.html">게시판</a>
-                                <a class="nav-link" href="../ticket/ticket.html">티켓</a>
+                                <a class="nav-link" href="../member/member.jsp">회원</a>
+                                <a class="nav-link" href="../account/acocunt.jsp">결제</a>
+                                <a class="nav-link" href="../board/board.jsp">게시판</a>
+                                <a class="nav-link" href="../ticket/ticket.jsp">티켓</a>
                             </nav>
                         </div>
 
@@ -190,6 +190,18 @@
                    
                     </div>
                     
+                    <div class="row mt-4">
+                        <div class="col-xl-2 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">티켓</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="${path}/ResAdminCheck.tc">티켓 예매 현황</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    </div>
 
                     <div class=ticket-kind style="display: flex;">
                         <div class="ticket-kind1">
@@ -727,46 +739,6 @@
 
                     </script>
                     <!-- 드림즈 테이블 -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            티켓 구매 목록
-                        </div>
-
-                        <div class="tableContent">
-                            <input type="hidden" id="nowPage" name="nowPage" value="1">
-                            <input type="hidden" id="startNum" name="startNum" value="1">
-                            <input type="hidden" id="endNum" name="endNum" value="15">
-                            <table id="table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
-                                    </tr>
-                                </thead>
-                            </table>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

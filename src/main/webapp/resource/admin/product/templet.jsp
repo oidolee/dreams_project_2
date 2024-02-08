@@ -126,23 +126,7 @@
         <div id="layoutSidenav_content">
             <main>
 
-				<c:if test="${deleteCnt == 1}">
-					<script type="text/javascript">
-						setTimeout(function() {
-							alert("상품삭제 성공");
-							window.location = "${path}/ad_product_list.pd";
-						}, 1000);
-					</script>
-				</c:if>
-
-				<c:if test="${deleteCnt != 1}">
-					<script type="text/javascript">
-						setTimeout(function() {
-							alert("상품삭제 실패");
-							window.location = "${path}/ad_product_list.pd?";
-						}, 1000);
-					</script>
-				</c:if>
+				
 
 			</main>
             <footer class="py-4 bg-light mt-auto">

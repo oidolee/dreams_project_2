@@ -135,10 +135,57 @@ public class ProductController extends HttpServlet {
 			}
 			// 상품삭제페이지
 			else if(url.equals("/deleteProductAction.pc")) { // 요청
-			System.out.println("<<< url ==> /deleteProductAction.pd >>>");
+				System.out.println("<<< url ==> /deleteProductAction.pd >>>");
+				
+				service.productDeleteAction(request, response);
+				viewPage = "resource/admin/product/deleteProductAction.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
+			}
 			
-			service.productDeleteAction(request, response);
-			viewPage = "resource/admin/product/deleteProductAction.jsp"; // 응답
+			// 고객 상품리스트
+			else if(url.equals("/customerProductList.pc")) { // 요청
+				System.out.println("<<< url ==> /customerProductList.pd >>>");
+				
+				
+				service.productListAction(request, response);
+				viewPage = "resource/page_5/productList.jsp"; // 응답
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+				dispatcher.forward(request, response);
+			}
+			
+			// 고객 상세 리스트
+			else if(url.equals("/detail.pc")) {
+			    System.out.println("<<< url ==> /detail.pc >>>");
+			    
+			    // 카테고리 정보를 받아옴
+			    String product_Category = request.getParameter("product_Category");
+			    String product_Name = request.getParameter("product_Name");
+			    // request 속성에 설정
+			    request.setAttribute("product_Category", product_Category);
+			    
+			    
+			    String targetPage = null;
+			    if ("기타".equals(product_Category)) {
+			        targetPage = "etc.jsp";
+			    } else if ("핸드폰케이스".equals(product_Category)) {
+			        targetPage = "case.jsp";
+			    } else if ("의류".equals(product_Category)) {
+			        targetPage = "clothes.jsp";
+			    } else if ("마우스패드".equals(product_Category)) {
+			        targetPage = "mousepad.jsp";
+			    }
+			    
+			    service.customerListAction(request, response);
+			    
+			    System.out.println("targetPage : " + targetPage);
+			    
+			    // 응답 페이지로 forward
+			    viewPage = "resource/page_5/" + targetPage;
+			    RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			    dispatcher.forward(request, response);
 			}
 			
 	}

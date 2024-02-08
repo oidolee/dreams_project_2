@@ -87,6 +87,7 @@ public class TicketServiceImpl implements TicketService {
 		req.setAttribute("list", list);
 	}
 	
+	
 	// 티켓 예매 취소
 	public void resCancleAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException{
@@ -193,4 +194,38 @@ public class TicketServiceImpl implements TicketService {
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("tdto", tdto);
 	}
+	
+	// 관리자 페이지 티켓 예매 전체내역 조회
+		@Override
+		public void resAdminCheckAction(HttpServletRequest req, HttpServletResponse res) 
+				throws ServletException, IOException{
+			System.out.println("서비스 - resCheckAction");
+			
+			// 3단계. 화면에서 입력받은 값을 가져온다.
+			int ticket_no = Integer.parseInt(req.getParameter("ticket_no"));
+			
+			// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+			TicketDAO tdao = TicketDAOImpl.getInstance();
+			List<TicketResDTO> list = tdao.ticketResAdminList();
+			
+			// 5단계. jsp로 처리결과 전달
+			req.setAttribute("list", list);
+		}
+	
+		// 관리자 페이지 티켓 예매 상세내역 조회
+		@Override
+		public void resAdminDetailAction(HttpServletRequest req, HttpServletResponse res) 
+				throws ServletException, IOException{
+			System.out.println("서비스 - resCheckAction");
+			
+			// 3단계. 화면에서 입력받은 값을 가져온다.
+			int ticket_no = Integer.parseInt(req.getParameter("ticket_no"));
+			
+			// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+			TicketDAO tdao = TicketDAOImpl.getInstance();
+			TicketResDTO trdto = tdao.ticketResDetail(ticket_no);
+			
+			// 5단계. jsp로 처리결과 전달
+			req.setAttribute("trdto", trdto);
+		}
 }

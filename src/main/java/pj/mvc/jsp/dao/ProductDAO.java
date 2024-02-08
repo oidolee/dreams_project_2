@@ -21,4 +21,6 @@ public interface ProductDAO {
 	// 5. 상품 상제 페이지
 	public ProductDTO productDetail(int product_No);
 	
+	// 6. 고객 상세페이지 
+	public ProductDTO customerList(String product_Name);
 }
