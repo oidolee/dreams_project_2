@@ -13,6 +13,9 @@ public interface BoardDAO {
 	// 게시글 갯수 조회
 	public int boardCnt();
 
+	// 게시글 max 번호 조회
+	public int getMaxBoardNo();
+	
 	// 게시글 상세페이지
 	public BoardDTO getBoardDetail(int boardNo);
 
@@ -66,6 +69,8 @@ public interface BoardDAO {
 
 	// 관리자 댓글 완전삭제
 	public void reviewDelete_admin(int review_No);
+
+
 
 
 

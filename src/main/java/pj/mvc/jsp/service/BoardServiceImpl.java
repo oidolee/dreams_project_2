@@ -65,8 +65,10 @@ public class BoardServiceImpl implements BoardService{
 		
 		// 5단계. 상세페이지
 		BoardDTO dto = dao.getBoardDetail(boardNo);
+		int maxBoardNo = dao.getMaxBoardNo();
 		
 		// 6단계. jsp로 처리결과를 전달
+		req.setAttribute("maxBoardNo", maxBoardNo);
 		req.setAttribute("dto", dto);
 		
 	}
