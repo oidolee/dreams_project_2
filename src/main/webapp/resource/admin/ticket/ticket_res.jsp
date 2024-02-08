@@ -160,11 +160,11 @@
         function moveChange(type){
             console.log(type)
             if(type == 1){
-                window.location.href = "./member/member.html";
+                window.location.href = "./member/member.jsp";
             }else if(type == 2){
-                window.location.href = "./account/acocunt.html";
+                window.location.href = "./account/acocunt.jsp";
             }else if(type == 3){
-                window.location.href = "./board/board.html";
+                window.location.href = "./board/board.jsp";
             }else {
                 window.location.href = "./ticket/ticket.jsp";
             }
@@ -258,6 +258,7 @@
 	                                        <input type="hidden" name="ticket_no" value="${trdto.ticket_no}">                                        
 	                                        <td>${trdto.cust_Id}</td>
 	                                        <td>${trdto.ticket_seat}</td>
+	                                        <td>${trdto.ticket_price}</td>
 	                                        <td>${trdto.purchase_date}</td>
 	                                        <td>
 	                                        	<c:if test="${trdto.show == 'y' }">
@@ -270,6 +271,24 @@
 	                                    </tr>
                                     </c:forEach>
                                 </tbody>
+                                <tr>
+									<td colspan="5" align="center">
+										<!-- 페이징 처리 -->
+										<!-- 이전 버튼 활성화 -->
+										<c:if test="${paging.startPage > 10}">
+											<a href="${path }/ResAdminCheck.tc?pageNum=${paging.prev}">[이전]</a>
+										</c:if>
+										<!-- 페이지 번호 처리 -->
+										<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+											<a href="${path }/ResAdminCheck.tc?pageNum=${num}">${num}</a>
+										</c:forEach>
+										
+										<!-- 다음 버튼 활성화 -->
+										<c:if test="${paging.endPage < paging.pageCount}">
+											<a href="${path }/ResAdminCheck.tc?pageNum=${paging.next}">[다음]</a>
+										</c:if>
+									</td>
+								</tr>
                             </table>
 
                         </div>
@@ -289,7 +308,8 @@
 	
 	
 
- 
+ 	<!-- ticket.js -->
+    <script src="${path}/resource/admin/ticket/ticket.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="../js/scripts.js"></script>

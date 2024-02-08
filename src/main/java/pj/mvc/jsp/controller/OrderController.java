@@ -113,12 +113,12 @@ public class OrderController extends HttpServlet {
 	
 		
 		// -----------------------------------------------------------------------
-		// 내가 구매한 티켓 페이지
-				else if (url.equals("/myTicket.oc")) {
-					
-					viewPage = "/resource/page_6/myTicket.jsp";
-				}
-				
+//		// 내가 구매한 티켓 페이지
+//			else if (url.equals("/myTicket.oc")) {
+//				
+//				viewPage = "/resource/page_6/myTicket.jsp";
+//			}
+//				
 		// 티켓 환불 페이지
 		else if (url.equals("/ticketRefund.oc")) {
 			

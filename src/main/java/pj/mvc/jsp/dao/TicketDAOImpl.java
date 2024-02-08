@@ -465,7 +465,7 @@ public class TicketDAOImpl implements TicketDAO {
 	
 	// 관리자 페이지 티켓 예매 전체내역 조회
 	@Override
-	public List<TicketResDTO> ticketResAdminList() {
+	public List<TicketResDTO> ticketResAdminList(int start, int end) {
 		System.out.println("TicketDAOImpl - ticketResAdminList");
 		List<TicketResDTO> list = null;
 		Connection conn = null;
@@ -484,15 +484,16 @@ public class TicketDAOImpl implements TicketDAO {
 					+ "            ( "
 					+ "            SELECT * "
 					+ "            FROM DR_ticket_reservation  "
-					+ "            WHERE show ='y' "
 					+ "            ORDER BY ticket_no DESC"
 					+ "            ) A "
-					+ "        ) ";
+					+ "        ) "
+					+ " WHERE rn BETWEEN ? AND ? ";
 					
 			
 			
 			pstmt = conn.prepareStatement(sql);
-			/* pstmt.setString(1, strTicket_seat); */
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<>();
@@ -504,6 +505,7 @@ public class TicketDAOImpl implements TicketDAO {
 				trdto.setGame_date(rs.getTimestamp("game_date"));
 				trdto.setPurchase_date(rs.getDate("purchase_date"));
 				trdto.setTicket_price(rs.getInt("ticket_price"));
+				trdto.setShow(rs.getString("show"));
 				
 				list.add(trdto);
 			}
@@ -575,4 +577,46 @@ public class TicketDAOImpl implements TicketDAO {
 		
 		return trdto;
 	}
+	
+	// 티켓 예매 갯수 구하기
+		@Override
+		public int ticketResCnt() {
+			
+			System.out.println("TicketDAOImpl - TicketResCnt");
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int total = 0;
+			
+			try {
+				conn = dataSource.getConnection();
+				
+				String sql = "SELECT COUNT(*) as cnt "
+						+ "  FROM DR_ticket_reservation";
+						
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				// 1. list 생성
+				
+				if(rs.next()) {
+					total = rs.getInt("cnt");
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return total;
+		}
 }

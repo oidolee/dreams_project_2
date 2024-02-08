@@ -121,7 +121,7 @@
                 <div class="card-body">
                 <h5 class="card-title">내 티켓</h5>
                 <p class="card-text"></p>
-                <a href="${path}/myTicket.oc" class="btn btn-primary">바로가기</a>
+                <a href="${path}/myTicket.tc" class="btn btn-primary">바로가기</a>
                 </div>
             </div>
             

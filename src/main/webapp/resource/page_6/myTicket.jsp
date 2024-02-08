@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>내 주문 내역</title>
+    <title> 내 티켓 </title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -90,22 +90,31 @@
         }
         
         thead tr th {
-        	color: black !important;
+           color: black !important;
         }
         
         tbody tr td {
-        	color: black !important;
+           color: black !important;
         }
         
         .btn-primary {
-        	color: white !important;
-        	background-color: #1c5c50 !important;
+           color: white !important;
+           background-color: #1c5c50 !important;
         }
     </style>
+    <script type="text/javascript">
+	
+	function cancle(ticketNo){
+		if(confirm("취소하시겠습니까?")){
+            alert("예매 취소 완료!");
+            window.location="${path}/ResCancle.tc?ticket_no=" + ticketNo;
+        }
+	}
+	</script>
 </head>
 
 <body>
-    	<!-- 상단 이동 헤더 -->
+       <!-- 상단 이동 헤더 -->
         <jsp:include page="../../layout/header.jsp"></jsp:include>
  
         <div id="slider_con" class="slider-con">
@@ -123,74 +132,26 @@
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">선택</th>
-                        <th scope="col">주문번호</th>
-                        <th scope="col">경기 일자</th>
+                        <th scope="col">티켓번호</th>
                         <th scope="col">좌석</th>
-                        <th scope="col">구분</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">가격</th>
-                        <th scope="col">구매일자</th>
-                        <th scope="col">배송</th>
+                        <th scope="col">경기일</th>
+                        <th scope="col">구매가격</th>
+                        <th scope="col">구매일</th>
+                        <th scope="col">취소</th>
                       </tr>
                     </thead>
+                    
                     <tbody class="table-group-divider" style="vertical-align: middle !important">
+                    <c:forEach var="trdto" items="${list}">
                       <tr>
-                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
-                        <td>20240107T001</td>
-                        <td>2024년 4월 3일</td>
-                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot12.png">외야지정석</td>
-                        <td>일반</td>
-                        <td>3개</td>
-                        <td>39,000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
+                        <td> ${trdto.ticket_no } </td>
+                        <td> ${trdto.ticket_seat } </td>
+                        <td> ${trdto.game_date } </td>
+                        <td> ${trdto.ticket_price } </td>
+                        <td> ${trdto.purchase_date } </td>
+                        <td><input type="button" value="예매 취소" onclick="cancle(${trdto.ticket_no })"></td>
                       </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
-                        <td>20240107T002</td>
-                        <td>2024년 4월 3일</td>
-                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot01.png">R.d club(로얄다이아몬드클럽)</td>
-                        <td>일반</td>
-                        <td>2개</td>
-                        <td>170,000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송완료</td>
-                      </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
-                        <td>20240107T003</td>
-                        <td>2024년 4월 3일</td>
-                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot03.png">1층 테이블석</td>
-                        <td>일반</td>
-                        <td>2개</td>
-                        <td>150,000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>결제완료</td>
-                      </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
-                        <td>20240107T004</td>
-                        <td>2024년 4월 3일</td>
-                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot04.png">2층 테이블석</td>
-                        <td>일반</td>
-                        <td>3개</td>
-                        <td>150,000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송중</td>
-                      </tr>
-                      <tr>
-                        <td><label><input type="checkbox" name="seats" value="low"> </label></td>
-                        <td>20240107T005</td>
-                        <td>2024년 4월 3일</td>
-                        <td><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/ticket/icoDot05.png">내야커플석</td>
-                        <td>일반</td>
-                        <td>2개</td>
-                        <td>90,000원</td>
-                        <td>2024년 1월 7일</td>
-                        <td>배송중</td>
-                      </tr>
-                      
+                     </c:forEach> 
                     </tbody>
                 </table><br>
 

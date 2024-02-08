@@ -187,11 +187,7 @@
                                 </div>
                             </div>
                         </div>
-                   
-                    </div>
-                    
-                    <div class="row mt-4">
-                        <div class="col-xl-2 col-md-6">
+                   		<div class="col-xl-2 col-md-6">
                             <div class="card bg-danger text-white mb-4">
                                 <div class="card-body">티켓</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
@@ -200,7 +196,6 @@
                                 </div>
                             </div>
                         </div>
-                   
                     </div>
 
                     <div class=ticket-kind style="display: flex;">
