@@ -151,7 +151,7 @@ public class CustomerController extends HttpServlet {
 			service.admin_modifyDetailAction(request, response);
 			viewPage = "resource/admin/member/memberDetail.jsp";
 		}
-		
+		   
 		// 관리자모드 - 회원 상세 정보 - 계정복구
 		else if(url.equals("/admin_enable_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_enable_cust.cc >>>");
