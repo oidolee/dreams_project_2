@@ -110,12 +110,22 @@
 	</div>
 	
 	
-	
-	
+	<c:if test="${product_Category == '기타'}">
+		<script type="text/javascript">
+						setTimeout(function() {
+							window.location="${path}/index/jsp";
+						}, 1000);
+						</script>
+	</c:if>
 
-	<div style="height: 500px; border: 10px solid red;">내용</div>
-
-
+	<c:if test="${updateCnt != 1}">
+		<script type="text/javascript">
+						setTimeout(function() {
+							alert("상품수정 실패");
+							window.location="${path}/detailProduct.pc?product_No=${hiddenproduct_No}&pageNum=${hiddenPageNum}";
+						}, 1000);
+						</script>
+	</c:if>
 
 
 

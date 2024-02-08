@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -14,13 +15,13 @@
 <!-- Bootstrap css-->
 <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <!-- swiper css-->
-<link rel="stylesheet" href="./resource/css/common/common.css">
-<link rel="stylesheet" href="./resource/css/common/header.css">
-<link rel="stylesheet" href="./resource/css/common/footer.css">
-<link rel="stylesheet" href="./resource/css/index.css">
+<link rel="stylesheet" href="${path}/resource/css/common/common.css">
+<link rel="stylesheet" href="${path}/resource/css/common/header.css">
+<link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+<link rel="stylesheet" href="${path}/resource/css/index.css">
 
 <!-- product.css 연결  -->
-<link rel="stylesheet" href="../css/product/product.css">
+<link rel="stylesheet" href="${path}/resource/css/product/product.css">
 
 <!-- jQuery -->
 <script
@@ -109,9 +110,62 @@
 			</div>
 	</div>
 	
-	
-	
-	
+	<div class="wrap-page">
+		<div class="product-detail-1">
+			<hr>
+			<table class="wrap-table">
+				<tr class="product-inform">
+					<td colspan="3" id="image"><img
+						src="${product_ImgName}" width="300px" height="400px"></td>
+					<td colspan="2">
+						<h1>${dto.product_Name}</h1> <br>
+						<div class="price">
+							<h3>10000원</h3>
+						</div>
+
+						<div class="price-info">
+							<h5>택배 무료</h5>
+							<h5>굿즈종류 기타</h5>
+						</div>
+
+						<h5>옵션 선택</h5> <select class="custom-select">
+							<option value="0">사이즈를 선택해 주세요.</option>
+							<option value="S">S</option>
+							<option value="M">M</option>
+							<option value="L">L</option>
+							<option value="XL">XL</option>
+							<option value="XXL">XXL</option>
+							<option value="XLS">XLS</option>
+					</select> <br> <br>
+						<div class="quantity">
+							<label>수량</label> <input type="number" id="quantity" min="1"
+								value="1">
+						</div> <br> <br> <br>
+
+						<div id="totalPrice" class="price">
+							<h3 style="text-align: right;">최종 금액: 10000원</h3>
+						</div>
+
+						<div class="action-buttons">
+							<a href="#" class="buy-button">구매하기</a> <a
+								href="../page_1/basket.html" class="cart-button">장바구니 담기</a>
+						</div>
+
+					</td>
+				</tr>
+			</table>
+
+			<hr>
+
+			<div class="product-image">
+				<img src="${path}/resource/upload/${dto.product_ImgSize}"> <img
+					src="${path}/resource/upload/${dto.product_ImgDetail}" width="600px"> <img
+					src="${path}/resource/upload/${dto.product_ImgRfd}">
+			</div>
+		</div>
+	</div>
+
+
 
 	<div style="height: 500px; border: 10px solid red;">내용</div>
 
