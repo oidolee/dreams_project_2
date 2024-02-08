@@ -57,9 +57,6 @@ public class BoardController extends HttpServlet {
 			service.boardListAction(request, response);
 			viewPage = "resource/page_4/dreamsBoard.jsp";
 			
-			//HttpSession session = request.getSession();
-			//session.setAttribute("sessionID", "로그인된 아이디");
-			
 			// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
