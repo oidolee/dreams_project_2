@@ -106,7 +106,7 @@ public class TicketController extends HttpServlet {
 			System.out.println("<<< url ==> /ResCancle.tc >>>");
 			tservice.resCancleAction(request, response);
 			
-			viewPage = request.getContextPath() + "/ticket.tc";
+			viewPage = request.getContextPath() + "/resource/page_6/myPage.jsp";
 
 			response.sendRedirect(viewPage);
 
