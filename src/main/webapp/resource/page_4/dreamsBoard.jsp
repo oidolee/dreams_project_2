@@ -84,7 +84,7 @@
 	                        <col width="100px">
 	                        <col width="600px">
 	                        <col width="300px">
-	                        <col width="100px">
+	                        <col width="150px">
 	                    </colgroup>
 	                    <tbody>
 	                    <c:forEach var="dto" items="${list}">
@@ -153,10 +153,11 @@
 		<div id="goTop" class="goTop">
             <a href="#header"></a>
         </div>
+        <%-- 
         <a href="${path}/admin_board.bc">
             <div class="floating-box left"></div>
         </a>
-     
+     	 --%>
       	<%@ include file="/layout/footer.jsp" %>
         
         <script>
