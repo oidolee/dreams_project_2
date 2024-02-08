@@ -11,6 +11,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<link  href="/dreams_project_2/resource/admin/css/product.css" rel="stylesheet">
+<link href="/dreams_project_2/resource/admin/css/styles.css" rel="stylesheet" />
 <title>드림즈 관리자</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
@@ -160,7 +162,7 @@ to {
 			<main>
 
 				<div class="table_div">
-					<form name="detailform"	method="post" action="updateAction.pc" id="insertform" enctype="multipart/form-data">
+					<form name="updateAction.pc"	method="post" action="updateAction.pc" id="insertform" enctype="multipart/form-data">
 					
 						<!-- hidden : 직접 input 태그에서 입력받지 못한 값들을 전달할 때 사용 -->
 						<input type="hidden" name="hiddenPageNum" value="${pageNum}">
@@ -194,6 +196,19 @@ to {
 							</tr>
 							
 							<tr>
+								<th>* 카테고리</th>
+								<td>
+								<select class="input" name="product_Category" id="product_Category" required>
+									<option <c:if test="${dto.product_Category == ''}">selected</c:if> value=""> 상품카테고리 </option>
+									<option <c:if test="${dto.product_Category == '마우스패드'}">selected</c:if> value="마우스패드"> 마우스패드 </option>
+									<option <c:if test="${dto.product_Category == '의류'}">selected</c:if> value="의류"> 의류 </option>
+									<option <c:if test="${dto.product_Category == '핸드폰케이스'}">selected</c:if> value="핸드폰케이스"> 핸드폰케이스 </option>
+									<option <c:if test="${dto.product_Category == '기타'}">selected</c:if> value="기타"> 기타 </option>
+								</select>
+								</td>
+							</tr>
+							
+							<tr>
 								<th>상품이미지</th>
 								<td>
 									<img src="${dto.product_ImgName}" width="80px"><br>
@@ -205,20 +220,20 @@ to {
 							<tr>
 								<th>상품 상세 설명 이미지</th>
 								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
-									size="40" value="${dto.product_ImgDetail}"></td>
+									size="10" value="${dto.product_ImgDetail}"></td>
 							</tr>
 							
 							<tr>
 								<th>상품 정보 이미지</th>
 								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40" value="${dto.product_ImgSize}"></td>
+									size="10" value="${dto.product_ImgSize}"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
 								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40" value="${dto.product_ImgRfd}"></td>
+									size="10" value="${dto.product_ImgRfd}"></td>
 							</tr>
 
 							<tr>

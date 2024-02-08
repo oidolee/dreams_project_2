@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.slider-con {
+    width: 100%; 
+}
 .wrap-page {
     border: 2px solid #ccc;
     padding: 0px;

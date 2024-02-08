@@ -237,8 +237,68 @@ public class CustomerServiceImpl implements CustomerService {
 		req.setAttribute("list", list);
 	}
 	
+	// 관리자모드 - 회원 상세 정보
+	@Override
+	public void admin_modifyDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_modifyDetailAction()");
+		
+		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
+		int num = (Integer.parseInt(req.getParameter("cust_No")));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		CustomerDTO dto = dao.admin_getCustomerDetail(num);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("dto", dto);
+	}
 	
-	// 회원상세 목록 - 영구삭제
+	
+	// 관리자모드 - 회원 상세 정보 - 계정복구	
+	@Override
+	public void admin_recoverCustomerAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_recoverCustomerAction()");
+
+		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		int updateCnt = dao.admin_recoverCustomer(cust_No);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("updateCnt", updateCnt);
+	}
+
+	
+	// 관리자모드 - 회원 상세 정보 - 계정삭제
+	@Override
+	public void admin_suspendCustomerAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_suspendCustomerAction()");
+		
+		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		int deleteCnt = dao.admin_suspendCustomer(cust_No);
+		req.getSession().invalidate();
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 영구삭제
 	@Override
 	public void admin_deleteCustomerAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -251,10 +311,10 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerDAO dao = CustomerDAOImpl.getInstance();
 		
 		// 5단계. 회원상세페이지
-		dao.admin_deleteCustomer(cust_No);
-
+		int deleteCnt = dao.admin_deleteCustomer(cust_No);
+		req.getSession().invalidate();
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
 	}
-	
-	
-
 }

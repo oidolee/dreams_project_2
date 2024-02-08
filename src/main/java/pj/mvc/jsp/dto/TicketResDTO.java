@@ -5,13 +5,16 @@ import java.sql.Timestamp;
 
 public class TicketResDTO {
 
-	private int ticket_no;
-	private String ticket_seat;
-	private String cust_Id;
-	private Timestamp game_date;
-	private Date purchase_date;
-	private int ticket_price;
+	private int ticket_no;		// 티켓 번호
+	private String ticket_seat;	// 좌석
+	private String cust_Id;		// 세션에서 받는 아이디
+	private Timestamp game_date;// 게임 날짜
+	private Date purchase_date;	// 티켓 구매 날짜
+	private int ticket_price;	// 티켓 총 금액
+	private String show;		// 예약 / 예약 취소 구분
 	
+	
+
 	// 디폴트 생성자
 	public TicketResDTO() {}
 
@@ -64,11 +67,19 @@ public class TicketResDTO {
 		this.ticket_price = ticket_price;
 	}
 
+	public String getShow() {
+		return show;
+	}
+
+	public void setShow(String show) {
+		this.show = show;
+	}
+
 	@Override
 	public String toString() {
 		return "TicketResDTO [ticket_no=" + ticket_no + ", ticket_seat=" + ticket_seat + ", cust_Id=" + cust_Id
 				+ ", game_date=" + game_date + ", purchase_date=" + purchase_date + ", ticket_price=" + ticket_price
-				+ "]";
+				+ ", show=" + show + "]";
 	}
 
 	
