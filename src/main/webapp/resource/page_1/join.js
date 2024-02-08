@@ -37,9 +37,9 @@ function signIncheck() {
 	// hiddenUserid : 중복확인 버튼 클릭여부 체크(0:클릭안함, 1:클릭함)
 	
 	// 2-2. 중복확인 버튼을 클릭하지 않는 경우 "중복확인 해주세요!!" 메세지 띄운다.
-	if(document.joinform.hiddenUserid.value == "0") {
+	if(document.joinform.hiddenUserid.value == 0) {
 		alert("중복확인 해주세요!!");
-		document.joinform.dubChk.focus();
+		document.joinform.userid.focus();
 		return false;
 	}
 }

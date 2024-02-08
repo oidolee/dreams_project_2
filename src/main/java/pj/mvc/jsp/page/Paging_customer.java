@@ -1,7 +1,7 @@
 package pj.mvc.jsp.page;
 
-public class PagingTicket {
-	private int pageSize = 5;   // 1page당 게시글의 갯수를 지정
+public class Paging_customer {
+	private int pageSize = 10;   // 1page당 게시글의 갯수를 지정
 	private int count = 0;       // 전체글의 갯수를 저장하는 변수
 	private int number = 0;      // 페이지번호
 	private String pageNum;
@@ -18,9 +18,9 @@ public class PagingTicket {
 	private int prev;           // 이전
 	private int next;    		//다음
 	
-	public PagingTicket() {}
+	public Paging_customer() {}
 	
-	public PagingTicket(String pageNum) {
+	public Paging_customer(String pageNum) {
 		
 		// 맨처음 board_list.jsp를 클릭하거나, 수정, 삭제 등 다른 게시글에서 페이지를 클릭할때 pageNum이 없는 경우 null처리
 		if(pageNum == null) {
@@ -140,7 +140,7 @@ public class PagingTicket {
 	}
 	
 	// 게시글 총 개수를 받아서 목록의 시작과 끝을 담당하는 Row값을 계산해 멤버변수에 저장
-	public void setTotalCount(int count) {
+	public void setTotalCount_cust(int count) {
 		this.count = count;
 		
 		startRow = (currentPage - 1) * pageSize + 1;	// 페이지당 시작번호 => start
@@ -151,11 +151,11 @@ public class PagingTicket {
 		
 		this.number = count - (currentPage - 1) * pageSize;	// 페이지번호
 		// 페이지 계산
-		pageCalculaor();
+		pageCalculaor_cust();
 	}
 	
 	// 목록 아래에 깔리는 페이지 번호를 계산하여 멤버변수에 저장
-	public void pageCalculaor() {
+	public void pageCalculaor_cust() {
 		if(count > 0) {
 			pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
 			System.out.println("pageCount : " + pageCount);
@@ -187,8 +187,7 @@ public class PagingTicket {
 			System.out.println("next : " + next);
 			
 		}
+	
 	}
-	
-	
 	
 }
