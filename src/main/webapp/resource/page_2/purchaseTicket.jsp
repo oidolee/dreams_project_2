@@ -437,7 +437,7 @@
                     <tr>
                         <th>일시</th>
                         <td>
-                        	<input type="text" id="game_date" name="game_date" value="<%= game_date_1 %>">
+                        	<input type="text" id="game_date" name="game_date" value="<%= game_date_1 %>:00">
                             <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %>"</span>
                         </td>
                     </tr>

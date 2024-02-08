@@ -105,9 +105,9 @@
             }else if(type == 2){
                 window.location.href = "./account/acocunt.html";
             }else if(type == 3){
-                window.location.href = "./board/board.html";
+                window.location.href = "${path}/admin_board.bc";
             }else {
-                window.location.href = "./ticket/ticket.jsp";
+                window.location.href = "${path}/admin.tc";
             }
         }
     </script>

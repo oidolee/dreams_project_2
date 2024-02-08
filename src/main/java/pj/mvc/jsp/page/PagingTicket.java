@@ -1,7 +1,7 @@
 package pj.mvc.jsp.page;
 
 public class PagingTicket {
-	private int pageSize = 10;   // 1page당 게시글의 갯수를 지정
+	private int pageSize = 5;   // 1page당 게시글의 갯수를 지정
 	private int count = 0;       // 전체글의 갯수를 저장하는 변수
 	private int number = 0;      // 페이지번호
 	private String pageNum;

@@ -90,6 +90,17 @@ public class TicketController extends HttpServlet {
 
 		}
 		
+		// 마이페이지 티켓 예매 확인
+		else if (url.equals("/myTicket.tc")) {
+			System.out.println("<<< url ==> /myTicket.oc >>>");
+			tservice.resCheckAction(request, response);
+			
+			viewPage = "resource/page_6/myTicket.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+
+		}
+		
 		// 티켓 예매 취소
 		else if (url.equals("/ResCancle.tc")) {
 			System.out.println("<<< url ==> /ResCancle.tc >>>");
@@ -106,7 +117,7 @@ public class TicketController extends HttpServlet {
 			System.out.println("<<< url ==> /admin.tc >>>");
 
 			viewPage = "resource/admin/ticket/ticket.jsp";
-			tservice.resCheckAction(request, response);
+			
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
@@ -118,7 +129,7 @@ public class TicketController extends HttpServlet {
 			
 			tservice.resAdminCheckAction(request, response);
 			
-			viewPage = "resource/admin/ticket_res.jsp";
+			viewPage = "resource/admin/ticket/ticket_res.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 
@@ -130,7 +141,7 @@ public class TicketController extends HttpServlet {
 			
 			tservice.resAdminDetailAction(request, response);
 			
-			viewPage = "resource/admin/ticket_res_detail.jsp";
+			viewPage = "resource/admin/ticket/ticket_res_detail.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 
