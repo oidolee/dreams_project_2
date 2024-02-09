@@ -108,10 +108,8 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
-					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_ticket_reservation), "
-					+ "?, ?, ?, sysdate, ?)"
-					;
+			String sql = "INSERT INTO DR_ticket_reservation (ticket_seat, cust_Id, game_date, ticket_price) "
+					+    " VALUES(?, ?, ?, ?)";
 					
 			
 			pstmt = conn.prepareStatement(sql);
@@ -119,10 +117,11 @@ public class TicketDAOImpl implements TicketDAO {
 			pstmt.setString(2, trdto.getCust_Id());
 			pstmt.setTimestamp(3, trdto.getGame_date());
 			pstmt.setInt(4, trdto.getTicket_price());
+			System.out.println(trdto.toString());
 			
 			insertResCnt = pstmt.executeUpdate();
+			System.out.println(pstmt.toString());
 			
-			System.out.println(trdto.toString());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -188,23 +187,27 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "SELECT *  "
-					+ "  FROM ( "
-					+ "        SELECT A.*,  "
-					+ "                rownum AS rn " // 일련번호 가져오기
-					+ "        FROM  "
-					+ "            ( "
-					+ "            SELECT * "
-					+ "            FROM DR_ticket_reservation  "
-					+ "            WHERE show ='y' "
-					+ "            ORDER BY ticket_no DESC"
-					+ "            ) A "
-					+ "        ) "
-					+ " WHERE cust_Id=?";
+			/*			String sql = "SELECT *  "
+								+ "  FROM ( "
+								+ "        SELECT A.*,  "
+								+ "                rownum AS rn " // 일련번호 가져오기
+								+ "        FROM  "
+								+ "            ( "
+								+ "            SELECT * "
+								+ "            FROM DR_ticket_reservation  "
+								+ "            WHERE `show` ='y' "
+								+ "            ORDER BY ticket_no DESC"
+								+ "            ) A "
+								+ "        ) "
+								+ " WHERE cust_Id=?";*/
 			
+			String sql = "select *,  "
+						+ "		row_number() over (order by ticket_no ) as rownum "
+						+ " from DR_ticket_reservation "
+						+ " order by ticket_no desc";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, strId);
+			//pstmt.setString(1, strId);
 			
 			rs = pstmt.executeQuery();
 			
