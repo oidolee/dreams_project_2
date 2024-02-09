@@ -36,7 +36,10 @@ public class TicketDAOImpl implements TicketDAO {
 		
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2"); // 다운캐스팅 적용
+			//oracle
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
+			//mysql
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 			
 		}catch(NamingException e) {
 			

@@ -34,7 +34,10 @@ public class BoardDAOImpl implements BoardDAO{
 	private BoardDAOImpl() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
+			//oracle
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
+			//mysql
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -54,19 +57,30 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
-			String sql= "SELECT * "
-					+ "    FROM( "
-					+ "        SELECT A.*, "
-					+ "                rownum AS rn "   // 일련번호 가져오기 
-					+ "            FROM "
-					+ "                ( "
-					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date "
-					+ "					FROM DR_board "
-					+ "					WHERE show = 'y' "
-					+ "                    ORDER BY board_No DESC "
-					+ "                ) A "
-					+ "        ) "
-					+ "WHERE rn BETWEEN ? AND ? ";
+			/*			String sql= "SELECT * "
+								+ "    FROM( "
+								+ "        SELECT A.*, "
+								+ "                rownum AS rn "   // 일련번호 가져오기 
+								+ "            FROM "
+								+ "                ( "
+								+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date "
+								+ "					FROM DR_board "
+								+ "					WHERE `show` = 'y' "
+								+ "                    ORDER BY board_No DESC "
+								+ "                ) A "
+								+ "        ) "
+								+ "WHERE rn BETWEEN ? AND ? ";*/
+			
+			String sql = "SELECT * "
+						+ "FROM ( "
+						+ "    SELECT board_No, cust_Id, board_Title, board_Content, board_Date, "
+						+ "           ROW_NUMBER() OVER (ORDER BY board_No DESC) AS row_num "
+						+ "    FROM DR_board "
+						+ "    WHERE `show` = 'y' "
+						+ ") AS sub "
+						+ "WHERE row_num BETWEEN ? AND ?; "
+						+ "";
+
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -120,7 +134,7 @@ public class BoardDAOImpl implements BoardDAO{
 			
 			String sql= "SELECT COUNT(*) as cnt "
 					+ "    FROM DR_board "
-					+ "    WHERE show = 'y'";
+					+ "    WHERE `show` = 'y'";
 			
 			pstmt = conn.prepareStatement(sql);
 			
@@ -234,9 +248,16 @@ public class BoardDAOImpl implements BoardDAO{
 		
 		try {
 			conn = dataSource.getConnection();
+			/*oracle*/
+/*			String sql = "INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content) "
+					+ "VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), ?, ?, ?)";*/
 			
-			String sql = "INSERT INTO DR_board(board_No, cust_Id, board_Title, board_Content) "
-					+ "VALUES((SELECT NVL(MAX(board_No)+1, 1) FROM DR_board), ?, ?, ?)";
+			String sql = "INSERT INTO DR_board( cust_Id, board_Title, board_Content) "
+		            + " VALUES ( ?, ?, ?)";
+
+
+			
+			
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCust_Id());
@@ -300,7 +321,7 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql = "UPDATE DR_board "
-					+ " SET show = 'n' "
+					+ " SET `show` = 'n' "
 					+ " WHERE board_No = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -330,9 +351,12 @@ public class BoardDAOImpl implements BoardDAO{
 		
 		try {
 			conn = dataSource.getConnection();
+			/*oracle*/
+			/*	String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content) "
+						+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?)";*/
 			
-			String sql="INSERT INTO DR_review(review_No, board_No, cust_Id, review_Content) "
-					+ "VALUES((SELECT NVL(MAX(review_No)+1, 1) FROM DR_review), ?, ?, ?)";
+			String sql="INSERT INTO DR_review( board_No, cust_Id, review_Content) "
+					+ "VALUES( ?, ?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getBoard_No());
@@ -368,19 +392,32 @@ public class BoardDAOImpl implements BoardDAO{
 		try {
 			conn = dataSource.getConnection();
 			
+			/*			String sql= "SELECT * "
+								+ "    FROM( "
+								+ "        SELECT A.*, "
+								+ "                rownum AS rn "   // 일련번호 가져오기 
+								+ "            FROM "
+								+ "                ( "
+								+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, `show` "
+								+ "					FROM DR_review "
+								+ "					WHERE `show` = 'y' AND board_No = ? "
+								+ "                    ORDER BY review_No DESC "
+								+ "                ) A "
+								+ "        ) "
+								+ "WHERE rn BETWEEN ? AND ? ";*/
 			String sql= "SELECT * "
-					+ "    FROM( "
-					+ "        SELECT A.*, "
-					+ "                rownum AS rn "   // 일련번호 가져오기 
-					+ "            FROM "
-					+ "                ( "
-					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, show "
-					+ "					FROM DR_review "
-					+ "					WHERE show = 'y' AND board_No = ? "
-					+ "                    ORDER BY review_No DESC "
-					+ "                ) A "
-					+ "        ) "
-					+ "WHERE rn BETWEEN ? AND ? ";
+					+ "			FROM ( "
+					+ "			    SELECT A.*,  "
+					+ "			           ROW_NUMBER() OVER (ORDER BY review_No DESC) AS rn "
+					+ "			    FROM ( "
+					+ "			        SELECT review_No, board_No, cust_Id, review_Content, review_Date, `show` "
+					+ "			        FROM DR_review "
+					+ "			        WHERE `show` = 'y' AND board_No = ? "
+					+ "			    ) A "
+					+ "			) AS B "
+					+ "			WHERE rn BETWEEN ? AND ?;";
+			
+
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_No);
@@ -435,7 +472,7 @@ public class BoardDAOImpl implements BoardDAO{
 			
 			String sql= "SELECT COUNT(*) as cnt "
 					+ "    FROM DR_review "
-					+ "    WHERE board_No = ? AND show ='y' ";
+					+ "    WHERE board_No = ? AND `show` ='y' ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_No);
@@ -524,7 +561,7 @@ public class BoardDAOImpl implements BoardDAO{
 					+ "                ( "
 					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date "
 					+ "					FROM DR_board "
-					+ "					WHERE show = 'y' AND board_Title LIKE ? "
+					+ "					WHERE `show` = 'y' AND board_Title LIKE ? "
 					+ "                    ORDER BY board_No DESC "
 					+ "                ) A "
 					+ "        ) "
@@ -580,7 +617,7 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql = "UPDATE DR_review "
-					+ " SET show = 'n' "
+					+ " SET `show` = 'n' "
 					+ " WHERE review_No = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -658,7 +695,7 @@ public class BoardDAOImpl implements BoardDAO{
 					+ "                rownum AS rn "   // 일련번호 가져오기 
 					+ "            FROM "
 					+ "                ( "
-					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, show "
+					+ "                 SELECT review_No, board_No, cust_Id, review_Content, review_Date, `show` "
 					+ "					FROM DR_review "
 					+ "					WHERE  board_No = ? "
 					+ "                    ORDER BY review_No DESC "
@@ -724,7 +761,7 @@ public class BoardDAOImpl implements BoardDAO{
 					+ "                rownum AS rn "   // 일련번호 가져오기 
 					+ "            FROM "
 					+ "                ( "
-					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date, show "
+					+ "                 SELECT board_No, cust_Id, board_Title, board_Content, board_Date, `show` "
 					+ "					FROM DR_board "
 					+ "                    ORDER BY board_No DESC "
 					+ "                ) A "
@@ -781,7 +818,7 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql = "UPDATE DR_board "
-					+ " SET show = 'y' "
+					+ " SET `show` = 'y' "
 					+ " WHERE board_No = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -885,7 +922,7 @@ public class BoardDAOImpl implements BoardDAO{
 			conn = dataSource.getConnection();
 			
 			String sql = "UPDATE DR_review "
-					+ " SET show = 'y' "
+					+ " SET `show` = 'y' "
 					+ " WHERE review_No = ?";
 			
 			pstmt = conn.prepareStatement(sql);

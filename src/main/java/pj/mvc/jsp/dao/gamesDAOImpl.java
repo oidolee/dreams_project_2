@@ -34,9 +34,10 @@ public class gamesDAOImpl implements gamesDAO {
 	public gamesDAOImpl() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
+			//oracle
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
 			//mysql
-			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
