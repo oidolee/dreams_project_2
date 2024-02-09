@@ -166,7 +166,7 @@
 											
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="userId" name="userid" size="20" placeholder="공백없이 20자이내로 작성" style="width: 225px;" autofocus required>    <!-- placeholder : 힌트 -->
+                                            <input type="text" class="input" id="userId" name="userid" size="20" placeholder="4자 이상 16자이내로 작성" style="width: 225px;" autofocus >    <!-- placeholder : 힌트 -->
 											<input type="button" size="20" value="중복확인" style="font-size: 15px;  width: 70px; height: 40px; color: #000 !important; padding-top: 0.5px" onclick="confirmId()">
 										</td>
                                     </tr>
@@ -176,7 +176,7 @@
 											<label for="userPwd" style="color: #ffffff !important;">비밀번호</label>
 										</th>
                                         <td>
-                                            <input type="password" class="input" id="userPwd" name="userpwd" size="20" placeholder="영숫자 8자이상" required>   
+                                            <input type="password" class="input" id="userPwd" name="userpwd" size="20" placeholder="숫자와 문자 포함 형태의 6~12자리" >   
                                         </td>
                                     </tr>
 
@@ -185,7 +185,7 @@
                                         	<label for="userRePwd" style="color: #ffffff  !important;">비밀번호<br>(확인)</label>
 										</th>
                                         <td>
-                                            <input type="password" class="input" id="userRePwd" name="userrepwd" size="20" placeholder="비밀번호 확인" required>    
+                                            <input type="password" class="input" id="userRePwd" name="userrepwd" size="20" placeholder="비밀번호 확인" >    
                                         </td>
                                     </tr>
 
@@ -194,7 +194,7 @@
                                         	<label for="userName" style="color: #ffffff  !important;"> 이름 </label>
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="userName" name="username" size="20" placeholder="이름 작성" required>    
+                                            <input type="text" class="input" id="userName" name="username" size="20" placeholder="이름 작성">    
                                         </td>
                                     </tr>
 
@@ -203,7 +203,7 @@
                                         	<label for="brithDay" style="color: #ffffff  !important;"> 생년월일 </label>
 										</th>
                                         <td>
-                                            <input type="date" class="input" id="brithDay" name="birthday" size="10" placeholder="생년월일 8자리" required>   
+                                            <input type="date" class="input" id="brithDay" name="birthday" size="10" placeholder="생년월일 8자리" >   
                                         </td>
                                     </tr>
 
@@ -251,9 +251,9 @@
                                         	<label for="Email1" style="color: #ffffff  !important;"> 이메일</label> 
 										</th>
                                         <td>
-                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" style="width: 70px" required>    
+                                            <input type="text" class="input" id="Email1" name="email1" maxlength="20" style="width: 70px" >    
                                             @
-                                            <input type="text" class="input" name="email2" maxlength="20" style="width: 100px" required>   
+                                            <input type="text" class="input" name="email2" maxlength="20" style="width: 100px" >   
                                             <select class="input" name="email3" style="width: 100px; color: #000 !important;" onchange="selectEmailChk()">
                                                 <option value="0">직접입력</option>
                                                 <option value="naver.com">네이버</option>
