@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
+
+<!-- 작업자 : 윤석무 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,8 +72,35 @@
 	                                    </tr>
 	                                </table>	
 	                            </c:if>	
+	                            
+	                            <c:if test="${selectCnt == -1}"> <!-- 탈퇴한 회원일 때 -->
+	                           		<table align="center" width="500px">
+	                                    <tr>
+	                                        <th colspan="2" align="center">
+	                                        	<span> ${strUserid}는 탈퇴한 회원입니다. <br>재가입을 원하실 경우에는 관리자에게 문의해 주세요.</span> 
+	                                        </th>
+	                                    </tr>
+	                           
+	                           			<tr>
+	                                        <th align="center"> * 아이디 </th>
+	                                        <td>
+	                                            <input type="text" class="input" name="userid" size="20" placeholder="공백없이 20자이내로 작성" required>
+	                                        </td>
+	                                    </tr>
+	                           
+	                                    <tr>
+	                                        <td colspan="2" style="border-bottom: none">
+	                                            <br>
+	                                            <div align="right">
+	                                                <input class="inputButton" type="submit" value="확인">
+	                                                <input class="inputButton" type="reset" value="취소" onclick="self.close()">
+	                                            </div>
+	                                        </td>
+	                                    </tr>
+	                                </table>	
+	                            </c:if>	
                             
-	                            <c:if test="${selectCnt != 1}"> <!-- id 중복이 아닐 때 -->	
+	                            <c:if test="${selectCnt == 0}"> <!-- id 중복이 아닐 때 -->	
 	                          	  <table align="center" width="500px">
 	                                    <tr>
 	                                        <th colspan="2" align="center">

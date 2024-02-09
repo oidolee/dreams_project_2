@@ -30,6 +30,9 @@ function confirmId() {
 	// 컨트롤러 url을 넘기므로 컨트롤러에 url 추가
 }
 
+
+
+
 // 2. join.jsp - onsubmit - 회원가입 페이지 필수체크
 function signIncheck() {
 	// 2-1. 중복확인
@@ -42,6 +45,30 @@ function signIncheck() {
 		document.joinform.userid.focus();
 		return false;
 	}
+	
+	// 비밀번호와 비밀번호 확인 일치 여부 체크
+	var password = document.getElementById("userPwd").value;
+	var confirmPassword = document.getElementById("userRePwd").value;
+	
+	if(password != confirmPassword) {
+		alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+		return false;
+	}
+	
+	// 연락처 자릿수 체크
+    var phone1 = document.getElementById("phone1").value;
+    var phone2 = document.getElementById("phone2").value;
+    var phone3 = document.getElementById("phone3").value;
+
+	if (phone1 !== "010") {
+	    alert("올바른 전화번호를 입력해주세요 (010으로 시작해야 합니다).");
+	    return false;
+    }
+    if (phone2.length !== 4 || phone3.length !== 4) {
+        alert("올바른 연락처를 입력해주세요.");
+        return false;
+    }
+	return true;
 }
 
 // -- [중복확인 페이지]

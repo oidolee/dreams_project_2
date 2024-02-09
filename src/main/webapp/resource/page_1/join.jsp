@@ -240,9 +240,9 @@
                                         <td>
                                             <input type="text" class="input" id="phone1" name="phone1" size="3" style="width: 75px"  >  
                                             -
-                                            <input type="text" class="input" name="phone2" size="4" style="width: 95px"  > 
+                                            <input type="text" class="input" id="phone2" name="phone2" size="4" style="width: 95px"  > 
                                             -
-                                            <input type="text" class="input" name="phone3" size="4" style="width: 95px"  >   
+                                            <input type="text" class="input" id="phone3" name="phone3" size="4" style="width: 95px"  >   
                                         </td>
                                     </tr>
 

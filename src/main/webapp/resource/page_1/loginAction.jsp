@@ -2,15 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- 작업자 : 윤석무 -->
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 윤석무 -->
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>드림즈!!</title>
+    <title>로그인성공페이지</title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
