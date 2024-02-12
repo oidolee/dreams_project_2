@@ -30,17 +30,26 @@
         <div class="container-fluid container-box">
             <header>
                 <div class="header-top">
+               	
                     <div class="top-box">
+                     <c:if test="${not empty sessionID}">
+	                 	<div class="top-left"><c:out value="${sessionID}"></c:out>님 <br>환영 합니다</div>
+	                 </c:if>
                         <div class="right">
                             <ul>
                             	<c:if test="${not empty sessionID}">
 	                                <li><a href="${path}/*.oc">마이페이지</a></li>
 	                                <li><a href="${path}/logout.cc">로그아웃</a></li>
                             	</c:if>
-                            	<%-- <c:if test="${empty sessionID}"> --%>
+                            	 <c:if test="${empty sessionID}"> 
                                 	<li><a href="${path}/login.cc">로그인</a></li>
+<<<<<<< HEAD
 	                                <li><a href="${path}/join.cc">회원가입</a></li>
                             	<%-- </c:if> --%>
+=======
+                            	</c:if> 
+                                <li><a href="${path}/join.cc">회원가입</a></li>
+>>>>>>> d8ce6d97a75696557db239a20539d38ab155de58
                                 <li><a href="${path}/resource/page_4/qna.html">안내 및 Q&A</a></li>
                                 <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
                                         <img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/common/top_sns1.png"
@@ -68,10 +77,10 @@
                         <!-- pc -->
                         <ul id="menu_box" class="menu-box">
                             <li>
-                                <a href="${path}/resource/page_6/Introduce.html">DREAMS</a>
+                                <a href="${path}/resource/page_6/Introduce.jsp">DREAMS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="${path}/resource/page_6/Introduce.html">드림즈 소개</a></li>
-                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_6/Introduce.jsp">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.jsp">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -109,7 +118,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="${path}/resource/page_2/ticketFee.html">TICKET</a>
+                                <a href="${path}/ticket.tc">TICKET</a>
                                 <ul class="menu-son display-none">
                                     <li><a href="${path}/ticket.tc">일일티켓</a></li>
                                     <li><a href="${path}/resource/page_2/DreamsMembership.jsp">멤버쉽</a></li>
@@ -137,8 +146,8 @@
                             <li>
                                 <a href="#">DREAMS</a>
                                 <ul class="menu-son">
-                                    <li><a href="${path}/resource/page_1/test.html">드림즈 소개</a></li>
-                                    <li><a href="${path}/resource/page_6/stadium.html">구장안내</a></li>
+                                    <li><a href="${path}/resource/page_6/Introduce.jsp">드림즈 소개</a></li>
+                                    <li><a href="${path}/resource/page_6/stadium.jsp">구장안내</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -171,7 +180,7 @@
                                 <a href="${path}/resource/page_4/news.jsp">BOARDS</a>
                                 <ul class="menu-son ">
                                     <li><a href="${path}/resource/page_4/news.jsp">구단소식</a></li>
-                                    <li><a href="${path}/resource/page_4/dreamsBoard.jsp">드림즈게시판</a></li>
+                                    <li><a href="${path}/dreamsBoard.bc">드림즈게시판</a></li>
                                     <li><a href="${path}/resource/page_4/qna.jsp">안내 및 Q&A</a></li>
                                 </ul>
                             </li>

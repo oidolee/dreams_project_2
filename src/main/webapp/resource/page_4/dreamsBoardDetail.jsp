@@ -82,7 +82,7 @@
     	
     	let param= {
     			"board_No": ${dto.board_No},
-    			"reveiwWrite": $('#reveiwWrite').val(),
+    			"reviewWrite": $('#reviewWrite').val(),
     			"cust_Id": '${sessionScope.sessionID}'
     	}
     	
@@ -91,7 +91,7 @@
     		type: 'POST',
     		data: param,
     		success: function(){
-    			$('#reveiwWrite').val("");
+    			$('#reviewWrite').val("");
     			review_list();
     		},
     		error: function() {
@@ -184,9 +184,13 @@
                     <div style="display: flex; justify-content: center; margin-bottom: 50px;">
                         <div id="detailbutton">
                         	<input type="hidden" name="hidden_num" value="${dto.board_No}">
-                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No - 1}" style="margin-right: 250px;"> < 이전 </a>
-                            <a href="dreamsBoard.bc"> 목록 </a>
-                            <a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
+                            <c:if test="${dto.board_No != 1}">
+                            	<a href="dreamsBoardDetail.bc?board_No=${dto.board_No - 1}" style="margin-right: 250px;"> < 이전 </a>
+                            </c:if>
+                            	<a href="dreamsBoard.bc"> 목록 </a>
+                        	<c:if test="${dto.board_No != maxBoardNo}">
+                            	<a href="dreamsBoardDetail.bc?board_No=${dto.board_No + 1}" style="margin-left: 250px;"> 다음 > </a>
+                            </c:if>
                         </div>
                     </div>
 	                <c:if test="${sessionID == dto.cust_Id}">		<!-- 세션아이디가 게시글 등록자와 같으면 수정 삭제 버튼 생성 -->
@@ -206,7 +210,7 @@
                          <tr>
                           	<c:if test="${sessionScope.sessionID == null}">
 	                          	<td style="width: 100%; padding: 20px 0">
-	                              	<textarea name="reveiwWrite0" id="reveiwWrite0" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
+	                              	<textarea name="reviewWrite0" id="reviewWrite0" cols="1" rows="2" placeholder="로그인 후 의견을 적어주세요."></textarea>
 	                         	</td>
 	                         	<td>
 	                              	<button id="reviewButton0"> 댓글달기 </button>
@@ -214,7 +218,7 @@
                             </c:if>
                           	<c:if test="${sessionScope.sessionID != null}">
 	                         	<td style="width: 100%; padding: 20px 0">
-	                              	<textarea name="reveiwWrite" id="reveiwWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
+	                              	<textarea name="reviewWrite" id="reviewWrite" cols="1" rows="2" placeholder="타인에 대한 비난 및 욕설시 임의로 삭제 될 수 있습니다."></textarea>
 	                          	</td>
 	                          	<td>
 	                              	<button id="reviewButton"> 댓글달기 </button>

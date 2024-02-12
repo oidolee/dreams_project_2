@@ -11,7 +11,8 @@ header{}
 
 header {position: fixed; width: 100%; z-index: 2;}
 header .header-top{ background-color: #333; border-bottom: 1px solid #fff; height: 60px;   font-size: 13px;}
-header .header-top .top-box{height: 100%; max-width: 1240px; margin: 0 auto; display: flex; justify-content: end;}
+header .header-top .top-box{position:relative; height: 100%; max-width: 1240px; margin: 0 auto; display: flex; justify-content: end;}
+header .header-top .top-left{margin-left:50px; position:absolute; left:0; display: flex; height: 100%; text-align:center; align-items: center; }
 header .header-top .right{display: flex; height: 100%;}
 header .header-top .right ul {display: flex; align-items: center; height: 100%;}
 header .header-top .right ul li {margin-right: 10px;}

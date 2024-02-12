@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import pj.mvc.jsp.dao.CustomerDAO;
 import pj.mvc.jsp.dao.CustomerDAOImpl;
 import pj.mvc.jsp.dto.CustomerDTO;
+import pj.mvc.jsp.page.Paging_customer;
 
 public class CustomerServiceImpl implements CustomerService {
 
@@ -56,8 +57,10 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		// 주소
 		String address = "";
-		String address1 = req.getParameter("address1");
-		String address2 = req.getParameter("address2");
+		// String address1 = req.getParameter("address1");
+		// String address2 = req.getParameter("address2");
+		String address1 = "서울시 용산구 효창동 ";
+		String address2 = "드림즈아파트 102동 303호";
 		address = address1 + address2;
 		dto.setCust_Address(address);
 		
@@ -227,18 +230,92 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - customerListAll()");
 		
+		// 3단계. 화면에서 입력받은 값을 가져온다.
+		String pageNum = req.getParameter("pageNum");
+		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		CustomerDAO dao = CustomerDAOImpl.getInstance();
 		
 		// 5단계. 회원상세페이지
-		List<CustomerDTO> list = dao.SelectCustomer();
+		// 5-1단계. 전체 회원 갯수 카운트
+		Paging_customer paging = new Paging_customer(pageNum);
+		int total = dao.CustomerCnt(null);
+		
+		paging.setTotalCount_cust(total);
+		
+		// 5-2단계. 회원 목록 조회
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		List<CustomerDTO> list = dao.SelectCustomer(start, end);
 		
 		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("paging", paging);
 		req.setAttribute("list", list);
 	}
 	
+	// 관리자모드 - 회원 상세 정보
+	@Override
+	public void admin_modifyDetailAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_modifyDetailAction()");
+		
+		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
+		int num = (Integer.parseInt(req.getParameter("cust_No")));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		CustomerDTO dto = dao.admin_getCustomerDetail(num);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("dto", dto);
+	}
 	
-	// 회원상세 목록 - 영구삭제
+	
+	// 관리자모드 - 회원 상세 정보 - 계정복구	
+	@Override
+	public void admin_recoverCustomerAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_recoverCustomerAction()");
+
+		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		int updateCnt = dao.admin_recoverCustomer(cust_No);
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("updateCnt", updateCnt);
+	}
+
+	
+	// 관리자모드 - 회원 상세 정보 - 계정삭제
+	@Override
+	public void admin_suspendCustomerAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - admin_suspendCustomerAction()");
+		
+		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
+		
+		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
+		CustomerDAO dao = CustomerDAOImpl.getInstance();
+		
+		// 5단계. 회원상세페이지
+		int deleteCnt = dao.admin_suspendCustomer(cust_No);
+		req.getSession().invalidate();
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 영구삭제
 	@Override
 	public void admin_deleteCustomerAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -251,10 +328,10 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerDAO dao = CustomerDAOImpl.getInstance();
 		
 		// 5단계. 회원상세페이지
-		dao.admin_deleteCustomer(cust_No);
-
+		int deleteCnt = dao.admin_deleteCustomer(cust_No);
+		req.getSession().invalidate();
+		
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
 	}
-	
-	
-
 }

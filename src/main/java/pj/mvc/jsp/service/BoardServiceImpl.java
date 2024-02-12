@@ -65,8 +65,10 @@ public class BoardServiceImpl implements BoardService{
 		
 		// 5단계. 상세페이지
 		BoardDTO dto = dao.getBoardDetail(boardNo);
+		int maxBoardNo = dao.getMaxBoardNo();
 		
 		// 6단계. jsp로 처리결과를 전달
+		req.setAttribute("maxBoardNo", maxBoardNo);
 		req.setAttribute("dto", dto);
 		
 	}
@@ -82,7 +84,6 @@ public class BoardServiceImpl implements BoardService{
 		dto.setBoard_Title(req.getParameter("writeTitle"));
 		dto.setBoard_Content(req.getParameter("writeTextarea"));
 		dto.setCust_Id(req.getParameter("hidden_Id"));
-		dto.setBoard_Date(req.getParameter("hidden_Date"));
 		
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -175,7 +176,7 @@ public class BoardServiceImpl implements BoardService{
 		Board_reviewDTO dto = new Board_reviewDTO();
 		dto.setBoard_No(Integer.parseInt(req.getParameter("board_No")));
 		dto.setCust_Id(req.getParameter("cust_Id"));
-		dto.setReview_Content(req.getParameter("reveiwWrite"));
+		dto.setReview_Content(req.getParameter("reviewWrite"));
 		
 		// DAO 객체 생성
 		BoardDAO dao = BoardDAOImpl.getInstance();

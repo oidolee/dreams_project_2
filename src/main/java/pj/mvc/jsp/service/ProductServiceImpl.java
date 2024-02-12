@@ -50,26 +50,27 @@ public class ProductServiceImpl implements ProductService {
 		System.out.println("서비스 - productInsertAction ");
 
 		// 3단계. 화면에서 입력받은 값을 가져온다.
-		// title, content, writer, password
 		ProductDTO dto = new ProductDTO();
 		// dto.setProduct_No(Integer.parseInt(req.getParameter("product_No")));
 		dto.setProduct_Name(req.getParameter("product_Name"));
 		dto.setProduct_Price(Integer.parseInt(req.getParameter("product_Price")));
 		dto.setProduct_Qty(Integer.parseInt(req.getParameter("product_Qty")));
-
+		dto.setProduct_Category(req.getParameter("product_Category"));
+		System.out.println(req.getParameter("product_Category"));
 		String p_img1 = "/dreams_project_2/resource/upload/" + req.getAttribute("fileName");
 		dto.setProduct_ImgName(p_img1);
 
 		dto.setProduct_ImgDetail(req.getParameter("product_ImgDetail"));
+		
 		dto.setProduct_ImgSize(req.getParameter("product_ImgSize"));
 		dto.setProduct_ImgRfd(req.getParameter("product_ImgRfd"));
-
+		
 		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
 		ProductDAO dao = ProductDAOImpl.getInstance();
 
 		// 5-1단계. 게시글 작성 처리 후 컨트롤러에서 list로 이동
 		dao.insertProduct(dto);
-
+		
 		req.setAttribute("dto", dto);
 		System.out.println(dto);
 
@@ -102,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - productUpdateAction");
 		
-		// 3단계. 화면에서 입력받은 값, hidden 값 을 가져온다.
+				// 3단계. 화면에서 입력받은 값, hidden 값 을 가져온다.
 				String hiddenPageNum = req.getParameter("hiddenPageNum");
 				int hiddenproduct_No = Integer.parseInt(req.getParameter("hiddenproduct_No"));
 				String hiddenproduct_ImgName = req.getParameter("hiddenproduct_ImgName");
@@ -117,6 +118,7 @@ public class ProductServiceImpl implements ProductService {
 				dto.setProduct_Name(req.getParameter("product_Name"));
 				dto.setProduct_Price(Integer.parseInt(req.getParameter("product_Price")));
 				dto.setProduct_Qty(Integer.parseInt(req.getParameter("product_Qty")));
+				dto.setProduct_Category(req.getParameter("product_Category"));
 				String strPdImg = "";
 				// 이미지를 수정 안했을 떄
 				if(uploadPdImg == null) {
@@ -125,8 +127,7 @@ public class ProductServiceImpl implements ProductService {
 				else {	// 이미지를 수정 했을 떄
 					strPdImg = "/dreams_project_2/resource/upload/" + uploadPdImg; 
 				}
-				
-				System.out.println(" 이미지 : " + strPdImg);
+				dto.setProduct_ImgName(strPdImg);
 				
 				dto.setProduct_ImgDetail(req.getParameter("product_ImgDetail"));
 				dto.setProduct_ImgSize(req.getParameter("product_ImgSize"));
@@ -145,5 +146,44 @@ public class ProductServiceImpl implements ProductService {
 		
 
 	}
+
+	@Override 
+	// 상품 삭제
+	public void productDeleteAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - productDeleteAction");
+		
+		// 3단계. get으로  값 을 가져온다.	
+		int product_No = Integer.parseInt(req.getParameter("product_No"));
+		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		ProductDAO dao = ProductDAOImpl.getInstance();
+		// 5-1 단계. 상품 삭제 처리
+		int deleteCnt = dao.productDelete(product_No);
+		// 6단계. jsp로 처리결과 전달
+		req.setAttribute("deleteCnt", deleteCnt);
+	}
+
+	@Override
+	public void customerListAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		System.out.println("서비스 - customerListAction");
+		ProductDTO dto = new ProductDTO();
+		// 3단계. get으로  값 을 가져온다.
+		String product_Name = req.getParameter("product_Name");
+		System.out.println(product_Name);
+		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+		ProductDAO dao = ProductDAOImpl.getInstance();
+		// 5-1 단계. 고객상품리스트 호출
+		dao.customerList(product_Name);
+		// 6단계. jsp로 처리결과 전달
+		System.out.println(dto);
+		req.setAttribute("dto", dto);
+		
+		
+		
+	}
+	
+	
+	
 
 }

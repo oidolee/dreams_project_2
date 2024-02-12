@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <!-- 페이지 작업자 : 이민진 -->
@@ -14,13 +15,14 @@
 <!-- Bootstrap css-->
 <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <!-- swiper css-->
-<link rel="stylesheet" href="./resource/css/common/common.css">
-<link rel="stylesheet" href="./resource/css/common/header.css">
-<link rel="stylesheet" href="./resource/css/common/footer.css">
-<link rel="stylesheet" href="./resource/css/index.css">
+<link rel="stylesheet" href="${path}/resource/css/common/common.css">
+<link rel="stylesheet" href="${path}/resource/css/common/header.css">
+<link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+<link rel="stylesheet" href="${path}/resource/css/index.css">
+
 
 <!-- productList.css 연결  -->
-<link rel="stylesheet" href="../css/product/productList.css">
+<link rel="stylesheet" href="${path}/resource/css/product/productList.css">
 
 <!-- jQuery -->
 <script
@@ -72,11 +74,10 @@
 <body>
 	<jsp:include page="../../layout/header.jsp"></jsp:include>
 
-	<div class="slider-con">
-		<div class="slider-box">
-			<img src="../image/banner/category_GOODS.jpg" alt="">
-		</div>
-	</div>
+	 <div id="slider_con" class="slider-con" >
+            <img src="${path}/resource/image/banner/category_GOODS.jpg"   style="width: 100%;">
+     </div>
+     <br>
 
 	<div class="wrap-page">
 		<!-- main -->
@@ -86,14 +87,39 @@
 			<div>
 				<h3>Goods</h3>
 				<hr>
+				
 				<div class="goods_list">
 					<div class="goods_card_container">
+						
+						
+						
+						
+						
+						 <c:forEach var="dto" items="${list}" >						
 						<div class="goods_card"
+							onclick="window.location.href='${path}/detail.pc?product_Category=${dto.product_Category}&product_Name=${dto.product_Name}'">
+							<img class="goods_image" src="${dto.product_ImgName}"
+								alt="상품 1 이미지">
+							<form>
+								<table>
+									<tr>
+										<td>${dto.product_Name}</td>
+									</tr>
+									<hr>
+									<tr>
+										<td id="product_Price">${dto.product_Price}원</td>
+									</tr>
+							</form>
+								</table>
+						</div>
+						
+						</c:forEach> 
+											
+						<!-- <div class="goods_card"
 							onclick="window.location.href='detail-1.jsp';">
 							<img class="goods_image" src="../image/goods/mousepad1.png"
 								alt="상품 1 이미지">
 
-							<form>
 								<table>
 									<tr>
 										<td>Dreams 마우스패드</td>
@@ -104,7 +130,6 @@
 									</tr>
 
 								</table>
-							</form>
 						</div>
 
 						<div class="goods_card"
@@ -370,7 +395,7 @@
 									</tr>
 
 								</table>
-							</form>
+							</form> -->
 						</div>
 					</div>
 				</div>

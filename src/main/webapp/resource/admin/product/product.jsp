@@ -77,7 +77,7 @@
 			<main>
 				<div class="wrap-table">
 					<h2>상품 관리</h2>
-
+		
 
 					<table border="1" id="productTable">
 						<tr>
@@ -85,29 +85,24 @@
 							<th>상품이름</th>
 							<th>가격</th>
 							<th>상품 재고</th>
+							<th>상품 카테고리</th>
 							<th>상품이미지</th>
 							<th>상품상세이미지</th>
 							<th>상품정보이미지</th>
 							<th>반품관련이미지</th>
 							<th>등록일</th>
 						</tr>
-
 						<c:forEach var="dto" items="${list }">
 							<tr>
 								<td> ${dto.product_No} </td>
 								<td> ${dto.product_Name}</td>
 								<td> ${dto.product_Price} </td>
 								<td> ${dto.product_Qty} </td>
+								<td> ${dto.product_Category}</td>
 								<td> <img src="${dto.product_ImgName}" width="100px"> </td>
-<<<<<<< HEAD
-								<td> <img src="${path}/resource/image/goods/${dto.product_ImgDetail}" width="100px"></td>
-								<td> <img src="${path}/resource/image/goods/${dto.product_ImgSize}" width="100px"></td>
-								<td> <img src="${path}/resource/image/goods/${dto.product_ImgRfd}" width="100px"></td>
-=======
-								<td> <img src="${dto.product_ImgDetail}" width="100px"></td>
-								<td> <img src="${dto.product_ImgSize}" width="100px"></td>
-								<td> <img src="${dto.product_ImgRfd}" width="100px"></td>
->>>>>>> 2d8981e53560432efde295c564da69f94e67f278
+								<td> <img src="${path}/resource/upload/${dto.product_ImgDetail}" width="100px"></td>
+								<td> <img src="/dreams_project_2/resource/upload/${dto.product_ImgSize}" width="100px"></td>
+								<td> <img src="${path}/resource/upload/${dto.product_ImgRfd}" width="100px"></td>
 								<td> ${dto.regDate}</td>
 								
 								<td>
@@ -118,7 +113,7 @@
 								
 								<td>
 									<center>
-										<input type="button" type="button" value="삭제" onclick="window.location='${path}/ad_product_deleteAction.pd?pdNo=${dto.product_No}'">
+										<input type="button" type="button" value="삭제" onclick="window.location='${path}/deleteProductAction.pc?product_No=${dto.product_No}'">
 									</center>
 								</td>
 								
@@ -147,7 +142,7 @@
 
 					<br> <br>
 					<div class="button">
-						<button id="addProduct" onclick="window.location='insertProduct.pc'">물품관리</button>
+						<button id="addProduct" onclick="window.location.href='${path}/insertProduct.pc'">물품관리</button>
 					</div>
 				</div>
 			</main>

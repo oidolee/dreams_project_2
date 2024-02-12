@@ -97,6 +97,14 @@
             transform: translateY(10px);
         }
     }
+    
+    .cursor_point {
+     	cursor: pointer;
+    }
+    
+    .page-link {
+     	cursor: pointer;
+    }
     </style>
 
 
@@ -174,18 +182,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <div class="row mt-4">
-                        <div class="col-xl-2 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">회원</div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="${path}/resource/admin/admin_memberDetail.cc">회원 상세내역</a>
-                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                   
-                    </div>
 
                     <!-- chart 부분 -->
                     <div class="row">
@@ -270,41 +266,45 @@
                             <input type="hidden" id="endNum" name="endNum" value="15">
                             <table id="table" class="table">
                                 <thead>
-	                                    <tr >
+	                                    <tr>
 	                                        <th scope="col">No</th>
 	                                        <th scope="col">아이디</th>
 	                                        <th scope="col">이름</th>
 	                                        <th scope="col">생년월일</th>
+	                                        <th scope="col">비고</th>
 	                                    </tr>
-                                	<c:forEach var="dto" items="${list}">
-	                                    <tr onclick="goToDetails('${dto.cust_No}', '${dto.cust_Id}', '${dto.cust_Name}', '${dto.cust_Birth}')">
-	                                   
-	                                        <td>${dto.cust_No}</td>
-	                                        <td>${dto.cust_Id}</td>
-	                                        <td>${dto.cust_Name}</</td>
-	                                        <td>${dto.cust_Birth}</</td>
-	                                    </tr>
-                                    </c:forEach>
+	                                	<c:forEach var="dto" items="${list}">
+		                                    <tr class="cursor_point" onclick="goToDetails('${dto.cust_No}', '${dto.cust_Id}', '${dto.cust_Name}', '${dto.cust_Birth}', '${dto.show}')">
+		                                   
+		                                        <td>${dto.cust_No}</td>
+		                                        <td>${dto.cust_Id}</td>
+		                                        <td>${dto.cust_Name}</</td>
+		                                        <td>${dto.cust_Birth}</</td>
+		                                        <td>${dto.show}</</td>
+		                                        
+		                                    </tr>
+	                                    </c:forEach>
+                                          <tr>
+				                        	<td colspan="5" align="center">
+						                         <!-- 페이징 처리 -->
+						                         <!-- 이전 버튼 활성화 -->
+						                         <c:if test="${paging.startPage > 10}">
+						                         	<a href="${path}/admin_member.cc?pageNum=${paging.prev}">[이전]</a>
+						                         </c:if>
+						                         
+					                        	<!-- 페이지 번호 처리 -->
+					                        	<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+					                        		<a href="${path}/admin_member.cc?pageNum=${num}">${num}</a>
+					                        	</c:forEach>
+					                        	
+					                        	<!-- 다음 버튼 활성화 -->
+					                        	<c:if test="${paging.endPage < paging.pageCount}">
+						                         	<a href="${path}/admin_member.cc?pageNum=${paging.next}">[다음]</a>
+						                        </c:if>
+					                    	</td> 
+	                   					</tr> 
                                 </thead>
                             </table>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>

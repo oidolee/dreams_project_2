@@ -11,6 +11,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
+<link  href="/dreams_project_2/resource/admin/css/product.css" rel="stylesheet">
+<link href="/dreams_project_2/resource/admin/css/styles.css" rel="stylesheet" />
 <title>드림즈 관리자</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
@@ -189,28 +191,41 @@ to {
 							</tr>
 							
 							<tr>
-								<th>상품이미지</th>
+								<th>* 카테고리</th>
+								<td>
+								<select class="input" name="product_Category" id="product_Category" required>
+									<option value=""> 상품카테고리 </option>
+									<option value="마우스패드"> 마우스패드 </option>
+									<option value="의류"> 의류 </option>
+									<option value="핸드폰케이스"> 핸드폰케이스 </option>
+									<option value="기타"> 기타 </option>
+								</select>
+								</td>
+							</tr>
+							
+							<tr>
+								<th>* 상품이미지</th>
 								<td><input type="file" class="input" name="product_ImgName" id="product_ImgName"
 									size="40" accept="image/*"></td>
 							</tr>
 
 							<tr>
-								<th>상품 상세 설명 이미지</th>
-								<td><input type="file" class="input" name="product_ImgDetail" id="product_ImgDetail"
-									size="40" accept="image/*"></td>
+								<th>* 상품 상세 설명 이미지</th>
+								<td><input type="text" class="input" name="product_ImgDetail" id="product_ImgDetail"
+									size="40" ></td>
 							</tr>
 							
 							<tr>
-								<th>상품 정보 이미지</th>
-								<td><input type="file" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40" accept="image/*"></td>
+								<th>* 상품 사이즈 사진 이미지</th>
+								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
+									size="40" ></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
-								<td><input type="file" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40" accept="image/*"></td>
+								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
+									size="40"></td>
 							</tr>
 
 							<tr>

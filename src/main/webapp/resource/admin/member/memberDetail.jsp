@@ -93,6 +93,10 @@
             transform: translateY(10px);
         }
     }
+    
+    .page-link {
+     	cursor: pointer;
+    }
     </style>
 
 
@@ -170,11 +174,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <script>
-                        
-
-                    </script>
-
                     <!-- 드림즈 테이블 상세 -->
                     <div class="card mb-4">
                         <div class="card-header">
@@ -206,7 +205,7 @@
                                         <td>${dto.cust_Address}</td>
                                         <td>${dto.cust_Phone}</td>
                                         <td>${dto.cust_Email}</td>
-                                        <td></td>
+                                        <td>${dto.show}</td>
                                     </tr>
                                 </thead>
                             </table>
@@ -224,17 +223,17 @@
                                     </div>
                                     
                                     <!-- 계정복구 -->
-                                    <li class="enable_cust" onclick="enableAccount()">
+                                    <li class="enable_cust" onclick="enable_cust(${dto.cust_No})">
                                         <a class="page-link">계정복구</a>
                                     </li>
                                     
                                     <!-- 계정삭제 -->
-                                    <li class="block_cust" onclick="blockAccount()">
+                                    <li class="block_cust" onclick="block_cust(${dto.cust_No})">
                                         <a class="page-link">계정삭제</a>
                                     </li>
                                     
                                     <!-- 영구삭제 -->
-                                    <li class="delete_cust" onclick="delete_cust()">
+                                    <li class="delete_cust" onclick="delete_cust(${dto.cust_No})">
                                         <a class="page-link">영구삭제</a>
                                     </li>
                                 </ul>

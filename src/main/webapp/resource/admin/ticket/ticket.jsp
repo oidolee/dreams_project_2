@@ -106,71 +106,11 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="../index.html">드림즈 관리자</a>
-        <!-- Sidebar Toggle-->
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                        class="fas fa-search"></i></button>
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-            <li class="nav-item dropdown">
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <div id="layoutSidenav">
+   <%@ include file="/resource/admin/templet/header.jsp" %>
+	<div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">HOME</div>
-                        <a class="nav-link" href="../index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            메인
-                        </a>
-                        <div class="sb-sidenav-menu-heading">LIST</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            관리목록
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="../member/member.html">회원</a>
-                                <a class="nav-link" href="../account/acocunt.html">결제</a>
-                                <a class="nav-link" href="../board/board.html">게시판</a>
-                                <a class="nav-link" href="../ticket/ticket.html">티켓</a>
-                            </nav>
-                        </div>
-
-                        
-                    </div>
-                </div>
-                <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
-                    드림즈 관리자
-                </div>
-            </nav>
-            <a href="../index.html">
+        	<%@ include file="/resource/admin/templet/nav.jsp" %>
+            <a href="../index.jsp">
                 <div class="floating-box"></div>
             </a>
         </div>
@@ -187,9 +127,16 @@
                                 </div>
                             </div>
                         </div>
-                   
+                   		<div class="col-xl-2 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body">티켓</div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <a class="small text-white stretched-link" href="${path}/ResAdminCheck.tc">티켓 예매 현황</a>
+                                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
 
                     <div class=ticket-kind style="display: flex;">
                         <div class="ticket-kind1">
@@ -727,46 +674,6 @@
 
                     </script>
                     <!-- 드림즈 테이블 -->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            티켓 구매 목록
-                        </div>
-
-                        <div class="tableContent">
-                            <input type="hidden" id="nowPage" name="nowPage" value="1">
-                            <input type="hidden" id="startNum" name="startNum" value="1">
-                            <input type="hidden" id="endNum" name="endNum" value="15">
-                            <table id="table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
-                                    </tr>
-                                </thead>
-                            </table>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                 </div>
             </main>
             <footer class="py-4 bg-light mt-auto">

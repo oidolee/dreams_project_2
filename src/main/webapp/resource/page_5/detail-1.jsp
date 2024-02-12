@@ -14,10 +14,10 @@
 <!-- Bootstrap css-->
 <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
 <!-- swiper css-->
-<link rel="stylesheet" href="./resource/css/common/common.css">
-<link rel="stylesheet" href="./resource/css/common/header.css">
-<link rel="stylesheet" href="./resource/css/common/footer.css">
-<link rel="stylesheet" href="./resource/css/index.css">
+<link rel="stylesheet" href="${path}/resource/css/common/common.css">
+<link rel="stylesheet" href="${path}/resource/css/common/header.css">
+<link rel="stylesheet" href="${path}/resource/css/common/footer.css">
+<link rel="stylesheet" href="${path}/resource/css/index.css">
 
 <!-- product.css 연결  -->
 <link rel="stylesheet" href="../css/product/product.css">

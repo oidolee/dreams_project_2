@@ -39,8 +39,19 @@ public interface CustomerService {
 			throws ServletException, IOException;
 	
 	
+	// 관리자모드 - 회원 상세 정보
+	public void admin_modifyDetailAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
 	
-	// 회원상세 목록 - 영구삭제
+	// 관리자모드 - 회원 상세 정보 - 계정복구	
+	public void admin_recoverCustomerAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
+	// 관리자모드 - 회원 상세 정보 - 계정삭제
+	public void admin_suspendCustomerAction(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;	
+		
+	// 관리자모드 - 회원 상세 정보 - 영구삭제
 	public void admin_deleteCustomerAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
 	

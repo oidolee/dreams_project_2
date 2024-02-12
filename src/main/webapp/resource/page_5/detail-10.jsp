@@ -104,7 +104,7 @@
 
 		<div class="slider-con">
 			<div class="slider-box">
-				<img src="../image/banner/category_GOODS.jpg" alt="">
+				<img src="../image/banner/category_GOODS.jpg"  style="width: 100%;">
 			</div>
 		</div>
 

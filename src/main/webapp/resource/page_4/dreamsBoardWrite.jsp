@@ -137,8 +137,7 @@ $(function() {
 	                	<hr id="blackline">
 	                    <div style="display: flex; justify-content: right; margin-bottom: 50px;">
 	                        <div id="writebutton">
-	                        	<input type="hidden" name="hidden_Id" value="로그인된 아이디">
-	                        	<input type="hidden" name="hidden_Date" value="24/01/31">
+	                        	<input type="hidden" name="hidden_Id" value="${sessionID}">
 	                        	<input type="submit" id="btnInsert" value="등록" >
 	                        	<input type="button" value="취소" onclick="location.href='dreamsBoard.bc'">
 	                        </div>

@@ -34,7 +34,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private CustomerDAOImpl() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2");	// lookup : 검색
+			//dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2");	// lookup : 검색
+			
+			//mysql
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -57,6 +60,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(1, strUserid);
 			
 			rs = pstmt.executeQuery();
+			System.out.println("  qurey : " + rs.toString());
 			if(rs.next()) {
 				selectCnt = 1;
 			}
@@ -78,16 +82,35 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원가입 처리
 	@Override
 	public int insertCustomer(CustomerDTO dto) {
-		System.out.println("CustomerDAOImpl - insertCustomer");
+		System.out.println("CustomerDAOImpl - insertCustomer!");
 		
 		int insertCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers)) ";
+			/*oracle*/
+			/*String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers)) ";*/
+			 // 최대 cust_No 값을 가져옵니다.
+		    String getMaxCustNoSql = "SELECT MAX(cust_No) FROM DR_customers";
+		    pstmt = conn.prepareStatement(getMaxCustNoSql);
+		    rs = pstmt.executeQuery();
+		    int maxCustNo = 0;
+		    if (rs.next()) {
+		        maxCustNo = rs.getInt(1);
+		    }
+		    
+		    // 새로운 고객 번호 계산
+		    int newCustNo = maxCustNo + 1;
+
+		    // INSERT 쿼리 실행
+		    String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
+		                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+				
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCust_Id());
 			pstmt.setString(2, dto.getCust_Name());
@@ -96,7 +119,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(5, dto.getCust_Birth());
 			pstmt.setString(6, dto.getCust_Phone());
 			pstmt.setString(7, dto.getCust_Address());
-			System.out.println("query : "  + pstmt.toString() );
+			pstmt.setInt(8, newCustNo); // 새로운 고객 번호 적용
+			
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
 			
@@ -114,6 +138,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
+	
 	@Override
 	public int idPasswordChk(String strId, String strPassword) {
 		System.out.println("CustomerDAOImpl - idPasswordChk");
@@ -125,13 +150,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=?";
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and `show` ='y'";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, strId);
 			System.out.println(strId);
 			pstmt.setString(2, strPassword);
 			System.out.println(strPassword);
 			rs = pstmt.executeQuery();
+			System.out.println("query : "  + rs.toString() );
 			if(rs.next()) {
 				selectCnt = 1;
 			}
@@ -163,7 +189,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			conn = dataSource.getConnection();
 			String sql ="UPDATE DR_customers "
-					+ "SET show = 'n' "
+					+ "SET `show` = 'n' "
 					+ "WHERE cust_Id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -275,7 +301,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	// 관리자모드 - 회원 전체 조회
 	@Override
-	public List<CustomerDTO> SelectCustomer() {
+	public List<CustomerDTO> SelectCustomer(int start, int end) {
 		
 		// 2. dto 생성
 		CustomerDTO dto = null;
@@ -288,10 +314,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers "
-					+ "ORDER BY cust_No DESC";
 			
+		       String sql = "SELECT * "
+		               + "      FROM ( "
+		               + "         SELECT A.*, "
+		               + "               rownum AS rn "   // 일련변호 가져오기
+		               + "          FROM "
+		               + "            ( "
+		               + "              SELECT * FROM DR_customers "
+		               + "                ORDER BY cust_No DESC "
+		               + "            ) A "
+		               + "        ) "
+		               + " WHERE rn BETWEEN ? AND ? ";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -307,6 +344,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setCust_Phone(rs.getString("cust_Phone"));
 				dto.setCust_Email(rs.getString("cust_Email"));
 				dto.setCust_No(rs.getInt("cust_No"));
+				dto.setShow(rs.getString("show"));
+				
 				
 				// 4. list에 dto를 추가한다.
 				list.add(dto);
@@ -327,22 +366,75 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return list;
 	}
 
-	// 회원상세 목록 - 영구삭제
+
+	// 관리자모드 - 회원 상세 정보
 	@Override
-	public int admin_deleteCustomer(int cust_No) {
+	public CustomerDTO admin_getCustomerDetail(int num) {
+		System.out.println("CustomerDAOImpl - admin_getCustomerDetail");
 		
-		System.out.println("CustomerDAOImpl - admin_deleteCustomer");
+		// 1. customerDTO 바구니 생성
+		CustomerDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
+		try {
+			conn = dataSource.getConnection();
+			// 2. strId(로그인화면에서 입력받은 세션 ID)와 일치하는 데이터가 존재하는지 확인
+			String sql = "SELECT * FROM DR_customers WHERE cust_No = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+
+			rs = pstmt.executeQuery();
+			
+			// 3. ResultSet에 userid와 일치하는 한사람의 회원정보가 존재하면
+			if(rs.next()) {
+				// ResultSet을 읽어서 customerDTO에 setter로 담는다.
+				dto = new CustomerDTO();
+				dto.setCust_Id(rs.getString("cust_Id"));
+				dto.setCust_Name(rs.getString("cust_Name"));
+				dto.setCust_Birth(rs.getString("cust_Birth"));
+				dto.setCust_Address(rs.getString("cust_Address"));
+				dto.setCust_Phone(rs.getString("cust_Phone"));
+				dto.setCust_Email(rs.getString("cust_Email"));
+				dto.setCust_No(rs.getInt("cust_No"));
+				dto.setShow(rs.getString("show"));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 계정복구
+	@Override
+	public int admin_recoverCustomer(int cust_No) {
+		
+		System.out.println("CustomerDAOImpl - admin_recoverCustomer");
+		int updateCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql ="DELETE FROM DR_customers WHERE cust_No = ? ";
+			String sql ="UPDATE DR_customers "
+					+ "SET `show` = 'y' "
+					+ "WHERE cust_No = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, cust_No);
-			pstmt.executeUpdate();
+			
+			updateCnt = pstmt.executeUpdate();
+			System.out.println("updateCnt : " + updateCnt);
 		
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -354,6 +446,109 @@ public class CustomerDAOImpl implements CustomerDAO {
 				e.printStackTrace();
 			}
 		}
-		return cust_No;
+		return updateCnt;
 	}
+
+	// 관리자모드 - 회원 상세 정보 - 계정삭제
+	@Override
+	public int admin_suspendCustomer(int cust_No) {
+		
+		System.out.println("CustomerDAOImpl - admin_suspendCustomer");
+		int deleteCnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql ="UPDATE DR_customers "
+					+ "SET `show` = 'n' "
+					+ "WHERE cust_No = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cust_No);
+			
+			deleteCnt = pstmt.executeUpdate();
+			System.out.println("deleteCnt : " + deleteCnt);
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return deleteCnt;
+	}
+	
+	
+	// 관리자모드 - 회원 상세 정보 - 영구삭제
+		@Override
+		public int admin_deleteCustomer(int cust_No) {
+			
+			System.out.println("CustomerDAOImpl - admin_deleteCustomer");
+			int deleteCnt = 0;
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				conn = dataSource.getConnection();
+				String sql ="DELETE FROM DR_customers WHERE cust_No = ? ";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cust_No);
+				
+				deleteCnt = pstmt.executeUpdate();
+				System.out.println("deleteCnt : " + deleteCnt);
+			
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			return deleteCnt;
+		}
+
+		
+		// 관리자모드 - 회원 전체 조회 갯수 구하기
+		@Override
+		public int CustomerCnt(CustomerDTO dto) {
+			System.out.println("CustomerDAOImpl - CustomerCnt");
+		      
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int total = 0;
+	      
+			try {
+				conn = dataSource.getConnection();
+				String sql = "SELECT COUNT(*) as cnt "
+						+ "  FROM DR_customers";
+				pstmt = conn.prepareStatement(sql);
+
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					total = rs.getInt("cnt");
+				}
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			// 5. list 리턴
+			return total;
+		}
 }

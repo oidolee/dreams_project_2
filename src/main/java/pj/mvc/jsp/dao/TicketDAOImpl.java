@@ -36,7 +36,10 @@ public class TicketDAOImpl implements TicketDAO {
 		
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2"); // 다운캐스팅 적용
+			//oracle
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
+			//mysql
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 			
 		}catch(NamingException e) {
 			
@@ -105,10 +108,8 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, purchase_date, ticket_price) "
-					+ "VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), "
-					+ "?, ?, ?, sysdate, ?)"
-					;
+			String sql = "INSERT INTO DR_ticket_reservation (ticket_seat, cust_Id, game_date, ticket_price) "
+					+    " VALUES(?, ?, ?, ?)";
 					
 			
 			pstmt = conn.prepareStatement(sql);
@@ -116,10 +117,11 @@ public class TicketDAOImpl implements TicketDAO {
 			pstmt.setString(2, trdto.getCust_Id());
 			pstmt.setTimestamp(3, trdto.getGame_date());
 			pstmt.setInt(4, trdto.getTicket_price());
+			System.out.println(trdto.toString());
 			
 			insertResCnt = pstmt.executeUpdate();
+			System.out.println(pstmt.toString());
 			
-			System.out.println(trdto.toString());
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -185,11 +187,27 @@ public class TicketDAOImpl implements TicketDAO {
 			conn = dataSource.getConnection();
 			
 			
-			String sql = "SELECT * FROM DR_ticket_reservation WHERE cust_Id=?";
+			/*			String sql = "SELECT *  "
+								+ "  FROM ( "
+								+ "        SELECT A.*,  "
+								+ "                rownum AS rn " // 일련번호 가져오기
+								+ "        FROM  "
+								+ "            ( "
+								+ "            SELECT * "
+								+ "            FROM DR_ticket_reservation  "
+								+ "            WHERE `show` ='y' "
+								+ "            ORDER BY ticket_no DESC"
+								+ "            ) A "
+								+ "        ) "
+								+ " WHERE cust_Id=?";*/
 			
+			String sql = "select *,  "
+						+ "		row_number() over (order by ticket_no ) as rownum "
+						+ " from DR_ticket_reservation "
+						+ " order by ticket_no desc";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, strId);
+			//pstmt.setString(1, strId);
 			
 			rs = pstmt.executeQuery();
 			
@@ -450,4 +468,161 @@ public class TicketDAOImpl implements TicketDAO {
 		return cdto;
 		
 	}
+	
+	// 관리자 페이지 티켓 예매 전체내역 조회
+	@Override
+	public List<TicketResDTO> ticketResAdminList(int start, int end) {
+		System.out.println("TicketDAOImpl - ticketResAdminList");
+		List<TicketResDTO> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT *  "
+					+ "  FROM ( "
+					+ "        SELECT A.*,  "
+					+ "                rownum AS rn " // 일련번호 가져오기
+					+ "        FROM  "
+					+ "            ( "
+					+ "            SELECT * "
+					+ "            FROM DR_ticket_reservation  "
+					+ "            ORDER BY ticket_no DESC"
+					+ "            ) A "
+					+ "        ) "
+					+ " WHERE rn BETWEEN ? AND ? ";
+					
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			while(rs.next()) {
+				TicketResDTO trdto = new TicketResDTO();
+				trdto.setTicket_no(rs.getInt("ticket_no"));
+				trdto.setTicket_seat(rs.getString("ticket_seat"));
+				trdto.setCust_Id(rs.getString("cust_Id"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
+				trdto.setPurchase_date(rs.getDate("purchase_date"));
+				trdto.setTicket_price(rs.getInt("ticket_price"));
+				trdto.setShow(rs.getString("show"));
+				
+				list.add(trdto);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return list;
+	}
+	
+	// 관리자 페이지 티켓 넘버로 예매내역 조회 - select
+	@Override
+	public TicketResDTO ticketResDetail(int ticket_no) {
+		System.out.println("TicketDAOImpl - ticketResAdminList");
+		List<TicketResDTO> list = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		TicketResDTO trdto = new TicketResDTO();
+		try {
+			conn = dataSource.getConnection();
+			
+			
+			String sql = "SELECT *  "
+					+ "  FROM DR_ticket_reservation"
+					+ "   WHERE ticket_no =?";
+					
+			
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ticket_no);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				trdto.setTicket_no(rs.getInt("ticket_no"));
+				trdto.setTicket_seat(rs.getString("ticket_seat"));
+				trdto.setCust_Id(rs.getString("cust_Id"));
+				trdto.setGame_date(rs.getTimestamp("game_date"));
+				trdto.setPurchase_date(rs.getDate("purchase_date"));
+				trdto.setTicket_price(rs.getInt("ticket_price"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return trdto;
+	}
+	
+	// 티켓 예매 갯수 구하기
+		@Override
+		public int ticketResCnt() {
+			
+			System.out.println("TicketDAOImpl - TicketResCnt");
+			
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			int total = 0;
+			
+			try {
+				conn = dataSource.getConnection();
+				
+				String sql = "SELECT COUNT(*) as cnt "
+						+ "  FROM DR_ticket_reservation";
+						
+				pstmt = conn.prepareStatement(sql);
+				
+				rs = pstmt.executeQuery();
+				
+				// 1. list 생성
+				
+				if(rs.next()) {
+					total = rs.getInt("cnt");
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return total;
+		}
 }

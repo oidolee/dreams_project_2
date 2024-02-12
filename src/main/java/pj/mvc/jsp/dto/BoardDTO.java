@@ -1,5 +1,7 @@
 package pj.mvc.jsp.dto;
 
+import java.sql.Date;
+
 public class BoardDTO {
 	
 	// 멤버변수
@@ -7,7 +9,7 @@ public class BoardDTO {
 	private String cust_Id;
 	private String board_Title;
 	private String board_Content;
-	private String board_Date;
+	private Date board_Date;
 	private String show;
 	
 	// 디폴트 생성자
@@ -16,7 +18,7 @@ public class BoardDTO {
 	}
 
 	// 매개변수 생성자
-	public BoardDTO(int board_No, String cust_Id, String board_Title, String board_Content, String board_Date,
+	public BoardDTO(int board_No, String cust_Id, String board_Title, String board_Content, Date board_Date,
 			String show) {
 		super();
 		this.board_No = board_No;
@@ -59,11 +61,11 @@ public class BoardDTO {
 		this.board_Content = board_Content;
 	}
 
-	public String getBoard_Date() {
+	public Date getBoard_Date() {
 		return board_Date;
 	}
 
-	public void setBoard_Date(String board_Date) {
+	public void setBoard_Date(Date board_Date) {
 		this.board_Date = board_Date;
 	}
 

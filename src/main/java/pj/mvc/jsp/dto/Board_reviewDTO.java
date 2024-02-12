@@ -1,12 +1,14 @@
 package pj.mvc.jsp.dto;
 
+import java.sql.Date;
+
 public class Board_reviewDTO {
 	
 	private int review_No;
 	private int board_No;
 	private String cust_Id;
 	private String review_Content;
-	private String review_date;
+	private Date review_date;
 	private String show;
 	
 	public Board_reviewDTO() {
@@ -45,11 +47,11 @@ public class Board_reviewDTO {
 		this.review_Content = review_Content;
 	}
 
-	public String getReview_date() {
+	public Date getReview_date() {
 		return review_date;
 	}
 
-	public void setReview_date(String review_date) {
+	public void setReview_date(Date review_date) {
 		this.review_date = review_date;
 	}
 

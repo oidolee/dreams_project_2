@@ -27,4 +27,11 @@ public interface ProductService {
 	public void productUpdateAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException; 
 	
+	// 상품 삭제
+	public void productDeleteAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
+	
+	// 고객 상품 목록 
+	public void customerListAction(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
 }

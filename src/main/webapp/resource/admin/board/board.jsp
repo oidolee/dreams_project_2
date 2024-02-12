@@ -103,7 +103,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="../index.html">드림즈 관리자</a>
+        <a class="navbar-brand ps-3" href="${path}/resource/admin/index.jsp">드림즈 관리자</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -150,10 +150,10 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="../member/member.html">회원</a>
+                                <a class="nav-link" href="${path}/admin_member.cc">회원</a>
                                 <a class="nav-link" href="../account/acocunt.html">결제</a>
-                                <a class="nav-link" href="../board/board.html">게시판</a>
-                                <a class="nav-link" href="../ticket/ticket.html">티켓</a>
+                                <a class="nav-link" href="${path}/admin_board.bc">게시판</a>
+                                <a class="nav-link" href="${path}/admin.tc">티켓</a>
                             </nav>
                         </div>
 

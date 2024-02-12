@@ -12,14 +12,13 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
-	/* $(function(){
-		$('#cancle').click(function(){
-			if(confirm("취소하시겠습니까?")) {
-				window.location="${path}/ResCancle.tc?ticket_no=" + ${trdto.ticket_no };
-				alert("예매가 취소되었습니다.");
-			}
-		});
-	}); */
+	
+	function cancle(ticketNo){
+		if(confirm("취소하시겠습니까?")){
+            alert("예매 취소 완료!");
+            window.location="${path}/ResCancle.tc?ticket_no=" + ticketNo;
+        }
+	}
 </script>
 
 <style>
@@ -73,7 +72,7 @@ table thead {
 							<td>${trdto.game_date }</td>
 							<td>${trdto.purchase_date }</td>
 							<td>${trdto.ticket_price }</td>
-							<td><input type="button" value="예매 취소" onclick="window.location='${path}/ResCancle.tc?ticket_no=${trdto.ticket_no }'"></td>
+							<td><input type="button" value="예매 취소" onclick="cancle(${trdto.ticket_no })"></td>
 						</tr>
 					</c:forEach>
 				</table>

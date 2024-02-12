@@ -192,7 +192,7 @@ let member = {};
 	<div id="layoutSidenav">
         <div id="layoutSidenav_nav">
         	<%@ include file="/resource/admin/templet/nav.jsp" %>
-            <a href="../index.html">
+            <a href="../index.jsp">
                 <div class="floating-box"></div>
             </a>
         </div>
@@ -267,47 +267,7 @@ let member = {};
 	                            </tr>
 	                        </table>
 	                    </form>    
-                        <hr>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-table me-1"></i>
-                            티켓 구매 목록
-                        </div>
-
-                        <div class="tableContent">
-                            <input type="hidden" id="nowPage" name="nowPage" value="1">
-                            <input type="hidden" id="startNum" name="startNum" value="1">
-                            <input type="hidden" id="endNum" name="endNum" value="15">
-                            <table id="table" class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">아이디</th>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">성별</th>
-                                    </tr>
-                                </thead>
-                            </table>
-
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination justify-content-center">
-                                    <!-- 이전페이지 -->
-                                    <li class="page-item prev" onclick="prevPage()">
-                                        <a class="page-link">Previous</a>
-                                    </li>
-
-                                    <div class="pageBox">
-                                        <div class="pageCon">
-                                        </div>
-                                    </div>
-                                    <!-- 다음페이지 -->
-                                    <li class="page-item after" onclick="nextPage()">
-                                        <a class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+                        
                     </div>
                 </div>
             </main>

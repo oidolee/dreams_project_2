@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pj.mvc.jsp.service.CustomerServiceImpl;
 
+/* 작업자 : 윤석무 */
 @WebServlet("*.cc")	// 업무별로 확장자 분리
 public class CustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -132,49 +133,48 @@ public class CustomerController extends HttpServlet {
 			viewPage = "resource/page_1/modifyCustomerAction.jsp";
 		}
 		
-		
+		       
 		
 		// [ 관리자모드 ]
-		// 관리자 회원관리
-		if(url.equals("/admin_member.cc")) { // 요청
+		// 관리자모드 - 회원 전체 조회
+		else if(url.equals("/admin_member.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_member.cc >>>");
 			
 			service.customerListAll(request, response);
 			viewPage = "resource/admin/member/member.jsp"; // 응답
 		}
 					
-		// 회원상세목록
-		if(url.equals("/admin_memberDetail.cc")) { // 요청
+		// 관리자모드 - 회원 상세 정보
+		else if(url.equals("/admin_memberDetail.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_memberDetail.cc >>>");
 			
-			service.modifyDetailAction(request, response);
+			service.admin_modifyDetailAction(request, response);
 			viewPage = "resource/admin/member/memberDetail.jsp";
 		}
-		
-		// 회원상세 목록 - 계정복구
-		if(url.equals("/admin_enable_cust.cc")) { // 요청
+		   
+		// 관리자모드 - 회원 상세 정보 - 계정복구
+		else if(url.equals("/admin_enable_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_enable_cust.cc >>>");
 			
-			service.deleteCustomerAction(request, response);
-			viewPage = "resource/admin/member/member.jsp";
+			service.admin_recoverCustomerAction(request, response);
+			viewPage = "resource/admin/member/admin_recoverCustomerAction.jsp";
 		}
 		
-		// 회원상세 목록 - 계정삭제
-		if(url.equals("/admin_block_cust.cc")) { // 요청
+		// 관리자모드 - 회원 상세 정보 - 계정삭제
+		else if(url.equals("/admin_block_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_block_cust.cc >>>");
 			
-			service.deleteCustomerAction(request, response);
-			viewPage = "resource/admin/member/admin_deleteCustomerAction.jsp";
+			service.admin_suspendCustomerAction(request, response);
+			viewPage = "resource/admin/member/admin_suspendCustomerAction.jsp";
 		}
 		
-		// 회원상세 목록 - 영구삭제
-		if(url.equals("/admin_delete_cust.cc")) { // 요청
+		// 관리자모드 - 회원 상세 정보 - 영구삭제
+		else if(url.equals("/admin_delete_cust.cc")) { // 요청
 			System.out.println("<<< url ==> /admin_delete_cust.cc >>>");
 			
 			service.admin_deleteCustomerAction(request, response);
 			viewPage = "resource/admin/member/admin_deleteCustomerAction.jsp";
 		}
-		
 		
 		
 		// RequestDispatcher : 서블릿 또는 JSP 요청을 받은 후, 다른 컴포넌트로 요청을 위임하는 클래스이다.

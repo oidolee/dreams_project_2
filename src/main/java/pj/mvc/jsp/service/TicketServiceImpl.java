@@ -13,6 +13,7 @@ import pj.mvc.jsp.dao.TicketDAO;
 import pj.mvc.jsp.dao.TicketDAOImpl;
 import pj.mvc.jsp.dto.TicketDTO;
 import pj.mvc.jsp.dto.TicketResDTO;
+import pj.mvc.jsp.page.PagingTicket;
 
 public class TicketServiceImpl implements TicketService {
 
@@ -86,6 +87,7 @@ public class TicketServiceImpl implements TicketService {
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("list", list);
 	}
+	
 	
 	// 티켓 예매 취소
 	public void resCancleAction(HttpServletRequest req, HttpServletResponse res) 
@@ -193,4 +195,50 @@ public class TicketServiceImpl implements TicketService {
 		// 5단계. jsp로 처리결과 전달
 		req.setAttribute("tdto", tdto);
 	}
+	
+	// 관리자 페이지 티켓 예매 전체내역 조회
+		@Override
+		public void resAdminCheckAction(HttpServletRequest req, HttpServletResponse res) 
+				throws ServletException, IOException{
+			System.out.println("서비스 - resAdminCheckAction");
+			
+			// 3단계. 화면에서 입력받은 값을 가져온다.
+			
+			String pageNum = req.getParameter("pageNum");
+			// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+			TicketDAO tdao = TicketDAOImpl.getInstance();
+			
+			
+			// 5-1단계. 전체 게시글 갯수 카운트
+			PagingTicket paging = new PagingTicket(pageNum);
+			int total = tdao.ticketResCnt();
+			//System.out.println("total : " + total);
+			paging.setTotalCount(total);
+			
+			// 5-2단계. 게시글 목록 조회
+			int start = paging.getStartRow();
+			int end = paging.getEndRow();
+			
+			List<TicketResDTO> list = tdao.ticketResAdminList(start, end);
+			// 5단계. jsp로 처리결과 전달
+			req.setAttribute("list", list);
+			req.setAttribute("paging", paging);
+		}
+	
+		// 관리자 페이지 티켓 예매 상세내역 조회
+		@Override
+		public void resAdminDetailAction(HttpServletRequest req, HttpServletResponse res) 
+				throws ServletException, IOException{
+			System.out.println("서비스 - resCheckAction");
+			
+			// 3단계. 화면에서 입력받은 값을 가져온다.
+			int ticket_no = Integer.parseInt(req.getParameter("ticket_no"));
+			
+			// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
+			TicketDAO tdao = TicketDAOImpl.getInstance();
+			TicketResDTO trdto = tdao.ticketResDetail(ticket_no);
+			
+			// 5단계. jsp로 처리결과 전달
+			req.setAttribute("trdto", trdto);
+		}
 }

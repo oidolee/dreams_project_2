@@ -154,8 +154,7 @@
                 <div id="section2">
                     <div id="s2_inner">
                         <div class="join" >
-                            <form name="joinform" action="joinAction.cc" method="post" 
-                            		onsubmit="return signIncheck()">   <!-- post : 노출x / get : 노출o -->
+                            <form name="joinform" action="joinAction.cc" method="post" onsubmit="return signIncheck()"> 
 								
 								<!-- 2-1. 중복확인 -->
                                 <input type="hidden" name="hiddenUserid" value="0">
@@ -210,26 +209,26 @@
 
 								
 									<tr>
-										<th rowspan="3">
+										<th rowspan="3">	<!-- api기능 추후 구현 -->
 											<label for="Hp1" style="color: #ffffff  !important;">  주소</label>
 										</th>
 										<td style="border-bottom: none; ">
-											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px; " required >  
+											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px;" value="101" disabled >  
 											-
-											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;" required > 
+											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;" value="412" disabled > 
 											<input type="button" class="input" name="post3" size="4" style="width: 90px; padding-right: 10px; height: 30px; color: #000000  !important; font-size: 90%;" value="우편번호▶" onclick="location.href='https://www.epost.go.kr/search.RetrieveNewAddressNewZipCdList.comm'" >   
 										</td>
 									</tr>
 									
 									<tr>
 										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%; ">
-											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;" required>&nbsp;기본주소
+											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;" value="서울시 용산구 효창동" disabled>&nbsp;기본주소
 										</td>
 									</tr>
 										
 									<tr>
 										<td style="color: #000000  !important; font-size: 90%;">
-											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;"required>&nbsp;나머지주소
+											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;" value="드림즈아파트 102동 303호" disabled>&nbsp;나머지주소
 
 										</td>
 									</tr>
@@ -294,7 +293,7 @@
                 </div>
                 <div class="section-1-bottom">
                     <ul>
-                        <li><a href="${path}/page_2/ticketFee.jsp"><img src="${path}/image/main/dreams_char.png"
+                        <li><a href="${path}/page_2/ticketFee.jsp"><img src="${path}/resource/image/main/dreams_char.png"
                                     alt=""></a></li>
                         <li><a href="https://www.instagram.com/explore/tags/%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/top/"><img src="https://www.heroesbaseball.co.kr/html/front/web_2018/images/index/btn_link_toolbar_item2.png"
                                     alt=""></a></li>
