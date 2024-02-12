@@ -18,7 +18,7 @@
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                 data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="${path}/resource/admin/member/member.html">회원</a>
+                    <a class="nav-link" href="${path}/admin_member.cc">회원</a>
                     <a class="nav-link" href="${path}/resource/admin/account/acocunt.html">결제</a>
                     <a class="nav-link" href="${path}/admin_board.bc">게시판</a>
                     <a class="nav-link" href="${path}/admin.tc">티켓</a>

@@ -12,6 +12,7 @@ import pj.mvc.jsp.dao.CustomerDAOImpl;
 import pj.mvc.jsp.dto.CustomerDTO;
 import pj.mvc.jsp.page.Paging_customer;
 
+/* 작업자 : 윤석무 */
 public class CustomerServiceImpl implements CustomerService {
 
 	// ID 중복확인 처리
@@ -223,6 +224,8 @@ public class CustomerServiceImpl implements CustomerService {
 		// 6단계. jsp로 처리결과 전달
 		req.setAttribute("updateCnt", updateCnt);
 	}
+	
+	
 	
 	// 관리자모드 - 회원 전체 조회
 	@Override
