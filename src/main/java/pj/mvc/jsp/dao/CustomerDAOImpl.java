@@ -47,7 +47,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int useridCheck(String strUserid) {
 		System.out.println("CustomerDAOImpl - useridCheck");
 		
-		int selectCnt = 0;
+		int selectCnt = 0;	// 초기값 0 설정 - 회원이 존재하지 않는 경우
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

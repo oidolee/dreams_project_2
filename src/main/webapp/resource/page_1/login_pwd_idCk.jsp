@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>드림즈!!</title>
+    <title>아이디 체크 페이지</title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
