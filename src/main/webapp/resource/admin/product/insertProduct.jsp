@@ -144,6 +144,29 @@ to {
 		});
 	});
 	
+	$(function() {
+	    // 카테고리 선택 시
+	    $('#product_Category').change(function() {
+	        var selectedCategory = $(this).val(); // 선택된 카테고리
+	        var fileNames = {
+	            '마우스패드': 'mousepadSize.jpg',
+	            '의류': 'uniformSize1.jpg',
+	            '핸드폰케이스': ' ',
+	            '기타': ' '
+	        }; // 카테고리에 따른 파일 이름 매핑
+	        
+	        // 선택된 카테고리에 해당하는 파일 이름 가져오기
+	        var selectedFileName = fileNames[selectedCategory];
+	        
+	        // 파일 이름이 존재하면 상품 상세 설명 이미지 칸에 입력
+	        if (selectedFileName) {
+	            $('#product_ImgDetail').val(selectedFileName);
+	        } else {
+	            $('#product_ImgDetail').val(''); // 파일 이름이 없으면 칸 비우기
+	        }
+	    });
+	});
+	
 </script>
 </head>
 
@@ -218,14 +241,14 @@ to {
 							<tr>
 								<th>* 상품 사이즈 사진 이미지</th>
 								<td><input type="text" class="input" name="product_ImgSize" id="product_ImgSize"
-									size="40" ></td>
+									size="40" value="sizeInform.jpg"></td>
 							</tr>
 							
 							
 							<tr>
 								<th>반품/환불 이미지</th>
 								<td><input type="text" class="input" name="product_ImgRfd" id="product_ImgRfd"
-									size="40"></td>
+									size="40" value="refund.PNG"></td>
 							</tr>
 
 							<tr>
