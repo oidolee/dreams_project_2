@@ -3,13 +3,14 @@
 <%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
-<!-- 페이지 작업자 : 윤석무 -->
+
+<!-- 작업자 : 윤석무 -->
 <head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title> 회원가입 수정 페이지 </title>
+    <title> 회원정보 수정 페이지 </title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/resource/css/common/reset.css">
     <!-- Bootstrap css-->
@@ -230,7 +231,7 @@
 				<div id="content">
 					<div class="location">
 						<li>Home /&nbsp; </li>		<!-- &nbsp; 띄어쓰기 -->
-						<li class="here" style="color: #000  !important;">회원가입</li>
+						<li class="here" style="color: #000  !important;">회원정보 수정</li>
 					</div>
 
 				</div>
@@ -298,22 +299,22 @@
 											<label for="Hp1" style="color: #ffffff  !important;">  주소</label>
 										</th>
 										<td style="border-bottom: none; ">
-											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px; "  >  
+											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px;" value="101" disabled >  
 											-
-											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;"  > 
+											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;" value="402" disabled > 
 											<input type="button" class="input" name="post3" size="4" style="width: 90px; padding-right: 10px; height: 30px; color: #000000  !important; font-size: 90%;" value="우편번호▶" onclick="location.href='https://www.epost.go.kr/search.RetrieveNewAddressNewZipCdList.comm'" >   
 										</td>
 									</tr>
 									
 									<tr>
-										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%; ">
-											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;">&nbsp;기본주소
+										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%;" >
+											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;" value="서울시 용산구 효창동" disabled>&nbsp;기본주소
 										</td>
 									</tr>
 										
 									<tr>
 										<td style="color: #000000  !important; font-size: 90%;">
-											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;">&nbsp;나머지주소
+											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;" value="드림즈아파트 102동 303호" disabled>&nbsp;나머지주소
 
 										</td>
 									</tr>

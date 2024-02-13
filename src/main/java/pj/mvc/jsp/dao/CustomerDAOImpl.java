@@ -1,6 +1,7 @@
 package pj.mvc.jsp.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
 
 import pj.mvc.jsp.dto.CustomerDTO;
 
+/* 작업자 : 윤석무 */
 public class CustomerDAOImpl implements CustomerDAO {
 
 	DataSource dataSource = null;
@@ -62,8 +64,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 			rs = pstmt.executeQuery();
 			System.out.println("  qurey : " + rs.toString());
 			if(rs.next()) {
-				selectCnt = 1;
-			}
+	            // 회원의 상태 확인
+	            String showStatus = rs.getString("show");
+	            if (showStatus.equals("y")) {
+	                selectCnt = 1; // 회원이 존재함
+	            } else {
+	                selectCnt = -1; // 탈퇴한 회원
+	            }
+	        }
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
