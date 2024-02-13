@@ -37,6 +37,9 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2");	// lookup : 검색
+			
+			//mysql
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -59,7 +62,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(1, strUserid);
 			
 			rs = pstmt.executeQuery();
-			
+			System.out.println("  qurey : " + rs.toString());
 			if(rs.next()) {
 	            // 회원의 상태 확인
 	            String showStatus = rs.getString("show");
@@ -87,11 +90,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원가입 처리
 	@Override
 	public int insertCustomer(CustomerDTO dto) {
-		System.out.println("CustomerDAOImpl - insertCustomer");
+		System.out.println("CustomerDAOImpl - insertCustomer!");
 		
 		int insertCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
 			conn = dataSource.getConnection();
@@ -105,7 +109,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(5, dto.getCust_Birth());
 			pstmt.setString(6, dto.getCust_Phone());
 			pstmt.setString(7, dto.getCust_Address());
-			System.out.println("query : "  + pstmt.toString() );
+			
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
 			
@@ -123,6 +127,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
+	
 	@Override
 	public int idPasswordChk(String strId, String strPassword) {
 		System.out.println("CustomerDAOImpl - idPasswordChk");
@@ -134,13 +139,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and show='y'";
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and show ='y'";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, strId);
 			System.out.println(strId);
 			pstmt.setString(2, strPassword);
 			System.out.println(strPassword);
 			rs = pstmt.executeQuery();
+			System.out.println("query : "  + rs.toString() );
 			if(rs.next()) {
 				selectCnt = 1;
 			}

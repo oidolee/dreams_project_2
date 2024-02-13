@@ -63,8 +63,6 @@
     </style>
   <script type="text/javascript">
   		let idCheck = "${sessionID}";
-  		console.log("idCheck : " + idCheck)
-  		
 	    let games = {};
 	    <%-- JSP 코드 부분 --%>	    
 	    <%

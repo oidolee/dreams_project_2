@@ -273,7 +273,7 @@ CREATE TABLE DR_product (
         product_Name        VARCHAR2(50)    NOT NULL,         -- 상품명
         product_Price         NUMBER          NOT NULL,         -- 가격
         product_Qty          NUMBER          NOT NULL,         -- 재고수량
-	product_ Category   VARCHAR2(50) NOT NULL,           -- 상품카테고리
+        product_Category   VARCHAR2(50) NOT NULL,           -- 상품카테고리
         product_ImgName   CLOB            NOT NULL,         -- 상품이미지
         product_ImgDetail   CLOB            NOT NULL,         -- 상품 상세 이미지
         product_ImgSize     CLOB            NOT NULL ,           -- 상품 정보 이미지
@@ -299,7 +299,7 @@ DELETE FROM DR_product WHERE product_no = 6;
 SELECT * FROM DR_product ORDER BY product_No DESC;
 
 -- Customer category detail  (null값나와 수정중)
-SELECT * FROM DR_product WHERE product_Name= ?
+SELECT * FROM DR_product WHERE product_Name= ?;
 
 COMMIT;
 --호진님 끝
@@ -315,6 +315,7 @@ COMMIT;
 
 select * from tab;
 --민진 시작
+drop table DR_Gemes;
 create table DR_Gemes(
     DG_No number primary key,
     DG_Home varchar2(100) ,
@@ -329,6 +330,7 @@ insert into DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time)
    values(nvl((select max(DG_No) from DR_Gemes)+1,1), '드림즈', '두산', '고척', '2024-02-05 13:20:00');
 commit;
 
+drop table DR_KBOTeams;
 create table DR_KBOTeams(
    DK_No number primary key,
    DK_TeamName varchar(100) ,
