@@ -85,7 +85,8 @@ const renderCalendar = () => {
 			//로그인 기준 경기예약버튼
 			if(idCheck){
 				//admin 일떄만 경기예약 등록 버튼 출력
-				reserveButton = `<button onclick="purchaseTicket(${viewYear}, ${viewMonth+1}, ${date}, '${games[selectMonth][dayIndex]['time']}')" type="button" class="btn btn-success">경기예약</button>`
+				reserveButton = `<button onclick="purchaseTicket(${viewYear}, ${viewMonth+1}, ${date}, 
+				'${games[selectMonth][dayIndex]['time']}')" type="button" class="btn btn-success">경기예약</button>`
 			}else{
 				reserveButton = `<button onclick="location.href='./login.cc'" type="button" class="btn btn-primary">로그인</button>`
 			}

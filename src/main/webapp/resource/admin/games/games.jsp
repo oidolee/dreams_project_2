@@ -177,7 +177,7 @@ to {
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<%@ include file="../templet/nav.jsp"%>
-			<a href="../index.html">
+			<a href="./index.jsp">
 				<div class="floating-box"></div>
 			</a>
 		</div>
