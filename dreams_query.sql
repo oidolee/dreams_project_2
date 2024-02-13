@@ -162,7 +162,7 @@ CREATE TABLE DR_product (
         product_Qty          NUMBER          NOT NULL,         -- 재고수량
         product_Category   VARCHAR2(50) NOT NULL,           -- 상품카테고리
         product_ImgName   CLOB            NOT NULL,         -- 상품이미지
-        product_ImgDetail   CLOB            NOT NULL,         -- 상품 상세 이미지
+        product_ImgDetail   CLOB            ,         -- 상품 상세 이미지
         product_ImgSize     CLOB            NOT NULL ,           -- 상품 정보 이미지
         product_ImgRfd      CLOB            NOT NULL,         -- 반품 관련 이미지
         regDate                DATE            DEFAULT sysdate,   -- 등록일
@@ -177,7 +177,7 @@ WHERE product_No = ?;
 
 -- INSERT EX)
 INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_Category, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate)
-VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, ?, sysdate);
+VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), 'Dreams Stove 마우스패드', 20000, 20, '기타', 'dreams_project2/resource/upload/mousepad1.png', 'mousepadSize.jpg', 'sizeInform.jpg', 'refund.PNG', sysdate);
 
 -- DELETE EX)
 DELETE FROM DR_product WHERE product_no = 6;
