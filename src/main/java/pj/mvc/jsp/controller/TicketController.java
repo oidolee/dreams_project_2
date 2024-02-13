@@ -51,9 +51,6 @@ public class TicketController extends HttpServlet {
 		// 첫페이지 라고 가정
 		if (url.equals("/*.tc") || url.equals("/ticket.tc")) {
 			System.out.println("<<< url ==> /ticket.tc >>>");
-
-			HttpSession session = request.getSession();
-			session.setAttribute("sessionID", "hong");
 			
 			viewPage = "resource/page_2/ticketFee.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
