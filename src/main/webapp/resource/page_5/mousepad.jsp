@@ -116,16 +116,16 @@
 			<table class="wrap-table">
 				<tr class="product-inform">
 					<td colspan="3" id="image"><img
-						src="${product_ImgName}" width="300px" height="400px"></td>
+						src="${dto.product_ImgName}" width="300px" height="400px"></td>
 					<td colspan="2">
 						<h1>${dto.product_Name}</h1> <br>
 						<div class="price">
-							<h3>10000원</h3>
+							<h3>${dto.product_Price}</h3>
 						</div>
 
 						<div class="price-info">
 							<h5>택배 무료</h5>
-							<h5>굿즈종류 기타</h5>
+							<h5>굿즈종류 ${dto.product_Category} </h5>
 						</div>
 
 						<h5>옵션 선택</h5> <select class="custom-select">

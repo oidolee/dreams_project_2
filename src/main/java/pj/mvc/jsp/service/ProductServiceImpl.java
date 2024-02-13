@@ -167,6 +167,8 @@ public class ProductServiceImpl implements ProductService {
 	public void customerListAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		System.out.println("서비스 - customerListAction");
+
+		
 		ProductDTO dto = new ProductDTO();
 		// 3단계. get으로  값 을 가져온다.
 		String product_Name = req.getParameter("product_Name");
@@ -174,7 +176,7 @@ public class ProductServiceImpl implements ProductService {
 		// 4단계. 싱글톤 방식으로 DAO 객체 생성, 다형성 적용
 		ProductDAO dao = ProductDAOImpl.getInstance();
 		// 5-1 단계. 고객상품리스트 호출
-		dao.customerList(product_Name);
+		dto = dao.customerList(product_Name);
 		// 6단계. jsp로 처리결과 전달
 		System.out.println(dto);
 		req.setAttribute("dto", dto);
