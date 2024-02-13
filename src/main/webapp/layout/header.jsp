@@ -95,9 +95,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="${path}/resource/page_5/productList.html">GOODS</a>
+                                <a href="${path}/resource/page_5/productList.jsp">GOODS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/resource/page_5/customerProductList.pc">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -164,7 +164,7 @@
                             <li>
                                 <a href="#">GOODS</a>
                                 <ul class="menu-son">
-                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/resource/page_5/customerProductList.pd">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>
