@@ -13,7 +13,7 @@
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="${path}/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path}/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
     <link rel="stylesheet" href="${path}/css/common/common.css">
     <link rel="stylesheet" href="${path}/css/common/header.css">
