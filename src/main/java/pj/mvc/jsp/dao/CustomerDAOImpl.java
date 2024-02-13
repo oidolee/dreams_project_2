@@ -34,10 +34,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private CustomerDAOImpl() {
 		try {
 			Context context = new InitialContext();
-			//dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2");	// lookup : 검색
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/dreams_project_2");	// lookup : 검색
 			
 			//mysql
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
+			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -91,26 +91,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			/*oracle*/
-			/*String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers)) ";*/
-			 // 최대 cust_No 값을 가져옵니다.
-		    String getMaxCustNoSql = "SELECT MAX(cust_No) FROM DR_customers";
-		    pstmt = conn.prepareStatement(getMaxCustNoSql);
-		    rs = pstmt.executeQuery();
-		    int maxCustNo = 0;
-		    if (rs.next()) {
-		        maxCustNo = rs.getInt(1);
-		    }
-		    
-		    // 새로운 고객 번호 계산
-		    int newCustNo = maxCustNo + 1;
-
-		    // INSERT 쿼리 실행
-		    String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
-		                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-				
+			String sql = "INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No) "
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?, (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers)) ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getCust_Id());
 			pstmt.setString(2, dto.getCust_Name());
@@ -119,7 +101,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(5, dto.getCust_Birth());
 			pstmt.setString(6, dto.getCust_Phone());
 			pstmt.setString(7, dto.getCust_Address());
-			pstmt.setInt(8, newCustNo); // 새로운 고객 번호 적용
 			
 			insertCnt = pstmt.executeUpdate();
 			System.out.println("insertCnt : " + insertCnt);
@@ -150,7 +131,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		try {
 			conn = dataSource.getConnection();
-			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and `show` ='y'";
+			String sql = "SELECT * FROM DR_customers WHERE cust_Id=? and cust_password=? and show ='y'";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, strId);
 			System.out.println(strId);
@@ -189,7 +170,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			conn = dataSource.getConnection();
 			String sql ="UPDATE DR_customers "
-					+ "SET `show` = 'n' "
+					+ "SET show = 'n' "
 					+ "WHERE cust_Id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -427,7 +408,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			conn = dataSource.getConnection();
 			String sql ="UPDATE DR_customers "
-					+ "SET `show` = 'y' "
+					+ "SET show = 'y' "
 					+ "WHERE cust_No = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -461,7 +442,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			conn = dataSource.getConnection();
 			String sql ="UPDATE DR_customers "
-					+ "SET `show` = 'n' "
+					+ "SET show = 'n' "
 					+ "WHERE cust_No = ? ";
 			
 			pstmt = conn.prepareStatement(sql);
