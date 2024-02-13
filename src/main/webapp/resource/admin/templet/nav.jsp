@@ -22,7 +22,7 @@
                     <a class="nav-link" href="${path}/resource/admin/account/acocunt.html">결제</a>
                     <a class="nav-link" href="${path}/admin_board.bc">게시판</a>
                     <a class="nav-link" href="${path}/admin.tc">티켓</a>
-                    <a class="nav-link" href="${path}/resource/admin/product/product.jsp">상품</a>
+                    <a class="nav-link" href="${path}/product_list.pc">상품</a>
                     <a class="nav-link" href="${path}/gamesInsert.gc">게임일정</a>
                 </nav>
             </div>
