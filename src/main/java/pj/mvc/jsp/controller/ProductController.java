@@ -149,7 +149,7 @@ public class ProductController extends HttpServlet {
 			
 			// 고객 상품리스트
 			else if(url.equals("/customerProductList.pc")) { // 요청
-				System.out.println("<<< url ==> /customerProductList.pd >>>");
+				System.out.println("<<< url ==> /customerProductList.pc >>>");
 				
 				
 				service.productListAction(request, response);
@@ -168,7 +168,7 @@ public class ProductController extends HttpServlet {
 			    String product_Name = request.getParameter("product_Name");
 			    // request 속성에 설정
 			    request.setAttribute("product_Category", product_Category);
-			    
+			    request.setAttribute("product_Name", product_Name);
 			    
 			    String targetPage = null;
 			    if ("기타".equals(product_Category)) {
