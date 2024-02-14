@@ -171,7 +171,7 @@ public class TicketController extends HttpServlet {
 		else if(url.equals("/ticket_insert.tc")) {
 			System.out.println("<<< url ==> /ticket_insert.tc >>>");
 			
-			viewPage = "resource/admin/ticket/ticket_detail_insert.jsp";
+			viewPage = "resource/admin/ticket/ticket_detail_Insert.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 			

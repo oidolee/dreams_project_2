@@ -124,74 +124,20 @@ SELECT * FROM DR_orderDetail;
 
 SELECT * FROM DR_orders;
 
--- 내 주문 조회 -- 세션아이디로 바꿀것
-SELECT * FROM DR_orders where cust_Id = 'kim1234';
-
--- 구매 확정
-UPDATE DR_orders
-   SET order_Status = '구매확정'
- WHERE order_No = ?;
-
-UPDATE DR_orders
-   SET order_Status = '결제완료'
- WHERE order_No = 240201001;
-
--- 재욱님 끝
-
-
-
-
-
-------------------------------------------------------------
-
-
-
-
-
-DROP TABLE DR_orderDetail CASCADE CONSTRAINTS;
--- 주문상세 테이블
-CREATE TABLE DR_orderDetail (
-        orderDetail_No       NUMBER         PRIMARY KEY,        -- 주문상세번호
-        order_No             NUMBER         NOT NULL,           -- 주문번호
-        product_No           NUMBER         NOT NULL,           -- 상품번호
-        product_Name         VARCHAR2(50)   NOT NULL,           -- 상품명
-        orderDetail_qty      NUMBER         NOT NULL,           -- 주문수량
-        orderDetail_price    NUMBER         NOT NULL            -- 개당가격
-);        
-
-SELECT * FROM DR_orderDetail;
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 1001, '야구공', 1, 25000);
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 2001, '싸인볼', 2, 16000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 3001, '야구배트', 1, 15000);     
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 4001, '키링', 3, 20000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201006, 3001, '야구배트', 1, 15000);     
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 6001, '티셔츠', 1, 55000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 5001, '글러브', 1, 40000);     
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 3001, '야구배트', 1, 30000);
-     
-COMMIT;     
-
-SELECT * FROM DR_orderDetail;
-
-SELECT * FROM DR_orderDetail WHERE order_No = 240201001;
+---- 내 주문 조회 -- 세션아이디로 바꿀것
+--SELECT * FROM DR_orders where cust_Id = 'kim1234';
+--
+---- 구매 확정
+--UPDATE DR_orders
+--   SET order_Status = '구매확정'
+-- WHERE order_No = ?;
+--
+--UPDATE DR_orders
+--   SET order_Status = '결제완료'
+-- WHERE order_No = 240201001;
 
 -- 재욱님 끝
+
 
 
 

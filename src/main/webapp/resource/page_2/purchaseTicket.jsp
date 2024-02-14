@@ -202,6 +202,7 @@
 	        			data: param ,	
 	        			success: function(result){ // 6. 콜백 함수
 	        				alert("결제가 완료되었습니다.");
+	        		        window.opener.location.href = '${path}/myTicket.tc';
 	        				window.close();
 	        			},
 	        			error: function(){
@@ -435,7 +436,7 @@
                         <th>일시</th>
                         <td>
                         	<input type="hidden" id="game_date" name="game_date" value="<%= game_date_1 %>:00">
-                            <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %>"</span>
+                            <span id="game_date" name="game_date"  title="<%= game_date_1 %>"><%= game_date_1 %></span>
                         </td>
                     </tr>
                     <tr>
