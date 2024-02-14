@@ -71,6 +71,14 @@ public class gamesDAOImpl implements gamesDAO {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null)rs.close();
+				if(pstmt != null)pstmt.close();
+				if(conn != null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return list;
 	}
@@ -97,6 +105,14 @@ public class gamesDAOImpl implements gamesDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null)rs.close();
+				if(pstmt != null)pstmt.close();
+				if(conn != null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return list;
@@ -154,7 +170,15 @@ public class gamesDAOImpl implements gamesDAO {
 	            if (conn != null) conn.close();
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }
+	        } finally {
+				try {
+					if(rs != null)rs.close();
+					if(pstmt != null)pstmt.close();
+					if(conn != null)conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 	    }
 
 	    return insertCnt;
@@ -178,11 +202,19 @@ public class gamesDAOImpl implements gamesDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null)rs.close();
+				if(pstmt != null)pstmt.close();
+				if(conn != null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return DG_Location;
 	}
 	
-	public int deleteGames(int dG_No) {
+	public int deleteGames(int DG_No) {
 		int deleteCnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -191,14 +223,59 @@ public class gamesDAOImpl implements gamesDAO {
 			String sql = "delete from DR_Gemes where DG_No = ? ";
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dG_No);
+			
+			pstmt.setInt(1, DG_No);
 			deleteCnt = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null)pstmt.close();
+				if(conn != null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return deleteCnt;
+	}
+
+	public gamesDTO getDetail(int DG_No) {
+		
+		gamesDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT * FROM DR_Gemes WHERE DG_No = ? ";
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			System.out.println(" service deleteGames : " + DG_No );
+			pstmt.setInt(1, DG_No);
+			rs = pstmt.executeQuery();
+			
+			dto = new gamesDTO();
+			while(rs.next()) {
+				dto.setDG_No(DG_No);
+				dto.setDG_Home(rs.getString("DG_Home"));
+				dto.setDG_Away(rs.getString("DG_Away"));
+				dto.setDG_Time(rs.getTimestamp("DG_Time"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null)rs.close();
+				if(pstmt != null)pstmt.close();
+				if(conn != null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return dto;
 	}
 	
 }

@@ -104,6 +104,17 @@ public class GamesServiceImpl implements GamesService {
 		req.setAttribute("insertCnt", insertCnt);
 	}
 
+	public void getDetail(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		
+		gamesDAOImpl dao = gamesDAOImpl.getInstance();
+		int DG_No = Integer.parseInt(req.getParameter("DG_No"));
+		
+		System.out.println(" service getDetail : " + DG_No );
+		gamesDTO dto = dao.getDetail(DG_No);
+		req.setAttribute("dto",dto);
+	}
+
 }
 
 
