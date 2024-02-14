@@ -30,16 +30,21 @@
         <div class="container-fluid container-box">
             <header>
                 <div class="header-top">
+               	
                     <div class="top-box">
+                     <c:if test="${not empty sessionID}">
+	                 	<div class="top-left"><c:out value="${sessionID}"></c:out>님 <br>환영 합니다</div>
+	                 </c:if>
                         <div class="right">
                             <ul>
                             	<c:if test="${not empty sessionID}">
 	                                <li><a href="${path}/*.oc">마이페이지</a></li>
 	                                <li><a href="${path}/logout.cc">로그아웃</a></li>
                             	</c:if>
-                            	<%-- <c:if test="${empty sessionID}"> --%>
+                            	 <c:if test="${empty sessionID}"> 
                                 	<li><a href="${path}/login.cc">로그인</a></li>
-                            	<%-- </c:if> --%>
+	                                <li><a href="${path}/join.cc">회원가입</a></li>
+                            	</c:if> 
                                 <li><a href="${path}/join.cc">회원가입</a></li>
                                 <li><a href="${path}/resource/page_4/qna.html">안내 및 Q&A</a></li>
                                 <li><a href="https://www.youtube.com/results?search_query=%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8" target="_blank">
@@ -95,9 +100,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="${path}/resource/page_5/productList.html">GOODS</a>
+                                <a href="${path}/resource/page_5/productList.jsp">GOODS</a>
                                 <ul class="menu-son display-none">
-                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/customerProductList.pc">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -164,7 +169,7 @@
                             <li>
                                 <a href="#">GOODS</a>
                                 <ul class="menu-son">
-                                    <li><a href="${path}/resource/page_5/productList.html">야구용품</a></li>
+                                    <li><a href="${path}/customerProductList.pd">야구용품</a></li>
                                 </ul>
                             </li>
                             <li>

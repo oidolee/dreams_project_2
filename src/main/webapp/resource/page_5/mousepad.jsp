@@ -96,6 +96,8 @@
             });
         });
 
+        
+        
 
     </script>
 </head>
@@ -116,16 +118,16 @@
 			<table class="wrap-table">
 				<tr class="product-inform">
 					<td colspan="3" id="image"><img
-						src="${product_ImgName}" width="300px" height="400px"></td>
+						src="${dto.product_ImgName}" width="300px" height="400px"></td>
 					<td colspan="2">
 						<h1>${dto.product_Name}</h1> <br>
 						<div class="price">
-							<h3>10000원</h3>
+							<h3>${dto.product_Price}</h3>
 						</div>
 
 						<div class="price-info">
 							<h5>택배 무료</h5>
-							<h5>굿즈종류 기타</h5>
+							<h5>굿즈종류 ${dto.product_Category} </h5>
 						</div>
 
 						<h5>옵션 선택</h5> <select class="custom-select">
@@ -137,6 +139,7 @@
 							<option value="XXL">XXL</option>
 							<option value="XLS">XLS</option>
 					</select> <br> <br>
+					<form id="purchaseForm" action="#" method="post">
 						<div class="quantity">
 							<label>수량</label> <input type="number" id="quantity" min="1"
 								value="1">
@@ -147,10 +150,14 @@
 						</div>
 
 						<div class="action-buttons">
+						
+						<input type="hidden" name="product_No" value="${dto.product_No}"> 
+						<input type="hidden" name="product_Name" value="${dto.product_Name}"> 
+						<input type="hidden" name="product_Price" value="${dto.product_Price}">
 							<a href="#" class="buy-button">구매하기</a> <a
 								href="../page_1/basket.html" class="cart-button">장바구니 담기</a>
 						</div>
-
+					</form>
 					</td>
 				</tr>
 			</table>
@@ -165,9 +172,6 @@
 		</div>
 	</div>
 
-
-
-	<div style="height: 500px; border: 10px solid red;">내용</div>
 
 
 

@@ -292,14 +292,14 @@
                                 <p class="dsc" style="letter-spacing: -1px; color: #666 !important" >회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</p>
                                 <div>
                                     <ul>
-                                        <li style="margin-bottom: -9px">
+                                        <li style="margin-bottom: 8px;margin-top: 17px;">
                                             <label for="phoneNm" class="label_txt" style="color: #333 !important; padding-right: 50px; font-weight: 700 !important">이름</label>
                                             <input type="text" id="phoneNm" name="phoneNm" maxlength="40" class="input_txt" style="margin-left: -2px; width: 202px;">
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="phoneInfo" >
-                                    <ul style="margin-bottom: 7px">
+                                    <ul style="margin-bottom: 6px">
                                         <li>
                                             <label for="t_ph1" class="label_txt" style= "color: #333 !important; padding-right: 24px; font-weight: 700 !important">휴대전화</label>
                                         </li>
@@ -312,7 +312,7 @@
                                         </li>
                                         <li>
                                             <div class="int_mod" style="margin: 0 5px 0 5px;">
-                                                <input type="text" id="phoneNo" name="phoneNo" class="input_txt" placeholder="휴대전화번호" style="padding-left: 3px; color:#000 !important; font-size: 13px; width: 125.4px;">
+                                                <input type="text" id="phoneNo" name="phoneNo" class="input_txt" placeholder="휴대전화번호" style="padding-left: 3px; color:#000 !important; font-size: 13px; width: 122.6px;">
                                             </div>
                                         </li>
                                         <li>

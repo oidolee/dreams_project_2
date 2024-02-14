@@ -50,153 +50,17 @@ CREATE TABLE DR_orders (
 SELECT * FROM DR_orders;
 
 INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'kim1234', '야구공 등 4건', 35000, '김태희', '010-1111-2222', '서울시 마포구', sysdate, '결제완료');
+     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'hong', '야구공 등 4건', 92000, '김태희', '010-1111-2222', '서울시 마포구', sysdate, '결제완료');
 
 INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'hong4845', '티셔츠 등 3건', 65000, '홍길동', '010-1231-2463', '서울시 용산구', sysdate, '배송중');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'park2215', '키링 등 4건', 95000, '박태환', '010-5512-9584', '서울시 서대문구', sysdate, '배송완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'lee10df', '글러브 등 8건', 48000, '이명수', '010-9523-6444', '서울시 영등포구', sysdate, '결제완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'leaf884', '싸인볼 등 3건', 12000, '이사육', '010-1224-5353', '서울시 중구', sysdate, '배송완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'choid33', '야구배트 등 1건', 35000, '최진석', '010-6326-6667', '서울시 종로구', sysdate, '배송완료');
+     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'kim1234', '티셔츠 등 3건', 110000, '홍길동', '010-1231-2463', '서울시 용산구', sysdate, '배송중');
 
 COMMIT;
 
 SELECT * FROM DR_orders;
 
 -- 내 주문 조회
-SELECT * FROM DR_orders where cust_Id = 'kim1234';
-
-------------------------------------------------------------
-
-
-
-
-
-DROP TABLE DR_orderDetail CASCADE CONSTRAINTS;
--- 주문상세 테이블
-CREATE TABLE DR_orderDetail (
-        orderDetail_No       NUMBER         PRIMARY KEY,        -- 주문상세번호
-        order_No             NUMBER         NOT NULL,           -- 주문번호
-        product_No           NUMBER         NOT NULL,           -- 상품번호
-        product_Name         VARCHAR2(50)   NOT NULL,           -- 상품명
-        orderDetail_qty      NUMBER         NOT NULL,           -- 주문수량
-        orderDetail_price    NUMBER         NOT NULL            -- 개당가격
-);        
-
-SELECT * FROM DR_orderDetail;
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 1001, '야구공', 1, 25000);
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 2001, '싸인볼', 2, 16000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 3001, '야구배트', 1, 15000);     
-
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 4001, '키링', 3, 20000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 3001, '야구배트', 1, 15000);     
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 6001, '티셔츠', 1, 55000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 5001, '글러브', 1, 40000);     
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240208001, 3001, '야구배트', 1, 30000);
-     
-COMMIT;     
-
-SELECT * FROM DR_orderDetail;
-
--- 재욱님 끝
-
-
-DROP TABLE DR_refund;
-
--- 환불 테이블
-CREATE TABLE DR_refund (
-        REF_No          NUMBER          PRIMARY KEY,        -- 환불번호
-        
-        order_No        NUMBER          NOT NULL,           -- 주문번호(구매당시)
-        REF_cust_Id     VARCHAR2(20)    NOT NULL,           -- 구매자 아이디
-        REF_Name        VARCHAR2(20)    NOT NULL,           -- 구매자이름
-        REF_Phone       VARCHAR2(20)    NOT NULL,           -- 연락처
-        REF_Address     VARCHAR2(50)    NOT NULL,           -- 주소
-        
-        REF_Prod_No     NUMBER          NOT NULL,           -- 상품번호
-        REF_Prod_Name   VARCHAR2(30)    NOT NULL,           -- 상품명
-        REF_Prod_qty    NUMBER(2)       NOT NULL,           -- 환불/교환 개수
-        REF_Reason      CLOB            NOT NULL,           -- 환불/교환 사유
-        REF_Account     VARCHAR2(50)    NOT NULL,           -- 환불 받을 계좌
-        REF_Date        DATE            DEFAULT sysdate,    -- 환불/교환 신청일
-        
-        REF_Status      VARCHAR2(20)    NOT NULL            -- 환불 or 교환
-        
-);
-
--- 교환/환불신청서 제출
-INSERT INTO DR_refund (REF_No, order_No, REF_cust_Id, REF_Name, REF_Phone, REF_Address, REF_Prod_No, REF_Prod_Name, REF_Prod_qty, REF_Reason, REF_Account, REF_Status)
-VALUES ((SELECT NVL(MAX(REF_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYYYMMDD') || '0001')) FROM DR_refund), 1000, 'kim1234', '김철수', '010-2222-3333', '서울시 마포구 신수동', 3301, '야구공', 2, '찢어짐', '국민은행 011-222412-2442', '환불');
-
-SELECT * FROM DR_refund;
-
--- 내 교환/환불신청서 제출
-SELECT * FROM DR_refund WHERE REF_cust_Id = ? ; 
-
-----------------------------------------------
-
-DROP TABLE DR_orders CASCADE CONSTRAINTS;
--- 주문 테이블
-CREATE TABLE DR_orders (
-        order_No          NUMBER          PRIMARY KEY,          -- 주문번호
-        cust_Id           VARCHAR2(50)    NOT NULL,             -- 고객ID
-        order_Content     VARCHAR2(50)    NOT NULL,             -- 주문내용
-        order_Amount      NUMBER          NOT NULL,             -- 총결제금액
-        order_Name        VARCHAR2(50)    NOT NULL,             -- 주문자이름
-        order_Phone       VARCHAR2(20)    NOT NULL,             -- 연락처
-        order_Address     VARCHAR2(100)   NOT NULL,             -- 주소
-        order_Date        VARCHAR2(50)    NOT NULL,             -- 주문일자
-        order_Status      VARCHAR2(50)    NOT NULL              -- 주문상태
-);        
-
-SELECT * FROM DR_orders;
-
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'kim1234', '야구공 등 4건', 35000, '김태희', '010-1111-2222', '서울시 마포구', sysdate, '결제완료');
-
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'hong4845', '티셔츠 등 3건', 65000, '홍길동', '010-1231-2463', '서울시 용산구', sysdate, '배송중');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'park2215', '키링 등 4건', 95000, '박태환', '010-5512-9584', '서울시 서대문구', sysdate, '배송완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'lee10df', '글러브 등 8건', 48000, '이명수', '010-9523-6444', '서울시 영등포구', sysdate, '결제완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'leaf884', '싸인볼 등 3건', 12000, '이사육', '010-1224-5353', '서울시 중구', sysdate, '배송완료');
-     
-INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'choid33', '야구배트 등 1건', 35000, '최진석', '010-6326-6667', '서울시 종로구', sysdate, '배송완료');
-
-COMMIT;
-
-SELECT * FROM DR_orders;
-
--- 내 주문 조회 -- 세션아이디로 바꿀것
+SELECT * FROM DR_orders where cust_Id = 'hong';
 SELECT * FROM DR_orders where cust_Id = 'kim1234';
 
 -- 구매 확정
@@ -204,11 +68,6 @@ UPDATE DR_orders
    SET order_Status = '구매확정'
  WHERE order_No = ?;
 
-UPDATE DR_orders
-   SET order_Status = '결제완료'
- WHERE order_No = 240201001;
-
-
 ------------------------------------------------------------
 
 
@@ -228,35 +87,63 @@ CREATE TABLE DR_orderDetail (
 
 SELECT * FROM DR_orderDetail;
 
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 1001, '야구공', 1, 25000);
+------ 2월 13일 입력
 
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 2001, '싸인볼', 2, 16000);
-     
-INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 3001, '야구배트', 1, 15000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213001, 1001, '야구공', 1, 25000);
 
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201001, 4001, '키링', 3, 20000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213001, 2001, '싸인볼', 2, 16000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201006, 3001, '야구배트', 1, 15000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213001, 3001, '야구배트', 1, 15000);     
+
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213001, 4001, '키링', 3, 20000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 6001, '티셔츠', 1, 55000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213002, 3001, '야구배트', 1, 15000);     
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 5001, '글러브', 1, 40000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213002, 6001, '티셔츠', 1, 55000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240201002, 3001, '야구배트', 1, 30000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240213002, 5001, '글러브', 1, 40000);     
+     
+COMMIT;     
+
+
+------- 2월 14일 입력
+
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214001, 1001, '야구공', 1, 25000);
+
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214001, 2001, '싸인볼', 2, 16000);
+     
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214001, 3001, '야구배트', 1, 15000);     
+
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214001, 4001, '키링', 3, 20000);
+     
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214002, 3001, '야구배트', 1, 15000);     
+     
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214002, 6001, '티셔츠', 1, 55000);
+     
+INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240214002, 5001, '글러브', 1, 40000);     
      
 COMMIT;     
 
 SELECT * FROM DR_orderDetail;
 
-SELECT * FROM DR_orderDetail WHERE order_No = 240201001;
+
+
+
+
 
 -- 재욱님 끝
 
@@ -273,9 +160,9 @@ CREATE TABLE DR_product (
         product_Name        VARCHAR2(50)    NOT NULL,         -- 상품명
         product_Price         NUMBER          NOT NULL,         -- 가격
         product_Qty          NUMBER          NOT NULL,         -- 재고수량
-	product_ Category   VARCHAR2(50) NOT NULL,           -- 상품카테고리
+        product_Category   VARCHAR2(50) NOT NULL,           -- 상품카테고리
         product_ImgName   CLOB            NOT NULL,         -- 상품이미지
-        product_ImgDetail   CLOB            NOT NULL,         -- 상품 상세 이미지
+        product_ImgDetail   CLOB            ,         -- 상품 상세 이미지
         product_ImgSize     CLOB            NOT NULL ,           -- 상품 정보 이미지
         product_ImgRfd      CLOB            NOT NULL,         -- 반품 관련 이미지
         regDate                DATE            DEFAULT sysdate,   -- 등록일
@@ -290,7 +177,7 @@ WHERE product_No = ?;
 
 -- INSERT EX)
 INSERT INTO DR_product(product_No, product_Name, product_Price, product_Qty, product_Category, product_ImgName, product_ImgDetail, product_ImgSize, product_ImgRfd, regDate)
-VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), ?, ?, ?, ?, ?, ?, ?, ?, sysdate);
+VALUES((SELECT NVL(MAX(product_No)+1, 1) FROM DR_product), 'Dreams Stove 마우스패드', 20000, 20, '기타', 'dreams_project2/resource/upload/mousepad1.png', 'mousepadSize.jpg', 'sizeInform.jpg', 'refund.PNG', sysdate);
 
 -- DELETE EX)
 DELETE FROM DR_product WHERE product_no = 6;
@@ -299,7 +186,7 @@ DELETE FROM DR_product WHERE product_no = 6;
 SELECT * FROM DR_product ORDER BY product_No DESC;
 
 -- Customer category detail  (null값나와 수정중)
-SELECT * FROM DR_product WHERE product_Name= ?
+SELECT * FROM DR_product WHERE product_Name= ?;
 
 COMMIT;
 --호진님 끝
@@ -315,6 +202,7 @@ COMMIT;
 
 select * from tab;
 --민진 시작
+drop table DR_Gemes;
 create table DR_Gemes(
     DG_No number primary key,
     DG_Home varchar2(100) ,
@@ -329,6 +217,7 @@ insert into DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time)
    values(nvl((select max(DG_No) from DR_Gemes)+1,1), '드림즈', '두산', '고척', '2024-02-05 13:20:00');
 commit;
 
+drop table DR_KBOTeams;
 create table DR_KBOTeams(
    DK_No number primary key,
    DK_TeamName varchar(100) ,

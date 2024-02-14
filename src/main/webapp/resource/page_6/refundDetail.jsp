@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title> 회원 정보 수정 </title>
+    <title> 교환/환불 신청서 조회 </title>
     <!-- reset.css -->
     <link rel="stylesheet" href="${path}/css/common/reset.css">
     <!-- Bootstrap css-->

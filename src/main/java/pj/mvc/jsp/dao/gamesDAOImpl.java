@@ -34,6 +34,7 @@ public class gamesDAOImpl implements gamesDAO {
 	public gamesDAOImpl() {
 		try {
 			Context context = new InitialContext();
+			//oracle
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/dreams_project_2");
 			//mysql
 			//dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
@@ -109,7 +110,8 @@ public class gamesDAOImpl implements gamesDAO {
 
 	    try {
 	        // 해당 연월일에 이미 정보가 있는지 확인하는 쿼리
-	        String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE DATE(DG_Time) = ?";
+	        String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE TRUNC(DG_Time) = TO_DATE(?, 'YYYY-MM-DD')";
+	        //String checkSql = "SELECT COUNT(*) FROM DR_Gemes WHERE DATE(DG_Time) = ?";
 	        
 	        conn = dataSource.getConnection();
 	        
@@ -122,6 +124,7 @@ public class gamesDAOImpl implements gamesDAO {
 	        // 이미 정보가 있는지 확인
 	        pstmt = conn.prepareStatement(checkSql);
 	        pstmt.setString(1, formattedDate);
+	        System.out.println("formattedDate :" + formattedDate);
 	        rs = pstmt.executeQuery();
 	        System.out.println(" 일정 등록 체크 : " + pstmt.toString());
 	        
@@ -130,7 +133,9 @@ public class gamesDAOImpl implements gamesDAO {
 	            insertCnt = 2;
 	        } else {
 	            // 정보가 없으면 INSERT 쿼리 실행
-	            String insertSql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
+	            String insertSql = "INSERT INTO DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time) VALUES(nvl((select max(DG_No) from DR_Gemes)+1,1),?, ?, ?, ?)";
+	            //String insertSql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
+	            System.err.println(" insertSql : " + insertSql);
 	            pstmt = conn.prepareStatement(insertSql);
 	            pstmt.setString(1, dto.getDG_Home());
 	            pstmt.setString(2, dto.getDG_Away());
