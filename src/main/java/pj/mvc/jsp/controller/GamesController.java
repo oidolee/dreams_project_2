@@ -49,6 +49,7 @@ public class GamesController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
+		//게임일정 등록 화면
 		else if (url.equals("/gamesInsert.gc")) {
 			System.out.println("<<< url ==> /gamesInsert.bc >>>");
 			viewPage = "/resource/admin/games/games.jsp";
@@ -57,7 +58,7 @@ public class GamesController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
-		
+		//게임일정 등록 실행		
 		if (url.equals("/gamesInsertAction.gc")) {
 			System.out.println("<<< url ==> /gamesInsertAction.bc >>>");
 			viewPage = "/resource/admin/games/gamesInsertAction.jsp";
@@ -66,6 +67,20 @@ public class GamesController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 		}
+		
+		//게임일정 등록 화면
+		else if (url.equals("/update.gc")) {
+			System.out.println("<<< url ==> /update.bc >>>");
+			viewPage = "/resource/admin/games/update.jsp";
+						
+			service.getDetail(request, response);
+			service.teamListAction(request, response);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
+		
+		
 		
 		
 		

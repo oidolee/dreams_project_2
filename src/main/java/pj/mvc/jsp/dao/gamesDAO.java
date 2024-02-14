@@ -19,4 +19,7 @@ public interface gamesDAO {
 	public String getLocation(String dG_Home);
 	//경기 일정 삭제
 	public int deleteGames(int dG_No);
+	
+	//경기 일정 상세
+	public gamesDTO getDetail(int DG_No);
 }

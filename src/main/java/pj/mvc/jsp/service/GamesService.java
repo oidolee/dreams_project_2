@@ -20,4 +20,8 @@ public interface GamesService {
 	//경기 일정 삭제
 	public void deleteGamesAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException;
+	
+	//경기 일정 수정
+	public void getDetail(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException;
 }
