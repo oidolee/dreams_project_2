@@ -173,13 +173,13 @@
                             // ②차트의 데이터(Object)
                             data: {
                                 // ③x축에 들어갈 이름들(Array)
-                                labels: ['2023-08', '2023-09', '2023-10', '2023-11', '2023-12', '2024-01'],
+                                labels: ['2023-09', '2023-10', '2023-11', '2023-12', '2024-01', '2024-02'],
                                 // ④실제 차트에 표시할 데이터들(Array), dataset객체들을 담고 있다.
                                 datasets: [{
                                     // ⑤dataset의 이름(String)
                                     label: '드림즈 회원 현황',
                                     // ⑥dataset값(Array)
-                                    data: [5, 19, 3, 5, 2, 3],
+                                    data: [5, 3, 7, 5, 2, 19],
                                     // ⑦dataset의 배경색(rgba값을 String으로 표현)
                                     backgroundColor: 'rgba(28, 92, 80, 0.2)',
                                     // backgroundColor: 'rgba(255, 99, 132, 0.2)',

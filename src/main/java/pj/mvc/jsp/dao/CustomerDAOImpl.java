@@ -307,7 +307,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		       String sql = "SELECT * "
 		               + "      FROM ( "
 		               + "         SELECT A.*, "
-		               + "               rownum AS rn "   // 일련변호 가져오기
+		               + "               rownum AS rn "   
 		               + "          FROM "
 		               + "            ( "
 		               + "              SELECT * FROM DR_customers "
