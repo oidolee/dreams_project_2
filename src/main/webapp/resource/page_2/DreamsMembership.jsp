@@ -1,25 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/layout/setting.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>    
     <!-- reset.css -->
-    <link rel="stylesheet" href="./resource/css/common/reset.css">
+    <link rel="stylesheet" href="${path }/resource/css/common/reset.css">
     <!-- Bootstrap css-->
-    <link href="./resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="${path }/resource/css/bootstrap/bootstrap.css" rel="stylesheet" />
     <!-- swiper css-->
-    <link rel="stylesheet" href="../resource/css/common/common.css">
-    <link rel="stylesheet" href="../resource/css/common/header.css">
-    <link rel="stylesheet" href="../resource/css/common/footer.css">
-    <link rel="stylesheet" href="../resource/css/index.css">
+    <link rel="stylesheet" href="${path }/resource/css/common/common.css">
+    
+    <%-- <link rel="stylesheet" href="${path }/resource/css/common/header.css">
+    <link rel="stylesheet" href="${path }/resource/css/common/footer.css"> --%>
+    
+    <link rel="stylesheet" href="${path }/resource/css/index.css">
     <!-- 왼쪽 티켓박스 css -->
-    <link rel="stylesheet" href="../css/common/page2_ticket.css">
+    <link rel="stylesheet" href="${path }/resource/css/common/page2_ticket.css">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="./resource/js/bootstrap/bootstrap.bundle.js"></script>
+    <script src="${path }/resource/js/bootstrap/bootstrap.bundle.js"></script>
     <!-- swiper js-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -27,7 +30,7 @@
     <!-- scrollreveal -->
     <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <!-- header.js -->
-    <script src="./resource/js/common/header.js"></script>
+    <script src="${path }/resource/js/common/header.js"></script>
 
     <script>
         // 페이지 로드 후 실행될 함수
@@ -228,9 +231,9 @@
 							<li class="hasChild">
 								<a href="#">일일티켓</a>
 								<ul>
-									<li><a href="ticketFee.html">입장요금</a></li>
-									<li><a href="reservationInfo.html">예매안내</a></li>
-									<li><a href="discountTicket.html">할인안내</a></li>
+									<li><a href="ticketFee.jsp">입장요금</a></li>
+									<li><a href="reservationInfo.jsp">예매안내</a></li>
+									<li><a href="discountTicket.jsp">할인안내</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -239,10 +242,10 @@
 								<a href="#">멤버쉽</a>
 								<ul style="display: block;">
 									<li>
-										<a href="DreamsMembership.html" class="on">드림즈멤버쉽</a>
+										<a href="DreamsMembership.jsp" class="on">드림즈멤버쉽</a>
 									</li>
 									<li>
-										<a href="childrenMembership.html" class="on">듬린이(어린이 회원)</a>
+										<a href="childrenMembership.jsp" class="on">듬린이(어린이 회원)</a>
 									</li>
 								</ul>
 							</li>
@@ -252,7 +255,7 @@
 								<a href="#">단체관람</a>
 								<ul style="display: block;">
 									<li>
-										<a href="groupViewing.html" class="on">안내</a>
+										<a href="groupViewing.jsp" class="on">안내</a>
 									</li>
 								</ul>
 							</li>
@@ -262,7 +265,7 @@
 								<a href="#">스카이박스</a>
 								<ul style="display: block;">
 									<li>
-										<a href="skybox.html" class="on">소개 / 예약</a>
+										<a href="skybox.jsp" class="on">소개 / 예약</a>
 									</li>
 								</ul>
 							</li>
@@ -468,7 +471,7 @@
         <div id="goTop" class="goTop">
             <a href="#header"></a>
         </div>
-        <a href="./resource/admin/index.html">
+        <a href="./resource/admin/index.jsp">
             <div class="floating-box left"></div>
         </a>
         <footer>

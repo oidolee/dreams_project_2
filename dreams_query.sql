@@ -362,6 +362,29 @@ INSERT INTO DR_ticket_reservation (ticket_no, ticket_seat, cust_Id, game_date, p
 VALUES((SELECT NVL(MAX(ticket_no) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '0001')) FROM DR_ticket_reservation), ?, ?, sysdate, sysdate, ?); 
 
 SELECT * FROM DR_ticket_reservation;
+
+SELECT * FROM DR_ticket_reservation;
+
+SELECT *
+  FROM ( 
+		SELECT A.*,  
+		rownum AS rn  -- 일련번호 가져오기
+		FROM( 
+				SELECT * 
+				 FROM DR_ticket_reservation 
+				 WHERE show ='y' 
+				 ORDER BY ticket_no DESC
+              ) A
+        );
+
+
+commit;
+
+ALTER TABLE DR_ticket_reservation
+  ADD show CHAR(1) DEFAULT 'y';
+
+
+
 -- 창해님 끝
 
 
