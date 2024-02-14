@@ -128,7 +128,7 @@
 							<h5>굿즈종류 ${dto.product_Category} </h5>
 						</div>
 						
-						<form id="purchaseForm" action="#" method="post">
+						<form id="purchaseForm" action="${path}/myorder.oc" method="post">
 						
 						<h5>옵션 선택</h5> <select id="productOption" class="custom-select">
 							<option value="0">사이즈를 선택해 주세요.</option>
@@ -156,7 +156,7 @@
 
 									<button type="submit" class="buy-button">구매하기</button>
 								
-								<a href="../page_1/basket.html" class="cart-button">장바구니 담기</a>
+								<a href="${path}/myorder.oc" class="cart-button">장바구니 담기</a>
 								</form>
 							</div></td>
 				</tr>
