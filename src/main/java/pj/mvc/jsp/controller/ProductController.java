@@ -171,7 +171,7 @@ public class ProductController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			
-			// 고객 상세 리스트
+			// 고객 상품 상세
 			else if(url.equals("/detail.pc")) {
 			    System.out.println("<<< url ==> /detail.pc >>>");
 			    
