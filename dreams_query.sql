@@ -1,9 +1,7 @@
 select * from tab;
 -- 재욱님 시작
 
-
 DROP TABLE DR_refund;
-
 -- 환불 테이블
 CREATE TABLE DR_refund (
         REF_No          NUMBER          PRIMARY KEY,        -- 환불번호
