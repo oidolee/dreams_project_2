@@ -109,6 +109,7 @@ public class CustomerController extends HttpServlet {
 			viewPage = "resource/page_1/deleteCustomer.jsp";
 		}
 		
+		// 회원탈퇴 처리
 		else if(url.equals("/deleteCustomerAction.cc")) {
 			System.out.println("<<< url ==> /deleteCustomerAction.cc >>>");
 			

@@ -90,7 +90,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원가입 처리
 	@Override
 	public int insertCustomer(CustomerDTO dto) {
-		System.out.println("CustomerDAOImpl - insertCustomer!");
+		System.out.println("CustomerDAOImpl - insertCustomer");
 		
 		int insertCnt = 0;
 		Connection conn = null;
@@ -307,7 +307,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		       String sql = "SELECT * "
 		               + "      FROM ( "
 		               + "         SELECT A.*, "
-		               + "               rownum AS rn "   // 일련변호 가져오기
+		               + "               rownum AS rn "   
 		               + "          FROM "
 		               + "            ( "
 		               + "              SELECT * FROM DR_customers "
