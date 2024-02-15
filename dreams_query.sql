@@ -31,6 +31,74 @@ VALUES ((SELECT NVL(MAX(REF_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '00
 
 SELECT * FROM DR_refund;
 
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('hong1234', '홍길동', '1234', 'h@naver.com', '1990-09-20', '010-9002-2512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('kim123', '김달수', '1234', 'kim@naver.com', '1890-09-20', '010-9792-2662', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('admin', '관리자', '1111', 'h@naver.com', '1999-09-20', '010-9002-2512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('sky123', '이하늘', '2222', 'sky@naver.com', '1979-09-20', '010-9912-2702', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('dongsu', '오동수', '1111', 'dong@naver.com', '2000-09-20', '010-2344-2092', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('faker', '장우혁', '33334', 'fff2@naver.com', '1883-09-20', '010-9992-0920', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('admin', '김제동', '1111', 'hjd2@naver.com', '1979-09-20', '010-9892-1512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('onigg', '오장혁', '1111', 'oo33@naver.com', '1989-01-21', '010-8892-5818', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('hyhy3', '하후돈', '1111', 'hyyy@naver.com', '1978-04-20', '010-1112-9999', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('kiki3', '김관우', '1111', 'kk23@naver.com', '1969-09-20', '010-232-4689', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('apllll', '이아연', '12313', 'aaaw@naver.com', '1980-09-23', '010-3332-2562', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('kill2', '강호동', '1111', 'kind@naver.com', '1996-05-20', '010-9062-2333', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('admin', '관리자', '1111', 'h@naver.com', '1999-09-20', '010-9002-2512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('kkkttt', '강구현', '9999', 'kong@naver.com', '1997-12-02', '010-9202-1512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('dunkk', '김태희', '1111', 'xogml@naver.com', '1999-02-02', '010-9111-2212', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('vvs25', '박하연', '78888', 'pakrr@naver.com', '1979-09-20', '010-9672-9888', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+INSERT INTO DR_customers(cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Phone, cust_Address, cust_No)
+VALUES('bkbkbk', '김보연', '7878', 'ksad@naver.com', '1999-06-20', '010-9002-2512', '서울시 용산구 효창동 드림즈아파트 102동 303호', (SELECT NVL(MAX(cust_No)+1,1 ) FROM DR_customers));
+COMMIT;
+
+
+
 ----------------------------------------------
 
 DROP TABLE DR_orders CASCADE CONSTRAINTS;
