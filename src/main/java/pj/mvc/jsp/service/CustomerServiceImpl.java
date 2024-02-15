@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public void idConfirmAction(HttpServletRequest req, HttpServletResponse res) 
 			throws ServletException, IOException {
 		System.out.println("서비스 - idConfirmAction");
-		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		String strUserid = req.getParameter("userid");
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -88,7 +88,7 @@ public class CustomerServiceImpl implements CustomerService {
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
 		CustomerDAO dao = CustomerDAOImpl.getInstance();
 		
-		// 5단계. 중복확인 처리
+		// 5단계. 회원가입 처리
 		int insertCnt = dao.insertCustomer(dto);
 		
 		// 6단계. jsp로 처리결과 전달
@@ -113,13 +113,11 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		// 로그인 성공시 세션ID를 설정
 		if(selectCnt == 1) {
-			HttpSession session = req.getSession();
-			session.setAttribute("sessionID", strId);
-			// req.getSession().setAttribute("sessionID", strId);  // 한방에 처리 가능
+			req.getSession().setAttribute("sessionID", strId);
+			
+			// HttpSession session = req.getSession();
+			// session.setAttribute("sessionID", strId);
 		}
-	
-		// 6단계. jsp로 처리결과 전달
-		// req.setAttribute("selectCnt", selectCnt);	// 세션으로 로그인 여부 판단
 	}
 	
 	// 회원정보 인증처리 및 탈퇴 처리
@@ -156,7 +154,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - modifyDetailAction()");
 		
-		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		String strId = (String)req.getSession().getAttribute("sessionID");
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -263,7 +261,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - admin_modifyDetailAction()");
 		
-		// 3단계. 화면에서 입력받은 값을 가져와서 DTO의 setter로 값 전달
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		int num = (Integer.parseInt(req.getParameter("cust_No")));
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -283,7 +281,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - admin_recoverCustomerAction()");
 
-		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -303,7 +301,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - admin_suspendCustomerAction()");
 		
-		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
@@ -324,7 +322,7 @@ public class CustomerServiceImpl implements CustomerService {
 			throws ServletException, IOException {
 		System.out.println("서비스 - admin_deleteCustomerAction()");
 		
-		// 3단계. jQuery에서 입력받은 값을 가져온다.
+		// 3단계. 화면에서 입력받은 값을 가져온다.
 		int cust_No = Integer.parseInt(req.getParameter("cust_No"));
 		
 		// 4단계. 싱글톤방식으로 DAO 객체 생성, 다형성 적용
