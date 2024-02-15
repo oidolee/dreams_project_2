@@ -90,7 +90,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	// 회원가입 처리
 	@Override
 	public int insertCustomer(CustomerDTO dto) {
-		System.out.println("CustomerDAOImpl - insertCustomer!");
+		System.out.println("CustomerDAOImpl - insertCustomer");
 		
 		int insertCnt = 0;
 		Connection conn = null;
