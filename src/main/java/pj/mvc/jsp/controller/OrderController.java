@@ -108,6 +108,16 @@ public class OrderController extends HttpServlet {
 			dispatcher.forward(req, res);
 		}
 		
+		// 주문 생성
+		else if (url.equals("/insertOrder.oc")) {
+			
+			service.refundDetailAction(req, res);
+			viewPage = "/resource/page_6/refundDetail.jsp";
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
+			dispatcher.forward(req, res);
+		}
+		
 		
 		
 	

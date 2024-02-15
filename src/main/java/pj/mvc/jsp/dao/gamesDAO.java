@@ -17,6 +17,13 @@ public interface gamesDAO {
 	
 	//홈팀 위치 정보
 	public String getLocation(String dG_Home);
+	
 	//경기 일정 삭제
 	public int deleteGames(int dG_No);
+	
+	//경기 일정 상세
+	public gamesDTO getDetail(int DG_No);
+	
+	//게임일정 수정
+	public int updateGames(gamesDTO dto); 
 }

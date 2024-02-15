@@ -146,7 +146,9 @@
                       <tr>
                         <td> ${trdto.ticket_no } </td>
                         <td> ${trdto.ticket_seat } </td>
-                        <td> ${trdto.game_date } </td>
+                        <td> 
+                        	<fmt:formatDate value="${trdto.game_date}" pattern="yyyy-MM-dd HH:mm:ss" /> 
+                         </td>
                         <td> ${trdto.ticket_price } </td>
                         <td> ${trdto.purchase_date } </td>
                         <td><input type="button" value="예매 취소" onclick="cancle(${trdto.ticket_no })"></td>

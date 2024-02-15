@@ -148,7 +148,10 @@ public class OrderServiceImpl implements OrderService {
 		req.setAttribute("list", list);
 	}
 		
-	
+	public void insertOrder(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException{
+		
+	};
 	
 	
 	
