@@ -1,3 +1,7 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Timestamp"%>
+<%@page import="pj.mvc.jsp.dto.gamesDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/layout/setting.jsp"%>
@@ -19,6 +23,16 @@
 	
 	String getDate = "";
 	getDate = getYear+"-"+formattedMonth+"-"+formattedDay+"T18:00";
+	
+	gamesDTO dto = (gamesDTO)request.getAttribute("dto");
+	Timestamp timestamp = dto.getDG_Time();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	String dateTimeString = dateFormat.format(new Date(timestamp.getTime()));
+
+    String[] dateTimeParts = dateTimeString.split(" ");
+    String datePart = dateTimeParts[0];
+    String timePart = dateTimeParts[1];
+	
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -186,7 +200,7 @@ to {
 					<div class="row mt-4">
 						<div class="col-xl-2 col-md-6">
 							<div class="card bg-primary text-white mb-4">
-								<div class="card-body">경기일정 등록</div>
+								<div class="card-body">경기일정 수정</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
 									<a class="small text-white stretched-link"
@@ -207,10 +221,11 @@ to {
 								<div class="row d-flex justify-content-center">
 									<div class="col-md-6 text-center"
 										style="display: flex; flex-direction: column; height: 400px; justify-content: center; align-items: center;">
-										<h2>경기일정 등록</h2>
-										<c:out value="${dto}"></c:out>
-										<form action="${path}/gamesInsertAction.gc" class="mt-5" id="gamesInsertForm"
+										<h2>경기일정 수정</h2>
+										<form action="${path}/updateAction.gc" class="mt-5" id="gamesInsertForm"
 											name="gamesInsertForm">
+											
+											<input type="hidden" name="DG_No" id="DG_No" value="${param.DG_No}" />
 											<div class="row mb-3 text-start">
 												<label for="colFormLabelSm"
 													class="text-left col-sm-4 col-form-label col-form-label-sm ">Home</label>
@@ -221,7 +236,7 @@ to {
 														
 														<c:forEach var="dtoList" items="${list}">
 															<c:set var="selected" value="" />
-															<c:if test="${dtoList.getDK_TeamName() == dto.getDK_TeamName()}"> 
+															<c:if test="${dtoList.getDK_TeamName() == dto.getDG_Home()}"> 
 																<c:set var="selected" value="selected" />
 															</c:if>
 														
@@ -238,10 +253,16 @@ to {
 													<select id="DG_Away" name="DG_Away" class="form-select"
 														aria-label="Default select example">
 														<option value="">팀 선택</option>
-														<c:forEach var="dto" items="${list}">
-															<option value="${dto.getDK_TeamName()}">
-																<c:out value="${dto.getDK_TeamName()}" />
-															</option>
+														<c:forEach var="dtoList" items="${list}">
+															<c:set var="selected" value="" />
+																<c:if test="${dtoList.getDK_TeamName() == dto.getDG_Away()}"> 
+																<c:set var="selected" value="selected" />
+															</c:if>
+															
+														<option value="${dtoList.getDK_TeamName()}" ${selected}>
+														    <c:out value="${dtoList.getDK_TeamName()}" />
+														</option>
+
 														</c:forEach>
 													</select>
 												</div>
@@ -250,12 +271,15 @@ to {
 												<label for="DG_Time"
 													class="text-left col-sm-4 col-form-label col-form-label-sm">시간</label>
 												<div class="col-sm-8">
-													<input type="datetime-local" id="DG_Time" name="DG_Time"
-														required class="form-control form-control-sm" value="${dto.getDG_Time() }">
+													<input type="date" id="datePart" name="datePart"
+														required class="form-control form-control-sm" value="<%= datePart %>" readonly>
+
+													<input type="time" id="timePart" name="timePart"
+														required class="form-control form-control-sm" value="<%= timePart %>">
 												</div>
 											</div>
 											<button type="button" id="gamesInsertButton"
-												class="btn btn-success mt-3">등록</button>
+												class="btn btn-success mt-3">수정</button>
 										</form>
 
 

@@ -24,6 +24,7 @@ public class gamesDAOImpl implements gamesDAO {
 	
 	// 싱글톤 객체 생성
 	private static gamesDAOImpl instance = new gamesDAOImpl();
+	
 	public static gamesDAOImpl getInstance() {
 		if(instance == null)
 			instance = new gamesDAOImpl();
@@ -45,7 +46,6 @@ public class gamesDAOImpl implements gamesDAO {
 	
 	//경기 일정 출력
 	public List<gamesDTO> selectGamesList() {
-		System.out.println("gamesDAOImpl - selectGamesList");
 		List<gamesDTO> list = null;
 		
 		Connection conn = null;
@@ -118,6 +118,7 @@ public class gamesDAOImpl implements gamesDAO {
 		return list;
 	}
 
+	//경기 일정 등록
 	public int insertGames(gamesDTO dto) {
 	    int insertCnt = 0;
 	    Connection conn = null;
@@ -140,19 +141,16 @@ public class gamesDAOImpl implements gamesDAO {
 	        // 이미 정보가 있는지 확인
 	        pstmt = conn.prepareStatement(checkSql);
 	        pstmt.setString(1, formattedDate);
-	        System.out.println("formattedDate :" + formattedDate);
 	        rs = pstmt.executeQuery();
-	        System.out.println(" 일정 등록 체크 : " + pstmt.toString());
 	        
 	        if (rs.next() && rs.getInt(1) > 0) {
 	            // 이미 정보가 있으면 insertCnt를 2로 설정
 	            insertCnt = 2;
 	        } else {
 	            // 정보가 없으면 INSERT 쿼리 실행
-	            String insertSql = "INSERT INTO DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time) VALUES(nvl((select max(DG_No) from DR_Gemes)+1,1),?, ?, ?, ?)";
-	            //String insertSql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
-	            System.err.println(" insertSql : " + insertSql);
-	            pstmt = conn.prepareStatement(insertSql);
+	            String sql = "INSERT INTO DR_Gemes(DG_No, DG_Home, DG_Away, DG_Location, DG_Time) VALUES(nvl((select max(DG_No) from DR_Gemes)+1,1),?, ?, ?, ?)";
+	            //String sql = "INSERT INTO DR_Gemes(DG_Home, DG_Away, DG_Location, DG_Time) VALUES(?, ?, ?, ?)";
+	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setString(1, dto.getDG_Home());
 	            pstmt.setString(2, dto.getDG_Away());
 	            pstmt.setString(3, dto.getDG_Location());
@@ -214,6 +212,7 @@ public class gamesDAOImpl implements gamesDAO {
 		return DG_Location;
 	}
 	
+	//경기일정 삭제
 	public int deleteGames(int DG_No) {
 		int deleteCnt = 0;
 		Connection conn = null;
@@ -241,6 +240,7 @@ public class gamesDAOImpl implements gamesDAO {
 		return deleteCnt;
 	}
 
+	//경기일정 상세
 	public gamesDTO getDetail(int DG_No) {
 		
 		gamesDTO dto = null;
@@ -252,7 +252,6 @@ public class gamesDAOImpl implements gamesDAO {
 			String sql = "SELECT * FROM DR_Gemes WHERE DG_No = ? ";
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(" service deleteGames : " + DG_No );
 			pstmt.setInt(1, DG_No);
 			rs = pstmt.executeQuery();
 			
@@ -276,6 +275,33 @@ public class gamesDAOImpl implements gamesDAO {
 			}
 		}
 		return dto;
+	}
+	
+	//경기일정 수정
+	public int updateGames(gamesDTO dto) {
+	    int updateCnt = 0;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    
+	    try {
+	    	String sql = "UPDATE DR_Gemes"
+	    				+ " SET DG_Home = ?, DG_Away = ?, DG_Location = ?, DG_Time = ? "
+	    				+ " WHERE DG_No = ? ";
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getDG_Home());
+			pstmt.setString(2, dto.getDG_Away());
+			pstmt.setString(3, dto.getDG_Location());
+			pstmt.setTimestamp(4,dto.getDG_Time());
+			pstmt.setInt(5, dto.getDG_No());
+			updateCnt = pstmt.executeUpdate();
+			System.err.println(" query : " + pstmt.toString());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return updateCnt;
 	}
 	
 }

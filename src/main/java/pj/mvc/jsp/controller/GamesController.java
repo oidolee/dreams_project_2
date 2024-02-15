@@ -38,11 +38,9 @@ public class GamesController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath(); // 플젝명
 		String url = uri.substring(contextPath.length());
-		System.out.println(url);
 		String viewPage = "";
 		// 드림즈게시판
 		if (url.equals("/*.gc") || url.equals("/games.gc")) {
-			System.out.println("<<< url ==> /games.bc >>>");
 			viewPage = "/resource/page_3/games.jsp";
 			service.gamesListAction(request, response);
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
@@ -51,7 +49,6 @@ public class GamesController extends HttpServlet {
 		
 		//게임일정 등록 화면
 		else if (url.equals("/gamesInsert.gc")) {
-			System.out.println("<<< url ==> /gamesInsert.bc >>>");
 			viewPage = "/resource/admin/games/games.jsp";
 			
 			service.teamListAction(request, response);
@@ -60,7 +57,6 @@ public class GamesController extends HttpServlet {
 		}
 		//게임일정 등록 실행		
 		if (url.equals("/gamesInsertAction.gc")) {
-			System.out.println("<<< url ==> /gamesInsertAction.bc >>>");
 			viewPage = "/resource/admin/games/gamesInsertAction.jsp";
 			
 			service.gamesInsertAction(request, response);
@@ -68,9 +64,8 @@ public class GamesController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
-		//게임일정 등록 화면
+		//게임일정 업데이트 화면
 		else if (url.equals("/update.gc")) {
-			System.out.println("<<< url ==> /update.bc >>>");
 			viewPage = "/resource/admin/games/update.jsp";
 						
 			service.getDetail(request, response);
@@ -80,12 +75,19 @@ public class GamesController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		
+		//게임일정 업데이트 실행
+		else if (url.equals("/updateAction.gc")) {
+			viewPage = "/resource/admin/games/gamesUpdateAction.jsp";
+						
+			service.gamesUpdateAction(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+		}
 		
 		
 		
-		
+		//게임일정 삭제
 		else if (url.equals("/deleteGames.gc")) {
-			System.out.println("<<< url ==> /deleteGames.bc >>>");
 			viewPage = "/resource/page_3/deleteGamesAction.jsp";
 			
 			service.deleteGamesAction(request, response);
