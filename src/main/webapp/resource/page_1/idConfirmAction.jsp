@@ -9,9 +9,7 @@
     <meta charset="UTF-8">
     <!-- 반응형 웹-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/jsp_pj_ict02/resources/css/common/header.css">
-    <link rel="stylesheet" href="/jsp_pj_ict02/resources/css/common/footer.css">
-    <link rel="stylesheet" href="/jsp_pj_ict02/resources/css/customer/join.css">
+    <link rel="stylesheet" href="${path}/resource/page_1/join.css">
 
     <script src="https://kit.fontawesome.com/48086a0d4e.js" crossorigin="anonymous"></script>
     <!-- (3-3-2). 자바스크립트 소스 추가 :  -->
