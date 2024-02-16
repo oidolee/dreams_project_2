@@ -188,10 +188,15 @@ public class BoardController extends HttpServlet {
 		// 관리자 게시글 숨기기
 		else if(url.equals("/admin_board_hide.bc")) {
 			System.out.println("<<< url ==> /admin_board_hide.bc >>>");
-			
 			service.boardHide(request, response);
 			
-			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			int pageNum;
+			if(request.getParameter("pageNum") == "") {
+				pageNum = 1;
+			}
+			else {
+				pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			}
 			
 			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
 			response.sendRedirect(viewPage);
@@ -203,7 +208,13 @@ public class BoardController extends HttpServlet {
 			
 			service.boardView(request, response);
 			
-			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			int pageNum;
+			if(request.getParameter("pageNum") == "") {
+				pageNum = 1;
+			}
+			else {
+				pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			}
 			
 			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
 			response.sendRedirect(viewPage);
@@ -215,7 +226,13 @@ public class BoardController extends HttpServlet {
 			
 			service.boardDelete_admin(request, response);
 			
-			int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			int pageNum;
+			if(request.getParameter("pageNum") == "") {
+				pageNum = 1;
+			}
+			else {
+				pageNum = Integer.parseInt(request.getParameter("pageNum"));
+			}
 			
 			viewPage = request.getContextPath() + "/admin_board.bc?pageNum=" + pageNum;
 			response.sendRedirect(viewPage);
