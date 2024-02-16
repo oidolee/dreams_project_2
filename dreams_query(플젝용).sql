@@ -1,5 +1,14 @@
+--경기 일정 테이블
+drop table DR_Gemes cascade constraints;
+create table DR_Gemes(
+    DG_No number primary key,
+    DG_Home varchar2(100) ,
+    DG_Away varchar2(100) ,
+    DG_Location varchar2(100) ,
+    DG_Time timestamp default current_timestamp
+);
 
-
+drop table DR_KBOTeams cascade constraints;
 create table DR_KBOTeams(
    DK_No number primary key,
    DK_TeamName varchar(100) ,
@@ -37,13 +46,16 @@ UPDATE DR_customers SET cust_Name = '홍합', cust_Password = '222', cust_Email 
 WHERE cust_Id = 'hong163';
 
 insert into DR_customers (cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Address)
-    values ('admin','관리자',123123, 'admin@gamil.com','2024-02-15','adress_test')
-;
+    values ('admin','관리자',111111, 'admin@gamil.com','2024-02-15','adress_test');
+insert into DR_customers (cust_Id, cust_Name, cust_Password, cust_Email, cust_Birth, cust_Address)
+    values ('hong1234','홍길동',111111, 'hong@gamil.com','2024-02-15','hong_test');
 COMMIT;
 
 -- 회원목록 조회(삭제 반영)
 ALTER TABLE DR_customers
   ADD show CHAR(1) DEFAULT 'y';
+  
+select * from DR_customers; 
 --  석무 끝
 
 -- 창해님 시작 (page_2)
@@ -210,33 +222,35 @@ CREATE TABLE DR_orderDetail (
 -- 재욱님 끝
 
 ------- 2월 15일 입력
+select * from DR_orderDetail;
+select * from DR_orders;
 
 INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'hong', '야구공 등 4건', 92000, '홍길동', '010-1111-2222', '서울시 마포구', sysdate, '결제완료');
+     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'hong1234', '야구공 등 4건', 92000, '홍길동', '010-1111-2222', '서울시 마포구', sysdate, '결제완료');
 
 INSERT INTO DR_orders(order_No, cust_Id, order_Content, order_Amount, order_Name, order_Phone, order_Address, order_Date, order_Status)
-     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '001')) FROM DR_orders), 'admin', '티셔츠 등 3건', 110000, '관리자', '010-1231-2463', '서울시 용산구', sysdate, '배송중');
+     VALUES ( (SELECT NVL(MAX(order_No) + 1, TO_NUMBER(TO_CHAR(SYSDATE, 'YYMMDD') || '002')) FROM DR_orders), 'admin', '티셔츠 등 3건', 110000, '관리자', '010-1231-2463', '서울시 용산구', sysdate, '배송중');
 
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215001, 1001, '야구공', 1, 25000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '001' , 1001, '야구공', 1, 25000);
 
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215001, 2001, '싸인볼', 2, 16000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '001', 2001, '싸인볼', 2, 16000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215001, 3001, '야구배트', 1, 15000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '001', 3001, '야구배트', 1, 15000);     
 
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215001, 4001, '키링', 3, 20000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '001', 4001, '키링', 3, 20000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215002, 3001, '야구배트', 1, 15000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '002', 3001, '야구배트', 1, 15000);     
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215002, 6001, '티셔츠', 1, 55000);
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '002', 6001, '티셔츠', 1, 55000);
      
 INSERT INTO DR_orderDetail(orderDetail_No, order_No, product_No, product_Name, orderDetail_qty, orderDetail_price)
-     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), 240215002, 5001, '글러브', 1, 40000);     
+     VALUES ((SELECT NVL(MAX(orderDetail_No) + 1, 1) FROM DR_orderDetail), TO_CHAR(sysdate, 'YYMMDD') || '002', 5001, '글러브', 1, 40000);     
      
 COMMIT;    
 select * from DR_orderDetail;
