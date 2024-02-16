@@ -260,7 +260,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 		try {
 			conn = dataSource.getConnection();
 			String sql = "UPDATE DR_customers SET cust_Name = ?, cust_Password = ?, cust_Email = ?, "
-							+ "cust_Birth = ?, cust_Phone = ?, cust_Address = ? "
+							+ "cust_Birth = ?, cust_Phone = ? "
 							+ "WHERE cust_Id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -269,8 +269,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 			pstmt.setString(3, dto.getCust_Email());
 			pstmt.setString(4, dto.getCust_Birth());
 			pstmt.setString(5, dto.getCust_Phone());
-			pstmt.setString(6, dto.getCust_Address());
-			pstmt.setString(7, dto.getCust_Id());
+			pstmt.setString(6, dto.getCust_Id());
 			
 			updateCnt = pstmt.executeUpdate();
 			System.out.println("updateCnt : " + updateCnt);

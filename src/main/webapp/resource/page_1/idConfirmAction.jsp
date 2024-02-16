@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <!-- 반응형 웹-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${path}/resource/page_1/join.css">
+    <link rel="stylesheet" href="${path}/resource/css/customer/idConfirmAction.css">
 
     <script src="https://kit.fontawesome.com/48086a0d4e.js" crossorigin="anonymous"></script>
     <!-- (3-3-2). 자바스크립트 소스 추가 :  -->
@@ -17,7 +17,7 @@
     <%--  <script src="${path}/resources/js/customer/main.js" defer></script> --%>
     
     <!-- join.js -->
-    <script src="${path}/resource/page_1/join.js" defer></script>
+    <script src="${path}/resource/page_1/join.js"></script>
     
     <title>main</title>
 
@@ -55,7 +55,7 @@
 	                           			<tr>
 	                                        <th align="center"> * 아이디 </th>
 	                                        <td>
-	                                            <input type="text" class="input" name="userid" size="20" placeholder="공백없이 20자이내로 작성" required>    <!-- placeholder : 힌트 -->
+	                                            <input type="text" class="input" name="userid" id="userid" size="20" placeholder="공백없이 20자이내로 작성" required>    <!-- placeholder : 힌트 -->
 	                                        </td>
 	                                    </tr>
 	                           
