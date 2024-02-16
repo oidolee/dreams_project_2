@@ -30,6 +30,9 @@ public interface OrderService {
 	public void refundDetailAction(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException;
 	
+	public void insertOrder(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException;
+	
 	// ---------------------------------------------------
 //	// 주문 등록(고객)
 //	public void orderInsertAction(HttpServletRequest req, HttpServletResponse res)

@@ -128,7 +128,7 @@
 							<h5>굿즈종류 ${dto.product_Category} </h5>
 						</div>
 						
-						<form id="purchaseForm" action="${path}/myorder.oc" method="post">
+						<form id="purchaseForm" action="${path}/insertOrder.oc" method="post">
 						
 						<h5>옵션 선택</h5> <select id="productOption" class="custom-select">
 							<option value="0">사이즈를 선택해 주세요.</option>

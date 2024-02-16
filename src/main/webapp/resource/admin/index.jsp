@@ -46,7 +46,7 @@
         background-size: 110px;
         position: fixed;
         bottom: 10px;
-        left: 250px;
+        left: 150px;
         border-radius: 5px;
         display: flex;
         align-items: center;
