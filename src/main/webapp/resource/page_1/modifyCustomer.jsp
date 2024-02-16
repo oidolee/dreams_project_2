@@ -292,26 +292,26 @@
 
 
 									<tr>
-										<th rowspan="3">
+										<th rowspan="3">	<!-- api기능 추후 구현 -->
 											<label for="Hp1" style="color: #ffffff  !important;">  주소</label>
 										</th>
 										<td style="border-bottom: none; ">
-											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px; "  >  
+											<input type="text" class="input" id="Post1" name="post1" size="3" style="width: 60px; height: 30px;" value="101" disabled >  
 											-
-											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;"  > 
+											<input type="text" class="input" name="post2" size="3" style="width: 60px; height: 30px;" value="412" disabled > 
 											<input type="button" class="input" name="post3" size="4" style="width: 90px; padding-right: 10px; height: 30px; color: #000000  !important; font-size: 90%;" value="우편번호▶" onclick="location.href='https://www.epost.go.kr/search.RetrieveNewAddressNewZipCdList.comm'" >   
 										</td>
 									</tr>
 									
 									<tr>
 										<td style="border-bottom: none; padding: 0px 0px 0px 10px; color: #000000  !important; font-size: 90%; ">
-											<input type="text" class="input" name="adress1" size="8" style="width: 73%; height: 80%;">&nbsp;기본주소
+											<input type="text" class="input" name="address1" size="8" style="width: 73%; height: 80%;" value="서울시 용산구 효창동" disabled>&nbsp;기본주소
 										</td>
 									</tr>
 										
 									<tr>
 										<td style="color: #000000  !important; font-size: 90%;">
-											<input type="text" class="input" name="adress2" size="8" style="width: 73%; height: 80%;">&nbsp;나머지주소
+											<input type="text" class="input" name="address2" size="8" style="width: 73%; height: 80%;" value="드림즈아파트 102동 303호" disabled>&nbsp;나머지주소
 
 										</td>
 									</tr>
